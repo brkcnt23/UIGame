@@ -15,6 +15,8 @@ public class PlayerSO : ScriptableObject
     public int MaxExperience;
     public int CurrentExperience;
 
+    [Space(10)]
+    [Header("Exhaustion")]
     public int Maxexhaustion;
     public int Currentexhaustion;
     
