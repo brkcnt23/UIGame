@@ -1,14 +1,85 @@
+using System;
 using UnityEngine;
 
 public class PlayerStatHandler : MonoBehaviour
 {
+    public static PlayerStatHandler Instance { get; private set; }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public PlayerData pd = new PlayerData(1);
+
+    private void OnDestroy()
+    {
+        pd.SaveData(1);
+    }
+
+    public int GetExhaustionLevel()
+    {
+        return pd.CurrentExhaustion;
+    }
+
+    public int GetRations()
+    {
+        return pd.Rations;
+    }
+
+    public void SetExhaustionLevel(int nextValue)
+    {
+        pd.CurrentExhaustion = nextValue;
+        Print($"Exhaustion level set to: {GetExhaustionLevel()}");
+    }
+
+    public void IncreaseExhaustion()
+    {
+        pd.CurrentExhaustion += 1;
+        Print("Increased exhaustion. Current level: " + GetExhaustionLevel());
+    }
+
+    public void CheckExhaustionMaxed()
+    {
+        if (pd.CurrentExhaustion >= pd.MaxExhaustion)
+        {
+            GameManager.Instance.Death();
+        }
+    }
+
+    public void DecreaseRations(int value)
+    {
+        pd.Rations -= value;
+        Print($"Rations decreased by {value}. Remaining: {GetRations()}");
+    }
+
+    public void IncreaseRations(int value)
+    {
+        pd.Rations += value;
+        Print($"Rations increased by {value}. Total: {GetRations()}");
+    }
+
+    public void Print(string message)
+    {
+        Debug.Log($"{message}{Environment.NewLine}Object: {this.name}");
+    }
 }
+
 [System.Serializable]
 public class PlayerData
 {
     public int ID;
     public string Name;
+    public int Hour;
+    public int Minute;
+    public int Day;
     public int Level;
     public int Health;
     public int MaxHealth;
@@ -24,39 +95,13 @@ public class PlayerData
 
     public PlayerData(int saveSlot)
     {
-        //Read the json file from the resources folder
-        string jsonData = System.IO.File.ReadAllText(Application.dataPath + "/Base/PlayerData/SaveSlot_" + saveSlot + ".json");
-        //Convert the json to player data
+        string jsonData = System.IO.File.ReadAllText(Application.dataPath + "/Scripts/Base/PlayerData/SaveSlot_" + saveSlot + ".json");
         JsonUtility.FromJsonOverwrite(jsonData, this);
     }
 
-    public PlayerData(PlayerSO playerSO)
-    {
-        ID = playerSO.ID;
-        Name = playerSO.Name;
-        Level = playerSO.Level;
-        Health = playerSO.CurrentHealth;
-        MaxHealth = playerSO.MaxHealth;
-        Experience = playerSO.CurrentExperience;
-        MaxExperience = playerSO.MaxExperience;
-        Strength = playerSO.Strength;
-        Dexterity = playerSO.Dexterity;
-        Constitution = playerSO.Constitution;
-        Charisma = playerSO.Charisma;
-        Rations = playerSO.Rations;
-        MaxExhaustion = playerSO.Maxexhaustion;
-        CurrentExhaustion = playerSO.Currentexhaustion;
-    }
-
-    //We will read/write this data to a json and we will handle those in here
-
-    //We will create a method to save the data
     public void SaveData(int saveSlot)
     {
-        // Convert the player data to a json
         string jsonData = JsonUtility.ToJson(this);
-        //Write the json to Resources folder
-        System.IO.File.WriteAllText(Application.dataPath + "/Base/PlayerData/SaveSlot_" + saveSlot + ".json", jsonData);
+        System.IO.File.WriteAllText(Application.dataPath + "/Scripts/Base/PlayerData/SaveSlot_" + saveSlot + ".json", jsonData);
     }
 }
-

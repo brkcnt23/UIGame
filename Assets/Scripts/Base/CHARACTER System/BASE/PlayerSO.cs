@@ -6,6 +6,9 @@ public class PlayerSO : ScriptableObject
     [Header("Information")]
     public int ID;
     public string Name;
+    public int Hour;
+    public int Minute;
+    public int Day;
     [Header("Stats")]
     public int Level;
     [Space(10)]
@@ -36,6 +39,9 @@ public class PlayerSO : ScriptableObject
     {
         ID = 0;
         Name = "New Player";
+        Hour = 6;
+        Minute = 0;
+        Day = 0;
 
         Level = 1;
         MaxHealth = 100;
@@ -46,5 +52,6 @@ public class PlayerSO : ScriptableObject
         Dexterity = 1;
         Constitution = 1;
         Charisma = 1;
+        Rations = 10;
     }
 }

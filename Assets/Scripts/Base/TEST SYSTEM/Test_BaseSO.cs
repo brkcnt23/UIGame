@@ -34,17 +34,17 @@ public class Test_BaseSO : MonoBehaviour
 
     void TestJobSO()
     {
-        Print($"Job SO:\n Name: {jobSO.Name}\n Description: {jobSO.Description}\n DC: {jobSO.DC}\n Completion Time: {jobSO.CompletionTime}\n Reward: {jobSO.Reward}");
+        Print($"Job SO:\n Name: {jobSO.Name}\n Description: {jobSO.Description}\n DC: {jobSO.DC}\n Completion Time: {jobSO.CompletionHour}\n Reward: {jobSO.Reward}");
     }
 
     void TestQuestSO()
     {
-        Print($"Quest SO:\n Name: {questSO.Name}\n Description: {questSO.Description}\n DC: {questSO.DC}\n Completion Time: {questSO.CompletionTime}\n Reward: {questSO.Reward}");
+        Print($"Quest SO:\n Name: {questSO.Name}\n Description: {questSO.Description}\n DC: {questSO.DC}\n Completion Time: {questSO.CompletionHour}\n Reward: {questSO.Reward}");
     }
 
     void TestEventSO()
     {
-        Print($"Event SO:\n Name: {eventSO.Name}\n Description: {eventSO.Description}\n DC: {eventSO.DC}\n Completion Time: {eventSO.CompletionTime}\n Reward: {eventSO.Reward}");
+        Print($"Event SO:\n Name: {eventSO.Name}\n Description: {eventSO.Description}\n DC: {eventSO.DC}\n Completion Time: {eventSO.CompletionHour}\n Reward: {eventSO.Reward}");
     }
 
     void Print(string message)

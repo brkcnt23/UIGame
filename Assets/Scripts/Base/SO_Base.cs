@@ -12,7 +12,8 @@ public class SO_Base : ScriptableObject
     [Header("Requirements")]
     public int DC;
     [Range(1, 24)]
-    public int CompletionTime;
+    public int CompletionHour;
+    public int CompletionMinute;
 
     [Header("Reward")]
     public int Reward;

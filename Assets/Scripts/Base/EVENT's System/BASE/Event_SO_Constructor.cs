@@ -13,7 +13,7 @@ public class Event_SO_Constructor : SO_Base
 
         DC = 10;
 
-        CompletionTime = 1;
+        CompletionHour = 1;
 
         Reward = 100;
     }
