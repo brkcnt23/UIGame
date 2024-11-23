@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "NewQuest", menuName = "SO System/QUEST")]
 public class Quest_SO_Constructor : SO_Base
 {

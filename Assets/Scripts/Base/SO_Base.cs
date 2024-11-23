@@ -1,4 +1,5 @@
 using UnityEngine;
+[System.Serializable]
 public class SO_Base : ScriptableObject
 {
     [Header("Type")]

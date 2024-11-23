@@ -1,0 +1,101 @@
+{
+    "settlements": [
+        {
+            "Name": "MyTown",
+            "Population": 5000,
+            "Wealth": 20000,
+            "Quality": 80,
+            "Shops": [
+                {
+                    "Name": "Blacksmith Shop",
+                    "level": 0,
+                    "maxLevel": 0,
+                    "cost": 0,
+                    "income": 0,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Alchemist Shop",
+                    "level": 0,
+                    "maxLevel": 0,
+                    "cost": 0,
+                    "income": 0,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "Golden Inn",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "quests": []
+            },
+            "TownHall": {
+                "Name": "Central Town Hall",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "jobs": []
+            },
+            "Walls": {
+                "Name": "Stone Wall",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 0,
+                "income": 0
+            },
+            "Type": 2
+        },
+
+        {
+            "Name": "MyVillage",
+            "Population": 1000,
+            "Wealth": 5000,
+            "Quality": 50,
+            "Shops": [
+                {
+                    "Name": "Blacksmith Shop",
+                    "level": 0,
+                    "maxLevel": 0,
+                    "cost": 0,
+                    "income": 0,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Alchemist Shop",
+                    "level": 0,
+                    "maxLevel": 0,
+                    "cost": 0,
+                    "income": 0,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "Bannered Mare",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "quests": []
+            },
+            "TownHall": {
+                "Name": "Village Hall",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "jobs": []
+            },
+            "Walls": {
+                "Name": "Wooden Wall",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 0,
+                "income": 0
+            },
+            "Type": 1
+        }
+    ]
+}

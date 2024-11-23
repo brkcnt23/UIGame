@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "NewJob", menuName = "SO System/JOB")]
 public class Job_SO_Constructor : SO_Base
 {

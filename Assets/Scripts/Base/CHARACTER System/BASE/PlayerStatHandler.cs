@@ -66,9 +66,9 @@ public class PlayerStatHandler : MonoBehaviour
         Print($"Rations increased by {value}. Total: {GetRations()}");
     }
 
-    public void Print(string message)
+    void Print(string message)
     {
-        Debug.Log($"{message}{Environment.NewLine}Object: {this.name}");
+        Debug.Log($"{message}\nSender:\"{this.GetType().Name}\" class in \"{this.gameObject.name}\" object");
     }
 }
 

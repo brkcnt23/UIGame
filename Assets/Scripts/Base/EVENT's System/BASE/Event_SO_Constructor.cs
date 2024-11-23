@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 [CreateAssetMenu(fileName = "NewEvent", menuName = "SO System/EVENT")]
 public class Event_SO_Constructor : SO_Base
 {
