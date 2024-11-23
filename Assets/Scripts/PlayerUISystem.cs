@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class PlayerUISystem : MonoBehaviour
 {
     public static PlayerUISystem Instance { get; private set; }
+    private TimeSystem timeSystem;
     private void Awake()
     {
         if (Instance == null)
@@ -23,7 +24,13 @@ public class PlayerUISystem : MonoBehaviour
     public TMP_Text ExhaustText;
     public TMP_Text RationPackText;
     public TMP_Text ActionLogText;
-
+    private void Start()
+    {
+        timeSystem = TimeSystem.Instance;
+        UpdateClockText();
+        UpdateExhaustionText();
+        UpdateRationText();
+    }
     public void UpdateRationText()
     {
         RationPackText.text = $"Ration Packs: {PlayerStatHandler.Instance.GetRations()}";
@@ -34,7 +41,19 @@ public class PlayerUISystem : MonoBehaviour
     }
     public void UpdateClockText()
     {
-        ClockText.text = ManualTimeSystem.Instance.GetCurrentTime();
+        if (timeSystem == null)
+        {
+            Debug.LogWarning("UpdateClockText: timeSystem is null.");
+            return;
+        }
+
+        if (ClockText == null)
+        {
+            Debug.LogWarning("UpdateClockText: ClockText is null.");
+            return;
+        }
+
+        ClockText.text = timeSystem.GetTimeString();
     }
     public void UpdateActionLog(string ActionLog)
     {
