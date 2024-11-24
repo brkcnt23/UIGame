@@ -24,8 +24,8 @@ public class TestScript : MonoBehaviour
         Debug.Log("Karakter uyudu.");
 
         // Smithing çıraklığı yapsın
-        craftingSystem.WorkAsApprentice(CraftType.Smither, 1);
-        Debug.Log("Karakter smithing çıraklığı yaptı.");
+        //craftingSystem.WorkAsApprentice(CraftType.Smither, 1);
+        //Debug.Log("Karakter smithing çıraklığı yaptı.");
 
         // UI güncellensin
         PlayerUISystem.Instance.UpdateClockText();

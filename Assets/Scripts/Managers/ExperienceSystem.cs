@@ -11,7 +11,7 @@ public static class ExperienceSystem
     // Karakter için toplam gerekli XP'yi hesaplar
     public static int GetTotalCharacterXPForLevel(int level)
     {
-        return Mathf.RoundToInt(BaseCharacterXP * (Mathf.Pow(2f, (level - 1) / 10f) - 1));
+        return Mathf.RoundToInt(BaseCharacterXP * (Mathf.Pow(2f, (level - 1) / 5f) - 1));
     }
 
     // Zanaatkarlık için toplam gerekli XP'yi hesaplar

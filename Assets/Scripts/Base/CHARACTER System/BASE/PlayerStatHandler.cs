@@ -76,9 +76,13 @@ public class PlayerData
 {
     public int ID;
     public string Name;
+
+
     public int Hour;
     public int Minute;
     public int Day;
+
+
     public int Level;
     public int Health;
     public int MaxHealth;
@@ -86,13 +90,21 @@ public class PlayerData
     public int MaxExperience;
     public int Gold;
     public int Silver;
+
+
     public int Strength;
     public int Dexterity;
     public int Constitution;
     public int Charisma;
+
+
     public int Rations;
+
+
     public int MaxExhaustionLevel;
     public int CurrentExhaustionLevel;
+
+
     public int SmitherSkillLevel;
     public int SmitherSkillXP;
     public int TannerSkillLevel;
@@ -103,8 +115,17 @@ public class PlayerData
     public int MasonSkillXP;
     public int AlchemistSkillLevel;
     public int AlchemistSkillXP;
-    public int LastSleepTime;
-    public int LastMealTime;
+
+
+    public int LastSleepDay;
+    public int LastSleepHour;
+    public int LastSleepMinute;
+
+    public int LastMealDay;
+    public int LastMealHour;
+    public int LastMealMinute;
+
+
     public bool HasDied;
 
     public PlayerData(int saveSlot)
@@ -132,10 +153,9 @@ public class PlayerData
 
     private void InitializeDefaultValues(int saveSlot)
     {
-        // Varsayılan değerleri burada ayarlayın
         ID = saveSlot;
-        Name = "Yeni Oyuncu";
-        Hour = 8;
+        Name = "Athelias";
+        Hour = 6;
         Minute = 0;
         Day = 1;
         Level = 1;
@@ -152,7 +172,7 @@ public class PlayerData
         Rations = 5;
         MaxExhaustionLevel = 3;
         CurrentExhaustionLevel = 0;
-        SmitherSkillLevel = 1;
+        SmitherSkillLevel = 0;
         SmitherSkillXP = 0;
         TannerSkillLevel = 0;
         TannerSkillXP = 0;
@@ -163,6 +183,13 @@ public class PlayerData
         AlchemistSkillLevel = 0;
         AlchemistSkillXP = 0;
         HasDied = false;
+        LastSleepDay = 1;
+        LastSleepHour = 6;
+        LastSleepMinute = 0;
+
+        LastMealDay = 1;
+        LastMealHour = 6;
+        LastMealMinute = 0;
 
     }
 

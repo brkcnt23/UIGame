@@ -23,13 +23,21 @@ public class TimeSystem : MonoBehaviour
     }
 
 
-    private void Start(){
+    private void Start()
+    {
         Hour = 6;
         Minute = 0;
         Day = 1;
         playerData = PlayerStatHandler.Instance.pd;
-        playerData.LastSleepTime = GetTotalMinutes();
-        playerData.LastMealTime = GetTotalMinutes();
+
+        // Son uyku ve yemek zamanlarını başlangıç zamanı olarak ayarla
+        playerData.LastSleepDay = Day;
+        playerData.LastSleepHour = Hour;
+        playerData.LastSleepMinute = Minute;
+
+        playerData.LastMealDay = Day;
+        playerData.LastMealHour = Hour;
+        playerData.LastMealMinute = Minute;
     }
     // Zamanı belirli bir dakika kadar ilerletir
     public void AdvanceTime(int minutes)
@@ -80,57 +88,83 @@ public class TimeSystem : MonoBehaviour
             // Yemek yoksa yorgunluk seviyesi artar
             playerData.CurrentExhaustionLevel += 1;
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
-            // Ölüm kontrolü kodunu şu an eklemiyoruz
         }
 
         // Zamanı ilerlet
         AdvanceTime(totalSleepDuration);
 
         // Son uyku zamanını güncelle
-        playerData.LastSleepTime = GetTotalMinutes();
+        playerData.LastSleepDay = Day;
+        playerData.LastSleepHour = Hour;
+        playerData.LastSleepMinute = Minute;
     }
+
 
     // Yorgunluk seviyesini kontrol eder
     private void CheckExhaustion()
     {
-        int timeSinceLastSleep = GetTotalMinutes() - playerData.LastSleepTime;
+        int timeSinceLastSleep = GetTimeDifferenceInMinutes(
+            playerData.LastSleepDay,
+            playerData.LastSleepHour,
+            playerData.LastSleepMinute,
+            Day,
+            Hour,
+            Minute);
+
         if (timeSinceLastSleep >= 1440) // 24 saatten fazla uyumamışsa
         {
             playerData.CurrentExhaustionLevel += 1;
             Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
             CheckExhaustionDeath();
-            // Son uyku zamanını güncelle ki tekrar artmasın
-            playerData.LastSleepTime = GetTotalMinutes();
+            // Son uyku zamanını güncelle
+            playerData.LastSleepDay = Day;
+            playerData.LastSleepHour = Hour;
+            playerData.LastSleepMinute = Minute;
         }
     }
+
 
     // Yemek yeme zamanını kontrol eder
     private void CheckMealTime()
     {
-        int timeSinceLastMeal = GetTotalMinutes() - playerData.LastMealTime;
+        int timeSinceLastMeal = GetTimeDifferenceInMinutes(
+            playerData.LastMealDay,
+            playerData.LastMealHour,
+            playerData.LastMealMinute,
+            Day,
+            Hour,
+            Minute);
+
         if (timeSinceLastMeal >= 840) // 14 saat (14 * 60 dakika)
         {
             if (playerData.Rations > 0)
             {
                 playerData.Rations -= 1;
                 Debug.Log("Yemek yediniz.");
-                playerData.LastMealTime = GetTotalMinutes();
+                // Son yemek zamanını güncelle
+                playerData.LastMealDay = Day;
+                playerData.LastMealHour = Hour;
+                playerData.LastMealMinute = Minute;
             }
             else
             {
                 playerData.CurrentExhaustionLevel += 1;
                 Debug.Log("Yemek yok! Yorgunluk seviyeniz arttı.");
                 CheckExhaustionDeath();
-                // Son yemek zamanını güncelle ki tekrar artmasın
-                playerData.LastMealTime = GetTotalMinutes();
+                // Son yemek zamanını güncelle
+                playerData.LastMealDay = Day;
+                playerData.LastMealHour = Hour;
+                playerData.LastMealMinute = Minute;
             }
         }
     }
 
-    // Toplam geçen dakika sayısını hesaplar
-    private int GetTotalMinutes()
+
+    private int GetTimeDifferenceInMinutes(int startDay, int startHour, int startMinute, int endDay, int endHour, int endMinute)
     {
-        return (Day * 24 * 60) + (Hour * 60) + Minute;
+        int totalStartMinutes = (startDay * 24 * 60) + (startHour * 60) + startMinute;
+        int totalEndMinutes = (endDay * 24 * 60) + (endHour * 60) + endMinute;
+        return totalEndMinutes - totalStartMinutes;
     }
 
     // Yorgunluk seviyesinin maksimuma ulaşıp ulaşmadığını kontrol eder

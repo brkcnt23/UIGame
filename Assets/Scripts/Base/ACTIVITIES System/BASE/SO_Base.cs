@@ -24,5 +24,6 @@ public enum SOTypes
 {
     JOB,
     QUEST,
-    EVENT
+    EVENT,
+    CRAFT
 }

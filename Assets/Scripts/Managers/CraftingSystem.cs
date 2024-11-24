@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DICE;
 
 public enum CraftType
 {
@@ -19,7 +20,7 @@ public class CraftingSystem
     public CraftingSystem(PlayerData pd, TimeSystem ts)
     {
         playerData = pd;
-        economySystem = new EconomySystem(playerData); // EconomySystem örneği
+        economySystem = new EconomySystem(playerData);
         timeSystem = ts;
     }
 
@@ -37,7 +38,7 @@ public class CraftingSystem
 
         // Başarı şansını hesaplayalım
         int successChance = Mathf.Clamp(50 + (levelDifference * 5), 0, 100);
-        int randomValueForSuccess = UnityEngine.Random.Range(0, 100);
+        int randomValueForSuccess = Dice.RollD100();
 
         if (randomValueForSuccess > successChance)
         {
@@ -86,7 +87,7 @@ public class CraftingSystem
 
         // Gold ve deneyim çarpanları
         float goldModifier = 0.5f;
-        float expModifier = 1.5f;
+        float expModifier = 0.5f;
 
         // Nihai ödül hesaplaması
         float reward = ((difficultyIndex * successMultiplier * goldModifier) * randomValue + statMultiplier) * baseMultiplier;
@@ -107,6 +108,10 @@ public class CraftingSystem
 
         // Para birimi dönüşümünü gerçekleştir
         economySystem.ConvertSilverToGold();
+
+        AddCraftedItem(craftType); // Add the crafted item to inventory
+        Debug.Log("Crafting successful!");
+
 
         // Seçilen zanaatkârlık alanında seviyeyi artırma işlemini kaldırdık
         // Artık seviye artışı ExperienceSystem üzerinden yapılıyor
@@ -160,6 +165,25 @@ public class CraftingSystem
         int baseWorkDuration = 8 * 60; // Temel iş süresi: 8 saat
         int workDuration = baseWorkDuration + ((jobLevel - 1) * 30); // Her seviye için 30 dakika eklenir
         return workDuration;
+    }
+    private void AddCraftedItem(CraftType craftType)
+    {
+        // Create an item based on the crafting type
+        Item craftedItem = craftType switch
+        {
+            CraftType.Smither => ItemDatabase.GetItemByID(1), // Iron Sword
+            CraftType.Tanner => ItemDatabase.GetItemByID(3), // Leather Armor
+            CraftType.Carpenter => ItemDatabase.GetItemByID(4), // Wooden Plank
+            CraftType.Mason => ItemDatabase.GetItemByID(5), // Stone Brick
+            CraftType.Alchemist => ItemDatabase.GetItemByID(2), // Health Potion
+            _ => null
+        };
+
+        if (craftedItem != null)
+        {
+            InventorySystem.Instance.AddItem(craftedItem);
+            Debug.Log($"Crafted {craftedItem.Name} and added to inventory.");
+        }
     }
 
 }
