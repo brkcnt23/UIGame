@@ -13,6 +13,7 @@ public enum SettlementType
 public class Settlement
 {
     public string Name;
+    public bool isUnlocked;
     public int Population;
     public int Wealth;
     public int Quality;

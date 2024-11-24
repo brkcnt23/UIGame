@@ -1,101 +1,786 @@
 {
     "settlements": [
         {
-            "Name": "MyTown",
-            "Population": 5000,
-            "Wealth": 20000,
-            "Quality": 80,
+            "Name": "Ironridge",
+            "isUnlocked": true,
+            "Population": 5200,
+            "Wealth": 22000,
+            "Quality": 85,
             "Shops": [
                 {
-                    "Name": "Blacksmith Shop",
-                    "level": 0,
-                    "maxLevel": 0,
-                    "cost": 0,
-                    "income": 0,
+                    "Name": "Ironhammer Forge",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 1000,
+                    "income": 500,
                     "ShopType": 0
                 },
                 {
-                    "Name": "Alchemist Shop",
-                    "level": 0,
-                    "maxLevel": 0,
-                    "cost": 0,
-                    "income": 0,
+                    "Name": "Mystic Remedies",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 2000,
+                    "income": 800,
                     "ShopType": 3
                 }
             ],
             "Tavern": {
-                "Name": "Golden Inn",
-                "level": 0,
-                "maxLevel": 0,
-                "cost": 0,
-                "income": 0,
-                "quests": []
+                "Name": "The Rusty Mug",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 1500,
+                "income": 600,
+                "quests": ["Find the missing heirloom", "Escort the merchant"]
             },
             "TownHall": {
-                "Name": "Central Town Hall",
-                "level": 0,
-                "maxLevel": 0,
-                "cost": 0,
-                "income": 0,
-                "jobs": []
-            },
-            "Walls": {
-                "Name": "Stone Wall",
+                "Name": "Ironridge Hall",
                 "level": 2,
                 "maxLevel": 5,
-                "cost": 0,
+                "cost": 3000,
+                "income": 1000,
+                "jobs": ["Tax Collector", "Messenger"]
+            },
+            "Walls": {
+                "Name": "Reinforced Stone Wall",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 4000,
                 "income": 0
             },
             "Type": 2
         },
-
         {
-            "Name": "MyVillage",
-            "Population": 1000,
-            "Wealth": 5000,
-            "Quality": 50,
+            "Name": "Oakstead",
+            "isUnlocked": false,
+            "Population": 4500,
+            "Wealth": 18000,
+            "Quality": 75,
             "Shops": [
                 {
-                    "Name": "Blacksmith Shop",
-                    "level": 0,
-                    "maxLevel": 0,
-                    "cost": 0,
-                    "income": 0,
+                    "Name": "Sturdy Oak Smithy",
+                    "level": 1,
+                    "maxLevel": 4,
+                    "cost": 1200,
+                    "income": 600,
                     "ShopType": 0
                 },
                 {
-                    "Name": "Alchemist Shop",
+                    "Name": "Herbal Remedies",
                     "level": 0,
-                    "maxLevel": 0,
-                    "cost": 0,
-                    "income": 0,
+                    "maxLevel": 3,
+                    "cost": 800,
+                    "income": 200,
                     "ShopType": 3
                 }
             ],
             "Tavern": {
-                "Name": "Bannered Mare",
-                "level": 0,
-                "maxLevel": 0,
-                "cost": 0,
-                "income": 0,
-                "quests": []
+                "Name": "Traveler's Rest",
+                "level": 1,
+                "maxLevel": 4,
+                "cost": 1000,
+                "income": 400,
+                "quests": ["Hunt the wild boar"]
             },
             "TownHall": {
-                "Name": "Village Hall",
-                "level": 0,
-                "maxLevel": 0,
-                "cost": 0,
-                "income": 0,
-                "jobs": []
+                "Name": "Oakstead Assembly",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 2500,
+                "income": 800,
+                "jobs": ["Clerk", "Stablemaster"]
             },
             "Walls": {
-                "Name": "Wooden Wall",
+                "Name": "Wooden Barricade",
                 "level": 1,
-                "maxLevel": 3,
-                "cost": 0,
+                "maxLevel": 4,
+                "cost": 1500,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Silverhaven",
+            "isUnlocked": true,
+            "Population": 6000,
+            "Wealth": 25000,
+            "Quality": 90,
+            "Shops": [
+                {
+                    "Name": "Silver Edge Smithy",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 2000,
+                    "income": 1000,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Moonlight Potions",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 2500,
+                    "income": 1200,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Shimmering Lantern",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 2000,
+                "income": 900,
+                "quests": ["Defend the caravan", "Rescue the lost miner"]
+            },
+            "TownHall": {
+                "Name": "Haven Hall",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 3500,
+                "income": 1500,
+                "jobs": ["Archivist", "Guard Captain"]
+            },
+            "Walls": {
+                "Name": "Fortified Wall",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 5000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Amberfield",
+            "isUnlocked": false,
+            "Population": 4800,
+            "Wealth": 21000,
+            "Quality": 80,
+            "Shops": [
+                {
+                    "Name": "Golden Forge",
+                    "level": 1,
+                    "maxLevel": 4,
+                    "cost": 1300,
+                    "income": 700,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Amber Alchemy",
+                    "level": 0,
+                    "maxLevel": 3,
+                    "cost": 900,
+                    "income": 300,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Golden Goblet",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 1200,
+                "income": 500,
+                "quests": ["Spy on rival merchants"]
+            },
+            "TownHall": {
+                "Name": "Amberfield Hall",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 2800,
+                "income": 900,
+                "jobs": ["Scribe", "Courier"]
+            },
+            "Walls": {
+                "Name": "Stone Fence",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 2000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Ravenmoor",
+            "isUnlocked": true,
+            "Population": 5500,
+            "Wealth": 24000,
+            "Quality": 88,
+            "Shops": [
+                {
+                    "Name": "Raven's Roost Forge",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 1800,
+                    "income": 900,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Dark Essence Shop",
+                    "level": 1,
+                    "maxLevel": 4,
+                    "cost": 1500,
+                    "income": 700,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Black Feather",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 1600,
+                "income": 800,
+                "quests": ["Recover the stolen goods"]
+            },
+            "TownHall": {
+                "Name": "Ravenmoor Assembly",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 3200,
+                "income": 1300,
+                "jobs": ["Town Planner", "Guard"]
+            },
+            "Walls": {
+                "Name": "Shadowed Ramparts",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 4500,
+                "income": 0
+            },
+            "Type": 2
+        },{
+            "Name": "Blackspire Keep",
+            "isUnlocked": true,
+            "Population": 1500,
+            "Wealth": 8000,
+            "Quality": 90,
+            "Shops": [
+                {
+                    "Name": "Fortress Smithy",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 3000,
+                    "income": 1500,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Battle Alchemist",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 2500,
+                    "income": 1000,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Iron Hall",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 3000,
+                "income": 1200,
+                "quests": ["Fortify the outer walls", "Train new recruits"]
+            },
+            "TownHall": {
+                "Name": "Keep Council Chambers",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 4000,
+                "income": 1800,
+                "jobs": ["Councilor", "Barracks Overseer"]
+            },
+            "Walls": {
+                "Name": "Blackspire Ramparts",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 6000,
                 "income": 0
             },
             "Type": 1
+        },
+        {
+            "Name": "Stormhold Citadel",
+            "isUnlocked": false,
+            "Population": 2000,
+            "Wealth": 10000,
+            "Quality": 95,
+            "Shops": [
+                {
+                    "Name": "Stormforged Armory",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 3500,
+                    "income": 2000,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Tempest Elixirs",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 3000,
+                    "income": 1500,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Thunderous Tankard",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 2500,
+                "income": 1000,
+                "quests": ["Repel the raiders", "Guard the supply route"]
+            },
+            "TownHall": {
+                "Name": "Stormhold Command Hall",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 4500,
+                "income": 2000,
+                "jobs": ["Commander", "Strategist"]
+            },
+            "Walls": {
+                "Name": "Tempest Walls",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 7000,
+                "income": 0
+            },
+            "Type": 1
+        },
+        {
+            "Name": "Ironclad Bastion",
+            "isUnlocked": false,
+            "Population": 1800,
+            "Wealth": 9000,
+            "Quality": 88,
+            "Shops": [
+                {
+                    "Name": "Bastion Forge",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 2000,
+                    "income": 1200,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Siege Supplies",
+                    "level": 1,
+                    "maxLevel": 4,
+                    "cost": 1500,
+                    "income": 800,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Steel Flag",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 2000,
+                "income": 900,
+                "quests": ["Supply the outposts", "Secure trade routes"]
+            },
+            "TownHall": {
+                "Name": "Bastion Assembly Hall",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 3500,
+                "income": 1500,
+                "jobs": ["Quartermaster", "Blacksmith"]
+            },
+            "Walls": {
+                "Name": "Reinforced Steel Walls",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 5000,
+                "income": 0
+            },
+            "Type": 1
+        },{
+            "Name": "Willowbrook",
+            "isUnlocked": true,
+            "Population": 300,
+            "Wealth": 2000,
+            "Quality": 50,
+            "Shops": [
+                {
+                    "Name": "Simple Forge",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 500,
+                    "income": 150,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Herbalist's Hut",
+                    "level": 0,
+                    "maxLevel": 2,
+                    "cost": 300,
+                    "income": 50,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Lazy Stag",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 400,
+                "income": 100,
+                "quests": ["Deliver supplies to a nearby town"]
+            },
+            "TownHall": {
+                "Name": "Willowbrook Meeting Hall",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 800,
+                "income": 300,
+                "jobs": ["Village Elder"]
+            },
+            "Walls": {
+                "Name": "Wooden Fence",
+                "level": 1,
+                "maxLevel": 2,
+                "cost": 200,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Pinecrest",
+            "isUnlocked": false,
+            "Population": 400,
+            "Wealth": 2500,
+            "Quality": 60,
+            "Shops": [
+                {
+                    "Name": "Forest Forge",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 600,
+                    "income": 200,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Potion Brewer",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 500,
+                    "income": 150,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Whispering Pines",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 450,
+                "income": 200,
+                "quests": ["Clear the wolf den"]
+            },
+            "TownHall": {
+                "Name": "Pinecrest Lodge",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 1000,
+                "income": 400,
+                "jobs": ["Forester", "Hunter"]
+            },
+            "Walls": {
+                "Name": "Sharpened Stakes",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 400,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Elderstone",
+            "isUnlocked": true,
+            "Population": 500,
+            "Wealth": 3000,
+            "Quality": 70,
+            "Shops": [
+                {
+                    "Name": "Stonecarver's Forge",
+                    "level": 2,
+                    "maxLevel": 3,
+                    "cost": 800,
+                    "income": 300,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Ancient Herbs",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 600,
+                    "income": 200,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Elder's Hearth",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 500,
+                "income": 250,
+                "quests": ["Escort the village elder"]
+            },
+            "TownHall": {
+                "Name": "Elderstone Hall",
+                "level": 2,
+                "maxLevel": 3,
+                "cost": 1200,
+                "income": 500,
+                "jobs": ["Mason", "Caretaker"]
+            },
+            "Walls": {
+                "Name": "Stone Barrier",
+                "level": 2,
+                "maxLevel": 3,
+                "cost": 800,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Redwater",
+            "isUnlocked": false,
+            "Population": 350,
+            "Wealth": 2200,
+            "Quality": 55,
+            "Shops": [
+                {
+                    "Name": "Fishing Supplies",
+                    "level": 0,
+                    "maxLevel": 2,
+                    "cost": 300,
+                    "income": 100,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "River Herbs",
+                    "level": 0,
+                    "maxLevel": 2,
+                    "cost": 400,
+                    "income": 120,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Red River Alehouse",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 400,
+                "income": 150,
+                "quests": ["Catch a giant fish"]
+            },
+            "TownHall": {
+                "Name": "Redwater Lodge",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 900,
+                "income": 350,
+                "jobs": ["Fisherman", "Boat Builder"]
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 2,
+                "cost": 400,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Goldmere",
+            "isUnlocked": true,
+            "Population": 450,
+            "Wealth": 2800,
+            "Quality": 65,
+            "Shops": [
+                {
+                    "Name": "Goldsmith's Workshop",
+                    "level": 2,
+                    "maxLevel": 3,
+                    "cost": 700,
+                    "income": 300,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Rare Elixirs",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 500,
+                    "income": 150,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Gilded Swan",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 600,
+                "income": 300,
+                "quests": ["Locate the hidden treasure"]
+            },
+            "TownHall": {
+                "Name": "Goldmere Gathering Hall",
+                "level": 2,
+                "maxLevel": 4,
+                "cost": 1200,
+                "income": 450,
+                "jobs": ["Gold Panner", "Miner"]
+            },
+            "Walls": {
+                "Name": "Stone Perimeter",
+                "level": 2,
+                "maxLevel": 3,
+                "cost": 700,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Hillshade",
+            "isUnlocked": false,
+            "Population": 380,
+            "Wealth": 2400,
+            "Quality": 58,
+            "Shops": [
+                {
+                    "Name": "Mountain Forge",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 500,
+                    "income": 200,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Medicinal Remedies",
+                    "level": 1,
+                    "maxLevel": 2,
+                    "cost": 400,
+                    "income": 120,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Shady Owl",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 450,
+                "income": 200,
+                "quests": ["Escort a merchant caravan"]
+            },
+            "TownHall": {
+                "Name": "Hillshade Hall",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 1000,
+                "income": 400,
+                "jobs": ["Miner", "Scout"]
+            },
+            "Walls": {
+                "Name": "Stone Fence",
+                "level": 2,
+                "maxLevel": 3,
+                "cost": 600,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Foxglove",
+            "isUnlocked": true,
+            "Population": 320,
+            "Wealth": 2100,
+            "Quality": 55,
+            "Shops": [
+                {
+                    "Name": "Foxsmith's Forge",
+                    "level": 1,
+                    "maxLevel": 3,
+                    "cost": 450,
+                    "income": 150,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Foxwood Remedies",
+                    "level": 1,
+                    "maxLevel": 2,
+                    "cost": 400,
+                    "income": 100,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Fox's Den",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 500,
+                "income": 200,
+                "quests": ["Track a cunning thief"]
+            },
+            "TownHall": {
+                "Name": "Foxglove Hall",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 800,
+                "income": 300,
+                "jobs": ["Woodcutter", "Hunter"]
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 2,
+                "cost": 400,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Silverwood",
+            "isUnlocked": false,
+            "Population": 400,
+            "Wealth": 2600,
+            "Quality": 60,
+            "Shops": [
+                {
+                    "Name": "Silversmith's Forge",
+                    "level": 2,
+                    "maxLevel": 3,
+                    "cost": 700,
+                    "income": 250,
+                    "ShopType": 0
+                },
+                {
+                    "Name": "Silver Elixirs",
+                    "level": 1,
+                    "maxLevel": 2,
+                    "cost": 500,
+                    "income": 150,
+                    "ShopType": 3
+                }
+            ],
+            "Tavern": {
+                "Name": "The Silver Lantern",
+                "level": 1,
+                "maxLevel": 3,
+                "cost": 500,
+                "income": 200,
+                "quests": ["Protect the silver mine"]
+            },
+            "TownHall": {
+                "Name": "Silverwood Hall",
+                "level": 2,
+                "maxLevel": 3,
+                "cost": 1000,
+                "income": 400,
+                "jobs": ["Miner", "Smith"]
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 2,
+                "cost": 600,
+                "income": 0
+            },
+            "Type": 0
         }
     ]
 }

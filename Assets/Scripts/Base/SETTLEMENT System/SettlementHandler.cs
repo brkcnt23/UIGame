@@ -35,6 +35,7 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnTownHallEntered += HandleTownHallEntered;
         settlement.OnWallEntered += HandleWallEntered;
         settlement.OnShopEntered += HandleShopEntered;
+        settlements = handler.LoadSettlements();
     }
 
     void OnDisable()
@@ -53,38 +54,8 @@ public class SettlementHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            // Create a new town with residentials
-            Town town = new Town
-            {
-                Name = "MyTown",
-                Population = 5000,
-                Wealth = 20000,
-                Quality = 80,
-                Shops = new List<Shops>
-                {
-                    new Shops { Name = "Blacksmith Shop", ShopType = ShopTypes.Blacksmith },
-                    new Shops { Name = "Alchemist Shop", ShopType = ShopTypes.Alchemist }
-                },
-                Tavern = new Taverns
-                {
-                    Name = "Golden Inn",
-                    quests = new List<Quest_SO_Constructor>()
-                },
-                TownHall = new TownHalls
-                {
-                    Name = "Central Town Hall",
-                    jobs = new List<Job_SO_Constructor>()
-                    // Initialize jobs
-                },
-                Walls = new Walls
-                {
-                    Name = "Stone Wall",
-                    level = 2,
-                    maxLevel = 5
-                }
-            };
-
-            handler.SaveSettlements(new List<Settlement> { town });
+            handler.SaveSettlements(settlements);
+            Print("Settlements saved");
         }
     
         if (Input.GetKeyDown(KeyCode.L))
