@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DICE;
+using NEXUS.Utilities;
 
 public class Test_Dice : MonoBehaviour
 {

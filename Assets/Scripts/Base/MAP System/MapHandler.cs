@@ -34,6 +34,9 @@ public class MapHandler : MonoBehaviour
     {
         settlementHandler = SettlementHandler.Instance;
         settlements = settlementHandler.settlements;
+
+        settlementHandler.settlement = settlements[0];
+
         PopulateMap();
     }
 
@@ -51,12 +54,13 @@ public class MapHandler : MonoBehaviour
 
         //populate all buttons SettlementButtonPointer according to the settlements list in the settlements handler and change their color according to the settlement type, isUnlocked and player is in or not
 
-        for (int i = 0; i < children.Count; i++)
+        foreach (Settlement settlement in settlements)
         {
-            SettlementButtonPointer settlementButtonPointer = children[i].GetComponent<SettlementButtonPointer>();
-            settlementButtonPointer.settlement = settlements[i];
+           SettlementButtonPointer settlementButtonPointer = map.gameObject.GetComponentInChildren<SettlementButtonPointer>();
 
-            if (settlements[i].isUnlocked)
+            settlementButtonPointer.SetSettlement(settlement);
+
+            if (settlement.isUnlocked)
             {
                 settlementButtonPointer.GetComponent<Image>().color = Color.green;
             }
@@ -65,12 +69,10 @@ public class MapHandler : MonoBehaviour
                 settlementButtonPointer.GetComponent<Image>().color = Color.red;
             }
 
-            if (settlements[i] == settlementHandler.settlement)
+            if (settlement == settlementHandler.settlement)
             {
                 settlementButtonPointer.GetComponent<Image>().color = Color.blue;
             }
-
-            settlementButtonPointer.SetSettlement(settlements[i]);
         }
     }
 

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "NewQuest", menuName = "SO System/QUEST")]
 public class Quest_SO_Constructor : SO_Base
 {
     public Quest_SO_Constructor()
@@ -14,9 +13,14 @@ public class Quest_SO_Constructor : SO_Base
 
         DC = 10;
 
+        CompletionDay = 0;
         CompletionHour = 1;
         CompletionMinute = 0;
 
-        Reward = 100;
+        Gold = 100;
+
+        TargetStat = "Constitution";
+        StatRewardMin = 1;
+        StatRewardMax = 3;
     }
 }

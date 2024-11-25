@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DICE
+namespace NEXUS.Utilities
 {
     public class Dice
     {

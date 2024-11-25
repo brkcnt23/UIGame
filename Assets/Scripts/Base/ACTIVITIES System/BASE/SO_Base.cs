@@ -1,6 +1,6 @@
 using UnityEngine;
 [System.Serializable]
-public class SO_Base : ScriptableObject
+public class SO_Base
 {
     [Header("Type")]
     public SOTypes Type;
@@ -10,15 +10,24 @@ public class SO_Base : ScriptableObject
     public string Name;
     public string Description;
 
-    [Header("Requirements")]
+    [Header("Difficulty")]
     public int DC;
-    [Range(1, 24)]
+
+    [Header("Completion Time")]
+    public int CompletionDay;
     public int CompletionHour;
     public int CompletionMinute;
 
     [Header("Reward")]
+<<<<<<< Updated upstream
     public int Reward;
 
+=======
+    public int Gold;
+    public string TargetStat;
+    public int StatRewardMin;
+    public int StatRewardMax;
+>>>>>>> Stashed changes
 }
 
 public enum SOTypes

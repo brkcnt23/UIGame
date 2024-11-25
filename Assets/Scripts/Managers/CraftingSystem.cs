@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using DICE;
+using NEXUS.Utilities;
 
 public enum CraftType
 {

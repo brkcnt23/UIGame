@@ -1,9 +1,15 @@
 using System;
 using UnityEngine;
+using NEXUS.Utilities;
+using UnityEngine.Purchasing.MiniJSON;
+using System.Collections.Generic;
 
 public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
+
+    JSONDataHandler JSONhandler = new JSONDataHandler();
+
     private void Awake()
     {
         if (Instance == null)
@@ -16,11 +22,23 @@ public class PlayerStatHandler : MonoBehaviour
         }
     }
 
-    public PlayerData pd = new PlayerData(1);
+    public PlayerData pd = new PlayerData();
 
-    private void OnDestroy()
+    private void Start()
     {
-        pd.SaveData(1);
+        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
+
+        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
+
+        pd = wrapper != null ? wrapper.pd : new PlayerData();
+        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<PlayerData>();
+        
+    }
+
+    void OnApplicationQuit()
+    {
+        JSONhandler.SaveData(pd, "playerData.json");
+        JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "companions.json");
     }
 
     public int GetExhaustionLevel()
@@ -72,130 +90,13 @@ public class PlayerStatHandler : MonoBehaviour
 }
 
 [System.Serializable]
-public class PlayerData
+public class PlayerDataWrapper
 {
-    public int ID;
-    public string Name;
+    public PlayerData pd;
+}
 
-
-    public int Hour;
-    public int Minute;
-    public int Day;
-
-
-    public int Level;
-    public int Health;
-    public int MaxHealth;
-    public int Experience;
-    public int MaxExperience;
-    public int Gold;
-    public int Silver;
-
-
-    public int Strength;
-    public int Dexterity;
-    public int Constitution;
-    public int Charisma;
-
-
-    public int Rations;
-
-
-    public int MaxExhaustionLevel;
-    public int CurrentExhaustionLevel;
-
-
-    public int SmitherSkillLevel;
-    public int SmitherSkillXP;
-    public int TannerSkillLevel;
-    public int TannerSkillXP;
-    public int CarpenterSkillLevel;
-    public int CarpenterSkillXP;
-    public int MasonSkillLevel;
-    public int MasonSkillXP;
-    public int AlchemistSkillLevel;
-    public int AlchemistSkillXP;
-
-
-    public int LastSleepDay;
-    public int LastSleepHour;
-    public int LastSleepMinute;
-
-    public int LastMealDay;
-    public int LastMealHour;
-    public int LastMealMinute;
-
-
-    public bool HasDied;
-
-    public PlayerData(int saveSlot)
-    {
-        string filePath = Application.dataPath + "/Scripts/Base/PlayerData/SaveSlot_" + saveSlot + ".json";
-        if (System.IO.File.Exists(filePath))
-        {
-            try
-            {
-                string jsonData = System.IO.File.ReadAllText(filePath);
-                JsonUtility.FromJsonOverwrite(jsonData, this);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"PlayerData yüklenirken hata oluştu: {e.Message}");
-                InitializeDefaultValues(saveSlot);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Kayıt dosyası bulunamadı. Varsayılan değerlerle başlatılıyor.");
-            InitializeDefaultValues(saveSlot);
-        }
-    }
-
-    private void InitializeDefaultValues(int saveSlot)
-    {
-        ID = saveSlot;
-        Name = "Athelias";
-        Hour = 6;
-        Minute = 0;
-        Day = 1;
-        Level = 1;
-        MaxHealth = 100;
-        Health = MaxHealth;
-        Experience = 0;
-        MaxExperience = 1000;
-        Gold = 0;
-        Silver = 0;
-        Strength = 10;
-        Dexterity = 10;
-        Constitution = 10;
-        Charisma = 10;
-        Rations = 5;
-        MaxExhaustionLevel = 3;
-        CurrentExhaustionLevel = 0;
-        SmitherSkillLevel = 0;
-        SmitherSkillXP = 0;
-        TannerSkillLevel = 0;
-        TannerSkillXP = 0;
-        CarpenterSkillLevel = 0;
-        CarpenterSkillXP = 0;
-        MasonSkillLevel = 0;
-        MasonSkillXP = 0;
-        AlchemistSkillLevel = 0;
-        AlchemistSkillXP = 0;
-        HasDied = false;
-        LastSleepDay = 1;
-        LastSleepHour = 6;
-        LastSleepMinute = 0;
-
-        LastMealDay = 1;
-        LastMealHour = 6;
-        LastMealMinute = 0;
-
-    }
-
-    public void SaveData(int saveSlot)
-    {
-        string jsonData = JsonUtility.ToJson(this);
-        System.IO.File.WriteAllText(Application.dataPath + "/Scripts/Base/PlayerData/SaveSlot_" + saveSlot + ".json", jsonData);
-    }
+[System.Serializable]
+public class CompanionListWrapper
+{
+    public List<PlayerData> Companions;
 }

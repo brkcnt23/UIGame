@@ -1,14 +1,14 @@
 using UnityEngine;
-[System.Serializable]
-public class Event_SO_Constructor : SO_Base
+
+public class Shop_SO_Constructor : SO_Base
 {
-    public Event_SO_Constructor()
+    public Shop_SO_Constructor()
     {
-        Type = SOTypes.EVENT;
+        Type = SOTypes.CRAFT;
 
         ID = 0;
-        Name = "New Event";
-        Description = "This is a new event.";
+        Name = "New Shop";
+        Description = "This is a new shop.";
 
         DC = 10;
 
