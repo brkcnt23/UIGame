@@ -31,7 +31,7 @@ public class PlayerStatHandler : MonoBehaviour
         CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
 
         pd = wrapper != null ? wrapper.pd : new PlayerData();
-        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<PlayerData>();
+        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
         
     }
 
@@ -98,5 +98,5 @@ public class PlayerDataWrapper
 [System.Serializable]
 public class CompanionListWrapper
 {
-    public List<PlayerData> Companions;
+    public List<Companion> Companions;
 }
