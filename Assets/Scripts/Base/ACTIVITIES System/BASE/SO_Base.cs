@@ -19,15 +19,10 @@ public class SO_Base
     public int CompletionMinute;
 
     [Header("Reward")]
-<<<<<<< Updated upstream
-    public int Reward;
-
-=======
     public int Gold;
     public string TargetStat;
     public int StatRewardMin;
     public int StatRewardMax;
->>>>>>> Stashed changes
 }
 
 public enum SOTypes
