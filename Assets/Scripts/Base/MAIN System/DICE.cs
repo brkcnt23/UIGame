@@ -8,7 +8,6 @@ namespace DICE
         {
             return Random.Range(1, sides + 1);
         }
-
         public static int RollD100()
         {
             return Roll(100);
@@ -57,6 +56,10 @@ namespace DICE
         public static bool RollSuccess(int targetNumber, int roll, int modifier, int difficulty)
         {
             return roll + modifier >= targetNumber + difficulty;
+        }
+        public static bool RollSuccessWithBonus(int targetNumber, int roll, int modifier, int difficulty)
+        {
+            return roll + modifier >= difficulty - targetNumber;
         }
 
         public static bool RollCriticalSuccess(int roll)

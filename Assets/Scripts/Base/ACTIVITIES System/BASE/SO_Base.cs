@@ -18,6 +18,7 @@ public class SO_Base : ScriptableObject
 
     [Header("Reward")]
     public int Reward;
+
 }
 
 public enum SOTypes
