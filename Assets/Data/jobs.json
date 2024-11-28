@@ -2,7 +2,7 @@
     "jobs": [
         {
             "Type": 0,
-            "ID": 0,
+            "ID": 1001,
             "Name": "Guard",
             "Description": "Protect the town from bandits and other threats.",
             "DC": 10,
@@ -16,7 +16,7 @@
         },
         {
             "Type": 0,
-            "ID": 0,
+            "ID": 1002,
             "Name": "Blacksmith",
             "Description": "Craft weapons and armor for the town's defenders.",
             "DC": 15,

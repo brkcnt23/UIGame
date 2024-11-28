@@ -1,0 +1,32 @@
+{
+    "events": [
+        {
+            "Type": 2,
+            "ID": 3001,
+            "Name": "Random Event1",
+            "Description": "A random event has occurred.",
+            "DC": 5,
+            "CompletionDay": 0,
+            "CompletionHour": 1,
+            "CompletionMinute": 0,
+            "Gold": 200,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 0,
+            "StatRewardMax": 1
+        },
+        {
+            "Type": 2,
+            "ID": 3002,
+            "Name": "Random Event2",
+            "Description": "A random event has occurred.",
+            "DC": 10,
+            "CompletionDay": 0,
+            "CompletionHour": 2,
+            "CompletionMinute": 0,
+            "Gold": 400,
+            "TargetStat": "Strength",
+            "StatRewardMin": 1,
+            "StatRewardMax": 2
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum SettlementType
@@ -23,6 +24,15 @@ public class Settlement
     public Walls Walls;
 
     public SettlementType Type;
+
+    public delegate void SettlementEntered(Settlement settlement);
+    public event SettlementEntered OnSettlementEntered;
+
+    public delegate void SettlementExited();
+    public event SettlementExited OnSettlementExited;
+
+    public delegate void SettlementUnlocked(Settlement settlement);
+    public event SettlementUnlocked OnSettlementUnlocked;
 
     public delegate void PopulationChanged(int population);
     public event PopulationChanged OnPopulationChanged;
@@ -117,6 +127,24 @@ public class Settlement
         Walls = wall;
         OnWallEntered?.Invoke(wall);
     }
+
+    public void UnlockSettlement(Settlement settlement)
+    {
+        settlement.isUnlocked = true;
+        OnSettlementUnlocked?.Invoke(settlement);
+    }
+
+    public void ExitSettlement()
+    {
+        OnSettlementExited?.Invoke();
+    }
+
+    public void EnterSettlement()
+    {
+        OnSettlementEntered?.Invoke(this);
+    }
+
+
 
     public void UpgradeSettlement()
     {

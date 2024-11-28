@@ -29,6 +29,8 @@ public class MapHandler : MonoBehaviour
 
     List<GameObject> children = new List<GameObject>();
 
+    public bool isHunting;
+
 
     void Start()
     {
@@ -36,6 +38,8 @@ public class MapHandler : MonoBehaviour
         settlements = settlementHandler.settlements;
 
         settlementHandler.settlement = settlements[0];
+
+        TravelSystem.Instance.currentSettlement = map.GetComponentInChildren<SettlementButtonPointer>();
 
         PopulateMap();
     }
@@ -52,11 +56,10 @@ public class MapHandler : MonoBehaviour
             children.Add(child.gameObject);
         }
 
-        //populate all buttons SettlementButtonPointer according to the settlements list in the settlements handler and change their color according to the settlement type, isUnlocked and player is in or not
-
         foreach (Settlement settlement in settlements)
         {
-           SettlementButtonPointer settlementButtonPointer = map.gameObject.GetComponentInChildren<SettlementButtonPointer>();
+            int index = settlements.IndexOf(settlement);
+            SettlementButtonPointer settlementButtonPointer = children[index].GetComponent<SettlementButtonPointer>();
 
             settlementButtonPointer.SetSettlement(settlement);
 

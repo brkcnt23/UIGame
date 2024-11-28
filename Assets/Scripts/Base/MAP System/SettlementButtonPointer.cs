@@ -21,9 +21,24 @@ public class SettlementButtonPointer : MonoBehaviour
         {
             button.onClick.AddListener(() =>
                 {
+                    if(SettlementHandler.Instance.settlement == settlement)
+                    {
+                        return;
+                    }
+
                     MapHandler.Instance.selectedSettlement = gameObject;
-                    MapHandler.Instance.settlementHandler.settlement = settlement;
                     MapHandler.Instance.PopulateMap();
+
+                    MapHandler.Instance.settlementHandler.settlement = settlement;
+
+                    SettlementHandler.Instance.OnSettlmentEntered(settlement);
+
+                    TravelSystem.Instance.SetSettlements(this);
+                    TravelSystem.Instance.TravelToSettlement(DecidedToHunt());
+
+                    TravelSystem.Instance.currentSettlement = this;
+
+                    MapHandler.Instance.isHunting = false;
                 });
         }
     }
@@ -42,5 +57,12 @@ public class SettlementButtonPointer : MonoBehaviour
         {
             button.interactable = false;
         }
+    }
+
+    public bool DecidedToHunt()
+    {
+        //pup up a window to ask if the player wants to hunt or not (Debug.Log for now)
+        Debug.Log("Do you want to hunt?");
+        return MapHandler.Instance.isHunting;
     }
 }

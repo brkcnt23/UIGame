@@ -2,7 +2,7 @@
     "quests": [
         {
             "Type": 1,
-            "ID": 1,
+            "ID": 2001,
             "Name": "The Missing Heirloom",
             "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
             "DC": 10,
@@ -16,7 +16,7 @@
         },
         {
             "Type": 1,
-            "ID": 2,
+            "ID": 2002,
             "Name": "Foul Play",
             "Description": "A local merchant has been accused of a crime they did not commit. They need help proving their innocence.",
             "DC": 15,
