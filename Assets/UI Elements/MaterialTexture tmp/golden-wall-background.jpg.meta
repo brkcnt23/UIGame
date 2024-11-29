@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      golden-wall-background_0: 5818398073446793533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
