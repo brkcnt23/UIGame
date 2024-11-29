@@ -32,7 +32,12 @@ public class PlayerData
 
     public int Rations;
 
+    public Army PlayerArmy { get; set; }
 
+    public int GetMaxUnits()
+    {
+        return Charisma * 10;
+    }
     public int MaxExhaustionLevel;
     public int CurrentExhaustionLevel;
 
@@ -48,17 +53,14 @@ public class PlayerData
     public int AlchemistSkillLevel;
     public int AlchemistSkillXP;
 
-
+    public int TotalBattlesFought;
+    public int TotalBattlesWon;
+    public int TotalBattlesLost;
+    
     public int LastSleepDay;
     public int LastSleepHour;
     public int LastSleepMinute;
-
-    public int LastMealDay;
-    public int LastMealHour;
-    public int LastMealMinute;
-
     public List<Companion> Companions = new List<Companion>();
-
 
     public bool HasDied;
 }

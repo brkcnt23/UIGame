@@ -7,9 +7,10 @@ public class TimeSystem : MonoBehaviour
     public int Day { get; private set; }     // Gün (1 ve üstü)
 
     private PlayerData playerData;
-    //get instance
+
+    // Singleton Instance
     public static TimeSystem Instance { get; private set; }
-    //check instance in awake func
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,7 +23,6 @@ public class TimeSystem : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
         Hour = 6;
@@ -30,28 +30,36 @@ public class TimeSystem : MonoBehaviour
         Day = 1;
         playerData = PlayerStatHandler.Instance.pd;
 
-        // Son uyku ve yemek zamanlarını başlangıç zamanı olarak ayarla
+        InitializeLastActionTimes();
+    }
+
+    private void InitializeLastActionTimes()
+    {
         playerData.LastSleepDay = Day;
         playerData.LastSleepHour = Hour;
         playerData.LastSleepMinute = Minute;
-
-        playerData.LastMealDay = Day;
-        playerData.LastMealHour = Hour;
-        playerData.LastMealMinute = Minute;
     }
-    // Zamanı belirli bir dakika kadar ilerletir
+
+    /// <summary>
+    /// Zamanı ilerletir ve gerekli kontrolleri yapar.
+    /// </summary>
+    /// <param name="minutes">İlerletilecek dakika miktarı.</param>
     public void AdvanceTime(int minutes)
     {
         Minute += minutes;
         NormalizeTime();
 
-        // Zaman ilerlediğinde yorgunluk ve yemek kontrollerini yap
+        // Yeni bir gün başladığında (isteğe bağlı)
+        if (Hour == 0 && Minute == 0)
+        {
+            // Günlük işlemler buraya eklenebilir
+        }
+
         CheckExhaustion();
-        CheckMealTime();
+
         PlayerUISystem.Instance.UpdateClockText();
     }
 
-    // Zamanı normalize eder (60 dakika olduğunda saati artırır, 24 saat olduğunda günü artırır)
     private void NormalizeTime()
     {
         while (Minute >= 60)
@@ -67,40 +75,35 @@ public class TimeSystem : MonoBehaviour
         }
     }
 
-    // Oyuncu uyur
+    /// <summary>
+    /// Uyuma işlemini gerçekleştirir ve rasyon tüketimini uygular.
+    /// </summary>
     public void Sleep()
     {
         int baseSleepDuration = 6 * 60; // Temel uyku süresi: 6 saat
         int additionalSleepPerExhaustion = 2 * 60; // Her yorgunluk seviyesi için ek süre: 2 saat
-
-        // Toplam uyku süresi hesaplanıyor
         int totalSleepDuration = baseSleepDuration + (playerData.CurrentExhaustionLevel * additionalSleepPerExhaustion);
 
-        // Yemek kontrolü
-        if (playerData.Rations > 0)
+        PlayerStatHandler.Instance.ConsumeDailyRations(); // Yemek tüketimini burada çağırıyoruz
+
+        if (playerData.Rations >= 0)
         {
-            playerData.Rations -= 1;
             playerData.CurrentExhaustionLevel = 0;
             Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
         }
         else
         {
-            // Yemek yoksa yorgunluk seviyesi artar
-            playerData.CurrentExhaustionLevel += 1;
+            PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
-        // Zamanı ilerlet
         AdvanceTime(totalSleepDuration);
-
-        // Son uyku zamanını güncelle
-        playerData.LastSleepDay = Day;
-        playerData.LastSleepHour = Hour;
-        playerData.LastSleepMinute = Minute;
+        UpdateLastSleepTime();
     }
 
-
-    // Yorgunluk seviyesini kontrol eder
+    /// <summary>
+    /// Yorgunluk seviyesini kontrol eder.
+    /// </summary>
     private void CheckExhaustion()
     {
         int timeSinceLastSleep = GetTimeDifferenceInMinutes(
@@ -113,53 +116,15 @@ public class TimeSystem : MonoBehaviour
 
         if (timeSinceLastSleep >= 1440) // 24 saatten fazla uyumamışsa
         {
-            playerData.CurrentExhaustionLevel += 1;
+            PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
-            CheckExhaustionDeath();
-            // Son uyku zamanını güncelle
-            playerData.LastSleepDay = Day;
-            playerData.LastSleepHour = Hour;
-            playerData.LastSleepMinute = Minute;
+            UpdateLastSleepTime();
         }
     }
 
-
-    // Yemek yeme zamanını kontrol eder
-    private void CheckMealTime()
-    {
-        int timeSinceLastMeal = GetTimeDifferenceInMinutes(
-            playerData.LastMealDay,
-            playerData.LastMealHour,
-            playerData.LastMealMinute,
-            Day,
-            Hour,
-            Minute);
-
-        if (timeSinceLastMeal >= 840) // 14 saat (14 * 60 dakika)
-        {
-            if (playerData.Rations > 0)
-            {
-                playerData.Rations -= 1;
-                Debug.Log("Yemek yediniz.");
-                // Son yemek zamanını güncelle
-                playerData.LastMealDay = Day;
-                playerData.LastMealHour = Hour;
-                playerData.LastMealMinute = Minute;
-            }
-            else
-            {
-                playerData.CurrentExhaustionLevel += 1;
-                Debug.Log("Yemek yok! Yorgunluk seviyeniz arttı.");
-                CheckExhaustionDeath();
-                // Son yemek zamanını güncelle
-                playerData.LastMealDay = Day;
-                playerData.LastMealHour = Hour;
-                playerData.LastMealMinute = Minute;
-            }
-        }
-    }
-
-
+    /// <summary>
+    /// İki zaman noktası arasındaki farkı dakika cinsinden hesaplar.
+    /// </summary>
     private int GetTimeDifferenceInMinutes(int startDay, int startHour, int startMinute, int endDay, int endHour, int endMinute)
     {
         int totalStartMinutes = (startDay * 24 * 60) + (startHour * 60) + startMinute;
@@ -167,17 +132,20 @@ public class TimeSystem : MonoBehaviour
         return totalEndMinutes - totalStartMinutes;
     }
 
-    // Yorgunluk seviyesinin maksimuma ulaşıp ulaşmadığını kontrol eder
-    private void CheckExhaustionDeath()
+    /// <summary>
+    /// Son uyuma zamanını günceller.
+    /// </summary>
+    private void UpdateLastSleepTime()
     {
-        if (playerData.CurrentExhaustionLevel >= playerData.MaxExhaustionLevel)
-        {
-            playerData.HasDied = true;
-            Debug.Log("Yorgunluktan öldünüz!");
-        }
+        playerData.LastSleepDay = Day;
+        playerData.LastSleepHour = Hour;
+        playerData.LastSleepMinute = Minute;
     }
 
-    // Zaman bilgisini string olarak döndürür
+    /// <summary>
+    /// Mevcut zamanı string formatında döndürür.
+    /// </summary>
+    /// <returns>Zaman string'i.</returns>
     public string GetTimeString()
     {
         return $"Gün {Day}, Saat {Hour:D2}:{Minute:D2}";

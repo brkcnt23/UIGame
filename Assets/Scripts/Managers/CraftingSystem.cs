@@ -63,61 +63,52 @@ public class CraftingSystem
 
     private void CalculateAndApplyRewards(CraftType craftType, int jobLevel)
     {
-        // Oyuncunun statlarını alalım
-        int charisma = playerData.Charisma;
-        int strength = playerData.Strength;
-        int constitution = playerData.Constitution;
-        int level = playerData.Level;
-
-        // Max bonus ve randomValue hesaplaması
-        float maxBonus = 10 + (charisma / 2f);
+        // Mevcut ödül hesaplamaları
+        float maxBonus = 10 + (playerData.Charisma / 2f);
         float randomValue = UnityEngine.Random.Range(0f, maxBonus);
 
-        // Başarı çarpanı
-        float successMultiplier = (strength + constitution + randomValue) / 2f;
-
-        // Stat çarpanı
-        float statMultiplier = (strength + constitution) / 10f;
-
-        // Temel çarpan
-        float baseMultiplier = 1 + (level / 10f);
-
-        // Zorluk indeksi belirleme
+        float successMultiplier = (playerData.Strength + playerData.Constitution + randomValue) / 2f;
+        float statMultiplier = (playerData.Strength + playerData.Constitution) / 10f;
+        float baseMultiplier = 1 + (playerData.Level / 10f);
         int difficultyIndex = GetDifficultyIndex(jobLevel);
 
-        // Gold ve deneyim çarpanları
         float goldModifier = 0.5f;
         float expModifier = 0.5f;
 
-        // Nihai ödül hesaplaması
         float reward = ((difficultyIndex * successMultiplier * goldModifier) * randomValue + statMultiplier) * baseMultiplier;
 
         int silverReward = Mathf.RoundToInt(reward);
         float expReward = reward * expModifier;
 
-        // Oyuncunun gümüş ve deneyim değerlerini güncelleyelim
+        // Gümüş ödülü
         playerData.Silver += silverReward;
-        playerData.Experience += Mathf.RoundToInt(expReward);
 
-        // Zanaatkârlık deneyim puanını güncelle
+        // Crafting EXP kazancı
         int craftExp = Mathf.RoundToInt(expReward);
         ExperienceSystem.UpdateCraftLevel(playerData, craftType, craftExp);
 
-        // Karakter deneyim puanını güncelle
-        ExperienceSystem.UpdateCharacterLevel(playerData);
+        // Karakter EXP kazancı (Crafting EXP'in yarısı kadar)
+        int characterExpGain = Mathf.RoundToInt(expReward / 2);
+        PlayerStatHandler.Instance.AddCharacterExperience(characterExpGain);
 
-        // Para birimi dönüşümünü gerçekleştir
-        economySystem.ConvertSilverToGold();
-
-        AddCraftedItem(craftType); // Add the crafted item to inventory
-        Debug.Log("Crafting successful!");
-
-
-        // Seçilen zanaatkârlık alanında seviyeyi artırma işlemini kaldırdık
-        // Artık seviye artışı ExperienceSystem üzerinden yapılıyor
+        // %50 ihtimalle stat kazancı
+        if (craftType != CraftType.Alchemist)
+        {
+            if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
+            {
+                PlayerStatHandler.Instance.AddStats("str", 1);
+                Debug.Log("Strength statı kazandınız!");
+            }
+            if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
+            {
+                PlayerStatHandler.Instance.AddStats("const", 1);
+                Debug.Log("Constitution statı kazandınız!");
+            }
+        }
 
         // Sonuçları yazdır
-        Debug.Log($"Üretim başarılı! {silverReward} gümüş ve {Mathf.RoundToInt(expReward)} deneyim kazandınız.");
+        Debug.Log($"Üretim başarılı! {silverReward} gümüş ve {craftExp} crafting EXP kazandınız.");
+        Debug.Log($"Karakter {characterExpGain} EXP kazandı.");
     }
 
     private int GetDifficultyIndex(int jobLevel)
