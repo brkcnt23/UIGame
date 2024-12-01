@@ -9,6 +9,7 @@ public class PlayerStatHandler : MonoBehaviour
     public static PlayerStatHandler Instance { get; private set; }
 
     public JSONDataHandler JSONhandler = new JSONDataHandler();
+    private EconomySystem economySystem;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class PlayerStatHandler : MonoBehaviour
 
         pd = wrapper != null ? wrapper.pd : new PlayerData();
         pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
-
+        economySystem = new EconomySystem(pd);
         //UpdateArmyCapacity();
     }
     public void AddCharacterExperience(int xp)
@@ -40,6 +41,10 @@ public class PlayerStatHandler : MonoBehaviour
         Debug.Log($"Character gained {xp} EXP. Total: {pd.Experience}");
 
         CheckLevelUp();
+    }
+    public void AddSilverToPlayer(int silver)
+    {
+        economySystem.AddSilver(silver);
     }
 
     private void CheckLevelUp()

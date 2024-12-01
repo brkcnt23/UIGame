@@ -16,7 +16,7 @@ public class Event_SO_Constructor : SO_Base
         CompletionHour = 1;
         CompletionMinute = 0;
 
-        Gold = 100;
+        Silver = 100;
 
         TargetStat = "Constitution";
         StatRewardMin = 1;
@@ -27,25 +27,25 @@ public class Event_SO_Constructor : SO_Base
 
     public void EventSuccessful(PlayerStatHandler player)
     {
-        player.pd.Gold += Gold;
+        player.pd.Silver += Silver;
         player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
 
     }
 
     public void EventFailed(PlayerStatHandler player)
     {
-        player.pd.Gold -= Gold;
+        player.pd.Silver -= Silver;
         player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1));
     }
 
     public void EventNeutral(PlayerStatHandler player)
     {
-        player.pd.Gold += Gold / 2;
+        player.pd.Silver += Silver / 2;
     }
 
     public void EventCritical(PlayerStatHandler player)
     {
-        player.pd.Gold += Gold * 2;
+        player.pd.Silver += Silver * 2;
         player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1) * 2);
     }
 

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class ItemDatabase
 {
@@ -8,13 +7,13 @@ public static class ItemDatabase
     static ItemDatabase()
     {
         // Predefined items
-        AddItem(new Item(1, "Iron Sword", 150, ItemCategory.Weapon));
-        AddItem(new Item(2, "Health Potion", 50, ItemCategory.Potion));
-        AddItem(new Item(3, "Leather Armor", 200, ItemCategory.Armor));
-        AddItem(new Item(4, "Wooden Plank", 30, ItemCategory.CraftingMaterial));
-        AddItem(new Item(5, "Stone Brick", 40, ItemCategory.CraftingMaterial));
-        AddItem(new Item(6, "Gold Nugget", 300, ItemCategory.Resource));
-        AddItem(new Item(7, "Iron Ore", 100, ItemCategory.CraftingMaterial));
+        AddItem(new Item(1, "Iron Sword", 150, 1, false, ItemCategory.Weapon));
+        AddItem(new Item(2, "Health Potion", 50, 1, true, ItemCategory.Potion));
+        AddItem(new Item(3, "Leather Armor", 200, 1, false, ItemCategory.Armor));
+        AddItem(new Item(4, "Wooden Plank", 30, 0, true, ItemCategory.CraftingMaterial));
+        AddItem(new Item(5, "Stone Brick", 40, 0, true, ItemCategory.CraftingMaterial));
+        AddItem(new Item(6, "Gold Nugget", 300, 0, true, ItemCategory.Resource));
+        AddItem(new Item(7, "Iron Ore", 100, 0, true, ItemCategory.CraftingMaterial));
     }
 
     public static void AddItem(Item item)

@@ -73,13 +73,12 @@ public Army playerArmy;
         if (result.Winner == playerData.PlayerArmy)
         {
             playerData.TotalBattlesWon += 1;
-            // Örnek: Kazanılan deneyim ve altın
             playerData.Experience += 50;
             playerData.Gold += 100;
             Debug.Log("Battle Won! Experience and Gold increased.");
 
             // Bonus: Sağlık artırımı veya diğer avantajlar ekleyebilirsiniz
-            playerData.Health = Mathf.Min(playerData.Health + 10, playerData.MaxHealth);
+            playerData.Health -= 10;
             Debug.Log("Health increased by 10.");
         }
         else
@@ -90,8 +89,8 @@ public Army playerArmy;
             Debug.Log("Battle Lost! Exhaustion level increased.");
 
             // Bonus: Sağlık kaybı veya diğer cezalar ekleyebilirsiniz
-            playerData.Health = Mathf.Max(playerData.Health - 20, 0);
-            Debug.Log("Health decreased by 20.");
+            playerData.Health -= 50;
+            Debug.Log("Health decreased by 50.");
 
             // Yorgunluk seviyesinin maksimum seviyeyi aşıp aşmadığını kontrol et
             PlayerStatHandler.Instance.CheckExhaustionMaxed();

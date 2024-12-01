@@ -14,7 +14,7 @@ public class SO_Base
     public int DC;
     public int HealthRequirement;
     public int ArmyPowerRequirement;
-    public int GoldRequirement;
+    public int SilverRequirement;
     public int StatRequirement;
     
 
@@ -24,7 +24,7 @@ public class SO_Base
     public int CompletionMinute;
 
     [Header("Reward")]
-    public int Gold;
+    public int Silver;
     public string TargetStat;
     public int StatRewardMin;
     public int StatRewardMax;

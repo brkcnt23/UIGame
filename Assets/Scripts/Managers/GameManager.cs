@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    public bool isSaveSlotEmpty;
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 

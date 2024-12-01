@@ -8,6 +8,11 @@ public class EconomySystem
         playerData = pd;
     }
 
+    public void AddSilver(int gainedSilver)
+    {
+        playerData.Silver += gainedSilver;
+        ConvertSilverToGold();
+    }
     public void ConvertSilverToGold()
     {
         if (playerData.Silver >= 100)
@@ -19,4 +24,5 @@ public class EconomySystem
             Debug.Log($"{goldToAdd} altın elde ettiniz. Kalan Gümüş: {playerData.Silver}");
         }
     }
+
 }

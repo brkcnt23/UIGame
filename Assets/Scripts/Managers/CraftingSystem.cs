@@ -81,7 +81,7 @@ public class CraftingSystem
         float expReward = reward * expModifier;
 
         // Gümüş ödülü
-        playerData.Silver += silverReward;
+        economySystem.AddSilver(silverReward);
 
         // Crafting EXP kazancı
         int craftExp = Mathf.RoundToInt(expReward);

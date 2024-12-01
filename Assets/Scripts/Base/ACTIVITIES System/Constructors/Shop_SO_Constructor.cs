@@ -16,7 +16,7 @@ public class Shop_SO_Constructor : SO_Base
         CompletionHour = 1;
         CompletionMinute = 0;
 
-        Gold = 100;
+        Silver = 100;
 
         TargetStat = "Constitution";
         StatRewardMin = 1;

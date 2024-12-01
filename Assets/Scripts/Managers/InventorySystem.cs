@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    public static InventorySystem Instance { get; private set; }
-    private List<Item> inventory; // List to store items
-    public PlayerStatHandler playerStatHandler; // Reference to the player stats
-    private EconomySystem economySystem;
+    public static InventorySystem Instance;
+
+    public List<Item> Resources;     // Stackable items like wood, stone
+    public List<Item> SpecialItems;  // Equipment slots (e.g., sword, armor)
+
+    public int MaxSpecialItemSlots = 6;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            inventory = new List<Item>();
+            Resources = new List<Item>();
+            SpecialItems = new List<Item>();
         }
         else
         {
@@ -21,46 +24,62 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    // Add an item to the inventory
+    // Add item to inventory
     public void AddItem(Item item)
     {
-        inventory.Add(item);
-        Debug.Log($"Added {item.Name} to inventory.");
+        if (item.IsStackable)
+        {
+            Item existingResource = Resources.Find(i => i.ID == item.ID);
+            if (existingResource != null)
+            {
+                existingResource.Quantity += item.Quantity;
+            }
+            else
+            {
+                Resources.Add(item);
+            }
+        }
+        else
+        {
+            if (SpecialItems.Count < MaxSpecialItemSlots)
+            {
+                SpecialItems.Add(item);
+            }
+            else
+            {
+                Debug.LogWarning("No more slots available for special items.");
+            }
+        }
+
+        UpdateUI();
+    }
+
+    // Remove item from inventory
+    public void RemoveItem(Item item, int quantity = 1)
+    {
+        if (item.IsStackable)
+        {
+            Item resource = Resources.Find(i => i.ID == item.ID);
+            if (resource != null)
+            {
+                resource.Quantity -= quantity;
+                if (resource.Quantity <= 0)
+                {
+                    Resources.Remove(resource);
+                }
+            }
+        }
+        else
+        {
+            SpecialItems.Remove(item);
+        }
+
+        UpdateUI();
+    }
+
+    // Update UI
+    public void UpdateUI()
+    {
         InventoryUI.Instance.UpdateInventoryUI();
     }
-
-    // Remove an item from the inventory
-    public void RemoveItem(Item item)
-    {
-        if (inventory.Contains(item))
-        {
-            inventory.Remove(item);
-            Debug.Log($"Removed {item.Name} from inventory.");
-            InventoryUI.Instance.UpdateInventoryUI();
-        }
-    }
-
-    // Sell an item for gold/silver
-    public void SellItem(Item item)
-    {
-        if (inventory.Contains(item))
-        {
-            inventory.Remove(item);
-            int silver = item.Value;
-            playerStatHandler.pd.Silver += silver;
-
-            // Convert silver to gold if necessary
-            economySystem.ConvertSilverToGold();
-            Debug.Log($"Sold {item.Name} for {silver} silver.");
-            InventoryUI.Instance.UpdateInventoryUI();
-        }
-    }
-
-    // Get the current inventory
-    public List<Item> GetInventory()
-    {
-        return inventory;
-    }
-
-    // Update inventory UI (dummy function)
 }
