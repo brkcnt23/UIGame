@@ -1,13 +1,21 @@
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NavUISystem : MonoBehaviour
 {
-    [Header("Profile Panel")]
+    [Header("Panels")]
     public GameObject profilePanel;
+    public GameObject jobsPanel;
+    public GameObject townPanel;
+    //home button
+    public GameObject shopPanel;
+    public GameObject battlePanel;
+    public Button ProfileButton;
+    public Button JobsButton;
+    public Button TownButton;
+    public Button ShopButton;
+    public Button BattleButton;
 
     [Header("Profile UI Elements")]
     public TMP_Text levelText;
@@ -25,13 +33,57 @@ public class NavUISystem : MonoBehaviour
     public TMP_Text totalBattlesWonText;
     public TMP_Text totalBattlesLostText;
     public TMP_Text companionsText;
-
+    private void Start()
+    {
+        ProfileButton.onClick.AddListener(() => OnProfileButtonClick());
+        JobsButton.onClick.AddListener(() => OnJobButtonClick());
+        TownButton.onClick.AddListener(() => OnHomeButtonClick());
+        ShopButton.onClick.AddListener(() => OnShopButtonClick());
+        BattleButton.onClick.AddListener(() => OnBattleButtonClick());
+    }
+    /// <summary>
+    /// Handles the Profile Button click event.
+    /// </summary>
     public void OnProfileButtonClick()
     {
         UpdateProfileData();
-        profilePanel.SetActive(true);
+        OpenUpPanel(profilePanel);
     }
 
+    /// <summary>
+    /// Handles the Smithing Button click event.
+    /// </summary>
+    public void OnJobButtonClick()
+    {
+        OpenUpPanel(jobsPanel);
+    }
+
+    /// <summary>
+    /// Handles the Home Button click event.
+    /// </summary>
+    public void OnHomeButtonClick()
+    {
+        OpenUpPanel(townPanel);
+    }
+    /// <summary>
+    /// Handles the Shop Button click event.
+    /// </summary>
+    public void OnShopButtonClick()
+    {
+        OpenUpPanel(shopPanel);
+    }
+
+    /// <summary>
+    /// Handles the War Button click event.
+    /// </summary>
+    public void OnBattleButtonClick()
+    {
+        OpenUpPanel(battlePanel);
+    }
+
+    /// <summary>
+    /// Updates the Profile Panel UI with the player's stats.
+    /// </summary>
     private void UpdateProfileData()
     {
         PlayerData pd = PlayerStatHandler.Instance.pd;
@@ -58,5 +110,18 @@ public class NavUISystem : MonoBehaviour
         {
             companionsText.text += $"{companion.Name} (Level {companion.Level})\n";
         }
+    }
+    public void OpenUpPanel(GameObject PanelWhichWillOpen)
+    {
+        DisableAllNavPanels();
+        PanelWhichWillOpen.SetActive(true);
+    }
+    public void DisableAllNavPanels()
+    {
+        profilePanel.SetActive(false);
+        jobsPanel.SetActive(false);
+        townPanel.SetActive(false);
+        shopPanel.SetActive(false);
+        battlePanel.SetActive(false);
     }
 }

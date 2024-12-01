@@ -8,6 +8,7 @@ public class PlayerData
 {
     public int ID;
     public string Name;
+    public string VillageName;
 
 
     public int Hour;

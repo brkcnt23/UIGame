@@ -48,3 +48,12 @@ namespace NEXUS.Utilities
         }
     }
 }
+
+[System.Serializable]
+public class SaveSlot
+{
+    public string PlayerName;
+    public string VillageName;
+    public int Day;
+    public PlayerData PlayerData; // Store your PlayerData or equivalent data structure
+}

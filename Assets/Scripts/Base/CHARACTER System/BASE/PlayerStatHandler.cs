@@ -8,7 +8,7 @@ public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
 
-    JSONDataHandler JSONhandler = new JSONDataHandler();
+    public JSONDataHandler JSONhandler = new JSONDataHandler();
 
     private void Awake()
     {
