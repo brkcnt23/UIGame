@@ -1,5 +1,7 @@
 using UnityEngine;
 using NEXUS.Utilities;
+using UnityEngine.UI;
+using TMPro;
 
 public class TravelSystem : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class TravelSystem : MonoBehaviour
     int evenCooldowReset;
     public int eventChance = 10;
     public int eventIncrease = 1;
+
+    public GameObject eventPanel;
+
+    public bool isEventActive = false;
+
+    Button[] eventButtons;
 
     void Start()
     {
@@ -108,7 +116,8 @@ public class TravelSystem : MonoBehaviour
 
     public void HandleEvent()
     {
-        ContinueTravel(remainingTime);
+        isEventActive = true;
+        ShowEventPanel();
     }
 
     public bool RandomEventHappened()
@@ -123,5 +132,31 @@ public class TravelSystem : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void ShowEventPanel()
+    {
+        eventPanel.SetActive(true);
+
+        eventButtons = eventPanel.GetComponentsInChildren<Button>();
+
+        Event_SO_Constructor currentEvent = EventHandler.Instance.events[EventHandler.Instance.GenerateEvent()];
+
+
+        for (int i = 0; i < eventButtons.Length; i++)
+        {
+            eventButtons[i].onClick.RemoveAllListeners();
+            eventButtons[i].GetComponentInChildren<TMP_Text>().text = currentEvent.choices[i];
+            int choice = i;
+            eventButtons[i].onClick.AddListener(() => {
+                EventHandler.Instance.HandleEvent(PlayerStatHandler.Instance, choice);
+                HideEventPanel();
+                });
+        }
+    }
+
+    public void HideEventPanel()
+    {
+        eventPanel.SetActive(false);
     }
 }

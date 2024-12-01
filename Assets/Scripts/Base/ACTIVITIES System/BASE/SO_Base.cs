@@ -10,8 +10,13 @@ public class SO_Base
     public string Name;
     public string Description;
 
-    [Header("Difficulty")]
+    [Header("Difficulty&Requirements")]
     public int DC;
+    public int HealthRequirement;
+    public int ArmyPowerRequirement;
+    public int GoldRequirement;
+    public int StatRequirement;
+    
 
     [Header("Completion Time")]
     public int CompletionDay;

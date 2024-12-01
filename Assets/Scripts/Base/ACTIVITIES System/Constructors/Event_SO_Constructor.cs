@@ -22,4 +22,57 @@ public class Event_SO_Constructor : SO_Base
         StatRewardMin = 1;
         StatRewardMax = 3;
     }
+
+    public string[] choices = new string[5];
+
+    public void EventSuccessful(PlayerStatHandler player)
+    {
+        player.pd.Gold += Gold;
+        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+
+    }
+
+    public void EventFailed(PlayerStatHandler player)
+    {
+        player.pd.Gold -= Gold;
+        player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1));
+    }
+
+    public void EventNeutral(PlayerStatHandler player)
+    {
+        player.pd.Gold += Gold / 2;
+    }
+
+    public void EventCritical(PlayerStatHandler player)
+    {
+        player.pd.Gold += Gold * 2;
+        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1) * 2);
+    }
+
+    public void EventDeclined(PlayerStatHandler playerData)
+    {
+
+    }
+
+    public void HandleEvent(PlayerStatHandler playerData, int choice)
+    {
+        switch (choice)
+        {
+            case 0:
+                EventSuccessful(playerData);
+                break;
+            case 1:
+                EventFailed(playerData);
+                break;
+            case 2:
+                EventNeutral(playerData);
+                break;
+            case 3:
+                EventCritical(playerData);
+                break;
+            case 4:
+                EventDeclined(playerData);
+                break;
+        }
+    }
 }
