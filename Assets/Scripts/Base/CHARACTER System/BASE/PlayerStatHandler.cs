@@ -35,60 +35,47 @@ public class PlayerStatHandler : MonoBehaviour
         economySystem = new EconomySystem(pd);
         //UpdateArmyCapacity();
     }
+
+    void OnEnable()
+    {
+        ExperienceSystem.OnLevelUp += LevelUp;
+    }
+
+    void OnDisable()
+    {
+        ExperienceSystem.OnLevelUp -= LevelUp;
+    }
     public void AddCharacterExperience(int xp)
     {
-        pd.Experience += xp;
-        Debug.Log($"Character gained {xp} EXP. Total: {pd.Experience}");
-
-        CheckLevelUp();
+        ExperienceSystem.AddExperience(pd, xp);
     }
     public void AddSilverToPlayer(int silver)
     {
         economySystem.AddSilver(silver);
     }
 
-    private void CheckLevelUp()
+    public void LevelUp()
     {
-        while (pd.Experience >= pd.MaxExperience)
-        {
-            pd.Experience -= pd.MaxExperience;
-            pd.Level++;
-            pd.MaxExperience = CalculateMaxExperience(pd.Level);
-            Debug.Log($"Level up! New Level: {pd.Level}, Next Level EXP: {pd.MaxExperience}");
-            AllocateLevelUpStats();
-        }
-    }
-
-    private int CalculateMaxExperience(int level)
-    {
-        return Mathf.RoundToInt(1000 * Mathf.Pow(1.1f, level - 1)); // EXP gereksinimi her seviye için artar
-    }
-
-    private void AllocateLevelUpStats()
-    {
-        // Her seviye atlayışta Strength ve Constitution artışı
-        pd.Strength += 1;
-        pd.Constitution += 1;
-        Debug.Log($"Stats increased! STR: {pd.Strength}, CONST: {pd.Constitution}");
+        Debug.Log("Level Up!");
     }
 
     public void AddStats(string statType, int amount)
     {
         switch (statType.ToLower())
         {
-            case "str":
+            case "strength":
                 pd.Strength += amount;
                 Debug.Log($"STR increased by {amount}. Total: {pd.Strength}");
                 break;
-            case "const":
+            case "constitution":
                 pd.Constitution += amount;
                 Debug.Log($"CONST increased by {amount}. Total: {pd.Constitution}");
                 break;
-            case "cha":
+            case "charisma":
                 pd.Charisma += amount;
                 Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
                 break;
-            case "dex":
+            case "dexterity":
                 pd.Dexterity += amount;
                 Debug.Log($"DEX increased by {amount}. Total: {pd.Dexterity}");
                 break;

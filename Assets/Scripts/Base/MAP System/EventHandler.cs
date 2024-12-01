@@ -40,26 +40,26 @@ public class EventHandler : MonoBehaviour
         JSONDataHandler.SaveData(new EventWrapper { events = events }, "events.json");
     }
 
-    public void HandleEvent(PlayerStatHandler player, int choice)
+    public void HandleEvent(int choice)
     {
         currentEvent = events[GenerateEvent()];
 
         switch (choice)
         {
             case 0:
-                currentEvent.EventSuccessful(player);
+                currentEvent.EventSuccessful(PlayerStatHandler.Instance);
                 break;
             case 1:
-                currentEvent.EventFailed(player);
+                currentEvent.EventFailed(PlayerStatHandler.Instance);
                 break;
             case 2:
-                currentEvent.EventNeutral(player);
+                currentEvent.EventNeutral(PlayerStatHandler.Instance);
                 break;
             case 3:
-                currentEvent.EventCritical(player);
+                currentEvent.EventCritical(PlayerStatHandler.Instance);
                 break;
             case 4:
-                currentEvent.EventDeclined(player);
+                currentEvent.EventDeclined(PlayerStatHandler.Instance);
                 break;
         }
 

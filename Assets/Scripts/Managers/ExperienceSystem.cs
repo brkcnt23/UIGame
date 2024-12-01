@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 using Unity.VisualScripting;
+=======
+using System;
+>>>>>>> Stashed changes
 using UnityEngine;
 
 public static class ExperienceSystem
@@ -8,6 +12,8 @@ public static class ExperienceSystem
 
     // Zanaatkarlık seviyeleri için temel XP
     private const int BaseCraftXP = 500;
+
+    public static Action OnLevelUp;
 
     // Karakter için toplam gerekli XP'yi hesaplar
     public static int GetTotalCharacterXPForLevel(int level)
@@ -21,18 +27,41 @@ public static class ExperienceSystem
         return Mathf.RoundToInt(BaseCraftXP * (Mathf.Pow(2f, (level - 1) / 5f) - 1));
     }
 
+    public static void AddExperience(PlayerData playerData, int experience)
+    {
+        playerData.Experience += experience;
+        UpdateCharacterLevel(playerData);
+    }
+
     // Karakterin seviyesini günceller
     public static void UpdateCharacterLevel(PlayerData playerData)
     {
-        int newLevel = playerData.Level;
+        int currentLevel = playerData.Level;
+        int totalXP = playerData.Experience;
+        int maxExperience = GetTotalCharacterXPForLevel(currentLevel);
+        int newLevel = currentLevel;
 
-        while (playerData.Experience >= GetTotalCharacterXPForLevel(newLevel + 1) && newLevel < 100)
+        while (totalXP >= maxExperience && newLevel < 100)
         {
             newLevel++;
-            Debug.Log($"Karakter seviyeniz {newLevel} oldu!");
+            maxExperience = GetTotalCharacterXPForLevel(newLevel);
+            totalXP -= maxExperience;
+            Debug.Log($"Seviyeniz {newLevel} oldu!");
         }
 
         playerData.Level = newLevel;
+
+        playerData.Experience = totalXP;
+
+        playerData.MaxExperience = maxExperience;
+
+        Debug.Log($"Toplam XP: {totalXP} / {maxExperience}");
+
+        if (newLevel > currentLevel)
+        {
+            OnLevelUp?.Invoke();
+        }
+
     }
 
     // Zanaatkarlık seviyesini günceller

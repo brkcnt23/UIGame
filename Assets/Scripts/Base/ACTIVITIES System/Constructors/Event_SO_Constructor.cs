@@ -29,7 +29,6 @@ public class Event_SO_Constructor : SO_Base
     {
         player.pd.Silver += Silver;
         player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
-
     }
 
     public void EventFailed(PlayerStatHandler player)

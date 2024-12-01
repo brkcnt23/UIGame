@@ -142,16 +142,33 @@ public class TravelSystem : MonoBehaviour
 
         Event_SO_Constructor currentEvent = EventHandler.Instance.events[EventHandler.Instance.GenerateEvent()];
 
+        EventHandler.Instance.currentEvent = currentEvent;
+
 
         for (int i = 0; i < eventButtons.Length; i++)
         {
             eventButtons[i].onClick.RemoveAllListeners();
-            eventButtons[i].GetComponentInChildren<TMP_Text>().text = currentEvent.choices[i];
+
+            //if the event choice is not available(empty text), hide the button
+            if (string.IsNullOrEmpty(currentEvent.choices[i]))
+            {
+                eventButtons[i].gameObject.SetActive(false);
+                continue;
+            }
+
+            eventButtons[i].gameObject.SetActive(true);
+
             int choice = i;
-            eventButtons[i].onClick.AddListener(() => {
-                EventHandler.Instance.HandleEvent(PlayerStatHandler.Instance, choice);
+
+            eventButtons[i].onClick.AddListener(() =>
+            {
+                EventHandler.Instance.HandleEvent(choice);
                 HideEventPanel();
-                });
+                isEventActive = false;
+                ContinueTravel(remainingTime);
+            });
+
+            eventButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.choices[i];
         }
     }
 

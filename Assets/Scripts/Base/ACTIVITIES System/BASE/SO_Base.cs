@@ -24,6 +24,10 @@ public class SO_Base
     public int CompletionMinute;
 
     [Header("Reward")]
+<<<<<<< Updated upstream
+=======
+    public int Experience;
+>>>>>>> Stashed changes
     public int Silver;
     public string TargetStat;
     public int StatRewardMin;

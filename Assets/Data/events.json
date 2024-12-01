@@ -6,13 +6,25 @@
             "Name": "Random Event1",
             "Description": "A random event has occurred.",
             "DC": 5,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
             "CompletionDay": 0,
             "CompletionHour": 1,
             "CompletionMinute": 0,
-            "Gold": 200,
+            "Experience": 0,
+            "Silver": 100,
             "TargetStat": "Charisma",
             "StatRewardMin": 0,
-            "StatRewardMax": 1
+            "StatRewardMax": 1,
+            "choices": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "Exit"
+            ]
         },
         {
             "Type": 2,
@@ -20,13 +32,25 @@
             "Name": "Random Event2",
             "Description": "A random event has occurred.",
             "DC": 10,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
             "CompletionDay": 0,
             "CompletionHour": 2,
             "CompletionMinute": 0,
-            "Gold": 400,
+            "Experience": 0,
+            "Silver": 100,
             "TargetStat": "Strength",
             "StatRewardMin": 1,
-            "StatRewardMax": 2
+            "StatRewardMax": 2,
+            "choices": [
+                "A",
+                "B",
+                "C",
+                "D",
+                ""
+            ]
         }
     ]
 }
