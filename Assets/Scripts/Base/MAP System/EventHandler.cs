@@ -28,7 +28,7 @@ public class EventHandler : MonoBehaviour
 
     public void Wrappers()
     {
-        JSONDataHandler = new JSONDataHandler(3);
+        JSONDataHandler = new JSONDataHandler("SourceData");
         EventWrapper wrapper = JSONDataHandler.LoadData<EventWrapper>("events.json");
         events = wrapper != null ? wrapper.events : new List<Event_SO_Constructor>();
     }

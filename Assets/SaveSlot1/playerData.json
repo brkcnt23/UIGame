@@ -1,19 +1,19 @@
 {
     "pd": {
         "ID": 0,
-        "Name": "",
-        "VillageName": "",
+        "Name": "sadf",
+        "VillageName": "dghsdf",
         "Hour": 0,
         "Minute": 0,
         "Day": 1,
-        "Level": 0,
+        "Level": 2,
         "Health": 0,
         "MaxHealth": 0,
-        "Experience": 0,
-        "MaxExperience": 0,
+        "Experience": 100,
+        "MaxExperience": 149,
         "Gold": 0,
-        "Silver": 0,
-        "Strength": 0,
+        "Silver": 200,
+        "Strength": 4,
         "Dexterity": 0,
         "Constitution": 0,
         "Charisma": 0,
@@ -38,7 +38,7 @@
         "LastSleepMinute": 0,
         "Companions": [],
         "Items": [],
-        "LastSettlementName": "",
+        "LastSettlementName": "Avcılar",
         "HasDied": false
     }
 }

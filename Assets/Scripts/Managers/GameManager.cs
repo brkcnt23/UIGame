@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             button.onClick.RemoveAllListeners();
             if (playerData[_index].Name == "")
             {
-                
+
                 button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index}\nClick to Start New Game";
                 button.onClick.AddListener(() =>
                 {
@@ -119,12 +119,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Slot", slot);
 
         Settlement settlement = PlayerStatHandler.Instance.pd.LastSettlementName == "" ? PlayerStatHandler.Instance.homeSettlement : SettlementHandler.Instance.settlements.Find(x => x.Name == PlayerStatHandler.Instance.pd.LastSettlementName);
-        UIHandler.Instance.UpdateSettlementInfo(settlement);
+
 
         SettlementHandler.Instance.settlement = settlement;
 
         SettlementHandler.Instance.OnSettlmentEntered(settlement);
-
+        UIHandler.Instance.UpdateSettlementInfo(settlement);
         ShowSettlementPanel();
 
         MapHandler.Instance.MovePlayerToLastVisitedSettlement();
@@ -153,7 +153,8 @@ public class GameManager : MonoBehaviour
         DisableAllPanels();
         navPanel.SetActive(true);
         infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);}
+        startGamePanel.SetActive(true);
+    }
 
     public void ShowMainMenuPanel()
     {
