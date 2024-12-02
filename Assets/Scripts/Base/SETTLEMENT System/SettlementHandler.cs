@@ -29,7 +29,7 @@ public class SettlementHandler : MonoBehaviour
 
     public void Wrappers()
     {
-        JSONhandler = new JSONDataHandler("SourceData");
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
 
@@ -71,15 +71,10 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnShopEntered -= HandleShopEntered;
     }
 
-    void OnApplicationQuit()
-    {
-    }
-
     public void EndWrappers()
     {
-        JSONhandler = new JSONDataHandler("SourceData");
+        JSONhandler = new JSONDataHandler("Slot");
         SettlementListWrapper wrapper = new SettlementListWrapper();
-        PlayerStatHandler.Instance.CheckHomeSettlementinSettlements();
         wrapper.settlements = settlements;
         JSONhandler.SaveData(wrapper, "settlements.json");
     }

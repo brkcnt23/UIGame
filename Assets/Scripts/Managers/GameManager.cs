@@ -61,8 +61,16 @@ public class GameManager : MonoBehaviour
                 PlayerDataWrapper wrapper = new PlayerDataWrapper();
                 JSONhandler.SaveData(wrapper, "playerData.json");
 
-                SettlementListWrapper settlementWrapper = new SettlementListWrapper();
-                JSONhandler.SaveData(settlementWrapper, "settlements.json");
+                //create a empty settlement data
+                JSONDataHandler JSONhandler2 = new JSONDataHandler(i);
+                SettlementListWrapper wrapper2 = new SettlementListWrapper();
+                JSONhandler2.SaveData(wrapper2, "settlements.json");
+
+                //load settlement data from source to empty settlement data
+                JSONDataHandler JSONhandler3 = new JSONDataHandler("SourceData");
+                SettlementListWrapper wrapper3 = JSONhandler3.LoadData<SettlementListWrapper>("settlements.json");
+                JSONDataHandler JSONhandler4 = new JSONDataHandler(i);
+                JSONhandler4.SaveData(wrapper3, "settlements.json");
 
                 PlayerStatHandler.Instance.pd = new PlayerData();
                 SettlementHandler.Instance.settlement = new Settlement();
@@ -133,7 +141,6 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        SettlementHandler.Instance.Wrappers();
         PlayerStatHandler.Instance.EndWrappers();
     }
 

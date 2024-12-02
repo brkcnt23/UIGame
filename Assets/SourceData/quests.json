@@ -27,6 +27,48 @@
             "TargetStat": "Charisma",
             "StatRewardMin": 2,
             "StatRewardMax": 3
+        },
+        {
+            "Type": 1,
+            "ID": 2003,
+            "Name": "Night Terrors",
+            "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+            "DC": 20,
+            "CompletionDay": 0,
+            "CompletionHour": 8,
+            "CompletionMinute": 30,
+            "Gold": 2500,
+            "TargetStat": "Constitution",
+            "StatRewardMin": 0,
+            "StatRewardMax": 1
+        },
+        {
+            "Type": 1,
+            "ID": 2004,
+            "Name": "The Lost Pet",
+            "Description": "A local family has lost their beloved pet and is offering a reward for its safe return.",
+            "DC": 25,
+            "CompletionDay": 0,
+            "CompletionHour": 12,
+            "CompletionMinute": 0,
+            "Gold": 3500,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 2,
+            "StatRewardMax": 2
+        },
+        {
+            "Type": 1,
+            "ID": 2005,
+            "Name": "The Mysterious Stranger",
+            "Description": "A mysterious stranger has arrived in town and is looking for help with a secret mission.",
+            "DC": 30,
+            "CompletionDay": 0,
+            "CompletionHour": 16,
+            "CompletionMinute": 30,
+            "Gold": 4500,
+            "TargetStat": "Strength",
+            "StatRewardMin": 3,
+            "StatRewardMax": 4
         }
     ]
 }
