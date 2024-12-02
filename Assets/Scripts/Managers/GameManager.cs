@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         navPanel.SetActive(false);
         infoPanel.SetActive(false);
-        UpdateSlotUI(1, slot1Text, slot1Button);
-        UpdateSlotUI(2, slot2Text, slot2Button);
-        UpdateSlotUI(3, slot3Text, slot3Button);
 
     }
     private void UpdateSlotUI(int slot, TMP_Text slotText, Button slotButton)

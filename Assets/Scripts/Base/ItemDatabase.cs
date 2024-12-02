@@ -7,13 +7,13 @@ public static class ItemDatabase
     static ItemDatabase()
     {
         // Predefined items
-        AddItem(new Item(1, "Iron Sword", 150, 1, false, ItemCategory.Weapon));
-        AddItem(new Item(2, "Health Potion", 50, 1, true, ItemCategory.Potion));
-        AddItem(new Item(3, "Leather Armor", 200, 1, false, ItemCategory.Armor));
-        AddItem(new Item(4, "Wooden Plank", 30, 0, true, ItemCategory.CraftingMaterial));
-        AddItem(new Item(5, "Stone Brick", 40, 0, true, ItemCategory.CraftingMaterial));
-        AddItem(new Item(6, "Gold Nugget", 300, 0, true, ItemCategory.Resource));
-        AddItem(new Item(7, "Iron Ore", 100, 0, true, ItemCategory.CraftingMaterial));
+        AddItem(new Item(1, "Iron Sword", 150, ItemCategory.Weapon, 5, 0, 0, 0));
+        AddItem(new Item(2, "Health Potion", 50, ItemCategory.Potion, 0, 0, 0, 0));
+        AddItem(new Item(3, "Leather Armor", 200, ItemCategory.Armor, 0, 5, 0, 0));
+        AddItem(new Item(4, "Wooden Plank", 30, ItemCategory.CraftingMaterial, 0, 0, 0, 0));
+        AddItem(new Item(5, "Stone Brick", 40, ItemCategory.CraftingMaterial, 0, 0, 0, 0));
+        AddItem(new Item(6, "Gold Nugget", 300, ItemCategory.Resource, 0, 0, 0, 0));
+        AddItem(new Item(7, "Iron Ore", 100, ItemCategory.CraftingMaterial, 0, 0, 0, 0));
     }
 
     public static void AddItem(Item item)

@@ -62,6 +62,7 @@ public class PlayerData
     public int LastSleepHour;
     public int LastSleepMinute;
     public List<Companion> Companions = new List<Companion>();
+    public List<Item> Items = new List<Item>();
 
     public bool HasDied;
 }

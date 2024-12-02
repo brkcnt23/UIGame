@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-using Unity.VisualScripting;
-=======
 using System;
->>>>>>> Stashed changes
 using UnityEngine;
 
 public static class ExperienceSystem
