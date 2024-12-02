@@ -9,7 +9,7 @@ public class SettlementButtonPointer : MonoBehaviour
 
     private TMP_Text SettlementName;
 
-    private Button button;
+    public Button button;
 
     private void Awake()
     {
@@ -21,24 +21,22 @@ public class SettlementButtonPointer : MonoBehaviour
         {
             button.onClick.AddListener(() =>
                 {
-                    if(SettlementHandler.Instance.settlement == settlement)
+                    if (SettlementHandler.Instance.settlement != settlement)
                     {
-                        return;
+
+                        MapHandler.Instance.selectedSettlement = gameObject;
+                        MapHandler.Instance.PopulateMap();
+                        SettlementHandler.Instance.OnSettlmentEntered(settlement);
+
+                        TravelSystem.Instance.SetSettlements(this);
+                        TravelSystem.Instance.TravelToSettlement(DecidedToHunt());
+
+                        TravelSystem.Instance.currentSettlement = this;
+
+                        MapHandler.Instance.isHunting = false;
                     }
 
-                    MapHandler.Instance.selectedSettlement = gameObject;
-                    MapHandler.Instance.PopulateMap();
-
-                    MapHandler.Instance.settlementHandler.settlement = settlement;
-
-                    SettlementHandler.Instance.OnSettlmentEntered(settlement);
-
-                    TravelSystem.Instance.SetSettlements(this);
-                    TravelSystem.Instance.TravelToSettlement(DecidedToHunt());
-
-                    TravelSystem.Instance.currentSettlement = this;
-
-                    MapHandler.Instance.isHunting = false;
+                    GameManager.Instance.ShowSettlementPanel();
                 });
         }
     }
@@ -46,7 +44,8 @@ public class SettlementButtonPointer : MonoBehaviour
     public void SetSettlement(Settlement settlement)
     {
         this.settlement = settlement;
-
+        button = GetComponent<Button>();
+        SettlementName = GetComponentInChildren<TMP_Text>();
         SettlementName.text = settlement.Name;
 
         if (settlement.isUnlocked)

@@ -1,0 +1,32 @@
+{
+    "jobs": [
+        {
+            "Type": 0,
+            "ID": 1001,
+            "Name": "Guard",
+            "Description": "Protect the town from bandits and other threats.",
+            "DC": 10,
+            "CompletionDay": 0,
+            "CompletionHour": 6,
+            "CompletionMinute": 0,
+            "Gold": 500,
+            "TargetStat": "Strength",
+            "StatRewardMin": 1,
+            "StatRewardMax": 2
+        },
+        {
+            "Type": 0,
+            "ID": 1002,
+            "Name": "Blacksmith",
+            "Description": "Craft weapons and armor for the town's defenders.",
+            "DC": 15,
+            "CompletionDay": 0,
+            "CompletionHour": 8,
+            "CompletionMinute": 0,
+            "Gold": 1000,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 2,
+            "StatRewardMax": 3
+        }
+    ]
+}

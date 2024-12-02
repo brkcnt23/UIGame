@@ -27,6 +27,9 @@ public class PlayerStatHandler : MonoBehaviour
 
     public PlayerData pd = new PlayerData();
 
+    public Settlement homeSettlement = new Settlement();
+
+
     private void Start()
     {
         economySystem = new EconomySystem(pd);
@@ -38,8 +41,32 @@ public class PlayerStatHandler : MonoBehaviour
         JSONhandler = new JSONDataHandler(slot);
         PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
         pd = wrapper != null ? wrapper.pd : new PlayerData();
-        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
-        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
+
+
+        GetPlayerCompanions();
+
+
+        HomeSettlementWrapper homeWrapper = JSONhandler.LoadData<HomeSettlementWrapper>("homeSettlement.json");
+        homeSettlement = homeWrapper != null ? homeWrapper.homeSettlement : new Settlement();
+
+        SettlementHandler.Instance.Wrappers();
+
+        CheckHomeSettlementinSettlements();
+    }
+
+    public void CheckHomeSettlementinSettlements()
+    {
+        Settlement home = SettlementHandler.Instance.settlements.Find(s => s.Name == homeSettlement.Name);
+        if (home == null)
+        {
+            SettlementHandler.Instance.settlements.Insert(0, homeSettlement);
+        }
+    }
+
+    public void GetPlayerCompanions()
+    {
+        CompanionListWrapper wrapper = JSONhandler.LoadData<CompanionListWrapper>("playerCompanions.json");
+        pd.Companions = wrapper != null ? wrapper.Companions : new List<Companion>();
     }
 
     void OnEnable()
@@ -107,6 +134,17 @@ public class PlayerStatHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
+        JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "playerCompanions.json");
+        JSONhandler.SaveData(new HomeSettlementWrapper { homeSettlement = homeSettlement }, "homeSettlement.json");
+
+        SettlementHandler.Instance.EndWrappers();
+    }
+
+    public Settlement LastVisitedSettlement()
+    {
+        Settlement lastVisited = pd.LastSettlementName != "" ? SettlementHandler.Instance.settlements.Find(s => s.Name == pd.LastSettlementName) : homeSettlement;
+
+        return lastVisited;
     }
     public void UnequipItem(ItemCategory category)
     {

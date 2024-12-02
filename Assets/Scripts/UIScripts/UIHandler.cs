@@ -26,9 +26,9 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void UpdateSettlementInfo()
+    public void UpdateSettlementInfo(Settlement settlement)
     {
-        SettlementName.text = SettlementHandler.Instance.settlement.Name;
-        SettlementDescription.text = $"Population: {SettlementHandler.Instance.settlement.Population}\nQuality:{SettlementHandler.Instance.settlement.Quality}\nWealth:{SettlementHandler.Instance.settlement.Wealth}";
+        SettlementName.text = settlement.Name;
+        SettlementDescription.text = $"Population: {settlement.Population}\nQuality:{settlement.Quality}\nWealth:{settlement.Wealth}";
     }
 }

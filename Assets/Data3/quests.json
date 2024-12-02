@@ -1,0 +1,32 @@
+{
+    "quests": [
+        {
+            "Type": 1,
+            "ID": 2001,
+            "Name": "The Missing Heirloom",
+            "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
+            "DC": 10,
+            "CompletionDay": 0,
+            "CompletionHour": 1,
+            "CompletionMinute": 30,
+            "Gold": 500,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 1,
+            "StatRewardMax": 2
+        },
+        {
+            "Type": 1,
+            "ID": 2002,
+            "Name": "Foul Play",
+            "Description": "A local merchant has been accused of a crime they did not commit. They need help proving their innocence.",
+            "DC": 15,
+            "CompletionDay": 0,
+            "CompletionHour": 5,
+            "CompletionMinute": 0,
+            "Gold": 1500,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 2,
+            "StatRewardMax": 3
+        }
+    ]
+}

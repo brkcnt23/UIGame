@@ -64,6 +64,8 @@ public class PlayerData
     public List<Companion> Companions = new List<Companion>();
     public List<Item> Items = new List<Item>();
 
+    public string LastSettlementName;
+
     public bool HasDied;
 }
 

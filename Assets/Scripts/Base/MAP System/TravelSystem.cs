@@ -98,20 +98,25 @@ public class TravelSystem : MonoBehaviour
             }
 
             remainingTime--;
+        }
 
-            if (remainingTime <= 0)
-            {
-                remainingTime = 0;
-                eventCooldown = evenCooldowReset;
-                print("Arrived at destination");
-                TravelDone();
-            }
+
+
+        if (remainingTime <= 0 && !isEventActive)
+        {
+            remainingTime = 0;
+            eventCooldown = evenCooldowReset;
+            print("Arrived at destination");
+            TravelDone();
         }
     }
 
     public void TravelDone()
     {
         SettlementHandler.Instance.OnSettlmentEntered(destination.settlement);
+        MapHandler.Instance.map.SetActive(false);
+        SettlementHandler.Instance.settlement = destination.settlement;
+        MapHandler.Instance.PopulateMap();
     }
 
     public void HandleEvent()

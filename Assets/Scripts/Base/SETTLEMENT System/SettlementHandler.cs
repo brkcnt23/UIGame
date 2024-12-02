@@ -25,19 +25,25 @@ public class SettlementHandler : MonoBehaviour
 
     public Settlement settlement = new Settlement();
 
-
     JSONDataHandler JSONhandler;
+
+    public void Wrappers()
+    {
+        JSONhandler = new JSONDataHandler(3);
+        SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
+        settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
+
+        settlement = PlayerStatHandler.Instance.LastVisitedSettlement();
+    }
 
 
     void OnEnable()
     {
-        settlement.OnSettlementExited += OnSettlementExited;
         settlement.OnSettlementEntered += OnSettlmentEntered;
+        settlement.OnSettlementExited += OnSettlementExited;
 
         settlement.OnSettlementUnlocked += OnSettlmenUnlocked;
 
-
-        settlement.OnShopEntered += HandleShopEntered;
         settlement.OnPopulationChanged += HandlePopulationChanged;
         settlement.OnWealthChanged += HandleWealthChanged;
         settlement.OnQualityChanged += HandleQualityChanged;
@@ -45,33 +51,15 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnTavernEntered += HandleTavernEntered;
         settlement.OnTownHallEntered += HandleTownHallEntered;
         settlement.OnWallEntered += HandleWallEntered;
-    }
-
-    public void Wrappers(int slot)
-    {
-        JSONhandler = new JSONDataHandler(slot);
-        SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
-        settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
-
-
-
-        // Tavernanın görevleri
-        QuestListWrapper questWrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
-        settlement.Tavern.Quests = questWrapper != null ? questWrapper.quests : new List<Quest_SO_Constructor>();
-
-        // Belediye binasının işleri
-        JobListWrapper jobWrapper = JSONhandler.LoadData<JobListWrapper>("jobs.json");
-        settlement.TownHall.Jobs = jobWrapper != null ? jobWrapper.jobs : new List<Job_SO_Constructor>();
-
-        settlement = settlements[1];
-        
+        settlement.OnShopEntered += HandleShopEntered;
     }
 
     void OnDisable()
     {
         settlement.OnSettlementEntered -= OnSettlmentEntered;
-        settlement.OnSettlementUnlocked -= OnSettlmenUnlocked;
         settlement.OnSettlementExited -= OnSettlementExited;
+
+        settlement.OnSettlementUnlocked -= OnSettlmenUnlocked;
 
         settlement.OnPopulationChanged -= HandlePopulationChanged;
         settlement.OnWealthChanged -= HandleWealthChanged;
@@ -85,13 +73,13 @@ public class SettlementHandler : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        EndWrappers();
     }
 
     public void EndWrappers()
     {
-        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
-        SettlementListWrapper wrapper = new SettlementListWrapper { settlements = settlements };
+        JSONhandler = new JSONDataHandler(3);
+        SettlementListWrapper wrapper = new SettlementListWrapper();
+        wrapper.settlements = settlements;
         JSONhandler.SaveData(wrapper, "settlements.json");
     }
 
@@ -143,21 +131,35 @@ public class SettlementHandler : MonoBehaviour
     {
         Print($"Entered {settlement.Name}");
 
-        if (settlement.Tavern != null)
+
+        if (settlement == PlayerStatHandler.Instance.homeSettlement)
         {
-            for (int i = 0; i < GenerateRandomSettlementTavernQuestCount(); i++)
-            {
-                settlement.Tavern.Quests.Add(PickRandomQuestFromJSON());
-            }
+            print("Entered home settlement");
         }
 
-        if (settlement.TownHall != null)
+
+        if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
-            for (int i = 0; i < GenerateRandomSettlementJobCount(); i++)
+            if (settlement.Tavern != null)
             {
-                settlement.TownHall.Jobs.Add(PickRandomJobFromJSON());
+                for (int i = 0; i < GenerateRandomSettlementTavernQuestCount(); i++)
+                {
+                    settlement.Tavern.Quests.Add(PickRandomQuestFromJSON());
+                }
+            }
+
+            if (settlement.TownHall != null)
+            {
+                for (int i = 0; i < GenerateRandomSettlementJobCount(); i++)
+                {
+                    settlement.TownHall.Jobs.Add(PickRandomJobFromJSON());
+                }
             }
         }
+        
+        PlayerStatHandler.Instance.pd.LastSettlementName = settlement.Name;
+
+        UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
 
 
@@ -222,6 +224,12 @@ public class SettlementHandler : MonoBehaviour
 public class SettlementListWrapper
 {
     public List<Settlement> settlements;
+}
+
+[System.Serializable]
+public class HomeSettlementWrapper
+{
+    public Settlement homeSettlement;
 }
 
 [System.Serializable]

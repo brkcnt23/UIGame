@@ -1,0 +1,44 @@
+{
+    "homeSettlement": {
+        "Name": "Tavukçu",
+        "isUnlocked": false,
+        "Population": 0,
+        "Wealth": 0,
+        "Quality": 0,
+        "Shops": [
+            {
+                "Name": "Shop",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "ShopType": 7,
+                "Items": []
+            }
+        ],
+        "Tavern": {
+            "Name": "Tavern",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Quests": []
+        },
+        "TownHall": {
+            "Name": "Town Hall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Jobs": []
+        },
+        "Walls": {
+            "Name": "Wall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0
+        },
+        "Type": 3
+    }
+}

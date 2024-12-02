@@ -114,26 +114,26 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame(int slot)
     {
-        JSONDataHandler JSONhandler = new JSONDataHandler(slot);
-        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
-        PlayerStatHandler.Instance.pd = wrapper.pd;
+        PlayerStatHandler.Instance.Wrappers(slot);
 
         PlayerPrefs.SetInt("Slot", slot);
 
-        UIHandler.Instance.UpdateSettlementInfo();
+        Settlement settlement = PlayerStatHandler.Instance.pd.LastSettlementName == "" ? PlayerStatHandler.Instance.homeSettlement : SettlementHandler.Instance.settlements.Find(x => x.Name == PlayerStatHandler.Instance.pd.LastSettlementName);
+        UIHandler.Instance.UpdateSettlementInfo(settlement);
 
-        DisableAllPanels();
-        navPanel.SetActive(true);
-        infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);
+        SettlementHandler.Instance.settlement = settlement;
+
+        SettlementHandler.Instance.OnSettlmentEntered(settlement);
+
+        ShowSettlementPanel();
+
+        MapHandler.Instance.MovePlayerToLastVisitedSettlement();
 
     }
 
     public void SaveGame()
     {
         PlayerStatHandler.Instance.EndWrappers();
-
-        SettlementHandler.Instance.EndWrappers();
     }
 
     public void DisableAllPanels()
@@ -146,6 +146,13 @@ public class GameManager : MonoBehaviour
         InputPanel.SetActive(false);
         saveSlotsPanel.SetActive(false);
     }
+
+    public void ShowSettlementPanel()
+    {
+        DisableAllPanels();
+        navPanel.SetActive(true);
+        infoPanel.SetActive(true);
+        startGamePanel.SetActive(true);}
 
     public void ShowMainMenuPanel()
     {
@@ -210,8 +217,7 @@ public class GameManager : MonoBehaviour
         PlayerStatHandler.Instance.pd.VillageName = villageName;
         PlayerStatHandler.Instance.pd.Name = name;
         PlayerStatHandler.Instance.pd.Day = 1;
-
-        SettlementHandler.Instance.settlement.Name = villageName;
+        PlayerStatHandler.Instance.homeSettlement.Name = villageName;
 
         SaveGame();
 

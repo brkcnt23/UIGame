@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class MapHandler : MonoBehaviour
 {
-    //we will handle the map here
-    //we will reach settlements handler and get the settlements list and then change the map accordingly and keep track of the whic settlement is selected and player is in, and then reach settlemt handler and and change the settlement accordingly
     public static MapHandler Instance { get; private set; }
 
     private void Awake()
@@ -25,30 +23,36 @@ public class MapHandler : MonoBehaviour
 
     public GameObject selectedSettlement;
 
-    public SettlementHandler settlementHandler;
-
     List<GameObject> children = new List<GameObject>();
 
     public bool isHunting;
 
-
-    void Start()
+    public void MovePlayerToLastVisitedSettlement()
     {
-        settlementHandler = SettlementHandler.Instance;
-        settlements = settlementHandler.settlements;
-
-        settlementHandler.settlement = settlements[0];
-
-        TravelSystem.Instance.currentSettlement = map.GetComponentInChildren<SettlementButtonPointer>();
+        settlements = SettlementHandler.Instance.settlements;
+        
+        Settlement lastVisitedSettlement = PlayerStatHandler.Instance.LastVisitedSettlement();
 
         PopulateMap();
+
+        foreach (GameObject child in children)
+        {
+            SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if (settlementButtonPointer.settlement == lastVisitedSettlement)
+            {
+                TravelSystem.Instance.currentSettlement = settlementButtonPointer;
+                TravelSystem.Instance.SetSettlements(settlementButtonPointer);
+
+                SettlementHandler.Instance.settlement = lastVisitedSettlement;
+
+                selectedSettlement = child;
+            }
+        }
     }
 
     public void PopulateMap()
     {
-
-        //get all children of the map
-
         children.Clear();
 
         foreach (Transform child in map.transform)
@@ -72,18 +76,10 @@ public class MapHandler : MonoBehaviour
                 settlementButtonPointer.GetComponent<Image>().color = Color.red;
             }
 
-            if (settlement == settlementHandler.settlement)
+            if (settlement == SettlementHandler.Instance.settlement)
             {
                 settlementButtonPointer.GetComponent<Image>().color = Color.blue;
             }
         }
-    }
-
-    public void SendHandlerToSelectedSettlement(Settlement settlement)
-    {
-        settlementHandler.settlement = settlement;
-        PopulateMap();
-
-        Debug.Log($"Selected settlement: {settlement.Name}");
     }
 }
