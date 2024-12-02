@@ -107,7 +107,6 @@ public class PlayerStatHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
-        JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "companions.json");
     }
     public void EquipItem(Item item)
     {

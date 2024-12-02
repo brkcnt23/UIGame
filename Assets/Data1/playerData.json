@@ -37,6 +37,7 @@
         "LastSleepHour": 6,
         "LastSleepMinute": 0,
         "Companions": [],
+        "Items": [],
         "HasDied": false
     }
 }

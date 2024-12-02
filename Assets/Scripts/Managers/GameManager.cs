@@ -44,10 +44,30 @@ public class GameManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         navPanel.SetActive(false);
         infoPanel.SetActive(false);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+        CheckFirstTime();
+    }
+
+
+    void CheckFirstTime()
+    {
+        if (!PlayerPrefs.HasKey("FirstTime"))
+        {
+            PlayerPrefs.SetInt("FirstTime", 1);
+
+            for (int i = 0; i <= 2; i++)
+            {
+                JSONDataHandler JSONhandler = new JSONDataHandler(i);
+                PlayerDataWrapper wrapper = new PlayerDataWrapper();
+                JSONhandler.SaveData(wrapper, "playerData.json");
+
+                SettlementListWrapper settlementWrapper = new SettlementListWrapper();
+                JSONhandler.SaveData(settlementWrapper, "settlements.json");
+
+                PlayerStatHandler.Instance.pd = new PlayerData();
+                SettlementHandler.Instance.settlement = new Settlement();
+            }
+        }
     }
 
     public void LoadPlayerData()
@@ -65,15 +85,16 @@ public class GameManager : MonoBehaviour
         saveSlotButtons = saveSlotContainer.GetComponentsInChildren<Button>();
 
         LoadPlayerData();
-        
+
 
         foreach (Button button in saveSlotButtons)
         {
-            
+
             int _index = button.gameObject.transform.GetSiblingIndex();
             button.onClick.RemoveAllListeners();
             if (playerData[_index].Name == "")
             {
+                
                 button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index}\nClick to Start New Game";
                 button.onClick.AddListener(() =>
                 {
@@ -98,6 +119,8 @@ public class GameManager : MonoBehaviour
         PlayerStatHandler.Instance.pd = wrapper.pd;
 
         PlayerPrefs.SetInt("Slot", slot);
+
+        UIHandler.Instance.UpdateSettlementInfo();
 
         DisableAllPanels();
         navPanel.SetActive(true);
@@ -170,11 +193,6 @@ public class GameManager : MonoBehaviour
         // Load the most recent save data.
         int slot = PlayerPrefs.GetInt("Slot");
         LoadGame(slot);
-        
-        DisableAllPanels();
-        navPanel.SetActive(true);
-        infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);
     }
 
     public void Death()
@@ -192,6 +210,8 @@ public class GameManager : MonoBehaviour
         PlayerStatHandler.Instance.pd.VillageName = villageName;
         PlayerStatHandler.Instance.pd.Name = name;
         PlayerStatHandler.Instance.pd.Day = 1;
+
+        SettlementHandler.Instance.settlement.Name = villageName;
 
         SaveGame();
 

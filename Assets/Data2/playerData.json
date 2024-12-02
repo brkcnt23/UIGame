@@ -1,11 +1,11 @@
 {
     "pd": {
         "ID": 0,
-        "Name": "Furkan",
-        "VillageName": "Evoynir",
+        "Name": "",
+        "VillageName": "",
         "Hour": 0,
         "Minute": 0,
-        "Day": 1,
+        "Day": 0,
         "Level": 0,
         "Health": 0,
         "MaxHealth": 0,
@@ -37,6 +37,7 @@
         "LastSleepHour": 6,
         "LastSleepMinute": 0,
         "Companions": [],
+        "Items": [],
         "HasDied": false
     }
 }

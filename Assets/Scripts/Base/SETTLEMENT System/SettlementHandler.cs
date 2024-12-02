@@ -52,7 +52,6 @@ public class SettlementHandler : MonoBehaviour
         JSONhandler = new JSONDataHandler(slot);
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
-<<<<<<< Updated upstream
 
         //our tavern has a quest
         QuestListWrapper questWrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
@@ -64,8 +63,6 @@ public class SettlementHandler : MonoBehaviour
 
         settlement = settlements[1];
         
-=======
->>>>>>> Stashed changes
     }
 
     void OnDisable()
