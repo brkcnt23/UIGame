@@ -1,7 +1,6 @@
 {
     "pd": {
         "ID": 0,
-<<<<<<< Updated upstream
         "Name": "sv",
         "VillageName": "asva",
         "Hour": 6,
@@ -12,32 +11,13 @@
         "MaxHealth": 100,
         "Experience": 0,
         "MaxExperience": 0,
-        "Gold": 700,
-        "Silver": 300,
+        "Gold": 500,
+        "Silver": 970,
         "Strength": 0,
         "Dexterity": 0,
         "Constitution": 0,
         "Charisma": 0,
         "Rations": 10,
-=======
-        "Name": "asfasd",
-        "VillageName": "jkljölmn",
-        "Hour": 0,
-        "Minute": 0,
-        "Day": 0,
-        "Level": 2,
-        "Health": 0,
-        "MaxHealth": 0,
-        "Experience": 10,
-        "MaxExperience": 149,
-        "Gold": 0,
-        "Silver": 2600,
-        "Strength": 14,
-        "Dexterity": 0,
-        "Constitution": 0,
-        "Charisma": 8,
-        "Rations": 0,
->>>>>>> Stashed changes
         "MaxExhaustionLevel": 0,
         "CurrentExhaustionLevel": 0,
         "SmitherSkillLevel": 0,
@@ -96,9 +76,6 @@
                 "Quantity": 0
             }
         ],
-=======
-        "Companions": [],
->>>>>>> Stashed changes
         "HasDied": false
     }
 }

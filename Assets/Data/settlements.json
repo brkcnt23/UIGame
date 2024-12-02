@@ -13,7 +13,8 @@
                     "maxLevel": 5,
                     "cost": 1000,
                     "income": 500,
-                    "ShopType": 0
+                    "ShopType": 0,
+                    "Items": []
                 },
                 {
                     "Name": "Mystic Remedies",
@@ -21,7 +22,8 @@
                     "maxLevel": 5,
                     "cost": 2000,
                     "income": 800,
-                    "ShopType": 3
+                    "ShopType": 3,
+                    "Items": []
                 }
             ],
             "Tavern": {
@@ -140,7 +142,64 @@
                     "maxLevel": 5,
                     "cost": 1000,
                     "income": 500,
-                    "ShopType": 0
+                    "ShopType": 0,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Category": 0,
+                            "StrengthModifier": 0,
+                            "ConstitutionModifier": 0,
+                            "DexterityModifier": 0,
+                            "CharismaModifier": 0,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Category": 0,
+                            "StrengthModifier": 5,
+                            "ConstitutionModifier": -1,
+                            "DexterityModifier": 0,
+                            "CharismaModifier": 0,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Category": 0,
+                            "StrengthModifier": 0,
+                            "ConstitutionModifier": 5,
+                            "DexterityModifier": 2,
+                            "CharismaModifier": -2,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Category": 0,
+                            "StrengthModifier": 0,
+                            "ConstitutionModifier": 5,
+                            "DexterityModifier": 2,
+                            "CharismaModifier": -2,
+                            "Quantity": 0
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Stone Brick",
+                            "Value": 40,
+                            "Category": 0,
+                            "StrengthModifier": 0,
+                            "ConstitutionModifier": 0,
+                            "DexterityModifier": 0,
+                            "CharismaModifier": 0,
+                            "Quantity": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Mystic Remedies2",
@@ -148,7 +207,8 @@
                     "maxLevel": 5,
                     "cost": 2000,
                     "income": 800,
-                    "ShopType": 3
+                    "ShopType": 3,
+                    "Items": []
                 }
             ],
             "Tavern": {

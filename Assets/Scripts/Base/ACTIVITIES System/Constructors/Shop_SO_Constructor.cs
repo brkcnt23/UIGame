@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop_SO_Constructor : SO_Base
@@ -22,4 +23,5 @@ public class Shop_SO_Constructor : SO_Base
         StatRewardMin = 1;
         StatRewardMax = 3;
     }
+    public List<Item> Items = new List<Item>();
 }

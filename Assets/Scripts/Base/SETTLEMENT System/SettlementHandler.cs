@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using NEXUS.Utilities;
 using Unity.VisualScripting;
+
 
 public class SettlementHandler : MonoBehaviour
 {
@@ -31,9 +33,9 @@ public class SettlementHandler : MonoBehaviour
     {
         settlement.OnSettlementExited += OnSettlementExited;
         settlement.OnSettlementEntered += OnSettlmentEntered;
-        
+
         settlement.OnSettlementUnlocked += OnSettlmenUnlocked;
-    
+
 
         settlement.OnShopEntered += HandleShopEntered;
         settlement.OnPopulationChanged += HandlePopulationChanged;
@@ -56,7 +58,7 @@ public class SettlementHandler : MonoBehaviour
         QuestListWrapper questWrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
         settlement.Tavern.Quests = questWrapper != null ? questWrapper.quests : new List<Quest_SO_Constructor>();
 
-        //our town hall has jobs
+        // Belediye binasının işleri
         JobListWrapper jobWrapper = JSONhandler.LoadData<JobListWrapper>("jobs.json");
         settlement.TownHall.Jobs = jobWrapper != null ? jobWrapper.jobs : new List<Job_SO_Constructor>();
 
@@ -100,7 +102,7 @@ public class SettlementHandler : MonoBehaviour
         QuestListWrapper wrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
         List<Quest_SO_Constructor> quests = wrapper != null ? wrapper.quests : new List<Quest_SO_Constructor>();
 
-        return quests[Random.Range(0, quests.Count)];
+        return quests[UnityEngine.Random.Range(0, quests.Count)];
     }
 
     Job_SO_Constructor PickRandomJobFromJSON()
@@ -109,19 +111,35 @@ public class SettlementHandler : MonoBehaviour
         JobListWrapper wrapper = JSONhandler.LoadData<JobListWrapper>("jobs.json");
         List<Job_SO_Constructor> jobs = wrapper != null ? wrapper.jobs : new List<Job_SO_Constructor>();
 
-        return jobs[Random.Range(0, jobs.Count)];
+        return jobs[UnityEngine.Random.Range(0, jobs.Count)];
     }
 
     public int GenerateRandomSettlementJobCount()
     {
-        return Random.Range(1, 4);
+        return UnityEngine.Random.Range(1, 4);
     }
 
     public int GenerateRandomSettlementTavernQuestCount()
     {
-        return Random.Range(1, 4);
+        return UnityEngine.Random.Range(1, 4);
     }
-
+    public void LoadShopItems(Shops shop)
+    {
+        foreach (var itemData in shop.Items)
+        {
+            var newItem = new Item(
+                itemData.ID,
+                itemData.Name,
+                itemData.Value,
+                itemData.Category,
+                itemData.StrengthModifier,
+                itemData.ConstitutionModifier,
+                itemData.DexterityModifier,
+                itemData.CharismaModifier
+            );
+            shop.Items.Add(newItem);
+        }
+    }
     public void OnSettlmentEntered(Settlement settlement)
     {
         Print($"Entered {settlement.Name}");
@@ -142,6 +160,7 @@ public class SettlementHandler : MonoBehaviour
             }
         }
     }
+
 
     public void OnSettlementExited()
     {
@@ -188,7 +207,7 @@ public class SettlementHandler : MonoBehaviour
         Print($"Entered {wall.Name}");
     }
 
-    void HandleShopEntered(Shops shop)
+    public void HandleShopEntered(Shops shop)
     {
         Print($"Entered {shop.Name}");
     }

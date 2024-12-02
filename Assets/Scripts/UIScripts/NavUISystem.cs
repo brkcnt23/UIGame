@@ -70,7 +70,7 @@ public class NavUISystem : MonoBehaviour
     /// </summary>
     public void OnShopButtonClick()
     {
-        OpenUpPanel(shopPanel);
+        //OpenUpPanel(shopPanel);
     }
 
     /// <summary>

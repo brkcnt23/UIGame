@@ -84,11 +84,11 @@ public class CraftingSystem
         economySystem.AddSilver(silverReward);
 
         // Crafting EXP kazancı
-        int craftExp = Mathf.RoundToInt(expReward);
+        int craftExp = Mathf.RoundToInt(expReward / 2);
         ExperienceSystem.UpdateCraftLevel(playerData, craftType, craftExp);
 
         // Karakter EXP kazancı (Crafting EXP'in yarısı kadar)
-        int characterExpGain = Mathf.RoundToInt(expReward / 2);
+        int characterExpGain = Mathf.RoundToInt(expReward );
         PlayerStatHandler.Instance.AddCharacterExperience(characterExpGain);
 
         // %50 ihtimalle stat kazancı
