@@ -1,8 +1,8 @@
 {
     "pd": {
         "ID": 0,
-        "Name": "Burak Can",
-        "VillageName": "Tavukçu",
+        "Name": "",
+        "VillageName": "",
         "Hour": 0,
         "Minute": 0,
         "Day": 1,
@@ -38,7 +38,7 @@
         "LastSleepMinute": 0,
         "Companions": [],
         "Items": [],
-        "LastSettlementName": "Tavukçu",
+        "LastSettlementName": "",
         "HasDied": false
     }
 }

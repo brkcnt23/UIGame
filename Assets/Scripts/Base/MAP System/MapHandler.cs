@@ -34,7 +34,7 @@ public class MapHandler : MonoBehaviour
         Settlement lastVisitedSettlement = PlayerStatHandler.Instance.LastVisitedSettlement();
 
         PopulateMap();
-
+        
         foreach (GameObject child in children)
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
@@ -49,6 +49,8 @@ public class MapHandler : MonoBehaviour
                 selectedSettlement = child;
             }
         }
+
+        PopulateMap();
     }
 
     public void PopulateMap()

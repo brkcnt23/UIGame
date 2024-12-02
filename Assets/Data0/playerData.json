@@ -6,14 +6,14 @@
         "Hour": 0,
         "Minute": 0,
         "Day": 1,
-        "Level": 6,
+        "Level": 8,
         "Health": 0,
         "MaxHealth": 0,
-        "Experience": 980,
-        "MaxExperience": 1000,
+        "Experience": 1350,
+        "MaxExperience": 1639,
         "Gold": 0,
-        "Silver": 1800,
-        "Strength": 15,
+        "Silver": 2100,
+        "Strength": 19,
         "Dexterity": 0,
         "Constitution": 0,
         "Charisma": 4,
@@ -38,7 +38,7 @@
         "LastSleepMinute": 0,
         "Companions": [],
         "Items": [],
-        "LastSettlementName": "Ironridge2",
+        "LastSettlementName": "k",
         "HasDied": false
     }
 }

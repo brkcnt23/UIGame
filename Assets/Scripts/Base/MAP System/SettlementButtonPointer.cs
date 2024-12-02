@@ -35,6 +35,11 @@ public class SettlementButtonPointer : MonoBehaviour
 
                         MapHandler.Instance.isHunting = false;
                     }
+                    else
+                    {
+                        Debug.Log("You are already in this settlement");
+                        MapHandler.Instance.map.SetActive(false);
+                    }
 
                     GameManager.Instance.ShowSettlementPanel();
                 });

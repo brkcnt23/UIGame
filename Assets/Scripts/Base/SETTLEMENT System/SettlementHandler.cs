@@ -79,6 +79,7 @@ public class SettlementHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler(3);
         SettlementListWrapper wrapper = new SettlementListWrapper();
+        PlayerStatHandler.Instance.CheckHomeSettlementinSettlements();
         wrapper.settlements = settlements;
         JSONhandler.SaveData(wrapper, "settlements.json");
     }

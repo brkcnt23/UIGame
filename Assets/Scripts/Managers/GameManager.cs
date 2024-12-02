@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+        SettlementHandler.Instance.Wrappers();
         PlayerStatHandler.Instance.EndWrappers();
     }
 
@@ -218,6 +219,7 @@ public class GameManager : MonoBehaviour
         PlayerStatHandler.Instance.pd.Name = name;
         PlayerStatHandler.Instance.pd.Day = 1;
         PlayerStatHandler.Instance.homeSettlement.Name = villageName;
+        PlayerStatHandler.Instance.homeSettlement.isUnlocked = true;
 
         SaveGame();
 
