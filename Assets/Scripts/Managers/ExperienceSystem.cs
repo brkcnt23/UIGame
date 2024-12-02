@@ -14,6 +14,8 @@ public static class ExperienceSystem
     private const int BaseCraftXP = 500;
 
     public static Action OnLevelUp;
+    public static Action OnlevelDown;
+    public static Action OnExperienceNegative;
 
     // Karakter için toplam gerekli XP'yi hesaplar
     public static int GetTotalCharacterXPForLevel(int level)
@@ -24,6 +26,7 @@ public static class ExperienceSystem
     // Zanaatkarlık için toplam gerekli XP'yi hesaplar
     public static int GetTotalCraftXPForLevel(int level)
     {
+
         return Mathf.RoundToInt(BaseCraftXP * (Mathf.Pow(2f, (level - 1) / 5f) - 1));
     }
 
@@ -45,15 +48,18 @@ public static class ExperienceSystem
         {
             newLevel++;
             maxExperience = GetTotalCharacterXPForLevel(newLevel);
-            totalXP -= maxExperience;
             Debug.Log($"Seviyeniz {newLevel} oldu!");
         }
 
         playerData.Level = newLevel;
-
         playerData.Experience = totalXP;
-
         playerData.MaxExperience = maxExperience;
+
+        //if player loses XP can go down a level
+        if (totalXP < GetTotalCharacterXPForLevel(newLevel - 1))
+        {
+            DecreaseLevel(playerData, newLevel, totalXP, maxExperience);
+        }
 
         Debug.Log($"Toplam XP: {totalXP} / {maxExperience}");
 
@@ -61,7 +67,27 @@ public static class ExperienceSystem
         {
             OnLevelUp?.Invoke();
         }
+        else if (newLevel < currentLevel)
+        {
+            OnlevelDown?.Invoke();
+        }
 
+        if (totalXP < -100)
+        {
+            OnExperienceNegative?.Invoke();
+        }
+    }
+
+    private static void DecreaseLevel(PlayerData playerData, int newLevel, int totalXP, int maxExperience)
+    {
+        if(newLevel > 1)
+        {
+            newLevel--;
+            maxExperience = GetTotalCharacterXPForLevel(newLevel);
+            playerData.Level = newLevel;
+            playerData.Experience = totalXP;
+            playerData.MaxExperience = maxExperience;
+        }
     }
 
     // Zanaatkarlık seviyesini günceller

@@ -7,9 +7,9 @@ namespace NEXUS.Utilities
     {
         private string baseDirectory;
 
-        public JSONDataHandler()
+        public JSONDataHandler(int slot)
         {
-            baseDirectory = Path.Combine(Application.dataPath, "Data/");
+            baseDirectory = Path.Combine(Application.dataPath, "Data"+slot+"/");
             // Ensure the directory exists
             if (!Directory.Exists(baseDirectory))
                 Directory.CreateDirectory(baseDirectory);

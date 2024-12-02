@@ -1,25 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using NEXUS.Utilities;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool isSaveSlotEmpty;
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 
-    [Header("Save Slot Buttons")]
-    public Button slot1Button;
-    public Button slot2Button;
-    public Button slot3Button;
-
-    [Header("Slot Texts")]
-    public TMP_Text slot1Text;
-    public TMP_Text slot2Text;
-    public TMP_Text slot3Text;
-
+    [Header("Save Slot Container")]
+    public GameObject saveSlotContainer;
+    Button[] saveSlotButtons = new Button[3];
 
     [Header("Panels")]
     public GameObject mainMenuPanel;
@@ -30,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject navPanel;
     public GameObject infoPanel;
     public GameObject InputPanel;
+    public GameObject saveSlotsPanel;
+
+    public List<PlayerData> playerData = new List<PlayerData>();
 
     private void Awake()
     {
@@ -48,6 +44,10 @@ public class GameManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         navPanel.SetActive(false);
         infoPanel.SetActive(false);
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
     }
 
     public void LoadPlayerData()
@@ -108,13 +108,9 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        return slot switch
-        {
-            1 => slot1Button,
-            2 => slot2Button,
-            3 => slot3Button,
-            _ => null
-        };
+        PlayerStatHandler.Instance.EndWrappers();
+
+        SettlementHandler.Instance.EndWrappers();
     }
 
     public void DisableAllPanels()
@@ -125,7 +121,7 @@ public class GameManager : MonoBehaviour
         creditsPanel.SetActive(false);
         settingsPanel.SetActive(false);
         InputPanel.SetActive(false);
-
+        saveSlotsPanel.SetActive(false);
     }
 
     public void ShowMainMenuPanel()
@@ -139,7 +135,7 @@ public class GameManager : MonoBehaviour
     public void ShowStartGamePanel()
     {
         DisableAllPanels();
-        InputPanel.SetActive(true);
+        saveSlotsPanel.SetActive(true);
     }
 
     public void ShowLoadGamePanel()
@@ -169,27 +165,24 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public bool HasSavedGame()
-    {
-        // Check for saved game data. Replace with your actual save/load implementation.
-        return PlayerPrefs.HasKey("SavedGameSlot");
-    }
-
     public void LoadLastSavedGame()
     {
         // Load the most recent save data.
-        Debug.Log("Loading last saved game...");
-        // Add your loading logic here.
-        ShowMainMenuPanel(); // Assuming you'll switch to the main menu after loading.
+        int slot = PlayerPrefs.GetInt("Slot");
+        LoadGame(slot);
+        
+        DisableAllPanels();
+        navPanel.SetActive(true);
+        infoPanel.SetActive(true);
+        startGamePanel.SetActive(true);
     }
 
     public void Death()
     {
         Debug.Log("You are Dead...");
     }
-    public void StartNewGameButton()
+    public void StartNewGame()
     {
-
         string name, villageName;
         name = PlayerNameInput.text;
         villageName = VillageNameInput.text;
@@ -198,11 +191,10 @@ public class GameManager : MonoBehaviour
             return;
         PlayerStatHandler.Instance.pd.VillageName = villageName;
         PlayerStatHandler.Instance.pd.Name = name;
-        PlayerStatHandler.Instance.JSONhandler.SaveData(new PlayerDataWrapper { pd = PlayerStatHandler.Instance.pd }, "playerData.json");
-        DisableAllPanels();
-        navPanel.SetActive(true);
-        infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);
+        PlayerStatHandler.Instance.pd.Day = 1;
 
+        SaveGame();
+
+        LoadGame(PlayerPrefs.GetInt("Slot"));
     }
 }

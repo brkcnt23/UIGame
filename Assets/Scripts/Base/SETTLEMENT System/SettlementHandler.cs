@@ -17,8 +17,6 @@ public class SettlementHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Wrappers();
     }
 
     public List<Settlement> settlements = new List<Settlement>();
@@ -26,7 +24,7 @@ public class SettlementHandler : MonoBehaviour
     public Settlement settlement = new Settlement();
 
 
-    JSONDataHandler JSONhandler = new JSONDataHandler();
+    JSONDataHandler JSONhandler;
 
 
     void OnEnable()
@@ -47,10 +45,12 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnWallEntered += HandleWallEntered;
     }
 
-    public void Wrappers()
+    public void Wrappers(int slot)
     {
+        JSONhandler = new JSONDataHandler(slot);
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
+<<<<<<< Updated upstream
 
         //our tavern has a quest
         QuestListWrapper questWrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
@@ -62,6 +62,8 @@ public class SettlementHandler : MonoBehaviour
 
         settlement = settlements[1];
         
+=======
+>>>>>>> Stashed changes
     }
 
     void OnDisable()
@@ -82,12 +84,19 @@ public class SettlementHandler : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        EndWrappers();
+    }
+
+    public void EndWrappers()
+    {
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         SettlementListWrapper wrapper = new SettlementListWrapper { settlements = settlements };
         JSONhandler.SaveData(wrapper, "settlements.json");
     }
 
     Quest_SO_Constructor PickRandomQuestFromJSON()
     {
+        JSONhandler = new JSONDataHandler(3);
         QuestListWrapper wrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
         List<Quest_SO_Constructor> quests = wrapper != null ? wrapper.quests : new List<Quest_SO_Constructor>();
 
@@ -96,6 +105,7 @@ public class SettlementHandler : MonoBehaviour
 
     Job_SO_Constructor PickRandomJobFromJSON()
     {
+        JSONhandler = new JSONDataHandler(3);
         JobListWrapper wrapper = JSONhandler.LoadData<JobListWrapper>("jobs.json");
         List<Job_SO_Constructor> jobs = wrapper != null ? wrapper.jobs : new List<Job_SO_Constructor>();
 
