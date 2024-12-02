@@ -1,3 +1,28 @@
 {
-    "Companions": []
+    "Companions": [
+        {
+            "Name": "Dog",
+            "Description": "A loyal companion that will follow you around and help you in combat.",
+            "Level": 10,
+            "Health": 100,
+            "MaxHealth": 0,
+            "Experience": 0,
+            "MaxExperience": 0,
+            "Strength": 0,
+            "Dexterity": 0,
+            "Constitution": 0,
+            "Charisma": 0,
+            "SmitherSkillLevel": 0,
+            "SmitherSkillXP": 0,
+            "TannerSkillLevel": 0,
+            "TannerSkillXP": 0,
+            "CarpenterSkillLevel": 0,
+            "CarpenterSkillXP": 0,
+            "MasonSkillLevel": 0,
+            "MasonSkillXP": 0,
+            "AlchemistSkillLevel": 0,
+            "AlchemistSkillXP": 0,
+            "HasDied": false
+        }
+    ]
 }

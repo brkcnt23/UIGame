@@ -1,9 +1,9 @@
 {
     "pd": {
         "ID": 0,
-        "Name": "can",
-        "VillageName": "",
-        "Hour": 0,
+        "Name": "sv",
+        "VillageName": "asva",
+        "Hour": 6,
         "Minute": 0,
         "Day": 1,
         "Level": 1,
@@ -16,8 +16,8 @@
         "Strength": 0,
         "Dexterity": 0,
         "Constitution": 0,
-        "Charisma": 1,
-        "Rations": 0,
+        "Charisma": 0,
+        "Rations": 10,
         "MaxExhaustionLevel": 0,
         "CurrentExhaustionLevel": 0,
         "SmitherSkillLevel": 0,
@@ -60,6 +60,19 @@
                 "AlchemistSkillLevel": 0,
                 "AlchemistSkillXP": 0,
                 "HasDied": false
+            }
+        ],
+        "Items": [
+            {
+                "ID": 5,
+                "Name": "Stone Brick",
+                "Value": 40,
+                "Category": 0,
+                "StrengthModifier": 0,
+                "ConstitutionModifier": 0,
+                "DexterityModifier": 0,
+                "CharismaModifier": 0,
+                "Quantity": 0
             }
         ],
         "HasDied": false
