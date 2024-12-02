@@ -1,14 +1,13 @@
 using System;
 using UnityEngine;
 using NEXUS.Utilities;
-using UnityEngine.Purchasing.MiniJSON;
 using System.Collections.Generic;
 
 public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
 
-    public JSONDataHandler JSONhandler = new JSONDataHandler();
+    public JSONDataHandler JSONhandler;
     private EconomySystem economySystem;
     public Item EquippedSword { get; private set; }
     public Item EquippedArmor { get; private set; }
@@ -30,23 +29,30 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void Start()
     {
-        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
-        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
-
-        pd = wrapper != null ? wrapper.pd : new PlayerData();
-        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
         economySystem = new EconomySystem(pd);
         //UpdateArmyCapacity();
+    }
+
+    public void Wrappers(int slot)
+    {
+        JSONhandler = new JSONDataHandler(slot);
+        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
+        pd = wrapper != null ? wrapper.pd : new PlayerData();
+        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
+        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
     }
 
     void OnEnable()
     {
         ExperienceSystem.OnLevelUp += LevelUp;
+        ExperienceSystem.OnlevelDown += LevelDown;
+        ExperienceSystem.OnExperienceNegative += () => Debug.Log("Forget everything you know.");
     }
 
     void OnDisable()
     {
         ExperienceSystem.OnLevelUp -= LevelUp;
+        ExperienceSystem.OnlevelDown -= LevelDown;
     }
     public void AddCharacterExperience(int xp)
     {
@@ -60,6 +66,11 @@ public class PlayerStatHandler : MonoBehaviour
     public void LevelUp()
     {
         Debug.Log("Level Up!");
+    }
+
+    public void LevelDown()
+    {
+        Debug.Log("Level Down!");
     }
 
     public void AddStats(string statType, int amount)
@@ -89,6 +100,12 @@ public class PlayerStatHandler : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        EndWrappers();
+    }
+
+    public void EndWrappers()
+    {
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
         JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "companions.json");
     }

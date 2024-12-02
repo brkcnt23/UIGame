@@ -57,7 +57,7 @@ public class PlayerData
     public int TotalBattlesFought;
     public int TotalBattlesWon;
     public int TotalBattlesLost;
-    
+
     public int LastSleepDay;
     public int LastSleepHour;
     public int LastSleepMinute;
@@ -102,5 +102,5 @@ public class SaveSlot
     public string PlayerName;
     public string VillageName;
     public int Day;
-    public PlayerData PlayerData; // Store your PlayerData or equivalent data structure
+    public PlayerData PlayerData;
 }
