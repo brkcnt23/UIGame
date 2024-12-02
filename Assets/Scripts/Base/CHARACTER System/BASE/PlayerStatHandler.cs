@@ -108,34 +108,6 @@ public class PlayerStatHandler : MonoBehaviour
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
     }
-    public void EquipItem(Item item)
-    {
-        UnequipItem(item.Category); // Unequip any existing item in this slot
-        ApplyModifiers(item);       // Apply the item's stat modifiers
-
-        // Assign the item to the appropriate slot
-        switch (item.Category)
-        {
-            case ItemCategory.Weapon:
-                EquippedSword = item;
-                break;
-            case ItemCategory.Armor:
-                EquippedArmor = item;
-                break;
-            case ItemCategory.Potion:
-                EquippedPotion = item;
-                break;
-            case ItemCategory.CraftingMaterial:
-                Debug.Log("Cannot equip crafting materials.");
-                return;
-            case ItemCategory.Resource:
-                Debug.Log("Cannot equip resources.");
-                return;
-            case ItemCategory.Misc:
-                EquippedMisc = item;
-                break;
-        }
-    }
     public void UnequipItem(ItemCategory category)
     {
         Item itemToUnequip = null;
@@ -206,49 +178,6 @@ public class PlayerStatHandler : MonoBehaviour
                 EquippedMisc = item;
                 break;
         }
-    }
-    public void UnequipItem(ItemCategory category)
-    {
-        Item itemToUnequip = null;
-
-        switch (category)
-        {
-            case ItemCategory.Weapon:
-                itemToUnequip = EquippedSword;
-                EquippedSword = null;
-                break;
-            case ItemCategory.Armor:
-                itemToUnequip = EquippedArmor;
-                EquippedArmor = null;
-                break;
-            case ItemCategory.Potion:
-                itemToUnequip = EquippedPotion;
-                EquippedPotion = null;
-                break;
-            case ItemCategory.Misc:
-                itemToUnequip = EquippedMisc;
-                EquippedMisc = null;
-                break;
-        }
-
-        if (itemToUnequip != null)
-        {
-            RemoveModifiers(itemToUnequip);
-        }
-    }
-    private void ApplyModifiers(Item item)
-    {
-        pd.Strength += item.StrengthModifier;
-        pd.Constitution += item.ConstitutionModifier;
-        pd.Dexterity += item.DexterityModifier;
-        pd.Charisma += item.CharismaModifier;
-    }
-    private void RemoveModifiers(Item item)
-    {
-        pd.Strength -= item.StrengthModifier;
-        pd.Constitution -= item.ConstitutionModifier;
-        pd.Dexterity -= item.DexterityModifier;
-        pd.Charisma -= item.CharismaModifier;
     }
     /// <summary>
     /// Günlük rasyon tüketimini gerçekleştirir.
