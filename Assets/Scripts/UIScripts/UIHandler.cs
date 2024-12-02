@@ -25,9 +25,10 @@ public class UIHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Start()
+
+    public void UpdateSettlementInfo()
     {
         SettlementName.text = SettlementHandler.Instance.settlement.Name;
-        SettlementDescription.text = ($"Population: {SettlementHandler.Instance.settlement.Population}\nQuality:{SettlementHandler.Instance.settlement.Quality}\nWealth:{SettlementHandler.Instance.settlement.Wealth}");
+        SettlementDescription.text = $"Population: {SettlementHandler.Instance.settlement.Population}\nQuality:{SettlementHandler.Instance.settlement.Quality}\nWealth:{SettlementHandler.Instance.settlement.Wealth}";
     }
 }

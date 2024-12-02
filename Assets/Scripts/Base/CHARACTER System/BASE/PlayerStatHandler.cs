@@ -1,14 +1,13 @@
 using System;
 using UnityEngine;
 using NEXUS.Utilities;
-using UnityEngine.Purchasing.MiniJSON;
 using System.Collections.Generic;
 
 public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
 
-    public JSONDataHandler JSONhandler = new JSONDataHandler();
+    public JSONDataHandler JSONhandler;
     private EconomySystem economySystem;
     public Item EquippedSword { get; private set; }
     public Item EquippedArmor { get; private set; }
@@ -30,23 +29,30 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void Start()
     {
-        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
-        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
-
-        pd = wrapper != null ? wrapper.pd : new PlayerData();
-        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
         economySystem = new EconomySystem(pd);
         //UpdateArmyCapacity();
+    }
+
+    public void Wrappers(int slot)
+    {
+        JSONhandler = new JSONDataHandler(slot);
+        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
+        pd = wrapper != null ? wrapper.pd : new PlayerData();
+        CompanionListWrapper companionWrapper = JSONhandler.LoadData<CompanionListWrapper>("companions.json");
+        pd.Companions = companionWrapper != null ? companionWrapper.Companions : new List<Companion>();
     }
 
     void OnEnable()
     {
         ExperienceSystem.OnLevelUp += LevelUp;
+        ExperienceSystem.OnlevelDown += LevelDown;
+        ExperienceSystem.OnExperienceNegative += () => Debug.Log("Forget everything you know.");
     }
 
     void OnDisable()
     {
         ExperienceSystem.OnLevelUp -= LevelUp;
+        ExperienceSystem.OnlevelDown -= LevelDown;
     }
     public void AddCharacterExperience(int xp)
     {
@@ -60,6 +66,11 @@ public class PlayerStatHandler : MonoBehaviour
     public void LevelUp()
     {
         Debug.Log("Level Up!");
+    }
+
+    public void LevelDown()
+    {
+        Debug.Log("Level Down!");
     }
 
     public void AddStats(string statType, int amount)
@@ -89,8 +100,84 @@ public class PlayerStatHandler : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        EndWrappers();
+    }
+
+    public void EndWrappers()
+    {
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
-        JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "companions.json");
+    }
+    public void EquipItem(Item item)
+    {
+        UnequipItem(item.Category); // Unequip any existing item in this slot
+        ApplyModifiers(item);       // Apply the item's stat modifiers
+
+        // Assign the item to the appropriate slot
+        switch (item.Category)
+        {
+            case ItemCategory.Weapon:
+                EquippedSword = item;
+                break;
+            case ItemCategory.Armor:
+                EquippedArmor = item;
+                break;
+            case ItemCategory.Potion:
+                EquippedPotion = item;
+                break;
+            case ItemCategory.CraftingMaterial:
+                Debug.Log("Cannot equip crafting materials.");
+                return;
+            case ItemCategory.Resource:
+                Debug.Log("Cannot equip resources.");
+                return;
+            case ItemCategory.Misc:
+                EquippedMisc = item;
+                break;
+        }
+    }
+    public void UnequipItem(ItemCategory category)
+    {
+        Item itemToUnequip = null;
+
+        switch (category)
+        {
+            case ItemCategory.Weapon:
+                itemToUnequip = EquippedSword;
+                EquippedSword = null;
+                break;
+            case ItemCategory.Armor:
+                itemToUnequip = EquippedArmor;
+                EquippedArmor = null;
+                break;
+            case ItemCategory.Potion:
+                itemToUnequip = EquippedPotion;
+                EquippedPotion = null;
+                break;
+            case ItemCategory.Misc:
+                itemToUnequip = EquippedMisc;
+                EquippedMisc = null;
+                break;
+        }
+
+        if (itemToUnequip != null)
+        {
+            RemoveModifiers(itemToUnequip);
+        }
+    }
+    private void ApplyModifiers(Item item)
+    {
+        pd.Strength += item.StrengthModifier;
+        pd.Constitution += item.ConstitutionModifier;
+        pd.Dexterity += item.DexterityModifier;
+        pd.Charisma += item.CharismaModifier;
+    }
+    private void RemoveModifiers(Item item)
+    {
+        pd.Strength -= item.StrengthModifier;
+        pd.Constitution -= item.ConstitutionModifier;
+        pd.Dexterity -= item.DexterityModifier;
+        pd.Charisma -= item.CharismaModifier;
     }
     public void EquipItem(Item item)
     {

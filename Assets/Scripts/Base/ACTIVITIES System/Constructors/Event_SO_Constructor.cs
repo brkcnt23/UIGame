@@ -29,17 +29,23 @@ public class Event_SO_Constructor : SO_Base
     {
         player.pd.Silver += Silver;
         player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+
+        AddExperience(player, Experience);
     }
 
     public void EventFailed(PlayerStatHandler player)
     {
         player.pd.Silver -= Silver;
         player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1));
+
+        AddExperience(player, Experience * 2);
     }
 
     public void EventNeutral(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
+
+        AddExperience(player, Experience);
     }
 
     public void EventCritical(PlayerStatHandler player)
@@ -50,7 +56,12 @@ public class Event_SO_Constructor : SO_Base
 
     public void EventDeclined(PlayerStatHandler playerData)
     {
+        AddExperience(playerData, -Experience);
+    }
 
+    private void AddExperience(PlayerStatHandler playerData, int experience)
+    {
+        ExperienceSystem.AddExperience(playerData.pd, experience);
     }
 
     public void HandleEvent(PlayerStatHandler playerData, int choice)

@@ -1,25 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using NEXUS.Utilities;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool isSaveSlotEmpty;
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 
-    [Header("Save Slot Buttons")]
-    public Button slot1Button;
-    public Button slot2Button;
-    public Button slot3Button;
-
-    [Header("Slot Texts")]
-    public TMP_Text slot1Text;
-    public TMP_Text slot2Text;
-    public TMP_Text slot3Text;
-
+    [Header("Save Slot Container")]
+    public GameObject saveSlotContainer;
+    Button[] saveSlotButtons = new Button[3];
 
     [Header("Panels")]
     public GameObject mainMenuPanel;
@@ -30,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject navPanel;
     public GameObject infoPanel;
     public GameObject InputPanel;
+    public GameObject saveSlotsPanel;
+
+    public List<PlayerData> playerData = new List<PlayerData>();
 
     private void Awake()
     {
@@ -49,69 +45,95 @@ public class GameManager : MonoBehaviour
         navPanel.SetActive(false);
         infoPanel.SetActive(false);
 
+        CheckFirstTime();
     }
-    private void UpdateSlotUI(int slot, TMP_Text slotText, Button slotButton)
-    {
-        SaveSlot saveSlot = SaveManager.Instance.LoadGame(slot);
 
-        if (saveSlot != null)
+
+    void CheckFirstTime()
+    {
+        if (!PlayerPrefs.HasKey("FirstTime"))
         {
-            slotText.text = $"{saveSlot.PlayerName}\nDay {saveSlot.Day}\n{saveSlot.VillageName}";
-            slotButton.interactable = true;
-            slotButton.onClick.AddListener(() => LoadGame(slot));
-        }
-        else
-        {
-            slotText.text = "Empty Slot";
-            slotButton.interactable = false;
+            PlayerPrefs.SetInt("FirstTime", 1);
+
+            for (int i = 0; i <= 2; i++)
+            {
+                JSONDataHandler JSONhandler = new JSONDataHandler(i);
+                PlayerDataWrapper wrapper = new PlayerDataWrapper();
+                JSONhandler.SaveData(wrapper, "playerData.json");
+
+                SettlementListWrapper settlementWrapper = new SettlementListWrapper();
+                JSONhandler.SaveData(settlementWrapper, "settlements.json");
+
+                PlayerStatHandler.Instance.pd = new PlayerData();
+                SettlementHandler.Instance.settlement = new Settlement();
+            }
         }
     }
+
+    public void LoadPlayerData()
+    {
+        playerData.Clear();
+        for (int i = 0; i <= 2; i++)
+        {
+            JSONDataHandler JSONhandler = new JSONDataHandler(i);
+            PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
+            playerData.Add(wrapper.pd);
+        }
+    }
+    public void PopulateButtonsAndTexts()
+    {
+        saveSlotButtons = saveSlotContainer.GetComponentsInChildren<Button>();
+
+        LoadPlayerData();
+
+
+        foreach (Button button in saveSlotButtons)
+        {
+
+            int _index = button.gameObject.transform.GetSiblingIndex();
+            button.onClick.RemoveAllListeners();
+            if (playerData[_index].Name == "")
+            {
+                
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index}\nClick to Start New Game";
+                button.onClick.AddListener(() =>
+                {
+                    PlayerPrefs.SetInt("Slot", _index);
+                    DisableAllPanels();
+                    InputPanel.SetActive(true);
+                }
+                );
+            }
+            else
+            {
+                button.onClick.AddListener(() => LoadGame(_index));
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"{playerData[_index].Name} of {playerData[_index].VillageName}\nDay: {playerData[_index].Day}";
+            }
+        }
+    }
+
     public void LoadGame(int slot)
     {
-        SaveSlot saveSlot = SaveManager.Instance.LoadGame(slot);
-        if (saveSlot != null)
-        {
-            PlayerStatHandler.Instance.pd = saveSlot.PlayerData;
-            Debug.Log($"Loaded game from slot {slot}");
-            ShowMainMenuPanel();
-        }
-    }
-    public void SaveToSlot(int slot)
-    {
-        PlayerData currentPlayerData = PlayerStatHandler.Instance.pd;
+        JSONDataHandler JSONhandler = new JSONDataHandler(slot);
+        PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
+        PlayerStatHandler.Instance.pd = wrapper.pd;
 
-        SaveSlot saveSlot = new SaveSlot
-        {
-            PlayerName = currentPlayerData.Name,
-            VillageName = currentPlayerData.VillageName,
-            Day = currentPlayerData.Day,
-            PlayerData = currentPlayerData
-        };
+        PlayerPrefs.SetInt("Slot", slot);
 
-        SaveManager.Instance.SaveGame(slot, saveSlot);
-        Debug.Log($"Saved game to slot {slot}");
-        UpdateSlotUI(slot, GetSlotText(slot), GetSlotButton(slot));
-    }
-    private TMP_Text GetSlotText(int slot)
-    {
-        return slot switch
-        {
-            1 => slot1Text,
-            2 => slot2Text,
-            3 => slot3Text,
-            _ => null
-        };
+        UIHandler.Instance.UpdateSettlementInfo();
+
+        DisableAllPanels();
+        navPanel.SetActive(true);
+        infoPanel.SetActive(true);
+        startGamePanel.SetActive(true);
+
     }
 
-    private Button GetSlotButton(int slot)
+    public void SaveGame()
     {
-        return slot switch
-        {
-            1 => slot1Button,
-            2 => slot2Button,
-            3 => slot3Button,
-            _ => null
-        };
+        PlayerStatHandler.Instance.EndWrappers();
+
+        SettlementHandler.Instance.EndWrappers();
     }
 
     public void DisableAllPanels()
@@ -122,7 +144,7 @@ public class GameManager : MonoBehaviour
         creditsPanel.SetActive(false);
         settingsPanel.SetActive(false);
         InputPanel.SetActive(false);
-
+        saveSlotsPanel.SetActive(false);
     }
 
     public void ShowMainMenuPanel()
@@ -136,7 +158,7 @@ public class GameManager : MonoBehaviour
     public void ShowStartGamePanel()
     {
         DisableAllPanels();
-        InputPanel.SetActive(true);
+        saveSlotsPanel.SetActive(true);
     }
 
     public void ShowLoadGamePanel()
@@ -166,27 +188,19 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public bool HasSavedGame()
-    {
-        // Check for saved game data. Replace with your actual save/load implementation.
-        return PlayerPrefs.HasKey("SavedGameSlot");
-    }
-
     public void LoadLastSavedGame()
     {
         // Load the most recent save data.
-        Debug.Log("Loading last saved game...");
-        // Add your loading logic here.
-        ShowMainMenuPanel(); // Assuming you'll switch to the main menu after loading.
+        int slot = PlayerPrefs.GetInt("Slot");
+        LoadGame(slot);
     }
 
     public void Death()
     {
         Debug.Log("You are Dead...");
     }
-    public void StartNewGameButton()
+    public void StartNewGame()
     {
-
         string name, villageName;
         name = PlayerNameInput.text;
         villageName = VillageNameInput.text;
@@ -195,11 +209,12 @@ public class GameManager : MonoBehaviour
             return;
         PlayerStatHandler.Instance.pd.VillageName = villageName;
         PlayerStatHandler.Instance.pd.Name = name;
-        PlayerStatHandler.Instance.JSONhandler.SaveData(new PlayerDataWrapper { pd = PlayerStatHandler.Instance.pd }, "playerData.json");
-        DisableAllPanels();
-        navPanel.SetActive(true);
-        infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);
+        PlayerStatHandler.Instance.pd.Day = 1;
 
+        SettlementHandler.Instance.settlement.Name = villageName;
+
+        SaveGame();
+
+        LoadGame(PlayerPrefs.GetInt("Slot"));
     }
 }
