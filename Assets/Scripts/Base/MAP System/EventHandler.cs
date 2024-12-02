@@ -16,23 +16,21 @@ public class EventHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Wrappers();
     }
 
     public List<Event_SO_Constructor> events = new List<Event_SO_Constructor>();
 
     public Event_SO_Constructor currentEvent;
 
-    JSONDataHandler JSONDataHandler = new JSONDataHandler();
+    JSONDataHandler JSONDataHandler;
 
-    void Wrappers()
+    public void Wrappers()
     {
+        JSONDataHandler = new JSONDataHandler(3);
         EventWrapper wrapper = JSONDataHandler.LoadData<EventWrapper>("events.json");
         events = wrapper != null ? wrapper.events : new List<Event_SO_Constructor>();
-    }
-
-    void Start()
-    {
-        Wrappers();
     }
 
     public void OnDestroy()
