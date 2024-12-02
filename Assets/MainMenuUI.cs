@@ -13,6 +13,10 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
+        bool hasSavedGame = GameManager.Instance.HasSavedGame();
+        continueButton.gameObject.SetActive(hasSavedGame);
+        loadGameButton.interactable = hasSavedGame;
+
         startGameButton.onClick.AddListener(() => GameManager.Instance.ShowStartGamePanel());
         continueButton.onClick.AddListener(() => GameManager.Instance.LoadLastSavedGame());
         loadGameButton.onClick.AddListener(() => GameManager.Instance.ShowLoadGamePanel());

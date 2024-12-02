@@ -13,7 +13,7 @@
             "CompletionDay": 0,
             "CompletionHour": 1,
             "CompletionMinute": 0,
-            "Experience": 30,
+            "Experience": 0,
             "Silver": 100,
             "TargetStat": "Charisma",
             "StatRewardMin": 0,
@@ -39,7 +39,7 @@
             "CompletionDay": 0,
             "CompletionHour": 2,
             "CompletionMinute": 0,
-            "Experience": 50,
+            "Experience": 0,
             "Silver": 100,
             "TargetStat": "Strength",
             "StatRewardMin": 1,
@@ -49,7 +49,7 @@
                 "B",
                 "C",
                 "D",
-                "Exit"
+                ""
             ]
         }
     ]
