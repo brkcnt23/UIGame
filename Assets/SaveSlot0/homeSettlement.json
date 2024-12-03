@@ -22,7 +22,46 @@
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
-            "Quests": []
+            "Quests": [
+                {
+                    "Type": 1,
+                    "ID": 2003,
+                    "Name": "Night Terrors",
+                    "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+                    "DC": 20,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 8,
+                    "CompletionMinute": 30,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Constitution",
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 1
+                },
+                {
+                    "Type": 1,
+                    "ID": 2003,
+                    "Name": "Night Terrors",
+                    "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+                    "DC": 20,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 8,
+                    "CompletionMinute": 30,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Constitution",
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 1
+                }
+            ]
         },
         "TownHall": {
             "Name": "Town Hall",
@@ -30,7 +69,46 @@
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
-            "Jobs": []
+            "Jobs": [
+                {
+                    "Type": 0,
+                    "ID": 1002,
+                    "Name": "Blacksmith",
+                    "Description": "Craft weapons and armor for the town's defenders.",
+                    "DC": 15,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 8,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 2,
+                    "StatRewardMax": 3
+                },
+                {
+                    "Type": 0,
+                    "ID": 1003,
+                    "Name": "Alchemist",
+                    "Description": "Brew potions and poisons for the town's adventurers.",
+                    "DC": 20,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 10,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 1
+                }
+            ]
         },
         "Walls": {
             "Name": "Wall",

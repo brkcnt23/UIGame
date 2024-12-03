@@ -146,6 +146,9 @@ public class TravelSystem : MonoBehaviour
         eventButtons = eventPanel.GetComponentsInChildren<Button>();
 
         Event_SO_Constructor currentEvent = EventHandler.Instance.events[EventHandler.Instance.GenerateEvent()];
+        
+        eventPanel.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = currentEvent.Name;
+        eventPanel.transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = currentEvent.Description;
 
         EventHandler.Instance.currentEvent = currentEvent;
 

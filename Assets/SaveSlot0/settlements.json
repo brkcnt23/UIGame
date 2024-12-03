@@ -3,224 +3,557 @@
         {
             "Name": "Evoynir",
             "isUnlocked": true,
-            "Population": 1278,
-            "Wealth": 25867,
-            "Quality": 784,
+            "Population": 8000,
+            "Wealth": 160000,
+            "Quality": 900,
             "Shops": [
                 {
                     "Name": "General Store",
-                    "level": 1,
+                    "level": 5,
                     "maxLevel": 5,
-                    "cost": 7893,
-                    "income": 97,
+                    "cost": 50000,
+                    "income": 5000,
                     "ShopType": 5,
                     "Items": []
-                }
-            ],
-            "Tavern": {
-                "Name": "Barley and Hops",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 10280,
-                "income": 162,
-                "Quests": [
-                    {
-                        "Type": 1,
-                        "ID": 2001,
-                        "Name": "The Missing Heirloom",
-                        "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 1,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    },
-                    {
-                        "Type": 1,
-                        "ID": 2001,
-                        "Name": "The Missing Heirloom",
-                        "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 1,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    }
-                ]
-            },
-            "TownHall": {
-                "Name": "Town Hall",
-                "level": 4,
-                "maxLevel": 5,
-                "cost": 18879,
-                "income": 1250,
-                "Jobs": [
-                    {
-                        "Type": 0,
-                        "ID": 1001,
-                        "Name": "Guard",
-                        "Description": "Protect the town from bandits and other threats.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 6,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Strength",
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    },
-                    {
-                        "Type": 0,
-                        "ID": 1002,
-                        "Name": "Blacksmith",
-                        "Description": "Craft weapons and armor for the town's defenders.",
-                        "DC": 15,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 8,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 2,
-                        "StatRewardMax": 3
-                    }
-                ]
-            },
-            "Walls": {
-                "Name": "Wall",
-                "level": 5,
-                "maxLevel": 5,
-                "cost": 3795,
-                "income": 0
-            },
-            "Type": 2
-        },
-        {
-            "Name": "Grimhold",
-            "isUnlocked": false,
-            "Population": 987,
-            "Wealth": 19876,
-            "Quality": 654,
-            "Shops": [
+                },
                 {
                     "Name": "Blacksmith",
-                    "level": 1,
+                    "level": 5,
                     "maxLevel": 5,
-                    "cost": 7893,
-                    "income": 97,
+                    "cost": 60000,
+                    "income": 6000,
                     "ShopType": 1,
                     "Items": []
                 }
             ],
             "Tavern": {
-                "Name": "The Drunken Dragon",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 10280,
-                "income": 162,
-                "Quests": [
-                    {
-                        "Type": 1,
-                        "ID": 2001,
-                        "Name": "The Missing Heirloom",
-                        "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 1,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    }
-                ]
-            },
-            "TownHall": {
-                "Name": "Town Hall",
-                "level": 4,
-                "maxLevel": 5,
-                "cost": 18879,
-                "income": 1250,
-                "Jobs": [
-                    {
-                        "Type": 0,
-                        "ID": 1001,
-                        "Name": "Guard",
-                        "Description": "Protect the town from bandits and other threats.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 6,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Strength",
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    },
-                    {
-                        "Type": 0,
-                        "ID": 1002,
-                        "Name": "Blacksmith",
-                        "Description": "Craft weapons and armor for the town's defenders.",
-                        "DC": 15,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 8,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 2,
-                        "StatRewardMax": 3
-                    }
-                ]
-            },
-            "Walls": {
-                "Name": "Wall",
+                "Name": "The Golden Lion",
                 "level": 5,
                 "maxLevel": 5,
-                "cost": 3795,
+                "cost": 75000,
+                "income": 7500,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Grand Town Hall",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 100000,
+                "income": 10000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Great Wall",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 80000,
                 "income": 0
             },
             "Type": 2
+        },
+        {
+            "Name": "Shahum",
+            "isUnlocked": false,
+            "Population": 6500,
+            "Wealth": 130000,
+            "Quality": 850,
+            "Shops": [
+                {
+                    "Name": "Market Bazaar",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 40000,
+                    "income": 4000,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Silver Oak",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 60000,
+                "income": 6000,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Central Town Hall",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 80000,
+                "income": 8000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Stone Walls",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 60000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Yrad'si",
+            "isUnlocked": false,
+            "Population": 6500,
+            "Wealth": 130000,
+            "Quality": 850,
+            "Shops": [
+                {
+                    "Name": "Arcane Emporium",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 45000,
+                    "income": 4500,
+                    "ShopType": 3,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Whispering Willow",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 60000,
+                "income": 6000,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Yrad'si Town Hall",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 80000,
+                "income": 8000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Ancient Walls",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 60000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Incan",
+            "isUnlocked": false,
+            "Population": 5500,
+            "Wealth": 110000,
+            "Quality": 800,
+            "Shops": [
+                {
+                    "Name": "Herbalist's Shop",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 35000,
+                    "income": 3500,
+                    "ShopType": 4,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Resting Traveler",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 45000,
+                "income": 4500,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Incan Town Hall",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 60000,
+                "income": 6000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Fortified Walls",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 45000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Tarus",
+            "isUnlocked": false,
+            "Population": 7000,
+            "Wealth": 140000,
+            "Quality": 870,
+            "Shops": [
+                {
+                    "Name": "Armor Smithy",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 50000,
+                    "income": 5000,
+                    "ShopType": 2,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Warrior's Rest",
+                "level": 5,
+                "maxLevel": 5,
+                "cost": 70000,
+                "income": 7000,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Tarus Town Hall",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 90000,
+                "income": 9000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Tarus Walls",
+                "level": 4,
+                "maxLevel": 5,
+                "cost": 65000,
+                "income": 0
+            },
+            "Type": 2
+        },
+        {
+            "Name": "Cryssborn",
+            "isUnlocked": false,
+            "Population": 800,
+            "Wealth": 16000,
+            "Quality": 300,
+            "Shops": [
+                {
+                    "Name": "Local Goods",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Quiet Hearth",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 8000,
+                "income": 800,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Cryssborn Hall",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 10000,
+                "income": 1000,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 7000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Woodholmers",
+            "isUnlocked": false,
+            "Population": 1000,
+            "Wealth": 20000,
+            "Quality": 350,
+            "Shops": [
+                {
+                    "Name": "Timber Trader",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 6000,
+                    "income": 600,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Forest Inn",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 9000,
+                "income": 900,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Woodholmers Hall",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 11000,
+                "income": 1100,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 8000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Mineholmers",
+            "isUnlocked": false,
+            "Population": 1000,
+            "Wealth": 20000,
+            "Quality": 350,
+            "Shops": [
+                {
+                    "Name": "Miner's Supply",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 6000,
+                    "income": 600,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Deep Dive",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 9000,
+                "income": 900,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Mineholmers Hall",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 11000,
+                "income": 1100,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Wooden Palisade",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 8000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Mudfell",
+            "isUnlocked": false,
+            "Population": 400,
+            "Wealth": 8000,
+            "Quality": 200,
+            "Shops": [
+                {
+                    "Name": "Mudfell Trader",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 3000,
+                    "income": 300,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Swamp's Rest",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 5000,
+                "income": 500,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Mudfell Hall",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 6000,
+                "income": 600,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Simple Fence",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 4000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Perchmon",
+            "isUnlocked": false,
+            "Population": 1600,
+            "Wealth": 32000,
+            "Quality": 400,
+            "Shops": [
+                {
+                    "Name": "Perchmon Goods",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 8000,
+                    "income": 800,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Eagle's Nest",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 12000,
+                "income": 1200,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Perchmon Hall",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 14000,
+                "income": 1400,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Stone Walls",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 10000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Rasu",
+            "isUnlocked": false,
+            "Population": 1400,
+            "Wealth": 28000,
+            "Quality": 380,
+            "Shops": [
+                {
+                    "Name": "Rasu Market",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 7000,
+                    "income": 700,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Desert Oasis",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 11000,
+                "income": 1100,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Rasu Hall",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 13000,
+                "income": 1300,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Stone Walls",
+                "level": 2,
+                "maxLevel": 5,
+                "cost": 9000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Flanel",
+            "isUnlocked": false,
+            "Population": 2000,
+            "Wealth": 40000,
+            "Quality": 450,
+            "Shops": [
+                {
+                    "Name": "Flanel Supplies",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Rolling Hills",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 15000,
+                "income": 1500,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Flanel Hall",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 17000,
+                "income": 1700,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Stone Walls",
+                "level": 3,
+                "maxLevel": 5,
+                "cost": 12000,
+                "income": 0
+            },
+            "Type": 0
+        },
+        {
+            "Name": "Mege",
+            "isUnlocked": false,
+            "Population": 200,
+            "Wealth": 4000,
+            "Quality": 150,
+            "Shops": [
+                {
+                    "Name": "Mege's Goods",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 2000,
+                    "income": 200,
+                    "ShopType": 5,
+                    "Items": []
+                }
+            ],
+            "Tavern": {
+                "Name": "The Lonely Lantern",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 3000,
+                "income": 300,
+                "Quests": []
+            },
+            "TownHall": {
+                "Name": "Mege Hall",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 4000,
+                "income": 400,
+                "Jobs": []
+            },
+            "Walls": {
+                "Name": "Simple Fence",
+                "level": 1,
+                "maxLevel": 5,
+                "cost": 2000,
+                "income": 0
+            },
+            "Type": 0
         }
-
     ]
 }
