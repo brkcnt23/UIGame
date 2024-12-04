@@ -46,6 +46,7 @@ public class Shops : Residentials
         }
     }
 
+
     /// <summary>
     /// Get all items of a specific category.
     /// </summary>

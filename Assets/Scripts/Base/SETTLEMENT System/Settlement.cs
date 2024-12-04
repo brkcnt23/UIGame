@@ -52,7 +52,7 @@ public class Settlement
     public delegate void TavernEntered(Taverns tavern);
     public event TavernEntered OnTavernEntered;
 
-    public delegate void TownHallEntered(TownHalls townHall);
+    public delegate void TownHallEntered();
     public event TownHallEntered OnTownHallEntered;
 
     public delegate void WallEntered(Walls wall);
@@ -116,10 +116,9 @@ public class Settlement
         OnShopEntered?.Invoke(shop);
     }
 
-    public void EnterTownHall(TownHalls townHall)
+    public void EnterTownHall()
     {
-        TownHall = townHall;
-        OnTownHallEntered?.Invoke(townHall);
+        OnTownHallEntered?.Invoke();
     }
 
     public void EnterWall(Walls wall)
@@ -143,8 +142,6 @@ public class Settlement
     {
         OnSettlementEntered?.Invoke(this);
     }
-
-
 
     public void UpgradeSettlement()
     {

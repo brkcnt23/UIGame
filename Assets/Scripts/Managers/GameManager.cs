@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject infoPanel;
     public GameObject InputPanel;
     public GameObject saveSlotsPanel;
+    public GameObject homeSettlementPanel;
 
     public List<PlayerData> playerData = new List<PlayerData>();
 

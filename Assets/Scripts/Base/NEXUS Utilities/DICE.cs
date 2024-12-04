@@ -8,6 +8,10 @@ namespace NEXUS.Utilities
         {
             return Random.Range(1, sides + 1);
         }
+        public static int Roll(int min, int max)
+        {
+            return Random.Range(min, max);
+        }
         public static int RollD100()
         {
             return Roll(100);

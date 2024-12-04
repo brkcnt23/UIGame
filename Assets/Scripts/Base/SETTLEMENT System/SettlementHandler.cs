@@ -99,40 +99,16 @@ public class SettlementHandler : MonoBehaviour
 
     public int GenerateRandomSettlementJobCount()
     {
-        return UnityEngine.Random.Range(1, 4);
+        return UnityEngine.Random.Range(0, 2);
     }
 
     public int GenerateRandomSettlementTavernQuestCount()
     {
         return UnityEngine.Random.Range(1, 4);
     }
-    public void LoadShopItems(Shops shop)
-    {
-        foreach (var itemData in shop.Items)
-        {
-            var newItem = new Item(
-                itemData.ID,
-                itemData.Name,
-                itemData.Value,
-                itemData.Category,
-                itemData.StrengthModifier,
-                itemData.ConstitutionModifier,
-                itemData.DexterityModifier,
-                itemData.CharismaModifier
-            );
-            shop.Items.Add(newItem);
-        }
-    }
     public void OnSettlmentEntered(Settlement settlement)
     {
         Print($"Entered {settlement.Name}");
-
-
-        if (settlement == PlayerStatHandler.Instance.homeSettlement)
-        {
-            print("Entered home settlement");
-        }
-
 
         if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
@@ -152,10 +128,15 @@ public class SettlementHandler : MonoBehaviour
                 }
             }
         }
-        
+
         PlayerStatHandler.Instance.pd.LastSettlementName = settlement.Name;
 
         UIHandler.Instance.UpdateSettlementInfo(settlement);
+
+        if (settlement == PlayerStatHandler.Instance.homeSettlement)
+        {
+            HomeSettlementHandler.Instance.OnSettlmentEntered();
+        }
     }
 
 
@@ -194,9 +175,9 @@ public class SettlementHandler : MonoBehaviour
         Print($"Entered {tavern.Name}");
     }
 
-    void HandleTownHallEntered(TownHalls townHall)
+    void HandleTownHallEntered()
     {
-        Print($"Entered {townHall.Name}");
+        Print($"Entered {settlement.TownHall.Name}");
     }
 
     void HandleWallEntered(Walls wall)

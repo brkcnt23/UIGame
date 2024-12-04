@@ -39,6 +39,36 @@ public class Item
         CharismaModifier = charismaMod;
         Quantity = quantity;
     }
+
+    /// <summary>
+    /// Change the value of an item in the shop's inventory based on its quantity.
+    /// </summary>
+    /// <param name="quantityChange">The change in quantity.</param>
+    /// <returns>The updated item.</returns>
+    public void AdjustValue(int quantityChange)
+    {
+        int previousQuantity = Quantity; // Track before the change
+        Quantity += quantityChange;
+
+        // Ensure Quantity doesn't drop below zero
+        Quantity = Math.Max(0, Quantity);
+
+        // Calculate the percentage change
+        float percentageChange = (float)Math.Abs(quantityChange) / Math.Max(previousQuantity, 1);
+
+        // Determine the adjustment factor (5% change for 100% stock change)
+        float adjustmentFactor = 1 + percentageChange * 0.05f;
+
+        // Adjust value based on stock increase or decrease
+        if (quantityChange > 0) // Quantity increased
+        {
+            Value = Math.Max((int)(Value / adjustmentFactor), 1);
+        }
+        else if (quantityChange < 0) // Quantity decreased
+        {
+            Value = Math.Min((int)(Value * adjustmentFactor), int.MaxValue);
+        }
+    }
 }
 
 
