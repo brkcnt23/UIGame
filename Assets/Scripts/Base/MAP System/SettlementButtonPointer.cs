@@ -21,27 +21,25 @@ public class SettlementButtonPointer : MonoBehaviour
         {
             button.onClick.AddListener(() =>
                 {
+                    MapHandler.Instance.selectedSettlement = gameObject;
+                    MapHandler.Instance.PopulateMap();
+
                     if (SettlementHandler.Instance.settlement != settlement)
                     {
+                        TravelSystem.Instance.TravelingDeciderPanel.SetActive(true);
+                        
+                        TravelSystem.Instance.travelInfoText.text = "Do you want to travel to " + settlement.Name + "?";
 
-                        MapHandler.Instance.selectedSettlement = gameObject;
-                        MapHandler.Instance.PopulateMap();
-                        SettlementHandler.Instance.OnSettlmentEntered(settlement);
+                        TravelSystem.Instance.destination = this;
 
-                        TravelSystem.Instance.SetSettlements(this);
-                        TravelSystem.Instance.TravelToSettlement(DecidedToHunt());
+                        TravelSystem.Instance.UpdateTravelTimeText();
 
-                        TravelSystem.Instance.currentSettlement = this;
-
-                        MapHandler.Instance.isHunting = false;
                     }
                     else
                     {
                         Debug.Log("You are already in this settlement");
-                        MapHandler.Instance.map.SetActive(false);
+                        TravelSystem.Instance.PlayerDeclinedToTravel();
                     }
-
-                    GameManager.Instance.ShowSettlementPanel();
                 });
         }
     }
@@ -63,10 +61,7 @@ public class SettlementButtonPointer : MonoBehaviour
         }
     }
 
-    public bool DecidedToHunt()
+    public void OpenTheTravelDecider(SettlementButtonPointer settlementButtonPointer)
     {
-        //pup up a window to ask if the player wants to hunt or not (Debug.Log for now)
-        Debug.Log("Do you want to hunt?");
-        return MapHandler.Instance.isHunting;
     }
 }

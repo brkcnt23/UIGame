@@ -1,0 +1,14 @@
+{
+    "inTravel": false,
+    "currentSettlementID": 0,
+    "destinationID": 0,
+    "remainingTime": 0,
+    "remainingTimeMinutes": 0,
+    "minEvents": 0,
+    "eventTimes": [],
+    "isEventActive": false,
+    "PlayerWantsToHandleEventorEnterSettlement": false,
+    "currentEventID": 0,
+    "elapsedTravelTime": 0,
+    "eventIndex": 0
+}

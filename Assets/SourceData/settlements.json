@@ -2,7 +2,9 @@
     "settlements": [
         {
             "Name": "Evoynir",
+            "ID": 1,
             "isUnlocked": true,
+            "levelToUnlock": 30,
             "Population": 8000,
             "Wealth": 160000,
             "Quality": 900,
@@ -53,7 +55,9 @@
         },
         {
             "Name": "Shahum",
+            "ID": 2,
             "isUnlocked": false,
+            "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": 130000,
             "Quality": 850,
@@ -95,7 +99,9 @@
         },
         {
             "Name": "Yrad'si",
+            "ID": 3,
             "isUnlocked": false,
+            "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": 130000,
             "Quality": 850,
@@ -137,7 +143,9 @@
         },
         {
             "Name": "Incan",
+            "ID": 4,
             "isUnlocked": false,
+            "levelToUnlock": 20,
             "Population": 5500,
             "Wealth": 110000,
             "Quality": 800,
@@ -179,7 +187,9 @@
         },
         {
             "Name": "Tarus",
+            "ID": 5,
             "isUnlocked": false,
+            "levelToUnlock": 20,
             "Population": 7000,
             "Wealth": 140000,
             "Quality": 870,
@@ -221,7 +231,9 @@
         },
         {
             "Name": "Cryssborn",
+            "ID": 6,
             "isUnlocked": false,
+            "levelToUnlock": 15,
             "Population": 800,
             "Wealth": 16000,
             "Quality": 300,
@@ -263,7 +275,9 @@
         },
         {
             "Name": "Woodholmers",
+            "ID": 7,
             "isUnlocked": false,
+            "levelToUnlock": 10,
             "Population": 1000,
             "Wealth": 20000,
             "Quality": 350,
@@ -305,7 +319,9 @@
         },
         {
             "Name": "Mineholmers",
+            "ID": 8,
             "isUnlocked": false,
+            "levelToUnlock": 7,
             "Population": 1000,
             "Wealth": 20000,
             "Quality": 350,
@@ -347,8 +363,10 @@
         },
         {
             "Name": "Mudfell",
+            "ID": 9,
             "isUnlocked": false,
             "Population": 400,
+            "levelToUnlock": 5,
             "Wealth": 8000,
             "Quality": 200,
             "Shops": [
@@ -389,7 +407,9 @@
         },
         {
             "Name": "Perchmon",
+            "ID": 10,
             "isUnlocked": false,
+            "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": 32000,
             "Quality": 400,
@@ -431,7 +451,9 @@
         },
         {
             "Name": "Rasu",
+            "ID": 11,
             "isUnlocked": false,
+            "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": 28000,
             "Quality": 380,
@@ -473,7 +495,9 @@
         },
         {
             "Name": "Flanel",
+            "ID": 12,
             "isUnlocked": false,
+            "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": 40000,
             "Quality": 450,
@@ -515,7 +539,9 @@
         },
         {
             "Name": "Mege",
+            "ID": 13,
             "isUnlocked": false,
+            "levelToUnlock": 1,
             "Population": 200,
             "Wealth": 4000,
             "Quality": 150,

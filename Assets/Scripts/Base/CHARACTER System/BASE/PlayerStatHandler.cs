@@ -13,6 +13,7 @@ public class PlayerStatHandler : MonoBehaviour
     public Item EquippedArmor { get; private set; }
     public Item EquippedPotion { get; private set; }
     public Item EquippedMisc { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -23,11 +24,11 @@ public class PlayerStatHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Application.targetFrameRate = 60;
     }
 
     public PlayerData pd = new PlayerData();
-
-    public Settlement homeSettlement = new Settlement();
 
 
     private void Start()
@@ -36,30 +37,52 @@ public class PlayerStatHandler : MonoBehaviour
         //UpdateArmyCapacity();
     }
 
-    public void Wrappers(int slot)
+    public void SavePlayerData()
     {
-        JSONhandler = new JSONDataHandler(slot);
+        HomeSettlementHandler.Instance.SaveHomeSettlement();
+        SettlementHandler.Instance.SaveSettlements();
+
+        TravelSystem.Instance.SaveTravelData();
+
+        EventHandler.Instance.SaveEvents();
+
+        pd.LastSettlementName = SettlementHandler.Instance.settlement.Name;
+
+        //JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "playerCompanions.json");
+
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
+    }
+
+    public void LoadPlayerData()
+    {
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
         pd = wrapper != null ? wrapper.pd : new PlayerData();
 
+        //GetPlayerCompanions();
 
-        GetPlayerCompanions();
+        EventHandler.Instance.LoadEvents();
 
+        HomeSettlementHandler.Instance.LoadHomeSettlement();
+        SettlementHandler.Instance.LoadSettlements();
 
-        HomeSettlementWrapper homeWrapper = JSONhandler.LoadData<HomeSettlementWrapper>("homeSettlement.json");
-        homeSettlement = homeWrapper != null ? homeWrapper.homeSettlement : new Settlement();
+        TravelSystem.Instance.LoadTravelData();
+        MapHandler.Instance.MovePlayerToLastVisitedSettlement(LastVisitedSettlement());
 
-        SettlementHandler.Instance.Wrappers();
-
-        CheckHomeSettlementinSettlements();
+        TimeSystem.Instance.InitializeLastActionTimes();
+        PlayerUISystem.Instance.UpdateClockText();
     }
 
-    public void CheckHomeSettlementinSettlements()
+    private void OnApplicationQuit()
     {
-        Settlement home = SettlementHandler.Instance.settlements.Find(s => s.Name == homeSettlement.Name);
-        if (home == null)
+        if (GameManager.Instance.isEnteredSettlement)
         {
-            SettlementHandler.Instance.settlements.Insert(0, homeSettlement);
+            if (pd.HasDied)
+            {
+                pd = new PlayerData();
+            }
+            SavePlayerData();
         }
     }
 
@@ -125,24 +148,11 @@ public class PlayerStatHandler : MonoBehaviour
                 break;
         }
     }
-    private void OnApplicationQuit()
-    {
-        EndWrappers();
-    }
 
-    public void EndWrappers()
-    {
-        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
-        JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
-        JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "playerCompanions.json");
-        JSONhandler.SaveData(new HomeSettlementWrapper { homeSettlement = homeSettlement }, "homeSettlement.json");
-
-        SettlementHandler.Instance.EndWrappers();
-    }
 
     public Settlement LastVisitedSettlement()
     {
-        Settlement lastVisited = pd.LastSettlementName != "" ? SettlementHandler.Instance.settlements.Find(s => s.Name == pd.LastSettlementName) : homeSettlement;
+        Settlement lastVisited = pd.LastSettlementName != "" ? SettlementHandler.Instance.settlements.Find(s => s.Name == pd.LastSettlementName) : HomeSettlementHandler.Instance.homeSettlement;
 
         return lastVisited;
     }
@@ -222,7 +232,23 @@ public class PlayerStatHandler : MonoBehaviour
     /// </summary>
     public void ConsumeDailyRations()
     {
-        int totalConsumption = pd.PlayerArmy.GetTotalUnits() + pd.Companions.Count + 1; // Army + Companions + Player
+        int totalConsumption;
+        if (pd.PlayerArmy == null && pd.Companions == null)
+        {
+            totalConsumption = 1; // Player
+        }
+        else if (pd.PlayerArmy == null)
+        {
+            totalConsumption = pd.Companions.Count + 1; // Companions + Player
+        }
+        else if (pd.Companions == null)
+        {
+            totalConsumption = pd.PlayerArmy.GetTotalUnits() + 1; // Army + Player
+        }
+        else
+        {
+            totalConsumption = pd.PlayerArmy.GetTotalUnits() + pd.Companions.Count + 1; // Army + Companions + Player
+        }
 
         if (pd.Rations >= totalConsumption)
         {
@@ -234,7 +260,26 @@ public class PlayerStatHandler : MonoBehaviour
             int missingRations = totalConsumption - pd.Rations;
             DecreaseRations(pd.Rations);
             IncreaseExhaustion();
-            Debug.Log($"Not enough rations! Missing: {missingRations}. Increased exhaustion level.");
+
+            int lostHungeryUnits = 0;
+            int lostUnits = 0;
+            for (int i = 0; i < missingRations; i++)
+            {
+                if (Dice.Roll(0, 2) == 0)
+                {
+                    pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
+                    lostHungeryUnits++;
+
+                    //ve giden her askerin yanında bir başka asker daha gitme şansı %10 olacak şekilde
+                    if (Dice.Roll(0, 10) == 0)
+                    {
+                        pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
+                        lostUnits++;
+                    }
+                }
+            }
+
+            Debug.Log($"Ordudan {lostHungeryUnits} asker rasyon yetersizliğinden dolayı ayrıldı. {lostUnits} asker de ordunu doyuramadağın için yanlarında gitti.");
         }
     }
     /// <summary>

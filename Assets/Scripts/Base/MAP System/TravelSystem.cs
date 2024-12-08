@@ -1,5 +1,7 @@
 using UnityEngine;
 using NEXUS.Utilities;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
@@ -13,175 +15,384 @@ public class TravelSystem : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public SettlementButtonPointer currentSettlement;
     public SettlementButtonPointer destination;
 
-    public int distanceMultiplier = 1;
-    public int huntingMultiplier = 1;
-    public int remainingTime;
+    public bool inTravel = false;
 
-    public int eventCooldown = 2;
-    int evenCooldowReset;
-    public int eventChance = 10;
-    public int eventIncrease = 1;
+    [Header("Travel Multipliers")]
+    public int distanceMultiplier = 1;
+
+    [Header("Travel Variables")]
+    int remainingTime;
+    int remainingTimeMinutes;
+    int minEvents = 0;
+
+    List<int> eventTimes = new List<int>();
+
+    [Header("TravelDecider Panel")]
+
+    public GameObject TravelingDeciderPanel;
+    public bool isHuntingForRations = false;
+    public bool isSleeping = false;
+
+    public TMP_Text travelInfoText;
+    public TMP_Text travelTimeText;
+
 
     public GameObject eventPanel;
 
     public bool isEventActive = false;
+    public GameObject TravelingPanel;
+    public bool PlayerWantsToHandleEventorEnterSettlement = false;
 
-    Button[] eventButtons;
+    public Event_SO_Constructor currentEvent;
 
-    void Start()
+    public TravelWrapper travelData = new TravelWrapper();
+
+    public void SaveTravelData()
     {
-        evenCooldowReset = eventCooldown;
+        currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
+        destination = MapHandler.Instance.GetDestinationSettlement();
+        currentEvent = EventHandler.Instance.currentEvent;
+        travelData.currentSettlementID = currentSettlement != null ? currentSettlement.settlement.ID : 0;
+        travelData.destinationID = destination != null ? destination.settlement.ID : 0;
+        travelData.currentEventID = currentEvent != null ? currentEvent.ID : 0;
+
+        JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        jSONDataHandler.SaveData(travelData, "travel.json");
     }
 
-    public void SetSettlements(SettlementButtonPointer destination)
+    public void LoadTravelData()
     {
-        this.destination = destination;
+        JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        TravelWrapper wrapper = jSONDataHandler.LoadData<TravelWrapper>("travel.json");
+
+        travelData = wrapper != null ? wrapper : new TravelWrapper();
+
+        if (travelData.inTravel)
+        {
+            GameManager.Instance.DisableAllPanels();
+            GameManager.Instance.navPanel.SetActive(true);
+            GameManager.Instance.infoPanel.SetActive(true);
+
+
+            MapHandler.Instance.map.SetActive(true);
+            MapHandler.Instance.map.transform.parent.gameObject.SetActive(true);
+            MapHandler.Instance.PopulateMap();
+
+            currentSettlement = GetSettlementButtonPointerByID(travelData.currentSettlementID);
+            destination = GetSettlementButtonPointerByID(travelData.destinationID);
+            currentEvent = GetEventByID(travelData.currentEventID);
+            remainingTime = travelData.remainingTime;
+            remainingTimeMinutes = travelData.remainingTimeMinutes;
+            minEvents = travelData.minEvents;
+            eventTimes = travelData.eventTimes;
+            isEventActive = travelData.isEventActive;
+            PlayerWantsToHandleEventorEnterSettlement = travelData.PlayerWantsToHandleEventorEnterSettlement;
+            elapsedTravelTime = travelData.elapsedTravelTime;
+            eventIndex = travelData.eventIndex;
+
+            EventHandler.Instance.currentEvent = currentEvent;
+
+            ContinueTravel();
+        }
     }
 
-    public void TravelToSettlement(bool isHunting)
+    public void LoadTravelDataFromSourceData()
     {
+        JSONDataHandler jSONDataHandler = new JSONDataHandler("SourceData");
+        TravelWrapper wrapper = jSONDataHandler.LoadData<TravelWrapper>("trav   el.json");
 
-        SettlementHandler.Instance.OnSettlementExited();
+        travelData = wrapper != null ? wrapper : new TravelWrapper();
+    }
 
+    public SettlementButtonPointer GetSettlementButtonPointerByID(int id)
+    {
+        foreach (GameObject child in MapHandler.Instance.children)
+        {
+            SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if (settlementButtonPointer.settlement.ID == id)
+            {
+                return settlementButtonPointer;
+            }
+        }
+
+        return null;
+    }
+
+    public Event_SO_Constructor GetEventByID(int id)
+    {
+        foreach (Event_SO_Constructor e in EventHandler.Instance.events)
+        {
+            if (e.ID == id)
+            {
+                return e;
+            }
+        }
+
+        return null;
+    }
+    public void TravelToSettlement()
+    {
+        inTravel = true;
+        travelData.inTravel = true;
         remainingTime = 0;
-        int minutes = CalculateDistance(isHunting);
-
-        print("Travel time is " + minutes + " minutes");
+        int minutes = CalculateDistance();
 
         int hours = minutes / 60;
         minutes = minutes % 60;
         remainingTime = hours;
-
-        print("Travel time is " + hours + " hours and " + minutes + " minutes");
+        remainingTimeMinutes = minutes;
 
         int days = hours / 24;
         hours = hours % 24;
 
-        print("Travel time is " + days + " days and " + hours + " hours and " + minutes + " minutes");
+        SettlementHandler.Instance.OnSettlementExited();
+        travelData.currentSettlementID = currentSettlement.settlement.ID;
+        travelData.destinationID = destination.settlement.ID;
+        travelData.remainingTime = remainingTime;
+        travelData.remainingTimeMinutes = remainingTimeMinutes;
+        ContinueTravel();
 
-        ContinueTravel(remainingTime);
+
     }
 
-    public int CalculateDistance(bool isHunting)
+    public int CalculateDistance()
     {
         Vector2 currentPos = currentSettlement.transform.position;
         Vector2 destinationPos = destination.transform.position;
 
-        float distance = Vector2.Distance(currentPos, destinationPos) * (distanceMultiplier + (isHunting ? huntingMultiplier : 0));
+        float distance = Vector2.Distance(currentPos, destinationPos) * distanceMultiplier;
+        int minutes = (int)distance;
+        int hours = minutes / 60;
+        int days = hours / 24;
+
+        if (isHuntingForRations)
+        {
+            distance += 60 * days; //add 60 minutes for each day of hunting
+        }
+
+        if (isSleeping)
+        {
+            distance += 360 * days + PlayerStatHandler.Instance.pd.CurrentExhaustionLevel * 120; //add 360 minutes for each day of sleeping and 120 minutes for each exhaustion level
+        }
 
         return (int)distance;
     }
 
-    public void ContinueTravel(int remainingTime)
+    public void ContinueTravel()
     {
-        TravelUntilEvent(remainingTime);
-    }
-
-    public void TravelUntilEvent(int travelTime)
-    {
-        for (int i = 0; i < travelTime; i++)
+        StopAllCoroutines();
+        if (!TravelingPanel.activeSelf)
         {
-            if (i > eventCooldown)
-            {
-                if (RandomEventHappened())
-                {
-                    print("Encountered an event after " + i + " hours of travel");
-                    eventCooldown += eventIncrease;
-                    HandleEvent();
-                    break;
-                }
-            }
-
-            remainingTime--;
+            TravelingPanel.SetActive(true);
         }
 
-
-
-        if (remainingTime <= 0 && !isEventActive)
+        if (currentEvent != null)
         {
-            remainingTime = 0;
-            eventCooldown = evenCooldowReset;
+            StartCoroutine(HandleEvent());
+        }
+        else
+        {
+            StartCoroutine(TravelUntilEvent());
+        }
+    }
+
+    private int elapsedTravelTime = 0;
+    private int eventIndex = 0;
+
+    public IEnumerator TravelUntilEvent()
+    {
+        int totalTravelTime = remainingTime + elapsedTravelTime;
+        // If eventTimes is null or empty, generate them
+        if (eventTimes == null || eventTimes.Count == 0)
+        {
+            // Determine the number of events
+            int minEvents = this.minEvents;
+            int maxEvents = Mathf.Max(1, totalTravelTime / 8);
+            int numberOfEvents = Random.Range(minEvents, maxEvents + 1);
+
+            // Generate event times
+            eventTimes = new List<int>();
+            for (int i = 0; i < numberOfEvents; i++)
+            {
+                int eventTime = Random.Range(1, totalTravelTime - 1);
+                eventTimes.Add(eventTime);
+            }
+            eventTimes.Sort();
+
+            travelData.eventTimes = eventTimes;
+            travelData.minEvents = minEvents;
+        }
+
+        while (remainingTime > 0)
+        {
+            int timeUntilNextEvent = remainingTime;
+
+            if (eventIndex < eventTimes.Count)
+            {
+                timeUntilNextEvent = eventTimes[eventIndex] - elapsedTravelTime;
+                timeUntilNextEvent = Mathf.Max(1, timeUntilNextEvent);
+            }
+
+            int travelSegment = Mathf.Min(timeUntilNextEvent, remainingTime);
+
+            // Advance time smoothly
+            yield return StartCoroutine(TimeSystem.Instance.AdvanceTimeCoroutine(0, travelSegment, 0));
+
+            remainingTime -= travelSegment;
+            elapsedTravelTime += travelSegment;
+
+            travelData.elapsedTravelTime = elapsedTravelTime;
+            travelData.remainingTime = remainingTime;
+
+            if (eventIndex < eventTimes.Count && elapsedTravelTime >= eventTimes[eventIndex])
+            {
+                isEventActive = true;
+                travelData.isEventActive = isEventActive;
+                StartCoroutine(HandleEvent());
+                eventIndex++;
+                travelData.eventIndex = eventIndex;
+
+                // Wait until the event is resolved
+                yield return new WaitUntil(() => !isEventActive);
+
+                currentEvent = null;
+                travelData.currentEventID = 0;
+            }
+        }
+
+        if (remainingTime <= 0)
+        {
             print("Arrived at destination");
+
             TravelDone();
         }
     }
 
     public void TravelDone()
     {
-        SettlementHandler.Instance.OnSettlmentEntered(destination.settlement);
+        EnterSettlement();
+        inTravel = false;
+        travelData.inTravel = false;
+        travelData.currentSettlementID = 0;
+        travelData.destinationID = 0;
+        travelData.remainingTime = 0;
+        travelData.remainingTimeMinutes = 0;
+        travelData.minEvents = 0;
+        travelData.eventTimes = new List<int>();
+        travelData.isEventActive = false;
+        travelData.PlayerWantsToHandleEventorEnterSettlement = false;
+        travelData.currentEventID = 0;
+        travelData.elapsedTravelTime = 0;
+        travelData.eventIndex = 0;
+    }
+
+    public void EnterSettlement()
+    {
         MapHandler.Instance.map.SetActive(false);
-        SettlementHandler.Instance.settlement = destination.settlement;
-        MapHandler.Instance.PopulateMap();
+        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+        GameManager.Instance.ShowSettlementPanel();
+
+
+        currentSettlement = destination;
+        MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
+
+        TimeSystem.Instance.AdvanceTime(remainingTimeMinutes);
     }
 
-    public void HandleEvent()
+    public IEnumerator HandleEvent()
     {
-        isEventActive = true;
+        TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
+        print("Event at " + elapsedTravelTime + " hours");
+
         ShowEventPanel();
-    }
 
-    public bool RandomEventHappened()
-    {
-        int dice = Dice.RollD100();
-
-        if (dice < eventChance)
+        yield return new WaitUntil(() =>
         {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+            return PlayerWantsToHandleEventorEnterSettlement;
+        });
     }
 
     public void ShowEventPanel()
     {
         eventPanel.SetActive(true);
 
-        eventButtons = eventPanel.GetComponentsInChildren<Button>();
+        Event_SO_Constructor currentEvent = this.currentEvent != null ? this.currentEvent : EventHandler.Instance.GenerateEvent();
 
-        Event_SO_Constructor currentEvent = EventHandler.Instance.events[EventHandler.Instance.GenerateEvent()];
-        
-        eventPanel.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = currentEvent.Name;
-        eventPanel.transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = currentEvent.Description;
-
-        EventHandler.Instance.currentEvent = currentEvent;
-
-
-        for (int i = 0; i < eventButtons.Length; i++)
-        {
-            eventButtons[i].onClick.RemoveAllListeners();
-
-            //if the event choice is not available(empty text), hide the button
-            if (string.IsNullOrEmpty(currentEvent.choices[i]))
-            {
-                eventButtons[i].gameObject.SetActive(false);
-                continue;
-            }
-
-            eventButtons[i].gameObject.SetActive(true);
-
-            int choice = i;
-
-            eventButtons[i].onClick.AddListener(() =>
-            {
-                EventHandler.Instance.HandleEvent(choice);
-                HideEventPanel();
-                isEventActive = false;
-                ContinueTravel(remainingTime);
-            });
-
-            eventButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.choices[i];
-        }
+        this.currentEvent = currentEvent;
+        eventPanel.GetComponent<EventPanel>().ShowEvent(currentEvent, remainingTime);
     }
 
-    public void HideEventPanel()
+    public void UpdateTravelTimeText()
     {
-        eventPanel.SetActive(false);
+        int minutes = CalculateDistance();
+        int hours = minutes / 60;
+        minutes = minutes % 60;
+        int days = hours / 24;
+        hours = hours % 24;
+        travelTimeText.text = $"Travel time: {days} days, {hours} hours, {minutes} minutes";
     }
+
+    public void PlayerWantsToHunt()
+    {
+        isHuntingForRations = !isHuntingForRations;
+        UpdateTravelTimeText();
+    }
+
+    public void PlayerWantsToSleep()
+    {
+        isSleeping = !isSleeping;
+        UpdateTravelTimeText();
+    }
+
+    public void PlayerAcceptedToTravel()
+    {
+        travelTimeText.text = "";
+        travelInfoText.text = "";
+        TravelingDeciderPanel.SetActive(false);
+        destination = MapHandler.Instance.selectedSettlement.GetComponent<SettlementButtonPointer>();
+        TravelToSettlement();
+    }
+
+    public void PlayerDeclinedToTravel()
+    {
+        TravelingDeciderPanel.SetActive(false);
+        MapHandler.Instance.map.SetActive(false);
+        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+        GameManager.Instance.ShowSettlementPanel();
+        MapHandler.Instance.OnOpenField();
+        destination = null;
+    }
+
+    public void PlayerMiniGameClosed()
+    {
+        PlayerWantsToHandleEventorEnterSettlement = true;
+        TravelingPanel.SetActive(false);
+    }
+}
+
+[System.Serializable]
+public class TravelWrapper
+{
+    public bool inTravel = false;
+    public int currentSettlementID = 0;
+    public int destinationID = 0;
+    public int remainingTime = 0;
+    public int remainingTimeMinutes = 0;
+    public int minEvents = 0;
+    public List<int> eventTimes = new List<int>();
+    public bool isEventActive = false;
+    public bool PlayerWantsToHandleEventorEnterSettlement = false;
+    public int currentEventID = 0;
+    public int elapsedTravelTime = 0;
+    public int eventIndex = 0;
 }

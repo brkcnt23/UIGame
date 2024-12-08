@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.UI;
 using UnityEngine;
@@ -20,7 +21,10 @@ public class PlayerUISystem : MonoBehaviour
         }
     }
 
+    public TMP_Text HealthText;
+    public TMP_Text GoldandSilverText;
     public TMP_Text ClockText;
+    public TMP_Text DayText;
     public TMP_Text ExhaustText;
     public TMP_Text RationPackText;
     public TMP_Text ActionLogText;
@@ -31,13 +35,22 @@ public class PlayerUISystem : MonoBehaviour
         UpdateExhaustionText();
         UpdateRationText();
     }
+
+    public void UpdateHealthText()
+    {
+        HealthText.text = $"{PlayerStatHandler.Instance.pd.Health}";
+    }
+    public void UpdateGoldandSilverText()
+    {
+        GoldandSilverText.text = $"{PlayerStatHandler.Instance.pd.Gold} {PlayerStatHandler.Instance.pd.Silver}";
+    }
     public void UpdateRationText()
     {
-        RationPackText.text = $"Ration Packs: {PlayerStatHandler.Instance.GetRations()}";
+        RationPackText.text = $"Ration: {PlayerStatHandler.Instance.GetRations()}";
     }
     public void UpdateExhaustionText()
     {
-        ExhaustText.text = $"Exhaustion Level: {PlayerStatHandler.Instance.GetExhaustionLevel()}";
+        ExhaustText.text = $"Exhaustion: {PlayerStatHandler.Instance.GetExhaustionLevel()}";
     }
     public void UpdateClockText()
     {
@@ -53,10 +66,34 @@ public class PlayerUISystem : MonoBehaviour
             return;
         }
 
-        ClockText.text = timeSystem.GetTimeString();
+        if (DayText == null)
+        {
+            Debug.LogWarning("UpdateClockText: DayText is null.");
+            return;
+        }
+
+        if (timeSystem == null)
+        {
+            Debug.LogWarning("UpdateClockText: timeSystem is null.");
+            return;
+        }
+
+        DayText.text = $"Day: {timeSystem.Day}";
+
+        ClockText.text = $"{timeSystem.Hour:00}:{timeSystem.Minute:00}";
+
+        UpdateUIObjects();
     }
     public void UpdateActionLog(string ActionLog)
     {
         ActionLogText.text = $"{ActionLog}";
+    }
+
+    public void UpdateUIObjects()
+    {
+        UpdateHealthText();
+        UpdateGoldandSilverText();
+        UpdateExhaustionText();
+        UpdateRationText();
     }
 }

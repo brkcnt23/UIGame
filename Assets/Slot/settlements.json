@@ -3,9 +3,10 @@
         {
             "Name": "Deneme",
             "isUnlocked": true,
-            "Population": 0,
-            "Wealth": 0,
-            "Quality": 0,
+            "levelToUnlock": 0,
+            "Population": 10,
+            "Wealth": 100,
+            "Quality": 1,
             "Shops": [
                 {
                     "Name": "Shop",
@@ -23,46 +24,7 @@
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
-                "Quests": [
-                    {
-                        "Type": 1,
-                        "ID": 2003,
-                        "Name": "Night Terrors",
-                        "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
-                        "DC": 20,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 8,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Constitution",
-                        "StatRewardMin": 0,
-                        "StatRewardMax": 1
-                    },
-                    {
-                        "Type": 1,
-                        "ID": 2003,
-                        "Name": "Night Terrors",
-                        "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
-                        "DC": 20,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 8,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Constitution",
-                        "StatRewardMin": 0,
-                        "StatRewardMax": 1
-                    }
-                ]
+                "Quests": []
             },
             "TownHall": {
                 "Name": "Town Hall",
@@ -70,46 +32,7 @@
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
-                "Jobs": [
-                    {
-                        "Type": 0,
-                        "ID": 1002,
-                        "Name": "Blacksmith",
-                        "Description": "Craft weapons and armor for the town's defenders.",
-                        "DC": 15,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 8,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 2,
-                        "StatRewardMax": 3
-                    },
-                    {
-                        "Type": 0,
-                        "ID": 1003,
-                        "Name": "Alchemist",
-                        "Description": "Brew potions and poisons for the town's adventurers.",
-                        "DC": 20,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 10,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": "Dexterity",
-                        "StatRewardMin": 0,
-                        "StatRewardMax": 1
-                    }
-                ]
+                "Jobs": []
             },
             "Walls": {
                 "Name": "Wall",
@@ -118,11 +41,12 @@
                 "cost": 0,
                 "income": 0
             },
-            "Type": 3
+            "Type": 0
         },
         {
             "Name": "Evoynir",
             "isUnlocked": true,
+            "levelToUnlock": 30,
             "Population": 8000,
             "Wealth": 160000,
             "Quality": 900,
@@ -152,7 +76,27 @@
                 "maxLevel": 5,
                 "cost": 75000,
                 "income": 7500,
-                "Quests": []
+                "Quests": [
+                    {
+                        "Type": 1,
+                        "ID": 2005,
+                        "Name": "The Mysterious Stranger",
+                        "Description": "A mysterious stranger has arrived in town and is looking for help with a secret mission.",
+                        "DC": 30,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 16,
+                        "CompletionMinute": 30,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": "Strength",
+                        "StatRewardMin": 3,
+                        "StatRewardMax": 4
+                    }
+                ]
             },
             "TownHall": {
                 "Name": "Grand Town Hall",
@@ -160,7 +104,27 @@
                 "maxLevel": 5,
                 "cost": 100000,
                 "income": 10000,
-                "Jobs": []
+                "Jobs": [
+                    {
+                        "Type": 0,
+                        "ID": 1002,
+                        "Name": "Blacksmith",
+                        "Description": "Craft weapons and armor for the town's defenders.",
+                        "DC": 15,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 8,
+                        "CompletionMinute": 0,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": "Dexterity",
+                        "StatRewardMin": 2,
+                        "StatRewardMax": 3
+                    }
+                ]
             },
             "Walls": {
                 "Name": "Great Wall",
@@ -174,6 +138,7 @@
         {
             "Name": "Shahum",
             "isUnlocked": false,
+            "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": 130000,
             "Quality": 850,
@@ -216,6 +181,7 @@
         {
             "Name": "Yrad'si",
             "isUnlocked": false,
+            "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": 130000,
             "Quality": 850,
@@ -258,6 +224,7 @@
         {
             "Name": "Incan",
             "isUnlocked": false,
+            "levelToUnlock": 20,
             "Population": 5500,
             "Wealth": 110000,
             "Quality": 800,
@@ -300,6 +267,7 @@
         {
             "Name": "Tarus",
             "isUnlocked": false,
+            "levelToUnlock": 20,
             "Population": 7000,
             "Wealth": 140000,
             "Quality": 870,
@@ -342,6 +310,7 @@
         {
             "Name": "Cryssborn",
             "isUnlocked": false,
+            "levelToUnlock": 15,
             "Population": 800,
             "Wealth": 16000,
             "Quality": 300,
@@ -384,6 +353,7 @@
         {
             "Name": "Woodholmers",
             "isUnlocked": false,
+            "levelToUnlock": 10,
             "Population": 1000,
             "Wealth": 20000,
             "Quality": 350,
@@ -426,6 +396,7 @@
         {
             "Name": "Mineholmers",
             "isUnlocked": false,
+            "levelToUnlock": 7,
             "Population": 1000,
             "Wealth": 20000,
             "Quality": 350,
@@ -468,6 +439,7 @@
         {
             "Name": "Mudfell",
             "isUnlocked": false,
+            "levelToUnlock": 5,
             "Population": 400,
             "Wealth": 8000,
             "Quality": 200,
@@ -510,6 +482,7 @@
         {
             "Name": "Perchmon",
             "isUnlocked": false,
+            "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": 32000,
             "Quality": 400,
@@ -552,6 +525,7 @@
         {
             "Name": "Rasu",
             "isUnlocked": false,
+            "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": 28000,
             "Quality": 380,
@@ -594,6 +568,7 @@
         {
             "Name": "Flanel",
             "isUnlocked": false,
+            "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": 40000,
             "Quality": 450,
@@ -636,6 +611,7 @@
         {
             "Name": "Mege",
             "isUnlocked": false,
+            "levelToUnlock": 1,
             "Population": 200,
             "Wealth": 4000,
             "Quality": 150,

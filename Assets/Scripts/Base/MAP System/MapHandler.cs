@@ -23,29 +23,29 @@ public class MapHandler : MonoBehaviour
 
     public GameObject selectedSettlement;
 
-    List<GameObject> children = new List<GameObject>();
+    public List<GameObject> children = new List<GameObject>();
 
-    public bool isHunting;
+    public Settlement lastVisitedSettlement;
+    public Settlement destinationSettlement;
 
-    public void MovePlayerToLastVisitedSettlement()
+    public void MovePlayerToLastVisitedSettlement(Settlement _settlement)
     {
-        settlements = SettlementHandler.Instance.settlements;
-        
-        Settlement lastVisitedSettlement = PlayerStatHandler.Instance.LastVisitedSettlement();
-
         PopulateMap();
-        
+
         foreach (GameObject child in children)
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
-            if (settlementButtonPointer.settlement == lastVisitedSettlement)
+            if (settlementButtonPointer.settlement == _settlement)
             {
                 TravelSystem.Instance.currentSettlement = settlementButtonPointer;
-                TravelSystem.Instance.SetSettlements(settlementButtonPointer);
 
-                SettlementHandler.Instance.settlement = lastVisitedSettlement;
+                SettlementHandler.Instance.settlement = _settlement;
 
+                if (!TravelSystem.Instance.travelData.inTravel)
+                    SettlementHandler.Instance.OnSettlementEntered(_settlement);
+                else
+                    OnOpenField();
                 selectedSettlement = child;
             }
         }
@@ -55,6 +55,8 @@ public class MapHandler : MonoBehaviour
 
     public void PopulateMap()
     {
+        settlements = SettlementHandler.Instance.settlements;
+
         children.Clear();
 
         foreach (Transform child in map.transform)
@@ -83,5 +85,55 @@ public class MapHandler : MonoBehaviour
                 settlementButtonPointer.GetComponent<Image>().color = Color.blue;
             }
         }
+
+        CheckPlayerLevelAndUnlockSettlements();
+    }
+
+    public void CheckPlayerLevelAndUnlockSettlements()
+    {
+        foreach (Settlement settlement in settlements)
+        {
+            if (PlayerStatHandler.Instance.pd.Level >= settlement.levelToUnlock)
+            {
+                settlement.isUnlocked = true;
+            }
+        }
+    }
+
+    public SettlementButtonPointer GetLastVisitedSettlement()
+    {
+        foreach (GameObject child in children)
+        {
+            SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if (settlementButtonPointer.settlement == PlayerStatHandler.Instance.LastVisitedSettlement())
+            {
+                return settlementButtonPointer;
+            }
+        }
+
+        return null;
+    }
+
+    public SettlementButtonPointer GetDestinationSettlement()
+    {
+        foreach (GameObject child in children)
+        {
+            SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if (settlementButtonPointer == TravelSystem.Instance.destination)
+            {
+                return settlementButtonPointer;
+            }
+        }
+
+        return null;
+    }
+
+    public void OnOpenField()
+    {
+        lastVisitedSettlement = PlayerStatHandler.Instance.LastVisitedSettlement();
+        destinationSettlement = TravelSystem.Instance.destination.settlement;
+        UIHandler.Instance.UpdateSettlementInfo(lastVisitedSettlement);
     }
 }

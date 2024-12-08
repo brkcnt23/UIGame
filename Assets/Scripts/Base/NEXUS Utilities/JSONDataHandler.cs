@@ -45,12 +45,13 @@ namespace NEXUS.Utilities
 
             if (!File.Exists(jsonFilePath))
             {
-                Debug.LogError($"File not found: {jsonFilePath}");
+                Debug.LogWarning($"File not found: {jsonFilePath}");
                 return null;
             }
 
             string jsonData = File.ReadAllText(jsonFilePath);
             T data = JsonUtility.FromJson<T>(jsonData);
+        
             return data;
         }
     }

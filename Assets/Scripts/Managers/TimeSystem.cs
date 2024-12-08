@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class TimeSystem : MonoBehaviour
@@ -23,21 +25,12 @@ public class TimeSystem : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitializeLastActionTimes()
     {
-        Hour = 6;
-        Minute = 0;
-        Day = 1;
         playerData = PlayerStatHandler.Instance.pd;
-
-        InitializeLastActionTimes();
-    }
-
-    private void InitializeLastActionTimes()
-    {
-        playerData.LastSleepDay = Day;
-        playerData.LastSleepHour = Hour;
-        playerData.LastSleepMinute = Minute;
+        Day = playerData.Day;
+        Hour = playerData.Hour;
+        Minute = playerData.Minute;
     }
 
     /// <summary>
@@ -49,16 +42,51 @@ public class TimeSystem : MonoBehaviour
         Minute += minutes;
         NormalizeTime();
 
-        // Yeni bir gün başladığında (isteğe bağlı)
-        if (Hour == 0 && Minute == 0)
-        {
-            // Günlük işlemler buraya eklenebilir
-        }
-
         CheckExhaustion();
 
         PlayerUISystem.Instance.UpdateClockText();
+
     }
+
+    public void AdvanceTime(int days, int hours, int minutes)
+    {
+        int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
+        AdvanceTime(totalMinutes);
+    }
+
+    //we will advance time but with a IEnumerator so we can see the time passing
+    public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
+    {
+        int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
+        int increment = 10; // Adjust the increment (e.g., 10 minutes)
+
+        int minutesPassed = 0;
+        while (minutesPassed < totalMinutes)
+        {
+            // Determine how much time to advance in this step
+            int step = Mathf.Min(increment, totalMinutes - minutesPassed);
+
+            // Advance time
+            AdvanceTime(step);
+
+            // Update the UI
+            PlayerUISystem.Instance.UpdateClockText();
+
+            minutesPassed += step;
+
+            // Smooth the speed of time progression
+            float progress = (float)minutesPassed / totalMinutes;
+            float waitTime = Mathf.Lerp(0.01f, 0.05f, progress);
+
+            yield return new WaitForSecondsRealtime(waitTime);
+        }
+
+        // Update player data
+        playerData.Day = Day;
+        playerData.Hour = Hour;
+        playerData.Minute = Minute;
+    }
+
 
     private void NormalizeTime()
     {
@@ -72,6 +100,35 @@ public class TimeSystem : MonoBehaviour
         {
             Hour -= 24;
             Day += 1;
+
+
+            Event_SO_Constructor[] events = EventHandler.Instance.events.ToArray();
+            // Eventlerin hepsinin süresini her gün için 1 azalt (min 0 olacak)
+            foreach (Event_SO_Constructor e in events)
+            {
+                if (e.encounterCooldown > 0)
+                {
+                    e.encounterCooldown--;
+                }
+            }
+
+            if(TravelSystem.Instance.inTravel)
+            {
+                if(TravelSystem.Instance.isSleeping)
+                {
+                    SleepWhileTraveling();
+                }
+
+                if(TravelSystem.Instance.isHuntingForRations)
+                {
+                    
+                }
+                else
+                {
+                    PlayerStatHandler.Instance.ConsumeDailyRations();
+                }
+            }
+            
         }
     }
 
@@ -101,6 +158,21 @@ public class TimeSystem : MonoBehaviour
         UpdateLastSleepTime();
     }
 
+    public void SleepWhileTraveling()
+    {
+
+        if (playerData.Rations >= 0)
+        {
+            playerData.CurrentExhaustionLevel = 0;
+            Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
+        }
+        else
+        {
+            PlayerStatHandler.Instance.IncreaseExhaustion();
+            Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
+        }
+    }
+
     /// <summary>
     /// Yorgunluk seviyesini kontrol eder.
     /// </summary>
@@ -114,7 +186,7 @@ public class TimeSystem : MonoBehaviour
             Hour,
             Minute);
 
-        if (timeSinceLastSleep >= 1440) // 24 saatten fazla uyumamışsa
+        if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
         {
             PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public class Event_SO_Constructor : SO_Base
@@ -23,17 +24,65 @@ public class Event_SO_Constructor : SO_Base
         StatRewardMax = 3;
     }
 
-    public string[] choices = new string[5];
+    public int encounterCooldown = 0;
 
-    public void EventSuccessful(PlayerStatHandler player)
+    public List<Choice> choices = new List<Choice>();
+
+    public int followUpEventID;
+
+    public Choice choiceForTheFollowUpEvent;
+
+    public void AddChoices(string choiceText, string choiceType, string outcome)
     {
-        player.pd.Silver += Silver;
-        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        Choice choice = new Choice();
+        choice.choiceText = choiceText;
+        choice.choiceType = choiceType;
+        choice.outcome = outcome;
 
-        AddExperience(player, Experience);
+        choices.Add(choice);
     }
 
-    public void EventFailed(PlayerStatHandler player)
+    public void AddChoiceForTheFollowUpEvent(Event_SO_Constructor followUpEvent)
+    {
+
+        foreach (Choice c in followUpEvent.choices)
+        {
+            if (c.choiceText == choiceForTheFollowUpEvent.choiceText)
+            {
+                return;
+            }
+        }
+        string choiceText = $"{choiceForTheFollowUpEvent.choiceText} (Success from {Name} Evnet)";
+        string choiceType = choiceForTheFollowUpEvent.choiceType;
+        string outcome = choiceForTheFollowUpEvent.outcome;
+
+        followUpEvent.AddChoices(choiceText, choiceType, outcome);
+    }
+
+    public void GoodChoice(PlayerStatHandler player)
+    {
+        player.pd.Silver += Silver / 2;
+        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.pd.Alignment += 1;
+
+        AddExperience(player, Experience);
+
+        if (followUpEventID != 0)
+        {
+
+            foreach (Event_SO_Constructor e in EventHandler.Instance.events)
+            {
+                if (e.ID == followUpEventID)
+                {
+                    AddChoiceForTheFollowUpEvent(e);
+                    break;
+                }
+            }
+
+        }
+    }
+
+    public void FailChoice(PlayerStatHandler player)
     {
         player.pd.Silver -= Silver;
         player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1));
@@ -41,17 +90,29 @@ public class Event_SO_Constructor : SO_Base
         AddExperience(player, Experience * 2);
     }
 
-    public void EventNeutral(PlayerStatHandler player)
+    public void NeutralChoce(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
+        player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1) / 2);
 
         AddExperience(player, Experience);
     }
 
-    public void EventCritical(PlayerStatHandler player)
+    public void EvilChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver * 2;
-        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1) * 2);
+        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.pd.Alignment -= 1;
+
+        AddExperience(player, Experience);
+    }
+
+    public void SuccessChoice(PlayerStatHandler player)
+    {
+        player.pd.Silver += Silver;
+        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+
+        AddExperience(player, Experience);
     }
 
     public void EventDeclined(PlayerStatHandler playerData)
@@ -59,30 +120,57 @@ public class Event_SO_Constructor : SO_Base
         AddExperience(playerData, -Experience);
     }
 
-    private void AddExperience(PlayerStatHandler playerData, int experience)
+    public void FollowUpEvent(PlayerStatHandler playerData)
     {
-        ExperienceSystem.AddExperience(playerData.pd, experience);
+        playerData.pd.Silver += Silver;
+        playerData.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        AddExperience(playerData, Experience);
     }
 
-    public void HandleEvent(PlayerStatHandler playerData, int choice)
+    private void AddExperience(PlayerStatHandler playerData, int experience)
     {
-        switch (choice)
+        playerData.pd.Experience += experience;
+        ExperienceSystem.UpdateCharacterLevel(playerData.pd);
+    }
+
+    public void HandleEvent(PlayerStatHandler playerData, Choice choice)
+    {
+        encounterCooldown = 7;
+
+        //call the appropriate method based on the choice type
+        switch (choice.choiceType)
         {
-            case 0:
-                EventSuccessful(playerData);
+            case "Good":
+                GoodChoice(playerData);
                 break;
-            case 1:
-                EventFailed(playerData);
+            case "Fail":
+                FailChoice(playerData);
                 break;
-            case 2:
-                EventNeutral(playerData);
+            case "Neutral":
+                NeutralChoce(playerData);
                 break;
-            case 3:
-                EventCritical(playerData);
+            case "Evil":
+                EvilChoice(playerData);
                 break;
-            case 4:
+            case "Success":
+                SuccessChoice(playerData);
+                break;
+            case "Decline":
                 EventDeclined(playerData);
                 break;
+            case "FollowUp":
+                FollowUpEvent(playerData);
+                break;
         }
+
+        playerData.pd.CheckIfSilverToGold();
     }
+}
+
+[System.Serializable]
+public class Choice
+{
+    public string choiceText;
+    public string choiceType;
+    public string outcome;
 }

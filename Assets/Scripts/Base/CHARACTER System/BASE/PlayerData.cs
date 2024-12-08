@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 [System.Serializable]
@@ -24,11 +25,17 @@ public class PlayerData
     public int Gold;
     public int Silver;
 
+    public int Alignment;
+
 
     public int Strength;
+    public int StrengthXP;
     public int Dexterity;
+    public int DexterityXP;
     public int Constitution;
+    public int ConstitutionXP;
     public int Charisma;
+    public int CharismaXP;
 
 
     public int Rations;
@@ -67,6 +74,20 @@ public class PlayerData
     public string LastSettlementName;
 
     public bool HasDied;
+    public void CheckIfSilverToGold()
+    {
+        if (Silver >= 100)
+        {
+            Gold += Silver / 100;
+            Silver = Silver % 100;
+        }
+
+        if(Silver < 0)
+        {
+            Gold -= 1;
+            Silver += 100;
+        }
+    }
 }
 
 [System.Serializable]
@@ -97,12 +118,4 @@ public class Companion
     public int AlchemistSkillXP;
 
     public bool HasDied;
-}
-[System.Serializable]
-public class SaveSlot
-{
-    public string PlayerName;
-    public string VillageName;
-    public int Day;
-    public PlayerData PlayerData;
 }

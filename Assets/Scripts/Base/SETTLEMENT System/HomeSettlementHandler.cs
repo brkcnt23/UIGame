@@ -18,12 +18,10 @@ public class HomeSettlementHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        homeSettlement = PlayerStatHandler.Instance.homeSettlement;
     }
 
     //this will be the home settlement
-    public Settlement homeSettlement = new Settlement();
+    public Settlement homeSettlement;
 
     //this will be the home settlement wrapper
     JSONDataHandler JSONhandler;
@@ -31,17 +29,14 @@ public class HomeSettlementHandler : MonoBehaviour
     void OnEnable()
     {
         homeSettlement.OnTownHallEntered += HandleTownHallEntered;
-        Wrappers();
     }
 
     void OnDisable()
     {
         homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
-        SaveHomeSettlement();
     }
 
-    //this will be the function that will load the home settlement data
-    public void Wrappers()
+    public void LoadHomeSettlement()
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         HomeSettlementWrapper wrapper = JSONhandler.LoadData<HomeSettlementWrapper>("homeSettlement.json");
@@ -51,6 +46,7 @@ public class HomeSettlementHandler : MonoBehaviour
     //this will be the function that will save the home settlement data
     public void SaveHomeSettlement()
     {
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new HomeSettlementWrapper { homeSettlement = homeSettlement }, "homeSettlement.json");
     }
 
@@ -73,8 +69,6 @@ public class HomeSettlementHandler : MonoBehaviour
                 homeSettlement.Type = SettlementType.Village;
                 break;
         }
-
-        SaveHomeSettlement();
     }
 
     public void UpgradeHomeSettlementHelper()
@@ -100,6 +94,7 @@ public class HomeSettlementHandler : MonoBehaviour
 
         if (dice <= 10)
         {
+            print("%10 chance of random event");
             dice = Dice.RollD6();
 
             switch (dice)
@@ -132,8 +127,6 @@ public class HomeSettlementHandler : MonoBehaviour
         homeSettlement.Population += population;
 
         print(population > 0 ? "People moved in" : "People moved out" + " when you were away");
-
-        SaveHomeSettlement();
     }
 
     public void RandomWealthEvent()
@@ -143,8 +136,6 @@ public class HomeSettlementHandler : MonoBehaviour
         homeSettlement.Wealth += wealth;
 
         print(wealth > 0 ? "Merchants sold their goods" : "Merchants bought goods" + " when you were away");
-
-        SaveHomeSettlement();
     }
 
     public void RandomQualityEvent()
@@ -176,8 +167,6 @@ public class HomeSettlementHandler : MonoBehaviour
         }
 
         //UpgradeHomeSettlement(quality, 0, 0);
-
-        SaveHomeSettlement();
     }
 
     public void RandomShopEvent()
@@ -220,8 +209,6 @@ public class HomeSettlementHandler : MonoBehaviour
                 homeSettlement.Wealth += item.Value * -quantity;
             }
         }
-
-        SaveHomeSettlement();
     }
 
     public void RandomTavernEvent()
@@ -246,8 +233,6 @@ public class HomeSettlementHandler : MonoBehaviour
             homeSettlement.Wealth -= reward;
             print($"Tavern quest {quest.Name} was failed when you were away and you settlement lost {reward} silver");
         }
-
-        SaveHomeSettlement();
     }
 
 }

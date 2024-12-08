@@ -27,19 +27,34 @@ public class SettlementHandler : MonoBehaviour
 
     JSONDataHandler JSONhandler;
 
-    public void Wrappers()
+    public void LoadSettlements()
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
 
-        settlement = PlayerStatHandler.Instance.LastVisitedSettlement();
+        settlements.Insert(0, HomeSettlementHandler.Instance.homeSettlement);
+
+        settlement = settlements.Find(x => x.Name == PlayerStatHandler.Instance.LastVisitedSettlement().Name);
     }
 
+    public void LoadSettlementsFromSourceData()
+    {
+        JSONhandler = new JSONDataHandler("SourceData");
+        SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
+        settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
+    }
+
+    public void SaveSettlements()
+    {
+        settlements.Remove(HomeSettlementHandler.Instance.homeSettlement);
+        JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        JSONhandler.SaveData(new SettlementListWrapper { settlements = settlements }, "settlements.json");
+    }
 
     void OnEnable()
     {
-        settlement.OnSettlementEntered += OnSettlmentEntered;
+        settlement.OnSettlementEntered += OnSettlementEntered;
         settlement.OnSettlementExited += OnSettlementExited;
 
         settlement.OnSettlementUnlocked += OnSettlmenUnlocked;
@@ -56,7 +71,7 @@ public class SettlementHandler : MonoBehaviour
 
     void OnDisable()
     {
-        settlement.OnSettlementEntered -= OnSettlmentEntered;
+        settlement.OnSettlementEntered -= OnSettlementEntered;
         settlement.OnSettlementExited -= OnSettlementExited;
 
         settlement.OnSettlementUnlocked -= OnSettlmenUnlocked;
@@ -70,15 +85,6 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnWallEntered -= HandleWallEntered;
         settlement.OnShopEntered -= HandleShopEntered;
     }
-
-    public void EndWrappers()
-    {
-        JSONhandler = new JSONDataHandler("Slot");
-        SettlementListWrapper wrapper = new SettlementListWrapper();
-        wrapper.settlements = settlements;
-        JSONhandler.SaveData(wrapper, "settlements.json");
-    }
-
     Quest_SO_Constructor PickRandomQuestFromJSON()
     {
         JSONhandler = new JSONDataHandler("SourceData");
@@ -106,9 +112,9 @@ public class SettlementHandler : MonoBehaviour
     {
         return UnityEngine.Random.Range(1, 4);
     }
-    public void OnSettlmentEntered(Settlement settlement)
+    public void OnSettlementEntered(Settlement _settlement)
     {
-        Print($"Entered {settlement.Name}");
+        settlement = settlements.Find(x => x.Name == _settlement.Name);
 
         if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
@@ -131,19 +137,30 @@ public class SettlementHandler : MonoBehaviour
 
         PlayerStatHandler.Instance.pd.LastSettlementName = settlement.Name;
 
-        UIHandler.Instance.UpdateSettlementInfo(settlement);
-
-        if (settlement == PlayerStatHandler.Instance.homeSettlement)
+        if (settlement == HomeSettlementHandler.Instance.homeSettlement)
         {
             HomeSettlementHandler.Instance.OnSettlmentEntered();
         }
+
+        MapHandler.Instance.lastVisitedSettlement = null;
+        MapHandler.Instance.destinationSettlement = null;
+
+        Print($"Entered {settlement.Name}");
+
+        UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
 
 
     public void OnSettlementExited()
     {
-        settlement.Tavern.Quests.Clear();
-        settlement.TownHall.Jobs.Clear();
+        if (settlement.Tavern != null && settlement.Tavern.Quests.Count > 0)
+        {
+            settlement.Tavern.Quests.Clear();
+        }
+        if (settlement.TownHall != null && settlement.TownHall.Jobs.Count > 0)
+        {
+            settlement.TownHall.Jobs.Clear();
+        }
     }
 
     public void OnSettlmenUnlocked(Settlement settlement)

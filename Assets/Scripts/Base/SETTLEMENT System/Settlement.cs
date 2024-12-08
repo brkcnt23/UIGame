@@ -14,7 +14,9 @@ public enum SettlementType
 public class Settlement
 {
     public string Name;
+    public int ID;
     public bool isUnlocked;
+    public int levelToUnlock;
     public int Population;
     public int Wealth;
     public int Quality;
@@ -63,14 +65,14 @@ public class Settlement
 
     public Settlement()
     {
-        Name = "Settlement";
+        Name = "";
         Population = 0;
         Wealth = 0;
         Quality = 0;
         Shops = new List<Shops>();
-        Shops shops = new Shops();
-        shops.Name = "Shop";
-        Shops.Add(shops);
+        Shops shop = new Shops();
+        shop.Name = "Shop";
+        Shops.Add(shop);
         Tavern = new Taverns();
         Tavern.Name = "Tavern";
         TownHall = new TownHalls();

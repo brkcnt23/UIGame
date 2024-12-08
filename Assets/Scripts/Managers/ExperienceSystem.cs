@@ -73,7 +73,6 @@ public static class ExperienceSystem
             OnExperienceNegative?.Invoke();
         }
     }
-
     private static void DecreaseLevel(PlayerData playerData, int newLevel, int totalXP, int maxExperience)
     {
         if(newLevel > 1)

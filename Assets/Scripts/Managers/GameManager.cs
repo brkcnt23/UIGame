@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public List<PlayerData> playerData = new List<PlayerData>();
 
+    public bool isEnteredSettlement = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -46,65 +48,30 @@ public class GameManager : MonoBehaviour
         navPanel.SetActive(false);
         infoPanel.SetActive(false);
 
-        CheckFirstTime();
-    }
-
-
-    void CheckFirstTime()
-    {
-        if (!PlayerPrefs.HasKey("FirstTime"))
-        {
-            PlayerPrefs.SetInt("FirstTime", 1);
-
-            for (int i = 0; i <= 2; i++)
-            {
-                JSONDataHandler JSONhandler = new JSONDataHandler(i);
-                PlayerDataWrapper wrapper = new PlayerDataWrapper();
-                JSONhandler.SaveData(wrapper, "playerData.json");
-
-                //create a empty settlement data
-                JSONDataHandler JSONhandler2 = new JSONDataHandler(i);
-                SettlementListWrapper wrapper2 = new SettlementListWrapper();
-                JSONhandler2.SaveData(wrapper2, "settlements.json");
-
-                //load settlement data from source to empty settlement data
-                JSONDataHandler JSONhandler3 = new JSONDataHandler("SourceData");
-                SettlementListWrapper wrapper3 = JSONhandler3.LoadData<SettlementListWrapper>("settlements.json");
-                JSONDataHandler JSONhandler4 = new JSONDataHandler(i);
-                JSONhandler4.SaveData(wrapper3, "settlements.json");
-
-                PlayerStatHandler.Instance.pd = new PlayerData();
-                SettlementHandler.Instance.settlement = new Settlement();
-            }
-        }
+        LoadPlayerData();
+        PopulateButtonsAndTexts();
     }
 
     public void LoadPlayerData()
     {
-        playerData.Clear();
         for (int i = 0; i <= 2; i++)
         {
             JSONDataHandler JSONhandler = new JSONDataHandler(i);
             PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
-            playerData.Add(wrapper.pd);
+            playerData.Add(wrapper != null ? wrapper.pd : new PlayerData());
         }
     }
     public void PopulateButtonsAndTexts()
     {
         saveSlotButtons = saveSlotContainer.GetComponentsInChildren<Button>();
 
-        LoadPlayerData();
-
-
         foreach (Button button in saveSlotButtons)
         {
-
             int _index = button.gameObject.transform.GetSiblingIndex();
             button.onClick.RemoveAllListeners();
-            if (playerData[_index].Name == "")
+            if (playerData[_index].Name == null)
             {
-
-                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index}\nClick to Start New Game";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index + 1}\nClick to Start New Game";
                 button.onClick.AddListener(() =>
                 {
                     PlayerPrefs.SetInt("Slot", _index);
@@ -123,26 +90,20 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame(int slot)
     {
-        PlayerStatHandler.Instance.Wrappers(slot);
+        if (playerData[slot] == null)
+        {
+            print("No Game Data Found... Starting New Game");
+            ShowStartGamePanel();
+            return;
+        }
+        else
+        {
+            print("Loading Game...");
+            PlayerPrefs.SetInt("Slot", slot);
+            PlayerStatHandler.Instance.LoadPlayerData();
+            ShowSettlementPanel();
+        }
 
-        PlayerPrefs.SetInt("Slot", slot);
-
-        Settlement settlement = PlayerStatHandler.Instance.pd.LastSettlementName == "" ? PlayerStatHandler.Instance.homeSettlement : SettlementHandler.Instance.settlements.Find(x => x.Name == PlayerStatHandler.Instance.pd.LastSettlementName);
-
-
-        SettlementHandler.Instance.settlement = settlement;
-
-        SettlementHandler.Instance.OnSettlmentEntered(settlement);
-        UIHandler.Instance.UpdateSettlementInfo(settlement);
-        ShowSettlementPanel();
-
-        MapHandler.Instance.MovePlayerToLastVisitedSettlement();
-
-    }
-
-    public void SaveGame()
-    {
-        PlayerStatHandler.Instance.EndWrappers();
     }
 
     public void DisableAllPanels()
@@ -162,6 +123,8 @@ public class GameManager : MonoBehaviour
         navPanel.SetActive(true);
         infoPanel.SetActive(true);
         startGamePanel.SetActive(true);
+
+        isEnteredSettlement = true;
     }
 
     public void ShowMainMenuPanel()
@@ -175,14 +138,8 @@ public class GameManager : MonoBehaviour
     public void ShowStartGamePanel()
     {
         DisableAllPanels();
+        PopulateButtonsAndTexts();
         saveSlotsPanel.SetActive(true);
-    }
-
-    public void ShowLoadGamePanel()
-    {
-        DisableAllPanels();
-        startGamePanel.SetActive(true);
-        loadGamePanel.SetActive(true);
     }
 
     public void ShowCreditsPanel()
@@ -199,15 +156,8 @@ public class GameManager : MonoBehaviour
         settingsPanel.SetActive(true);
     }
 
-    public void ExitGame()
-    {
-        Debug.Log("Exiting Game...");
-        Application.Quit();
-    }
-
     public void LoadLastSavedGame()
     {
-        // Load the most recent save data.
         int slot = PlayerPrefs.GetInt("Slot");
         LoadGame(slot);
     }
@@ -218,20 +168,87 @@ public class GameManager : MonoBehaviour
     }
     public void StartNewGame()
     {
+        SetPlayerData();
+        LoadGame(PlayerPrefs.GetInt("Slot"));
+    }
+
+    public void SetPlayerData()
+    {
         string name, villageName;
         name = PlayerNameInput.text;
         villageName = VillageNameInput.text;
 
         if (name.Length == 0 || villageName.Length == 0)
             return;
-        PlayerStatHandler.Instance.pd.VillageName = villageName;
-        PlayerStatHandler.Instance.pd.Name = name;
-        PlayerStatHandler.Instance.pd.Day = 1;
-        PlayerStatHandler.Instance.homeSettlement.Name = villageName;
-        PlayerStatHandler.Instance.homeSettlement.isUnlocked = true;
 
-        SaveGame();
+        PlayerData playerData = new PlayerData();
+        playerData.Name = name;
+        playerData.VillageName = villageName;
+        playerData.Day = 1;
+        playerData.Hour = 6;
+        playerData.Level = 1;
+        playerData.Health = 100;
+        playerData.MaxHealth = 100;
+        playerData.Experience = 0;
+        playerData.MaxExperience = 149;
+        playerData.Gold = 5;
+        playerData.Silver = 0;
+        playerData.Alignment = 0;
+        playerData.Strength = 1;
+        playerData.StrengthXP = 149;
+        playerData.Dexterity = 1;
+        playerData.DexterityXP = 149;
+        playerData.Constitution = 1;
+        playerData.ConstitutionXP = 149;
+        playerData.Charisma = 1;
+        playerData.CharismaXP = 149;
+        playerData.SmitherSkillLevel = 1;
+        playerData.SmitherSkillXP = 149;
+        playerData.TannerSkillLevel = 1;
+        playerData.TannerSkillXP = 149;
+        playerData.CarpenterSkillLevel = 1;
+        playerData.CarpenterSkillXP = 149;
+        playerData.MasonSkillLevel = 1;
+        playerData.MasonSkillXP = 149;
+        playerData.AlchemistSkillLevel = 1;
+        playerData.AlchemistSkillXP = 149;
+        playerData.TotalBattlesFought = 0;
+        playerData.TotalBattlesWon = 0;
+        playerData.TotalBattlesLost = 0;
+        playerData.MaxExhaustionLevel = 10;
+        playerData.CurrentExhaustionLevel = 0;
+        playerData.Rations = 10;
+        playerData.PlayerArmy = new Army();
+        playerData.LastSleepDay = 1;
+        playerData.LastSleepHour = 6;
 
-        LoadGame(PlayerPrefs.GetInt("Slot"));
+        playerData.HasDied = false;
+
+        Settlement homeSettlement = new Settlement();
+        homeSettlement.ID = 0;
+        homeSettlement.Name = villageName;
+        homeSettlement.isUnlocked = true;
+        homeSettlement.Type = SettlementType.Village;
+        homeSettlement.Quality = 1;
+        homeSettlement.Population = 10;
+        homeSettlement.Wealth = 100;
+        homeSettlement.Tavern = new Taverns();
+        homeSettlement.Tavern.Name = "Mükremin's Tavern";
+        homeSettlement.Shops = new List<Shops>();
+        Shops shop = new Shops();
+        shop.Name = "Muhittin's Shop";
+        homeSettlement.Shops.Add(shop);
+        homeSettlement.TownHall = new TownHalls();
+        homeSettlement.TownHall.Name = villageName + "'s Hall";
+        homeSettlement.Walls = new Walls();
+        homeSettlement.Walls.Name = villageName + "'s Wall";
+
+        PlayerStatHandler.Instance.pd = playerData;
+        HomeSettlementHandler.Instance.homeSettlement = homeSettlement;
+
+        EventHandler.Instance.LoadEventsFromSourceData();
+        SettlementHandler.Instance.LoadSettlementsFromSourceData();
+        TravelSystem.Instance.LoadTravelDataFromSourceData();
+        PlayerStatHandler.Instance.SavePlayerData();
     }
 }

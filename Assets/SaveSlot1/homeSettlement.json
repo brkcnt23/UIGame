@@ -1,6 +1,6 @@
 {
     "homeSettlement": {
-        "Name": "Gora",
+        "Name": "Incantarus",
         "ID": 0,
         "isUnlocked": true,
         "levelToUnlock": 0,
@@ -27,7 +27,7 @@
             "Quests": []
         },
         "TownHall": {
-            "Name": "Gora's Hall",
+            "Name": "Incantarus's Hall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,
@@ -35,7 +35,7 @@
             "Jobs": []
         },
         "Walls": {
-            "Name": "Gora's Wall",
+            "Name": "Incantarus's Wall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,
