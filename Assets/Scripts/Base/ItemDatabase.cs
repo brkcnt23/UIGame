@@ -22,7 +22,7 @@ public static class ItemDatabase
         {
             items.Add(item.ID, item);
         }
-    }
+    } 
 
     public static Item GetItemByID(int id)
     {

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a064b595c25ebe846850d7b4f4e8b0e5
+guid: 5f28de024a7cb9446bc218b228e8c145
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7844110163761493252
-    second: DEX2_0
+      213: 224768467926405958
+    second: MASON BUTTON_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,23 +152,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DEX2_0
+      name: MASON BUTTON_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 111
-        height: 106
+        y: 0
+        width: 250
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 405f80252a0ebdc60800000000000000
-      internalID: 7844110163761493252
+      spriteID: 643567f0bb98e1300800000000000000
+      internalID: 224768467926405958
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ada86899c55ae4042a0ee889afe55aca
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DEX2_0: 7844110163761493252
+      MASON BUTTON_0: 224768467926405958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -23,7 +23,7 @@ public class Event_SO_Constructor : SO_Base
         StatRewardMin = 1;
         StatRewardMax = 3;
     }
-
+    public bool isHaveWar = false;
     public int encounterCooldown = 0;
 
     public List<Choice> choices = new List<Choice>();

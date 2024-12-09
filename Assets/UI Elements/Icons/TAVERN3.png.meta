@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 998e08e7fac27c64e9b3bd092c4cbab6
+guid: 24f0e4d2d87c38341b79dd3395583a88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8231310227565912944
-    second: "K\xD6Y deneme_0"
+      213: -3131636396141305952
+    second: TAVERN3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "K\xD6Y deneme_0"
+      name: TAVERN3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 34
-        width: 256
-        height: 199
+        y: 0
+        width: 3213
+        height: 1920
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0732b166a0d7b3270800000000000000
-      internalID: 8231310227565912944
+      spriteID: 0af10523a413a84d0800000000000000
+      internalID: -3131636396141305952
       vertices: []
       indices: 
       edges: []
@@ -186,8 +186,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "K\xD6Y deneme_0": 8231310227565912944
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

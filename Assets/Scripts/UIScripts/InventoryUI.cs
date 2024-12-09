@@ -44,6 +44,9 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventoryPanel.SetActive(false); // Hide inventory panel by default
+        inventoryGrid.cellSize = new Vector2(150, 150);
+        inventoryGrid.spacing = new Vector2(10, 10); // Optional spacing
+
     }
 
 
@@ -68,7 +71,8 @@ public class InventoryUI : MonoBehaviour
             newItem.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
             {
                 Debug.Log($"Selected: {item.Name}");
-                // Optionally display item details or equip it
+                // display item details
+
             });
         }
     }
