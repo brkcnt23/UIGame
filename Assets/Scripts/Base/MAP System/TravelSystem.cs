@@ -58,12 +58,31 @@ public class TravelSystem : MonoBehaviour
 
     public void SaveTravelData()
     {
+        if (!inTravel)
+        {
+            return;
+        }
+        travelData.inTravel = inTravel;
         currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
         destination = MapHandler.Instance.GetDestinationSettlement();
         currentEvent = EventHandler.Instance.currentEvent;
         travelData.currentSettlementID = currentSettlement != null ? currentSettlement.settlement.ID : 0;
         travelData.destinationID = destination != null ? destination.settlement.ID : 0;
-        travelData.currentEventID = currentEvent != null ? currentEvent.ID : 0;
+        if (isEventActive)
+        {
+            travelData.isEventActive = isEventActive;
+            if (currentEvent != null || currentEvent.ID != 0)
+            {
+                travelData.currentEventID = currentEvent.ID;
+            }
+        }
+        travelData.remainingTime = remainingTime;
+        travelData.remainingTimeMinutes = remainingTimeMinutes;
+        travelData.minEvents = minEvents;
+        travelData.eventTimes = eventTimes;
+        travelData.PlayerWantsToHandleEventorEnterSettlement = PlayerWantsToHandleEventorEnterSettlement;
+        travelData.elapsedTravelTime = elapsedTravelTime;
+        travelData.eventIndex = eventIndex;
 
         JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         jSONDataHandler.SaveData(travelData, "travel.json");
@@ -143,7 +162,6 @@ public class TravelSystem : MonoBehaviour
     public void TravelToSettlement()
     {
         inTravel = true;
-        travelData.inTravel = true;
         remainingTime = 0;
         int minutes = CalculateDistance();
 
@@ -156,10 +174,6 @@ public class TravelSystem : MonoBehaviour
         hours = hours % 24;
 
         SettlementHandler.Instance.OnSettlementExited();
-        travelData.currentSettlementID = currentSettlement.settlement.ID;
-        travelData.destinationID = destination.settlement.ID;
-        travelData.remainingTime = remainingTime;
-        travelData.remainingTimeMinutes = remainingTimeMinutes;
         ContinueTravel();
 
 
@@ -191,14 +205,15 @@ public class TravelSystem : MonoBehaviour
     public void ContinueTravel()
     {
         StopAllCoroutines();
+
         if (!TravelingPanel.activeSelf)
         {
             TravelingPanel.SetActive(true);
         }
 
-        if (currentEvent != null)
+        if (currentEvent.ID != 0)
         {
-            StartCoroutine(HandleEvent());
+            HandleEvent();
         }
         else
         {
@@ -217,7 +232,7 @@ public class TravelSystem : MonoBehaviour
         {
             // Determine the number of events
             int minEvents = this.minEvents;
-            int maxEvents = Mathf.Max(1, totalTravelTime / 8);
+            int maxEvents = Mathf.Max(1, totalTravelTime / 15);
             int numberOfEvents = Random.Range(minEvents, maxEvents + 1);
 
             // Generate event times
@@ -230,7 +245,6 @@ public class TravelSystem : MonoBehaviour
             eventTimes.Sort();
 
             travelData.eventTimes = eventTimes;
-            travelData.minEvents = minEvents;
         }
 
         while (remainingTime > 0)
@@ -251,22 +265,18 @@ public class TravelSystem : MonoBehaviour
             remainingTime -= travelSegment;
             elapsedTravelTime += travelSegment;
 
-            travelData.elapsedTravelTime = elapsedTravelTime;
-            travelData.remainingTime = remainingTime;
-
             if (eventIndex < eventTimes.Count && elapsedTravelTime >= eventTimes[eventIndex])
             {
-                isEventActive = true;
-                travelData.isEventActive = isEventActive;
-                StartCoroutine(HandleEvent());
+                HandleEvent();
                 eventIndex++;
-                travelData.eventIndex = eventIndex;
+                isEventActive = true;
+                
+                print("Event at " + elapsedTravelTime + " hours");
 
                 // Wait until the event is resolved
                 yield return new WaitUntil(() => !isEventActive);
-
-                currentEvent = null;
-                travelData.currentEventID = 0;
+                isEventActive = false;
+                currentEvent.ID = 0;
             }
         }
 
@@ -281,19 +291,9 @@ public class TravelSystem : MonoBehaviour
     public void TravelDone()
     {
         EnterSettlement();
+
         inTravel = false;
-        travelData.inTravel = false;
-        travelData.currentSettlementID = 0;
-        travelData.destinationID = 0;
-        travelData.remainingTime = 0;
-        travelData.remainingTimeMinutes = 0;
-        travelData.minEvents = 0;
-        travelData.eventTimes = new List<int>();
-        travelData.isEventActive = false;
-        travelData.PlayerWantsToHandleEventorEnterSettlement = false;
-        travelData.currentEventID = 0;
-        travelData.elapsedTravelTime = 0;
-        travelData.eventIndex = 0;
+        ResetTravelData();
     }
 
     public void EnterSettlement()
@@ -309,27 +309,39 @@ public class TravelSystem : MonoBehaviour
         TimeSystem.Instance.AdvanceTime(remainingTimeMinutes);
     }
 
-    public IEnumerator HandleEvent()
+    public void HandleEvent()
     {
         TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
-        print("Event at " + elapsedTravelTime + " hours");
 
         ShowEventPanel();
-
-        yield return new WaitUntil(() =>
-        {
-            return PlayerWantsToHandleEventorEnterSettlement;
-        });
     }
 
     public void ShowEventPanel()
     {
         eventPanel.SetActive(true);
 
-        Event_SO_Constructor currentEvent = this.currentEvent != null ? this.currentEvent : EventHandler.Instance.GenerateEvent();
+        if (currentEvent.ID == 0)
+        {
+            Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
+            currentEvent = randomEvent;
+        }
 
-        this.currentEvent = currentEvent;
+        
         eventPanel.GetComponent<EventPanel>().ShowEvent(currentEvent, remainingTime);
+    }
+
+    public void ResetTravelData()
+    {
+        destination = null;
+        currentEvent.ID = 0;
+        remainingTime = 0;
+        remainingTimeMinutes = 0;
+        minEvents = 0;
+        eventTimes = new List<int>();
+        isEventActive = false;
+        PlayerWantsToHandleEventorEnterSettlement = false;
+        elapsedTravelTime = 0;
+        eventIndex = 0;
     }
 
     public void UpdateTravelTimeText()

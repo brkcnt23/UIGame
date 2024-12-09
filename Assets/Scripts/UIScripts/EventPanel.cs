@@ -49,12 +49,8 @@ public class EventPanel : MonoBehaviour
 
                 OutcomeHolder.SetActive(true);
                 OutcomeHolder.GetComponentInChildren<TextMeshProUGUI>().text = c.outcome;
-            });
 
-            b.GetComponentInChildren<TextMeshProUGUI>().text = c.choiceText;
-        }
-
-        OutcomeHolder.GetComponentInChildren<Button>().onClick.AddListener(() =>
+                OutcomeHolder.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
                     OutcomeHolder.SetActive(false);
                     gameObject.SetActive(false);
@@ -64,6 +60,10 @@ public class EventPanel : MonoBehaviour
 
                     TravelSystem.Instance.TravelingPanel.SetActive(true);
                 });
+            });
+
+            b.GetComponentInChildren<TextMeshProUGUI>().text = c.choiceText;
+        }
 
         Button[] buttons = ButtonHolder.GetComponentsInChildren<Button>();
         //randomize button order
