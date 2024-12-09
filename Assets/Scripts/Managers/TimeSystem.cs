@@ -160,17 +160,22 @@ public class TimeSystem : MonoBehaviour
 
     public void SleepWhileTraveling()
     {
+        
+        PlayerStatHandler.Instance.ConsumeDailyRations();
 
         if (playerData.Rations >= 0)
         {
             playerData.CurrentExhaustionLevel = 0;
             Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
+            
         }
         else
         {
             PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
+
+        UpdateLastSleepTime();
     }
 
     /// <summary>

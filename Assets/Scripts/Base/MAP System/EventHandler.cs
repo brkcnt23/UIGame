@@ -47,8 +47,6 @@ public class EventHandler : MonoBehaviour
 
     public void HandleEvent(Choice choice)
     {
-        currentEvent.encounterCooldown = 7;
-
         events.Find(x => x.ID == currentEvent.ID).encounterCooldown = currentEvent.encounterCooldown;
 
         currentEvent.HandleEvent(PlayerStatHandler.Instance, choice);
@@ -58,17 +56,19 @@ public class EventHandler : MonoBehaviour
 
     public Event_SO_Constructor GenerateEvent()
     {
-        Event_SO_Constructor _event = events[Random.Range(0, events.Count)];
+        //return a random event but not the event cooldown is not 0
+        List<Event_SO_Constructor> availableEvents = events.FindAll(x => x.encounterCooldown == 0);
 
-        if (_event.encounterCooldown > 0)
+        if (availableEvents.Count == 0)
         {
-            return GenerateEvent(); //recursive call but it stack overflows
+            return null;
         }
-        else
-        {
-            currentEvent = _event;
-            return _event;
-        }
+
+        Event_SO_Constructor _event = availableEvents[Random.Range(0, availableEvents.Count)];
+
+        currentEvent = _event;
+
+        return _event;
     }
 
     public Event_SO_Constructor GetEventByID(int id)

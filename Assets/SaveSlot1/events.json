@@ -2,7 +2,7 @@
     "events": [
         {
             "Type": 2,
-            "ID": 3001,
+            "ID": 0,
             "Name": "Bandit Trouble",
             "Description": "A group of bandits is harassing local merchants on the main road. The villagers request your help.",
             "DC": 12,
@@ -18,7 +18,7 @@
             "TargetStat": "Strength",
             "StatRewardMin": 1,
             "StatRewardMax": 3,
-            "encounterCooldown": 7,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Fight the bandits head-on.",
@@ -50,7 +50,7 @@
         },
         {
             "Type": 2,
-            "ID": 3002,
+            "ID": 0,
             "Name": "Bandit Leader's Secrets",
             "Description": "The captured bandit leader reveals a hidden cache in exchange for his freedom. You must decide how to proceed.",
             "DC": 10,
@@ -66,7 +66,7 @@
             "TargetStat": "Dexterity",
             "StatRewardMin": 1,
             "StatRewardMax": 3,
-            "encounterCooldown": 5,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Accept the deal and spare the bandit.",
@@ -98,7 +98,7 @@
         },
         {
             "Type": 2,
-            "ID": 3003,
+            "ID": 0,
             "Name": "Wounded Knight",
             "Description": "A wounded knight collapses at the gates of your camp, seeking aid.",
             "DC": 8,
@@ -114,7 +114,7 @@
             "TargetStat": "Constitution",
             "StatRewardMin": 2,
             "StatRewardMax": 5,
-            "encounterCooldown": 5,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Provide medical aid to the knight.",
@@ -146,7 +146,7 @@
         },
         {
             "Type": 2,
-            "ID": 3004,
+            "ID": 0,
             "Name": "Royal Gratitude",
             "Description": "A knight's family rewards you handsomely for a quest.",
             "DC": 12,
@@ -162,7 +162,7 @@
             "TargetStat": "Charisma",
             "StatRewardMin": 3,
             "StatRewardMax": 6,
-            "encounterCooldown": 6,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -183,6 +183,246 @@
                     "choiceText": "Leave without a word.",
                     "choiceType": "Fail",
                     "outcome": "The knight's family is insulted and you lose their favor."
+                }
+            ],
+            "followUpEventID": 0,
+            "choiceForTheFollowUpEvent": {
+                "choiceText": "",
+                "choiceType": "",
+                "outcome": ""
+            }
+        },
+        {
+            "Type": 2,
+            "ID": 0,
+            "Name": "Lost Child",
+            "Description": "A lost child wanders into your camp, seeking help to find their family.",
+            "DC": 6,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
+            "CompletionDay": 0,
+            "CompletionHour": 1,
+            "CompletionMinute": 0,
+            "Experience": 100,
+            "Silver": 50,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 1,
+            "StatRewardMax": 3,
+            "encounterCooldown": 0,
+            "choices": [
+                {
+                    "choiceText": "Help the child find their family.",
+                    "choiceType": "Success",
+                    "outcome": "You reunite the child with their family and gain their gratitude."
+                },
+                {
+                    "choiceText": "Use the child as a distraction for a robbery.",
+                    "choiceType": "Evil",
+                    "outcome": "You gain some loot but lose reputation with the villagers."
+                },
+                {
+                    "choiceText": "Ignore the child and continue your journey.",
+                    "choiceType": "Fail",
+                    "outcome": "The child wanders off and you gain nothing."
+                },
+                {
+                    "choiceText": "Take the child to the authorities.",
+                    "choiceType": "Good",
+                    "outcome": "The authorities reward you for returning the child safely."
+                }
+            ],
+            "followUpEventID": 0,
+            "choiceForTheFollowUpEvent": {
+                "choiceText": "",
+                "choiceType": "",
+                "outcome": ""
+            }
+        },
+        {
+            "Type": 2,
+            "ID": 0,
+            "Name": "Mysterious Stranger",
+            "Description": "A mysterious stranger approaches you with an offer of power in exchange for a favor.",
+            "DC": 15,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
+            "CompletionDay": 0,
+            "CompletionHour": 3,
+            "CompletionMinute": 0,
+            "Experience": 500,
+            "Silver": 0,
+            "TargetStat": "Constitution",
+            "StatRewardMin": 3,
+            "StatRewardMax": 6,
+            "encounterCooldown": 0,
+            "choices": [
+                {
+                    "choiceText": "Accept the stranger's offer.",
+                    "choiceType": "Success",
+                    "outcome": "You gain new powers but at what cost?"
+                },
+                {
+                    "choiceText": "Refuse the stranger's offer.",
+                    "choiceType": "Neutral",
+                    "outcome": "The stranger disappears without a trace."
+                },
+                {
+                    "choiceText": "Attack the stranger.",
+                    "choiceType": "Evil",
+                    "outcome": "The stranger reveals their true form and curses you."
+                },
+                {
+                    "choiceText": "Ask for more information before deciding.",
+                    "choiceType": "Good",
+                    "outcome": "The stranger offers more details but the choice is still yours."
+                }
+            ],
+            "followUpEventID": 0,
+            "choiceForTheFollowUpEvent": {
+                "choiceText": "",
+                "choiceType": "",
+                "outcome": ""
+            }
+        },
+        {
+            "Type": 2,
+            "ID": 0,
+            "Name": "Haunted Forest",
+            "Description": "The villagers speak of a haunted forest where the dead walk at night. They ask for your help in putting the spirits to rest.",
+            "DC": 10,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
+            "CompletionDay": 0,
+            "CompletionHour": 3,
+            "CompletionMinute": 0,
+            "Experience": 300,
+            "Silver": 200,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 2,
+            "StatRewardMax": 5,
+            "encounterCooldown": 0,
+            "choices": [
+                {
+                    "choiceText": "Perform a ritual to put the spirits to rest.",
+                    "choiceType": "Success",
+                    "outcome": "The spirits are put to rest and the villagers are grateful."
+                },
+                {
+                    "choiceText": "Destroy the spirits with force.",
+                    "choiceType": "Evil",
+                    "outcome": "The spirits are destroyed but the villagers fear you."
+                },
+                {
+                    "choiceText": "Ignore the villagers' request.",
+                    "choiceType": "Fail",
+                    "outcome": "The spirits continue to haunt the forest."
+                },
+                {
+                    "choiceText": "Investigate the forest for more information.",
+                    "choiceType": "Good",
+                    "outcome": "You discover the source of the haunting and put the spirits to rest."
+                }
+            ],
+            "followUpEventID": 0,
+            "choiceForTheFollowUpEvent": {
+                "choiceText": "",
+                "choiceType": "",
+                "outcome": ""
+            }
+        },
+        {
+            "Type": 2,
+            "ID": 0,
+            "Name": "Cursed Artifact",
+            "Description": "A villager brings you a cursed artifact that is causing trouble in the village. They ask for your help in destroying it.",
+            "DC": 12,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
+            "CompletionDay": 0,
+            "CompletionHour": 6,
+            "CompletionMinute": 0,
+            "Experience": 400,
+            "Silver": 300,
+            "TargetStat": "Strength",
+            "StatRewardMin": 2,
+            "StatRewardMax": 5,
+            "encounterCooldown": 0,
+            "choices": [
+                {
+                    "choiceText": "Destroy the artifact with brute force.",
+                    "choiceType": "Success",
+                    "outcome": "The artifact is destroyed and the village is safe."
+                },
+                {
+                    "choiceText": "Use the artifact to gain power.",
+                    "choiceType": "Evil",
+                    "outcome": "You gain power but the artifact's curse affects you."
+                },
+                {
+                    "choiceText": "Bury the artifact to contain its curse.",
+                    "choiceType": "Neutral",
+                    "outcome": "The artifact is contained but the curse remains."
+                },
+                {
+                    "choiceText": "Study the artifact for more information.",
+                    "choiceType": "Good",
+                    "outcome": "You learn the history of the artifact and how to destroy it."
+                }
+            ],
+            "followUpEventID": 0,
+            "choiceForTheFollowUpEvent": {
+                "choiceText": "",
+                "choiceType": "",
+                "outcome": ""
+            }
+        },
+        {
+            "Type": 2,
+            "ID": 0,
+            "Name": "Dragon Attack",
+            "Description": "A dragon attacks the village, threatening to destroy everything in its path. The villagers ask for your help in slaying the beast.",
+            "DC": 15,
+            "HealthRequirement": 0,
+            "ArmyPowerRequirement": 0,
+            "SilverRequirement": 0,
+            "StatRequirement": 0,
+            "CompletionDay": 0,
+            "CompletionHour": 12,
+            "CompletionMinute": 0,
+            "Experience": 1000,
+            "Silver": 1000,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 3,
+            "StatRewardMax": 6,
+            "encounterCooldown": 0,
+            "choices": [
+                {
+                    "choiceText": "Confront the dragon head-on.",
+                    "choiceType": "Success",
+                    "outcome": "You slay the dragon and save the village from destruction."
+                },
+                {
+                    "choiceText": "Negotiate with the dragon.",
+                    "choiceType": "Good",
+                    "outcome": "The dragon agrees to leave the village in peace."
+                },
+                {
+                    "choiceText": "Flee and warn the villagers.",
+                    "choiceType": "Fail",
+                    "outcome": "The dragon destroys the village and you gain nothing."
+                },
+                {
+                    "choiceText": "Use the villagers as bait to lure the dragon away.",
+                    "choiceType": "Evil",
+                    "outcome": "The dragon is defeated but the villagers are angry with you."
                 }
             ],
             "followUpEventID": 0,

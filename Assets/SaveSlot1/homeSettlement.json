@@ -24,7 +24,65 @@
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
-            "Quests": []
+            "Quests": [
+                {
+                    "Type": 1,
+                    "ID": 2001,
+                    "Name": "The Missing Heirloom",
+                    "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
+                    "DC": 10,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 1,
+                    "CompletionMinute": 30,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 1,
+                    "StatRewardMax": 2
+                },
+                {
+                    "Type": 1,
+                    "ID": 2001,
+                    "Name": "The Missing Heirloom",
+                    "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
+                    "DC": 10,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 1,
+                    "CompletionMinute": 30,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 1,
+                    "StatRewardMax": 2
+                },
+                {
+                    "Type": 1,
+                    "ID": 2004,
+                    "Name": "The Lost Pet",
+                    "Description": "A local family has lost their beloved pet and is offering a reward for its safe return.",
+                    "DC": 25,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 12,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 2,
+                    "StatRewardMax": 2
+                }
+            ]
         },
         "TownHall": {
             "Name": "Incantarus's Hall",
@@ -32,7 +90,27 @@
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
-            "Jobs": []
+            "Jobs": [
+                {
+                    "Type": 0,
+                    "ID": 1003,
+                    "Name": "Alchemist",
+                    "Description": "Brew potions and poisons for the town's adventurers.",
+                    "DC": 20,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 10,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 1
+                }
+            ]
         },
         "Walls": {
             "Name": "Incantarus's Wall",
