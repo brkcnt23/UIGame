@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 328a77b11b4113b43b80e8eb112445fe
+guid: 5df6d29edfe779946951743ec6302859
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1732303974580750597
-    second: PARCHMENT BACKGROUND_0
+      213: -3712172963415422409
+    second: CONS_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +84,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Standalone
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PARCHMENT BACKGROUND_0
+      name: CONS_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 820
-        height: 1200
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf6fd1896be95f7e0800000000000000
-      internalID: -1732303974580750597
+      spriteID: 73a80d29b56bb7cc0800000000000000
+      internalID: -3712172963415422409
       vertices: []
       indices: 
       edges: []
@@ -186,8 +186,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      PARCHMENT BACKGROUND_0: -1732303974580750597
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
