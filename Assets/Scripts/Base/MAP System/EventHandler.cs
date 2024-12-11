@@ -47,8 +47,10 @@ public class EventHandler : MonoBehaviour
 
     public void HandleEvent(Choice choice)
     {
+        // Update event cooldown
         events.Find(x => x.ID == currentEvent.ID).encounterCooldown = currentEvent.encounterCooldown;
 
+        // Handle event outcome
         currentEvent.HandleEvent(PlayerStatHandler.Instance, choice);
 
         currentEvent = null;

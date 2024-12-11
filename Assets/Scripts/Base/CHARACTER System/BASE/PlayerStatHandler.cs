@@ -51,7 +51,15 @@ public class PlayerStatHandler : MonoBehaviour
         //JSONhandler.SaveData(new CompanionListWrapper { Companions = pd.Companions }, "playerCompanions.json");
 
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
-        JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
+        try
+        {
+            JSONhandler.SaveData(new PlayerDataWrapper { pd = pd }, "playerData.json");
+            Debug.Log("Player data saved successfully.");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error saving player data: {e.Message}");
+        }
     }
 
     public void LoadPlayerData()
@@ -60,10 +68,18 @@ public class PlayerStatHandler : MonoBehaviour
         PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
         pd = wrapper != null ? wrapper.pd : new PlayerData();
 
-        //GetPlayerCompanions();
+        // Ensure Companions and Army are not null after loading
+        if (pd.Companions == null)
+        {
+            pd.Companions = new List<Companion>();
+        }
+
+        if (pd.PlayerArmy == null)
+        {
+            pd.PlayerArmy = new Army(); // Or handle if the army is optional
+        }
 
         EventHandler.Instance.LoadEvents();
-
         HomeSettlementHandler.Instance.LoadHomeSettlement();
         SettlementHandler.Instance.LoadSettlements();
 
@@ -73,6 +89,7 @@ public class PlayerStatHandler : MonoBehaviour
         TimeSystem.Instance.InitializeLastActionTimes();
         PlayerUISystem.Instance.UpdateClockText();
     }
+
 
     private void OnApplicationQuit()
     {
@@ -199,6 +216,7 @@ public class PlayerStatHandler : MonoBehaviour
         pd.Dexterity -= item.DexterityModifier;
         pd.Charisma -= item.CharismaModifier;
     }
+
     public void EquipItem(Item item)
     {
         UnequipItem(item.Category); // Unequip any existing item in this slot
@@ -232,22 +250,31 @@ public class PlayerStatHandler : MonoBehaviour
     /// </summary>
     public void ConsumeDailyRations()
     {
-        int totalConsumption;
-        if (pd.PlayerArmy == null && pd.Companions == null)
+        if (pd == null)
         {
-            totalConsumption = 1; // Player
+            Debug.LogError("Player data is null!");
+            return;
+        }
+
+        if (pd.Companions == null)
+        {
+            pd.Companions = new List<Companion>();
+        }
+
+        int totalConsumption;
+
+        if (pd.PlayerArmy == null && (pd.Companions == null || pd.Companions.Count == 0))
+        {
+            totalConsumption = 1; // just player
         }
         else if (pd.PlayerArmy == null)
         {
-            totalConsumption = pd.Companions.Count + 1; // Companions + Player
-        }
-        else if (pd.Companions == null)
-        {
-            totalConsumption = pd.PlayerArmy.GetTotalUnits() + 1; // Army + Player
+            totalConsumption = pd.Companions.Count + 1;     //player + companion
         }
         else
         {
-            totalConsumption = pd.PlayerArmy.GetTotalUnits() + pd.Companions.Count + 1; // Army + Companions + Player
+            int armyUnits = pd.PlayerArmy != null ? pd.PlayerArmy.GetTotalUnits() : 0;
+            totalConsumption = armyUnits + pd.Companions.Count + 1;
         }
 
         if (pd.Rations >= totalConsumption)
@@ -274,6 +301,11 @@ public class PlayerStatHandler : MonoBehaviour
                     if (Dice.Roll(0, 10) == 0)
                     {
                         pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
+                        if (pd.PlayerArmy.GetTotalUnits() <= 0)
+                        {
+                            Debug.LogWarning("All units have been removed from the army.");
+                            break;
+                        }
                         lostUnits++;
                     }
                 }
@@ -343,9 +375,13 @@ public class PlayerStatHandler : MonoBehaviour
     /// </summary>
     public void CheckExhaustionMaxed()
     {
-        if (pd.CurrentExhaustionLevel >= pd.MaxExhaustionLevel)
+        if (pd.CurrentExhaustionLevel == pd.MaxExhaustionLevel)
         {
-            GameManager.Instance.Death(); // Oyuncunun ölmesini tetikler
+            Debug.LogError("You have succumbed to exhaustion!");
+        }
+        else if (pd.CurrentExhaustionLevel > pd.MaxExhaustionLevel)
+        {
+            GameManager.Instance.Death();
         }
     }
 

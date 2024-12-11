@@ -20,9 +20,9 @@ public class EventPanel : MonoBehaviour
 
     public void ShowEvent(Event_SO_Constructor _event, int remainingTime)
     {
-        InfoHolder.gameObject.SetActive(true);
-        ButtonHolder.gameObject.SetActive(true);
-        OutcomeHolder.gameObject.SetActive(false);
+        InfoHolder.SetActive(true);
+        ButtonHolder.SetActive(true);
+        OutcomeHolder.SetActive(false);
         InfoHolder.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = _event.Name;
         InfoHolder.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text = _event.Description;
 
@@ -34,19 +34,24 @@ public class EventPanel : MonoBehaviour
         foreach (Choice c in _event.choices)
         {
             Button b = Instantiate(ButtonPrefab, ButtonHolder.transform).GetComponent<Button>();
+            TextMeshProUGUI buttonText = b.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = c.choiceText;
+            bool meetsRequirements = c.CheckRequirements(PlayerStatHandler.Instance);
+            b.interactable = meetsRequirements;
+
+            if (!meetsRequirements)
+            {
+                buttonText.color = Color.gray; // Visual feedback for disabled button
+            }
 
             b.onClick.AddListener(() =>
             {
+                if (!meetsRequirements) return;
                 TimeSystem.Instance.AdvanceTime(_event.CompletionDay, _event.CompletionHour, _event.CompletionMinute);
                 EventHandler.Instance.HandleEvent(c);
-                if (c.choiceType == "FloowUp")
-                {
-                    _event.choices.Remove(c);
-                }
 
                 InfoHolder.SetActive(false);
                 ButtonHolder.SetActive(false);
-
                 OutcomeHolder.SetActive(true);
                 OutcomeHolder.GetComponentInChildren<TextMeshProUGUI>().text = c.outcome;
 
@@ -55,6 +60,11 @@ public class EventPanel : MonoBehaviour
                     OutcomeHolder.SetActive(false);
                     gameObject.SetActive(false);
 
+                    if(TravelSystem.Instance.travelData.isEventActive)
+                    {
+                        TravelSystem.Instance.currentEvent.ID = 0;
+                        TravelSystem.Instance.ContinueTravel();
+                    }
                     TravelSystem.Instance.isEventActive = false;
                     TravelSystem.Instance.PlayerWantsToHandleEventorEnterSettlement = true;
 
@@ -62,7 +72,7 @@ public class EventPanel : MonoBehaviour
                 });
             });
 
-            b.GetComponentInChildren<TextMeshProUGUI>().text = c.choiceText;
+            RandomizeButtonOrder();
         }
 
         Button[] buttons = ButtonHolder.GetComponentsInChildren<Button>();
@@ -76,4 +86,15 @@ public class EventPanel : MonoBehaviour
         }
     }
 
+    private void RandomizeButtonOrder()
+    {
+        Button[] buttons = ButtonHolder.GetComponentsInChildren<Button>();
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int rnd = Random.Range(0, buttons.Length);
+            Button temp = buttons[rnd];
+            buttons[rnd] = buttons[i];
+            buttons[i] = temp;
+        }
+    }
 }

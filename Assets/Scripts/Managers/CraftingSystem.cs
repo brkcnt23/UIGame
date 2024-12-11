@@ -40,7 +40,7 @@ public class CraftingSystem
         int successChance = Mathf.Clamp(50 + (levelDifference * 5), 0, 100);
         int randomValueForSuccess = Dice.RollD100();
 
-        if (randomValueForSuccess > successChance)
+        if (randomValueForSuccess >= successChance)
         {
             Debug.Log("Üretim başarısız oldu.");
             int workDuration = CalculateWorkDuration(jobLevel);

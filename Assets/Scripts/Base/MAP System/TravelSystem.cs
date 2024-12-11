@@ -97,6 +97,11 @@ public class TravelSystem : MonoBehaviour
 
         if (travelData.inTravel)
         {
+            if (MapHandler.Instance == null || GameManager.Instance == null || EventHandler.Instance == null)
+            {
+                Debug.LogError("Required instances are not initialized. Cannot load travel data.");
+                return;
+            }
             GameManager.Instance.DisableAllPanels();
             GameManager.Instance.navPanel.SetActive(true);
             GameManager.Instance.infoPanel.SetActive(true);
@@ -109,6 +114,7 @@ public class TravelSystem : MonoBehaviour
             currentSettlement = GetSettlementButtonPointerByID(travelData.currentSettlementID);
             destination = GetSettlementButtonPointerByID(travelData.destinationID);
             currentEvent = GetEventByID(travelData.currentEventID);
+
             remainingTime = travelData.remainingTime;
             remainingTimeMinutes = travelData.remainingTimeMinutes;
             minEvents = travelData.minEvents;
@@ -117,8 +123,16 @@ public class TravelSystem : MonoBehaviour
             PlayerWantsToHandleEventorEnterSettlement = travelData.PlayerWantsToHandleEventorEnterSettlement;
             elapsedTravelTime = travelData.elapsedTravelTime;
             eventIndex = travelData.eventIndex;
+            inTravel = travelData.inTravel;
 
-            EventHandler.Instance.currentEvent = currentEvent;
+            if (EventHandler.Instance != null)
+            {
+                EventHandler.Instance.currentEvent = currentEvent;
+            }
+            else
+            {
+                Debug.LogError("EventHandler.Instance is null, cannot set currentEvent.");
+            }
 
             ContinueTravel();
         }
@@ -221,6 +235,7 @@ public class TravelSystem : MonoBehaviour
         }
     }
 
+
     private int elapsedTravelTime = 0;
     private int eventIndex = 0;
 
@@ -270,7 +285,7 @@ public class TravelSystem : MonoBehaviour
                 HandleEvent();
                 eventIndex++;
                 isEventActive = true;
-                
+
                 print("Event at " + elapsedTravelTime + " hours");
 
                 // Wait until the event is resolved
@@ -316,19 +331,47 @@ public class TravelSystem : MonoBehaviour
         ShowEventPanel();
     }
 
-    public void ShowEventPanel()
+ public void ShowEventPanel()
+{
+    if (eventPanel == null)
     {
-        eventPanel.SetActive(true);
-
-        if (currentEvent.ID == 0)
-        {
-            Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
-            currentEvent = randomEvent;
-        }
-
-        
-        eventPanel.GetComponent<EventPanel>().ShowEvent(currentEvent, remainingTime);
+        Debug.LogError("eventPanel is not assigned to TravelSystem!");
+        return;
     }
+
+    EventPanel ep = eventPanel.GetComponent<EventPanel>();
+    if (ep == null)
+    {
+        Debug.LogError("eventPanel does not have an EventPanel component attached!");
+        return;
+    }
+
+    if (currentEvent == null)
+    {
+        Debug.LogWarning("currentEvent is null, generating a new event.");
+        currentEvent = EventHandler.Instance.GenerateEvent();
+        if (currentEvent == null)
+        {
+            Debug.LogError("No events could be generated. Cannot show event panel.");
+            return;
+        }
+    }
+
+    if (currentEvent.ID == 0)
+    {
+        // If ID == 0, attempt to generate a new event
+        Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
+        currentEvent = randomEvent;
+        if (currentEvent == null)
+        {
+            Debug.LogError("No events available to generate. Cannot show event panel.");
+            return;
+        }
+    }
+    eventPanel.SetActive(true);
+    ep.ShowEvent(currentEvent, remainingTime);
+}
+
 
     public void ResetTravelData()
     {
@@ -381,7 +424,6 @@ public class TravelSystem : MonoBehaviour
         MapHandler.Instance.map.SetActive(false);
         MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
         GameManager.Instance.ShowSettlementPanel();
-        MapHandler.Instance.OnOpenField();
         destination = null;
     }
 

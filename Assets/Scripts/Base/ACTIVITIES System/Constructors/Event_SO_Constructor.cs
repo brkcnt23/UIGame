@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 [System.Serializable]
 public class Event_SO_Constructor : SO_Base
 {
@@ -62,7 +64,7 @@ public class Event_SO_Constructor : SO_Base
     public void GoodChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
-        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
         player.pd.Alignment += 1;
 
         AddExperience(player, Experience);
@@ -85,7 +87,7 @@ public class Event_SO_Constructor : SO_Base
     public void FailChoice(PlayerStatHandler player)
     {
         player.pd.Silver -= Silver;
-        player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStats(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
 
         AddExperience(player, Experience * 2);
     }
@@ -93,7 +95,7 @@ public class Event_SO_Constructor : SO_Base
     public void NeutralChoce(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
-        player.AddStats(TargetStat, -Random.Range(StatRewardMin, StatRewardMax + 1) / 2);
+        player.AddStats(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax + 1) / 2);
 
         AddExperience(player, Experience);
     }
@@ -101,7 +103,7 @@ public class Event_SO_Constructor : SO_Base
     public void EvilChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver * 2;
-        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
         player.pd.Alignment -= 1;
 
         AddExperience(player, Experience);
@@ -110,7 +112,7 @@ public class Event_SO_Constructor : SO_Base
     public void SuccessChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver;
-        player.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
 
         AddExperience(player, Experience);
     }
@@ -123,7 +125,7 @@ public class Event_SO_Constructor : SO_Base
     public void FollowUpEvent(PlayerStatHandler playerData)
     {
         playerData.pd.Silver += Silver;
-        playerData.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        playerData.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
         AddExperience(playerData, Experience);
     }
 
@@ -171,6 +173,154 @@ public class Event_SO_Constructor : SO_Base
 public class Choice
 {
     public string choiceText;
-    public string choiceType;
+    public string choiceType; // "Good", "Evil", "Neutral", "Success", "Fail", "Decline", "FollowUp"
     public string outcome;
+
+    // Follow-up Event
+    // If choiceType is "FollowUp", this ID should link to another event.
+    public int followUpEventID;
+
+    // Requirements
+    public string RequireStat;      // e.g., "Strength"
+    public int RequireStatValue;    // minimum required value of that stat
+    public int RequireMoney;        // minimum required Silver
+    public bool isFight;            // if this choice involves combat
+    public string RequireItemName;  // if a specific item is required
+    public int RequireHealth;       // minimum health required
+    public int RequireRation;       // minimum rations required
+    public int RequireArmySize;     // minimum army size required
+
+    // Rewards (or penalties)
+    public int SilverReward;
+    public int StatRewardMin;
+    public int StatRewardMax;
+    public string TargetStat; // e.g., "Constitution", "Strength", "Charisma", "Dexterity"
+    public int ExperienceReward;
+    public int AlignmentChange; // +1 for Good, -1 for Evil, 0 for Neutral/Success, etc.
+
+    /// <summary>
+    /// Check if the player meets the requirements for this choice.
+    /// For example, if the choice requires a certain amount of Silver or a certain stat level.
+    /// </summary>
+    public bool CheckRequirements(PlayerStatHandler player)
+    {
+        int totalPlayerSilver = player.pd.Gold * 100 + player.pd.Silver; // Convert gold to silver and add silver
+
+        // Check Silver Requirement
+        if (RequireMoney > 0 && totalPlayerSilver < RequireMoney) return false;
+
+        // Check Health Requirement
+        if (RequireHealth > 0 && player.pd.Health < RequireHealth) return false;
+
+        // Check Ration Requirement
+        if (RequireRation > 0 && player.pd.Rations < RequireRation) return false;
+
+        // Check Army Size Requirement
+        if (RequireArmySize > 0 && (player.pd.PlayerArmy == null || player.pd.PlayerArmy.GetTotalUnits() < RequireArmySize)) return false;
+
+        // Check stat requirement if specified
+        if (!string.IsNullOrEmpty(RequireStat) && RequireStatValue > 0)
+        {
+            int playerStatValue = GetPlayerStatValue(player, RequireStat);
+            if (playerStatValue < RequireStatValue) return false;
+        }
+
+        // Check item requirement if specified
+        if (!string.IsNullOrEmpty(RequireItemName))
+        {
+            bool hasItem = player.pd.Items.Exists(item => item.Name == RequireItemName);
+            if (!hasItem) return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Execute the choice and apply its effects based on the choiceType.
+    /// </summary>
+    public void ExecuteChoice(PlayerStatHandler player)
+    {
+        int statChange = 0;
+        if (StatRewardMin != 0 || StatRewardMax != 0)
+        {
+            // If stat rewards are specified, get a random amount in the range
+            statChange = UnityRandom.Range(StatRewardMin, StatRewardMax + 1);
+        }
+
+        switch (choiceType)
+        {
+            case "Good":
+                // Good: Generally positive alignment, some rewards
+                player.pd.Silver += SilverReward;
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.pd.Alignment += AlignmentChange;
+                AddExperience(player, ExperienceReward);
+                break;
+
+            case "Evil":
+                // Evil: Gains might be higher in some resources but alignment decreases
+                player.pd.Silver += SilverReward;
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.pd.Alignment += AlignmentChange;
+                AddExperience(player, ExperienceReward);
+                break;
+
+            case "Neutral":
+                // Neutral: Balanced outcome
+                player.pd.Silver += SilverReward;
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                AddExperience(player, ExperienceReward);
+                break;
+
+            case "Success":
+                // Success: Usually a positive outcome with good rewards
+                player.pd.Silver += SilverReward;
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                AddExperience(player, ExperienceReward);
+                break;
+
+            case "Fail":
+                // Fail: Negative outcome, might lose silver, stats or experience
+                player.pd.Silver -= SilverReward; // or apply negative silver if that makes sense
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, -statChange);
+                AddExperience(player, -ExperienceReward); // Lose experience as penalty
+                break;
+
+            case "Decline":
+                // Decline: Player refuses event and loses experience
+                AddExperience(player, -ExperienceReward);
+                break;
+
+            case "FollowUp":
+                // FollowUp: Triggers another event. You can also give rewards before loading next event.
+                player.pd.Silver += SilverReward;
+                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                AddExperience(player, ExperienceReward);
+
+                // Handling the follow-up event can be done outside this method, once you return followUpEventID.
+                // For example:
+                // EventHandler.Instance.LoadEvent(followUpEventID);
+                break;
+        }
+
+        player.pd.CheckIfSilverToGold();
+    }
+
+    private void AddExperience(PlayerStatHandler playerData, int experience)
+    {
+        playerData.pd.Experience += experience;
+        ExperienceSystem.UpdateCharacterLevel(playerData.pd);
+    }
+
+    private int GetPlayerStatValue(PlayerStatHandler player, string statName)
+    {
+        switch (statName)
+        {
+            case "Strength": return player.pd.Strength;
+            case "Dexterity": return player.pd.Dexterity;
+            case "Constitution": return player.pd.Constitution;
+            case "Charisma": return player.pd.Charisma;
+            default: return 0;
+        }
+    }
 }

@@ -142,13 +142,13 @@ public class SettlementHandler : MonoBehaviour
             HomeSettlementHandler.Instance.OnSettlmentEntered();
         }
 
-        MapHandler.Instance.lastVisitedSettlement = null;
-        MapHandler.Instance.destinationSettlement = null;
-
-        Print($"Entered {settlement.Name}");
+        
+        MapHandler.Instance.lastVisitedSettlement = null; // Remove this line
+        MapHandler.Instance.destinationSettlement = null; // Remove this line
 
         UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
+
 
 
     public void OnSettlementExited()

@@ -182,22 +182,38 @@ public class TimeSystem : MonoBehaviour
     /// Yorgunluk seviyesini kontrol eder.
     /// </summary>
     private void CheckExhaustion()
+{
+    if (playerData == null)
     {
-        int timeSinceLastSleep = GetTimeDifferenceInMinutes(
-            playerData.LastSleepDay,
-            playerData.LastSleepHour,
-            playerData.LastSleepMinute,
-            Day,
-            Hour,
-            Minute);
-
-        if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
+        // Attempt to reinitialize if possible
+        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
         {
-            PlayerStatHandler.Instance.IncreaseExhaustion();
-            Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
-            UpdateLastSleepTime();
+            playerData = PlayerStatHandler.Instance.pd;
+        }
+
+        if (playerData == null)
+        {
+            Debug.LogWarning("TimeSystem: playerData is null, cannot check exhaustion.");
+            return;
         }
     }
+
+    int timeSinceLastSleep = GetTimeDifferenceInMinutes(
+        playerData.LastSleepDay,
+        playerData.LastSleepHour,
+        playerData.LastSleepMinute,
+        Day,
+        Hour,
+        Minute);
+
+    if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
+    {
+        PlayerStatHandler.Instance.IncreaseExhaustion();
+        Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
+        UpdateLastSleepTime();
+    }
+}
+
 
     /// <summary>
     /// İki zaman noktası arasındaki farkı dakika cinsinden hesaplar.

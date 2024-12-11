@@ -144,7 +144,7 @@
         {
             "Name": "Incan",
             "ID": 4,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 5500,
             "Wealth": 110000,
@@ -188,7 +188,7 @@
         {
             "Name": "Tarus",
             "ID": 5,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 7000,
             "Wealth": 140000,
@@ -232,7 +232,7 @@
         {
             "Name": "Cryssborn",
             "ID": 6,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 15,
             "Population": 800,
             "Wealth": 16000,
@@ -276,7 +276,7 @@
         {
             "Name": "Woodholmers",
             "ID": 7,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 10,
             "Population": 1000,
             "Wealth": 20000,
@@ -320,7 +320,7 @@
         {
             "Name": "Mineholmers",
             "ID": 8,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 7,
             "Population": 1000,
             "Wealth": 20000,
@@ -364,7 +364,7 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 400,
             "Wealth": 8000,
@@ -408,7 +408,7 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": 32000,
@@ -452,7 +452,7 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": 28000,
@@ -496,7 +496,7 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": 40000,
