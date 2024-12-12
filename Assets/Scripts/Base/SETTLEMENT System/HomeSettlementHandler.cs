@@ -50,42 +50,47 @@ public class HomeSettlementHandler : MonoBehaviour
         JSONhandler.SaveData(new HomeSettlementWrapper { homeSettlement = homeSettlement }, "homeSettlement.json");
     }
 
-    //this will be the function that will handle the home settlements upgrades
-    public void UpgradeHomeSettlement(int _quality = 1, int _population = 10, int _wealth = 100)
-    {
-        homeSettlement.Quality += _quality;
-        homeSettlement.Population += _population;
-        homeSettlement.Wealth += _wealth;
 
-        switch (homeSettlement.Quality)
-        {
-            case 9:
-                homeSettlement.Type = SettlementType.Castle;
-                break;
-            case 15:
-                homeSettlement.Type = SettlementType.Town;
-                break;
-            default:
-                homeSettlement.Type = SettlementType.Village;
-                break;
-        }
-    }
-
-    public void UpgradeHomeSettlementHelper()
-    {
-        UpgradeHomeSettlement();
-    }
 
     public void HandleTownHallEntered()
     {
         homeSettlement.EnterTownHall();
         GameManager.Instance.ShowSettlementPanel();
-        GameManager.Instance.homeSettlementPanel.SetActive(true);
     }
 
     public void OnSettlmentEntered()
     {
+        UIHandler.Instance.HomePanelBG.SetActive(true);
         GenerateRandomHappenings();
+
+        ResidentalUIHnadler.Instance.UpdateUI();
+    }
+
+    public void UpgradeResidental(Residentials residential)
+    {
+        residential.LevelUpResidential(ref PlayerStatHandler.Instance.pd);
+
+        TimeSystem.Instance.AdvanceTimeCoroutine(0, residential.upgradeHour, 0);
+    }
+
+    public void UpgradeTavern()
+    {
+        UpgradeResidental(homeSettlement.Tavern);
+    }
+
+    public void UpgradeTownHall()
+    {
+        UpgradeResidental(homeSettlement.TownHall);
+    }
+
+    public void UpgradeWalls()
+    {
+        UpgradeResidental(homeSettlement.Walls);
+    }
+
+    public void UpgradeShop()
+    {
+        UpgradeResidental(homeSettlement.Shops[0]);
     }
 
     public void GenerateRandomHappenings()
@@ -234,5 +239,210 @@ public class HomeSettlementHandler : MonoBehaviour
             print($"Tavern quest {quest.Name} was failed when you were away and you settlement lost {reward} silver");
         }
     }
+
+    #region Upgrade Settlement
+    public void UpgradeSettlement()
+    {
+        //we will check series of conditions to upgrade the settlement
+        //1. Check if the at least one of the residentials is at max level(0-10 for village, 11-15 for castle, 16-20 for town)
+        //2. Check if the settlemnts residentials levels are not far between each other(max 2 levels)
+        //3. Check if the any residential is not far from the max level(max 5 levels)
+        //4. Check if the wealth is enough to upgrade the settlement (1000 silver for village, 5000 silver for castle, 10000 silver for town) can be changed
+        //5. Check if the population is enough to upgrade the settlement (100 for village, 500 for castle, 1000 for town) can be changed
+
+        //if all the conditions are met, we will upgrade the settlement
+        //if not, we will return and do nothing
+
+        //we will check the conditions here but return if the conditions are not met, put an order to the conditions
+        if (!CheckResidentialLevels())
+        {
+            return;
+        }
+
+        if (!CheckResidentialDistance())
+        {
+            return;
+        }
+
+        if (!CheckResidentialMaxLevel())
+        {
+            return;
+        }
+
+        if (!CheckWealth())
+        {
+            return;
+        }
+
+        if (!CheckPopulation())
+        {
+            return;
+        }
+
+        //if all the conditions are met, we will upgrade the settlement
+        UpgradeHomeSettlement();
+        print("Settlement upgraded");
+
+    }
+
+    public void UpgradeHomeSettlement(int _quality = 1, int _population = 10, int _wealth = 100)
+    {
+        homeSettlement.Quality += _quality;
+
+        switch (homeSettlement.Quality)
+        {
+            case > 10 and <= 15:
+                homeSettlement.Type = SettlementType.Castle;
+                print("Settlement upgraded to Castle");
+                GetResidentials().ForEach(residential => residential.ChangeMaxLevel(15));
+                break;
+            case > 15 and <= 20:
+                homeSettlement.Type = SettlementType.Town;
+                print("Settlement upgraded to Town");
+                GetResidentials().ForEach(residential => residential.ChangeMaxLevel(20));
+                break;
+            default:
+                homeSettlement.Type = SettlementType.Village;
+                GetResidentials().ForEach(residential => residential.ChangeMaxLevel(10));
+                break;
+        }
+    }
+
+    public List<Residentials> GetResidentials()
+    {
+        List<Residentials> residentials = new List<Residentials>
+        {
+            homeSettlement.TownHall,
+            homeSettlement.Walls,
+            homeSettlement.Tavern
+        };
+        residentials.AddRange(homeSettlement.Shops);
+
+        return residentials;
+    }
+
+    public bool CheckResidentialLevels()
+    {
+        //we will check if the at least one of the residentials is at max level(0-10 for village, 11-15 for castle, 16-20 for town)
+        //if not, we will return false
+        List<Residentials> residentials = GetResidentials();
+
+        foreach (var residential in residentials)
+        {
+            if (residential.level == residential.maxLevel)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool CheckResidentialDistance()
+    {
+        //we will check if the settlemnts residentials levels are not far between each other(max 2 levels)
+        //if not, we will return false
+        List<Residentials> residentials = GetResidentials();
+
+        int minLevel = residentials[0].level;
+        int maxLevel = residentials[0].level;
+
+        foreach (var residential in residentials)
+        {
+            if (residential.level < minLevel)
+            {
+                minLevel = residential.level;
+            }
+
+            if (residential.level > maxLevel)
+            {
+                maxLevel = residential.level;
+            }
+        }
+
+        if (maxLevel - minLevel > 2)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool CheckResidentialMaxLevel()
+    {
+        //we will check if the any residential is not far from the max level(max 5 levels)
+        //if not, we will return false
+        List<Residentials> residentials = GetResidentials();
+
+        foreach (var residential in residentials)
+        {
+            if (residential.maxLevel - residential.level > 5)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool CheckWealth()
+    {
+        //we will check if the wealth is enough to upgrade the settlement (1000 silver for village, 5000 silver for castle, 10000 silver for town) can be changed
+        //if not, we will return false
+        int requiredWealth = 0;
+
+        switch (homeSettlement.Type)
+        {
+            case SettlementType.Village:
+                requiredWealth = 1000;
+                break;
+            case SettlementType.Castle:
+                requiredWealth = 5000;
+                break;
+            case SettlementType.Town:
+                requiredWealth = 10000;
+                break;
+            default:
+                break;
+        }
+
+        if (homeSettlement.Wealth < requiredWealth)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool CheckPopulation()
+    {
+        //we will check if the population is enough to upgrade the settlement (100 for village, 500 for castle, 1000 for town) can be changed
+        //if not, we will return false
+        int requiredPopulation = 0;
+
+        switch (homeSettlement.Type)
+        {
+            case SettlementType.Village:
+                requiredPopulation = 100;
+                break;
+            case SettlementType.Castle:
+                requiredPopulation = 500;
+                break;
+            case SettlementType.Town:
+                requiredPopulation = 1000;
+                break;
+            default:
+                break;
+        }
+
+        if (homeSettlement.Population < requiredPopulation)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    #endregion
 
 }

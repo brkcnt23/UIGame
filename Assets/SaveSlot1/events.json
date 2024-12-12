@@ -143,7 +143,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 4,
             "isHaveWar": false,
-            "encounterCooldown": 3,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Raid the hideout and take the loot.",
@@ -354,7 +354,7 @@
         },
         {
             "Type": 2,
-            "ID": 3004,
+            "ID": 0,
             "Name": "Royal Gratitude",
             "Description": "The knight's family is grateful for your help and offers you a quest.",
             "DC": 12,
@@ -371,7 +371,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 2,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -619,7 +619,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 3,
+            "encounterCooldown": 4,
             "choices": [
                 {
                     "choiceText": "Accept the stranger's offer.",
@@ -974,7 +974,7 @@
         },
         {
             "Type": 2,
-            "ID": 2006,
+            "ID": 0,
             "Name": "Dragon Attack",
             "Description": "A dragon attacks the village, threatening to destroy everything in its path. The villagers ask for your help in slaying the beast.",
             "DC": 15,
@@ -991,7 +991,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 3,
             "choices": [
                 {
                     "choiceText": "Confront the dragon head-on.",

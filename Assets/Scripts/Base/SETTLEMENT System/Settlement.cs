@@ -145,21 +145,6 @@ public class Settlement
         OnSettlementEntered?.Invoke(this);
     }
 
-    public void UpgradeSettlement()
-    {
-        switch (Type)
-        {
-            case SettlementType.Village:
-                Type = SettlementType.Castle;
-                break;
-            case SettlementType.Castle:
-                Type = SettlementType.Town;
-                break;
-        }
-
-        OnSettlementUpgraded?.Invoke();
-    }
-
     void Print(string message)
     {
         Debug.Log($"{message}\nSender:\"{this.GetType().Name}\" class in \"{this.Name}\"");

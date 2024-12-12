@@ -5,41 +5,109 @@
         "isUnlocked": true,
         "levelToUnlock": 0,
         "Population": 10,
-        "Wealth": 100,
+        "Wealth": -26,
         "Quality": 1,
         "Shops": [
             {
                 "Name": "Muhittin's Shop",
-                "level": 0,
-                "maxLevel": 0,
+                "level": 5,
+                "maxLevel": 10,
                 "cost": 0,
                 "income": 0,
+                "Resources": [],
+                "upgradeHour": 104,
                 "ShopType": 7,
                 "Items": []
             }
         ],
         "Tavern": {
             "Name": "Mükremin's Tavern",
-            "level": 0,
-            "maxLevel": 0,
+            "level": 6,
+            "maxLevel": 10,
             "cost": 0,
             "income": 0,
-            "Quests": []
+            "Resources": [],
+            "upgradeHour": 128,
+            "Quests": [
+                {
+                    "Type": 1,
+                    "ID": 2004,
+                    "Name": "The Lost Pet",
+                    "Description": "A local family has lost their beloved pet and is offering a reward for its safe return.",
+                    "DC": 25,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 12,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Dexterity",
+                    "StatRewardMin": 2,
+                    "StatRewardMax": 2
+                },
+                {
+                    "Type": 1,
+                    "ID": 2002,
+                    "Name": "Foul Play",
+                    "Description": "A local merchant has been accused of a crime they did not commit. They need help proving their innocence.",
+                    "DC": 15,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 5,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Charisma",
+                    "StatRewardMin": 2,
+                    "StatRewardMax": 3
+                }
+            ],
+            "Companions": []
         },
         "TownHall": {
             "Name": "Incantarus's Hall",
-            "level": 0,
-            "maxLevel": 0,
+            "level": 7,
+            "maxLevel": 10,
             "cost": 0,
             "income": 0,
-            "Jobs": []
+            "Resources": [],
+            "upgradeHour": 152,
+            "Jobs": [
+                {
+                    "Type": 0,
+                    "ID": 1005,
+                    "Name": "Merchant",
+                    "Description": "Buy and sell goods to keep the town's economy thriving.",
+                    "DC": 30,
+                    "HealthRequirement": 0,
+                    "ArmyPowerRequirement": 0,
+                    "SilverRequirement": 0,
+                    "StatRequirement": 0,
+                    "CompletionDay": 0,
+                    "CompletionHour": 14,
+                    "CompletionMinute": 0,
+                    "Experience": 0,
+                    "Silver": 100,
+                    "TargetStat": "Charisma",
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 1
+                }
+            ]
         },
         "Walls": {
             "Name": "Incantarus's Wall",
-            "level": 0,
-            "maxLevel": 0,
+            "level": 4,
+            "maxLevel": 10,
             "cost": 0,
-            "income": 0
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 80
         },
         "Type": 0
     }

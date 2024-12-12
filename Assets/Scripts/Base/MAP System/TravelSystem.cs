@@ -321,7 +321,7 @@ public class TravelSystem : MonoBehaviour
         currentSettlement = destination;
         MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
 
-        TimeSystem.Instance.AdvanceTime(remainingTimeMinutes);
+        TimeSystem.Instance.AdvanceTimeCoroutine(0,0,remainingTimeMinutes);
     }
 
     public void HandleEvent()

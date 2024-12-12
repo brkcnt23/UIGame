@@ -47,7 +47,7 @@ public class NavUISystem : MonoBehaviour
     public void OnProfileButtonClick()
     {
         UpdateProfileData();
-        OpenUpPanel(profilePanel);
+        //OpenUpPanel(profilePanel);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class NavUISystem : MonoBehaviour
     /// </summary>
     public void OnJobButtonClick()
     {
-        OpenUpPanel(jobsPanel);
+        //OpenUpPanel(jobsPanel);
     }
 
     /// <summary>
@@ -63,7 +63,7 @@ public class NavUISystem : MonoBehaviour
     /// </summary>
     public void OnHomeButtonClick()
     {
-        OpenUpPanel(townPanel);
+        //OpenUpPanel(townPanel);
     }
     /// <summary>
     /// Handles the Shop Button click event.
@@ -78,7 +78,7 @@ public class NavUISystem : MonoBehaviour
     /// </summary>
     public void OnBattleButtonClick()
     {
-        OpenUpPanel(battlePanel);
+        //OpenUpPanel(battlePanel);
     }
 
     /// <summary>

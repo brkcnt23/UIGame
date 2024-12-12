@@ -10,7 +10,7 @@
         "Shops": [
             {
                 "Name": "Muhittin's Shop",
-                "level": 0,
+                "level": 1,
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
@@ -20,7 +20,7 @@
         ],
         "Tavern": {
             "Name": "Mükremin's Tavern",
-            "level": 0,
+            "level": 3,
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
@@ -28,7 +28,7 @@
         },
         "TownHall": {
             "Name": "Gora's Hall",
-            "level": 0,
+            "level": 2,
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
@@ -36,7 +36,7 @@
         },
         "Walls": {
             "Name": "Gora's Wall",
-            "level": 0,
+            "level": 1,
             "maxLevel": 0,
             "cost": 0,
             "income": 0

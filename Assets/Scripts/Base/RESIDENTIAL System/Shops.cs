@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public enum ShopTypes
 {
@@ -66,6 +67,17 @@ public class Shops : Residentials
         foreach (var item in Items)
         {
             Debug.Log($"- {item.Name} (Category: {item.Category}, Value: {item.Value} silver)");
+        }
+    }
+
+    public override void LevelUpResidential(ref PlayerData _Player)
+    {
+        base.LevelUpResidential(ref _Player);
+        upgradeHour = CalculateUpgradeHour(_Player);
+
+        foreach (var item in Items)
+        {
+            item.AdjustValue(level);
         }
     }
 }

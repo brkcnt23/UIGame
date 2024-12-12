@@ -26,7 +26,7 @@ public class Item
         CharismaModifier = charismaModifier;
     }
 
-    public Item(int id, string name, int value, ItemCategory category, 
+    public Item(int id, string name, int value, ItemCategory category,
                 int strengthMod, int constitutionMod, int dexterityMod, int charismaMod, int quantity = 1)
     {
         ID = id;
@@ -67,6 +67,18 @@ public class Item
         else if (quantityChange < 0) // Quantity decreased
         {
             Value = Math.Min((int)(Value * adjustmentFactor), int.MaxValue);
+        }
+    }
+
+    public bool CheckRequiredAmount(int requiredAmount)
+    {
+        if (Quantity >= requiredAmount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -57,7 +57,7 @@ public Army playerArmy;
         UpdatePlayerStats(result);
 
         // Zaman sistemini güncelle (isteğe bağlı)
-        TimeSystem.Instance.AdvanceTime(60); // Örneğin, savaşı 1 saat olarak kabul et
+        TimeSystem.Instance.AdvanceTimeCoroutine(0,1,0); // Örneğin, savaşı 1 saat olarak kabul et
     }
 
     /// <summary>

@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CARPENTER BUTTON_0: 2200422114936727122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

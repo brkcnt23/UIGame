@@ -58,7 +58,21 @@ public class TimeSystem : MonoBehaviour
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
         int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
-        int increment = 10; // Adjust the increment (e.g., 10 minutes)
+        int increment; // Adjust the increment (e.g., 10 minutes)
+
+        // Determine the increment based on the total time to advance
+        if (days > 0)
+        {
+            increment = 60; // 1 hour
+        }
+        else if (hours > 0)
+        {
+            increment = 10; // 10 minutes
+        }
+        else
+        {
+            increment = 1; // 1 minute
+        }
 
         int minutesPassed = 0;
         while (minutesPassed < totalMinutes)
@@ -76,7 +90,7 @@ public class TimeSystem : MonoBehaviour
 
             // Smooth the speed of time progression
             float progress = (float)minutesPassed / totalMinutes;
-            float waitTime = Mathf.Lerp(0.01f, 0.05f, progress);
+            float waitTime = Mathf.Lerp(0.1f, 0.01f, progress);
 
             yield return new WaitForSecondsRealtime(waitTime);
         }
@@ -154,7 +168,7 @@ public class TimeSystem : MonoBehaviour
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
-        AdvanceTime(totalSleepDuration);
+        AdvanceTimeCoroutine(0,0,totalSleepDuration);
         UpdateLastSleepTime();
     }
 

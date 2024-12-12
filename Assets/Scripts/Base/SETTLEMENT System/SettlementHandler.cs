@@ -140,6 +140,7 @@ public class SettlementHandler : MonoBehaviour
         if (settlement == HomeSettlementHandler.Instance.homeSettlement)
         {
             HomeSettlementHandler.Instance.OnSettlmentEntered();
+            
         }
 
         
@@ -161,6 +162,8 @@ public class SettlementHandler : MonoBehaviour
         {
             settlement.TownHall.Jobs.Clear();
         }
+
+        UIHandler.Instance.HomePanelBG.SetActive(false);
     }
 
     public void OnSettlmenUnlocked(Settlement settlement)

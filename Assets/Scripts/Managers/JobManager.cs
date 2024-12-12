@@ -32,7 +32,7 @@ public class JobManager : MonoBehaviour
         Debug.Log($"Starting job: {job.Name}");
         // Advance time for job completion
         int jobDurationMinutes = (job.CompletionHour * 60) + job.CompletionMinute;
-        timeSystem.AdvanceTime(jobDurationMinutes);
+        timeSystem.AdvanceTimeCoroutine(0, jobDurationMinutes / 60, jobDurationMinutes % 60);
 
         // Grant stat reward
         int rewardPoints = Random.Range(job.StatRewardMin, job.StatRewardMax + 1);

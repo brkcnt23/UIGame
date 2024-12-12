@@ -44,7 +44,7 @@ public class CraftingSystem
         {
             Debug.Log("Üretim başarısız oldu.");
             int workDuration = CalculateWorkDuration(jobLevel);
-            timeSystem.AdvanceTime(workDuration);
+            timeSystem.AdvanceTimeCoroutine(0, workDuration/60, workDuration%60);
             return;
         }
 
@@ -53,7 +53,7 @@ public class CraftingSystem
 
         // İş süresini ilerlet
         int workDurationInMinutes = CalculateWorkDuration(jobLevel);
-        timeSystem.AdvanceTime(workDurationInMinutes);
+        timeSystem.AdvanceTimeCoroutine(0, workDurationInMinutes / 60, workDurationInMinutes % 60);
 
         // Sonuçları yazdır
         Debug.Log($"Çırak olarak {craftType} alanında çalıştınız.");
@@ -88,7 +88,7 @@ public class CraftingSystem
         ExperienceSystem.UpdateCraftLevel(playerData, craftType, craftExp);
 
         // Karakter EXP kazancı (Crafting EXP'in yarısı kadar)
-        int characterExpGain = Mathf.RoundToInt(expReward );
+        int characterExpGain = Mathf.RoundToInt(expReward);
         PlayerStatHandler.Instance.AddCharacterExperience(characterExpGain);
 
         // %50 ihtimalle stat kazancı
@@ -155,7 +155,9 @@ public class CraftingSystem
         // İş süresini işin seviyesine göre belirleyelim
         int baseWorkDuration = 8 * 60; // Temel iş süresi: 8 saat
         int workDuration = baseWorkDuration + ((jobLevel - 1) * 30); // Her seviye için 30 dakika eklenir
+
         return workDuration;
+
     }
     private void AddCraftedItem(CraftType craftType)
     {
