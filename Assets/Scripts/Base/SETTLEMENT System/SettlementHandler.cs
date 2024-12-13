@@ -115,7 +115,7 @@ public class SettlementHandler : MonoBehaviour
     public void OnSettlementEntered(Settlement _settlement)
     {
         settlement = settlements.Find(x => x.Name == _settlement.Name);
-
+        HomeSettlementHandler.Instance.GenerateRandomHappenings();
         if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
             if (settlement.Tavern != null)

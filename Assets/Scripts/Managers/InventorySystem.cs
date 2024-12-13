@@ -5,18 +5,17 @@ using UnityEngine;
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance { get; private set; }
-    private List<Item> inventory;   // Full inventory
-    public List<Item> Resources;   // Only resource items
-    public List<Item> SpecialItems; // Only special items
+
+    public List<Item> inventory;      // Full inventory
+    public List<Item> Resources;       // Only resource items
+    public List<Item> SpecialItems;    // Only special items
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            inventory = new List<Item>();
-            Resources = new List<Item>();
-            SpecialItems = new List<Item>();
+            InitializeInventory();
         }
         else
         {
@@ -24,8 +23,17 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    private void InitializeInventory()
+    {
+        inventory = new List<Item>();
+        Resources = new List<Item>();
+        SpecialItems = new List<Item>();
+    }
+
     public void AddItem(Item item)
     {
+        inventory.Add(item);
+
         if (item.Category == ItemCategory.Resource)
         {
             var existingResource = Resources.Find(x => x.ID == item.ID);
@@ -52,17 +60,23 @@ public class InventorySystem : MonoBehaviour
             if (resource != null)
             {
                 resource.Quantity -= quantity;
-                if (resource.Quantity <= 0) Resources.Remove(resource);
+                if (resource.Quantity <= 0)
+                {
+                    Resources.Remove(resource);
+                    inventory.Remove(resource);
+                }
             }
         }
         else
         {
             SpecialItems.Remove(item);
+            inventory.Remove(item);
         }
     }
 
     public List<Item> GetInventory()
     {
-        return new List<Item>(inventory);
+        PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
+        return inventory;
     }
 }

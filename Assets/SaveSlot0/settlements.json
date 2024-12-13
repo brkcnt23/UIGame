@@ -15,6 +15,8 @@
                     "maxLevel": 5,
                     "cost": 50000,
                     "income": 5000,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 },
@@ -24,6 +26,8 @@
                     "maxLevel": 5,
                     "cost": 60000,
                     "income": 6000,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 1,
                     "Items": []
                 }
@@ -34,7 +38,10 @@
                 "maxLevel": 5,
                 "cost": 75000,
                 "income": 7500,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Grand Town Hall",
@@ -42,6 +49,8 @@
                 "maxLevel": 5,
                 "cost": 100000,
                 "income": 10000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -49,7 +58,9 @@
                 "level": 5,
                 "maxLevel": 5,
                 "cost": 80000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 2
         },
@@ -68,6 +79,8 @@
                     "maxLevel": 5,
                     "cost": 40000,
                     "income": 4000,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -78,7 +91,10 @@
                 "maxLevel": 5,
                 "cost": 60000,
                 "income": 6000,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Central Town Hall",
@@ -86,6 +102,8 @@
                 "maxLevel": 5,
                 "cost": 80000,
                 "income": 8000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -93,7 +111,9 @@
                 "level": 4,
                 "maxLevel": 5,
                 "cost": 60000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 2
         },
@@ -112,6 +132,8 @@
                     "maxLevel": 5,
                     "cost": 45000,
                     "income": 4500,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 3,
                     "Items": []
                 }
@@ -122,7 +144,10 @@
                 "maxLevel": 5,
                 "cost": 60000,
                 "income": 6000,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Yrad'si Town Hall",
@@ -130,6 +155,8 @@
                 "maxLevel": 5,
                 "cost": 80000,
                 "income": 8000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -137,7 +164,9 @@
                 "level": 4,
                 "maxLevel": 5,
                 "cost": 60000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 2
         },
@@ -156,6 +185,8 @@
                     "maxLevel": 5,
                     "cost": 35000,
                     "income": 3500,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 4,
                     "Items": []
                 }
@@ -166,7 +197,30 @@
                 "maxLevel": 5,
                 "cost": 45000,
                 "income": 4500,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [
+                    {
+                        "Type": 1,
+                        "ID": 2003,
+                        "Name": "Night Terrors",
+                        "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+                        "DC": 20,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 8,
+                        "CompletionMinute": 30,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": "Constitution",
+                        "StatRewardMin": 0,
+                        "StatRewardMax": 1
+                    }
+                ],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Incan Town Hall",
@@ -174,6 +228,8 @@
                 "maxLevel": 5,
                 "cost": 60000,
                 "income": 6000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -181,7 +237,9 @@
                 "level": 3,
                 "maxLevel": 5,
                 "cost": 45000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 2
         },
@@ -200,6 +258,8 @@
                     "maxLevel": 5,
                     "cost": 50000,
                     "income": 5000,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 2,
                     "Items": []
                 }
@@ -210,7 +270,10 @@
                 "maxLevel": 5,
                 "cost": 70000,
                 "income": 7000,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Tarus Town Hall",
@@ -218,6 +281,8 @@
                 "maxLevel": 5,
                 "cost": 90000,
                 "income": 9000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -225,7 +290,9 @@
                 "level": 4,
                 "maxLevel": 5,
                 "cost": 65000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 2
         },
@@ -244,6 +311,8 @@
                     "maxLevel": 5,
                     "cost": 5000,
                     "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -254,7 +323,10 @@
                 "maxLevel": 5,
                 "cost": 8000,
                 "income": 800,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Cryssborn Hall",
@@ -262,6 +334,8 @@
                 "maxLevel": 5,
                 "cost": 10000,
                 "income": 1000,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -269,7 +343,9 @@
                 "level": 1,
                 "maxLevel": 5,
                 "cost": 7000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -288,6 +364,8 @@
                     "maxLevel": 5,
                     "cost": 6000,
                     "income": 600,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -298,7 +376,10 @@
                 "maxLevel": 5,
                 "cost": 9000,
                 "income": 900,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Woodholmers Hall",
@@ -306,6 +387,8 @@
                 "maxLevel": 5,
                 "cost": 11000,
                 "income": 1100,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -313,7 +396,9 @@
                 "level": 1,
                 "maxLevel": 5,
                 "cost": 8000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -332,6 +417,8 @@
                     "maxLevel": 5,
                     "cost": 6000,
                     "income": 600,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -342,7 +429,10 @@
                 "maxLevel": 5,
                 "cost": 9000,
                 "income": 900,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Mineholmers Hall",
@@ -350,6 +440,8 @@
                 "maxLevel": 5,
                 "cost": 11000,
                 "income": 1100,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -357,7 +449,9 @@
                 "level": 1,
                 "maxLevel": 5,
                 "cost": 8000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -376,6 +470,8 @@
                     "maxLevel": 5,
                     "cost": 3000,
                     "income": 300,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -386,7 +482,10 @@
                 "maxLevel": 5,
                 "cost": 5000,
                 "income": 500,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Mudfell Hall",
@@ -394,6 +493,8 @@
                 "maxLevel": 5,
                 "cost": 6000,
                 "income": 600,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -401,7 +502,9 @@
                 "level": 1,
                 "maxLevel": 5,
                 "cost": 4000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -420,6 +523,8 @@
                     "maxLevel": 5,
                     "cost": 8000,
                     "income": 800,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -430,7 +535,10 @@
                 "maxLevel": 5,
                 "cost": 12000,
                 "income": 1200,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Perchmon Hall",
@@ -438,6 +546,8 @@
                 "maxLevel": 5,
                 "cost": 14000,
                 "income": 1400,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -445,7 +555,9 @@
                 "level": 2,
                 "maxLevel": 5,
                 "cost": 10000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -464,6 +576,8 @@
                     "maxLevel": 5,
                     "cost": 7000,
                     "income": 700,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -474,7 +588,10 @@
                 "maxLevel": 5,
                 "cost": 11000,
                 "income": 1100,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Rasu Hall",
@@ -482,6 +599,8 @@
                 "maxLevel": 5,
                 "cost": 13000,
                 "income": 1300,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -489,7 +608,9 @@
                 "level": 2,
                 "maxLevel": 5,
                 "cost": 9000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -508,6 +629,8 @@
                     "maxLevel": 5,
                     "cost": 10000,
                     "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -518,7 +641,10 @@
                 "maxLevel": 5,
                 "cost": 15000,
                 "income": 1500,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Flanel Hall",
@@ -526,6 +652,8 @@
                 "maxLevel": 5,
                 "cost": 17000,
                 "income": 1700,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -533,7 +661,9 @@
                 "level": 3,
                 "maxLevel": 5,
                 "cost": 12000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         },
@@ -552,6 +682,8 @@
                     "maxLevel": 5,
                     "cost": 2000,
                     "income": 200,
+                    "Resources": [],
+                    "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
                 }
@@ -562,7 +694,10 @@
                 "maxLevel": 5,
                 "cost": 3000,
                 "income": 300,
-                "Quests": []
+                "Resources": [],
+                "upgradeHour": 0,
+                "Quests": [],
+                "Companions": []
             },
             "TownHall": {
                 "Name": "Mege Hall",
@@ -570,6 +705,8 @@
                 "maxLevel": 5,
                 "cost": 4000,
                 "income": 400,
+                "Resources": [],
+                "upgradeHour": 0,
                 "Jobs": []
             },
             "Walls": {
@@ -577,7 +714,9 @@
                 "level": 1,
                 "maxLevel": 5,
                 "cost": 2000,
-                "income": 0
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0
             },
             "Type": 0
         }

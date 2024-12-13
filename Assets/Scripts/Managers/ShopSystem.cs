@@ -61,7 +61,8 @@ public class ShopSystem : MonoBehaviour
             GameObject shopButton = Instantiate(ShopButtonPrefab);
             shopButton.transform.SetParent(shopListPanel.transform);
             shopButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            shopButton.GetComponent<Button>().onClick.AddListener(() =>{
+            shopButton.GetComponent<Button>().onClick.AddListener(() =>
+            {
                 DisplayShopItems(shop);
                 SettlementHandler.Instance.HandleShopEntered(shop);
                 currentShop = shop;
@@ -94,7 +95,7 @@ public class ShopSystem : MonoBehaviour
         ClearUI(itemContainer);
         shopListPanel.SetActive(false);
         shopPanel.SetActive(true);
-        
+
         foreach (Item item in shop.Items)
         {
             Item currentItem = item; // Create a local copy to fix closure issue

@@ -1,0 +1,2019 @@
+fileFormatVersion: 2
+guid: e2a77a8df5b487d46b1d0165e17f7fa0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3184740810907714457
+    second: horse-gray_0
+  - first:
+      213: 7329537269527984807
+    second: horse-gray_1
+  - first:
+      213: 3476278027963978649
+    second: horse-gray_2
+  - first:
+      213: 4438480986127320282
+    second: horse-gray_3
+  - first:
+      213: 3065301361476145933
+    second: horse-gray_4
+  - first:
+      213: 9163434162637727810
+    second: horse-gray_5
+  - first:
+      213: 929846716740573508
+    second: horse-gray_6
+  - first:
+      213: 1886863801504446162
+    second: horse-gray_7
+  - first:
+      213: -5524299193036158224
+    second: horse-gray_8
+  - first:
+      213: 4948933344497822902
+    second: horse-gray_9
+  - first:
+      213: 2972991983333455735
+    second: horse-gray_10
+  - first:
+      213: 2170303301161797485
+    second: horse-gray_11
+  - first:
+      213: 4293293975431212003
+    second: horse-gray_12
+  - first:
+      213: -1607750960419366492
+    second: horse-gray_13
+  - first:
+      213: 840695484001418162
+    second: horse-gray_14
+  - first:
+      213: 4929413071849883974
+    second: horse-gray_15
+  - first:
+      213: -5701076305945474801
+    second: horse-gray_16
+  - first:
+      213: -7462675809578224071
+    second: horse-gray_17
+  - first:
+      213: -7160037565158245787
+    second: horse-gray_18
+  - first:
+      213: -7883692834828622934
+    second: horse-gray_19
+  - first:
+      213: 1506437766611591169
+    second: horse-gray_20
+  - first:
+      213: -7555801615049153455
+    second: horse-gray_21
+  - first:
+      213: -4067135600223520666
+    second: horse-gray_22
+  - first:
+      213: -471930742982284627
+    second: horse-gray_23
+  - first:
+      213: 5959196227165969550
+    second: horse-gray_24
+  - first:
+      213: -8413832826378407729
+    second: horse-gray_25
+  - first:
+      213: -9105170328495371999
+    second: horse-gray_26
+  - first:
+      213: -1918323341691327448
+    second: horse-gray_27
+  - first:
+      213: -8131739075008410864
+    second: horse-gray_28
+  - first:
+      213: -7337512100348908426
+    second: horse-gray_29
+  - first:
+      213: 2136501368403242832
+    second: horse-gray_30
+  - first:
+      213: 1669119019527473482
+    second: horse-gray_31
+  - first:
+      213: -1389391669761715813
+    second: horse-gray_32
+  - first:
+      213: 3110836504096577829
+    second: horse-gray_33
+  - first:
+      213: 3061684081793008304
+    second: horse-gray_34
+  - first:
+      213: -3826100195408691109
+    second: horse-gray_35
+  - first:
+      213: 7855841103467540099
+    second: horse-gray_36
+  - first:
+      213: -7942512144523875105
+    second: horse-gray_37
+  - first:
+      213: -5702049064922206718
+    second: horse-gray_38
+  - first:
+      213: -8370679593695728002
+    second: horse-gray_39
+  - first:
+      213: 5820618880459394008
+    second: horse-gray_40
+  - first:
+      213: 5678096467834234994
+    second: horse-gray_41
+  - first:
+      213: -7926256135298187929
+    second: horse-gray_42
+  - first:
+      213: 3955210879212833729
+    second: horse-gray_43
+  - first:
+      213: 2056409796600858747
+    second: horse-gray_44
+  - first:
+      213: 6457165956106525517
+    second: horse-gray_45
+  - first:
+      213: 565017951671601725
+    second: horse-gray_46
+  - first:
+      213: -2436832644121803170
+    second: horse-gray_47
+  - first:
+      213: -2444088200192263174
+    second: horse-gray_48
+  - first:
+      213: -3143404770351058374
+    second: horse-gray_49
+  - first:
+      213: 1360238069462664040
+    second: horse-gray_50
+  - first:
+      213: -4731831275066627010
+    second: horse-gray_51
+  - first:
+      213: -8779283597773600219
+    second: horse-gray_52
+  - first:
+      213: 7410982851001078642
+    second: horse-gray_53
+  - first:
+      213: -1116885217744104648
+    second: horse-gray_54
+  - first:
+      213: -3160329245521810413
+    second: horse-gray_55
+  - first:
+      213: 357784036214755113
+    second: horse-gray_56
+  - first:
+      213: 571253588286937428
+    second: horse-gray_57
+  - first:
+      213: -8682213260837040494
+    second: horse-gray_58
+  - first:
+      213: 4420906463129167934
+    second: horse-gray_59
+  - first:
+      213: -7105672253186475312
+    second: horse-gray_60
+  - first:
+      213: -7427937029937384196
+    second: horse-gray_61
+  - first:
+      213: -7217423870446958987
+    second: horse-gray_62
+  - first:
+      213: -771706057748000726
+    second: horse-gray_63
+  - first:
+      213: -6582021488296549001
+    second: horse-gray_64
+  - first:
+      213: 8130222772132575002
+    second: horse-gray_65
+  - first:
+      213: 3374731490698698151
+    second: horse-gray_66
+  - first:
+      213: 4165789803301671334
+    second: horse-gray_67
+  - first:
+      213: 3422542641250002806
+    second: horse-gray_68
+  - first:
+      213: 7458561099177912608
+    second: horse-gray_69
+  - first:
+      213: -2517981558890692504
+    second: horse-gray_70
+  - first:
+      213: -5967316447798294760
+    second: horse-gray_71
+  - first:
+      213: -3307917935045347342
+    second: horse-gray_72
+  - first:
+      213: -1587884928513678714
+    second: horse-gray_73
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: horse-gray_0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 2448
+        width: 25
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99308dfd4e8723c20800000000000000
+      internalID: 3184740810907714457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 2451
+        width: 25
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aab336205fb7b560800000000000000
+      internalID: 7329537269527984807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_2
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 2460
+        width: 23
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993d945c2783e3030800000000000000
+      internalID: 3476278027963978649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_3
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 2455
+        width: 23
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad4c178d0f6a89d30800000000000000
+      internalID: 4438480986127320282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 2344
+        width: 89
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d039e4cf8532a8a20800000000000000
+      internalID: 3065301361476145933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_5
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 2335
+        width: 93
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24863ba22de0b2f70800000000000000
+      internalID: 9163434162637727810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_6
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 2335
+        width: 100
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44992ee89aa77ec00800000000000000
+      internalID: 929846716740573508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_7
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 2337
+        width: 89
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d6373461ac7f2a10800000000000000
+      internalID: 1886863801504446162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 2204
+        width: 24
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa4a16272fb553b0800000000000000
+      internalID: -5524299193036158224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_9
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 2205
+        width: 24
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bce0eff7a42ea440800000000000000
+      internalID: 4948933344497822902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_10
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 2214
+        width: 24
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 777bcae0570324920800000000000000
+      internalID: 2972991983333455735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_11
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 2211
+        width: 24
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d674b988a577e1e10800000000000000
+      internalID: 2170303301161797485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_12
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 2088
+        width: 88
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ebe6e1bf18d49b30800000000000000
+      internalID: 4293293975431212003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 2079
+        width: 92
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a919ec050f10b9e0800000000000000
+      internalID: -1607750960419366492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 2079
+        width: 100
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bbfd28a610caab00800000000000000
+      internalID: 840695484001418162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_15
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 2081
+        width: 89
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64987ca521bc86440800000000000000
+      internalID: 4929413071849883974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_16
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1939
+        width: 25
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0949ba2e45b1e0b0800000000000000
+      internalID: -5701076305945474801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_17
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 1940
+        width: 23
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9367030e3ef3f6890800000000000000
+      internalID: -7462675809578224071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_18
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 1939
+        width: 25
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a3a4e15cf62ac90800000000000000
+      internalID: -7160037565158245787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_19
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 1940
+        width: 23
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa36fb5e22f779290800000000000000
+      internalID: -7883692834828622934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_20
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1825
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 100ed13da21f7e410800000000000000
+      internalID: 1506437766611591169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_21
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1826
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1542ca5a676642790800000000000000
+      internalID: -7555801615049153455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_22
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1824
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668f45f58b1ae87c0800000000000000
+      internalID: -4067135600223520666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_23
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 1826
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa64f95d7d5379f0800000000000000
+      internalID: -471930742982284627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_24
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1694
+        width: 24
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c531b356153b250800000000000000
+      internalID: 5959196227165969550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_25
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1697
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc0b1307f9f0c3b80800000000000000
+      internalID: -8413832826378407729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_26
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1694
+        width: 24
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1294b96d3dfe3a180800000000000000
+      internalID: -9105170328495371999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_27
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 1697
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ce52e951fb065e0800000000000000
+      internalID: -1918323341691327448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1569
+        width: 102
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01bc5f32562462f80800000000000000
+      internalID: -8131739075008410864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_29
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 1570
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ca29bde9beb2a90800000000000000
+      internalID: -7337512100348908426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_30
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1568
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05fafc5cca066ad10800000000000000
+      internalID: 2136501368403242832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_31
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 1570
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4988c6a7e6e92710800000000000000
+      internalID: 1669119019527473482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_32
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1426
+        width: 26
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9157fd33a3e7bce0800000000000000
+      internalID: -1389391669761715813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_33
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1441
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5299efc8159eb2b20800000000000000
+      internalID: 3110836504096577829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_34
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1441
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b28dbd63794d7a20800000000000000
+      internalID: 3061684081793008304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_35
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 1441
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b50cc91d426f6eac0800000000000000
+      internalID: -3826100195408691109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_36
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1299
+        width: 26
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e68109cdd850d60800000000000000
+      internalID: 7855841103467540099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_37
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 1299
+        width: 26
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdcad69294786c190800000000000000
+      internalID: -7942512144523875105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_38
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1299
+        width: 26
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ea67116904ed0b0800000000000000
+      internalID: -5702049064922206718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_39
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 1299
+        width: 26
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ea721624f55db80800000000000000
+      internalID: -8370679593695728002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_40
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1185
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dbc6b6680ef6c050800000000000000
+      internalID: 5820618880459394008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_41
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1185
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278e8a557a6acce40800000000000000
+      internalID: 5678096467834234994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_42
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1185
+        width: 67
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d7ac04a08400290800000000000000
+      internalID: -7926256135298187929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_43
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 1185
+        width: 67
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cbcd3bc65bb3e630800000000000000
+      internalID: 3955210879212833729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_44
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1057
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78070f80d5d98c10800000000000000
+      internalID: 2056409796600858747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_45
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1057
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b997db9367c9950800000000000000
+      internalID: 6457165956106525517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_46
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1055
+        width: 24
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3aca1d55d857d700800000000000000
+      internalID: 565017951671601725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_47
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 1057
+        width: 24
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e564b0efe91ae2ed0800000000000000
+      internalID: -2436832644121803170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_48
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 929
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afbf0d33bbad41ed0800000000000000
+      internalID: -2444088200192263174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_49
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 929
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32f4fd04026064d0800000000000000
+      internalID: -3143404770351058374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_50
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 929
+        width: 67
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863094c315980e210800000000000000
+      internalID: 1360238069462664040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_51
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 929
+        width: 67
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3ce1909688255eb0800000000000000
+      internalID: -4731831275066627010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_52
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 803
+        width: 86
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a8a4c1518b92680800000000000000
+      internalID: -8779283597773600219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_53
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 809
+        width: 88
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2735e6e43a919d660800000000000000
+      internalID: 7410982851001078642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_54
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 813
+        width: 88
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8335a7ddfc60080f0800000000000000
+      internalID: -1116885217744104648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_55
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 803
+        width: 88
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ce46b9b414424d0800000000000000
+      internalID: -3160329245521810413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_56
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 672
+        width: 92
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fc2e07faa17f400800000000000000
+      internalID: 357784036214755113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_57
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 672
+        width: 96
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4599286ac108de700800000000000000
+      internalID: 571253588286937428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_58
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 672
+        width: 98
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e4f932a05928780800000000000000
+      internalID: -8682213260837040494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_59
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 672
+        width: 100
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e38ea0851073a5d30800000000000000
+      internalID: 4420906463129167934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_60
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 545
+        width: 93
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0da7872bbb4936d90800000000000000
+      internalID: -7105672253186475312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_61
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 546
+        width: 89
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4bc9c40aaaae890800000000000000
+      internalID: -7427937029937384196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_62
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 546
+        width: 86
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5768598ba3f86db90800000000000000
+      internalID: -7217423870446958987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 419
+        width: 86
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a20d9ecdd695a45f0800000000000000
+      internalID: -771706057748000726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_64
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 425
+        width: 88
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 775a8165456f7a4a0800000000000000
+      internalID: -6582021488296549001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_65
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 429
+        width: 88
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17f0c5198a54d070800000000000000
+      internalID: 8130222772132575002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_66
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 419
+        width: 88
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad9b63296475de20800000000000000
+      internalID: 3374731490698698151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_67
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 288
+        width: 92
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a19dba31cbdfc930800000000000000
+      internalID: 4165789803301671334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_68
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 288
+        width: 96
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 677655816605f7f20800000000000000
+      internalID: 3422542641250002806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_69
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 288
+        width: 98
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 029eb047dc1228760800000000000000
+      internalID: 7458561099177912608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_70
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 288
+        width: 100
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860065fec155e0dd0800000000000000
+      internalID: -2517981558890692504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_71
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 161
+        width: 93
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81703a29e45df2da0800000000000000
+      internalID: -5967316447798294760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_72
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 162
+        width: 89
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f77a770a2ae712d0800000000000000
+      internalID: -3307917935045347342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: horse-gray_73
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 162
+        width: 86
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682eebb0213b6f9e0800000000000000
+      internalID: -1587884928513678714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

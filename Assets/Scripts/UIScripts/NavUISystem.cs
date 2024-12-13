@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class NavUISystem : MonoBehaviour
 {
+    #region Panels
     [Header("Panels")]
+    
     public GameObject profilePanel;
     public GameObject jobsPanel;
     public GameObject townPanel;
@@ -16,6 +18,7 @@ public class NavUISystem : MonoBehaviour
     public Button TownButton;
     public Button ShopButton;
     public Button BattleButton;
+    #endregion
 
     [Header("Profile UI Elements")]
     public TMP_Text levelText;

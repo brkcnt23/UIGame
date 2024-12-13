@@ -27,6 +27,8 @@ public class InventoryUI : MonoBehaviour
     [Header("Resource Items UI")]
     [SerializeField] private Transform resourceItemsContainer;
 
+    [Header("Inventory Grid UI")]
+    [SerializeField] private GameObject inventoryGridGO;
     [SerializeField] private GridLayoutGroup inventoryGrid;
     [SerializeField] private GameObject inventoryItemPrefab;
     private void Awake()
@@ -44,6 +46,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventoryPanel.SetActive(false); // Hide inventory panel by default
+        inventoryGrid = inventoryGridGO.GetComponent<GridLayoutGroup>();
         inventoryGrid.cellSize = new Vector2(150, 150);
         inventoryGrid.spacing = new Vector2(10, 10); // Optional spacing
 
@@ -61,19 +64,23 @@ public class InventoryUI : MonoBehaviour
     }
     private void PopulateInventoryGrid()
     {
-        ClearUI(inventoryGrid.transform);
+        ClearUI(inventoryGridGO.transform);
 
-        foreach (Item item in InventorySystem.Instance.GetInventory())
+        List<Item> items = InventorySystem.Instance.GetInventory();
+
+        foreach (Item item in items)
         {
-            GameObject newItem = Instantiate(inventoryItemPrefab, inventoryGrid.transform);
-            newItem.GetComponentInChildren<TMP_Text>().text = item.Name;
+            GameObject newItem = Instantiate(inventoryItemPrefab, inventoryGridGO.transform);
+            TMP_Text itemText = newItem.GetComponentInChildren<TMP_Text>();
 
-            newItem.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            if (itemText != null)
             {
-                Debug.Log($"Selected: {item.Name}");
-                // display item details
-
-            });
+                itemText.text = item.Name;
+            }
+            else
+            {
+                Debug.LogError("TMP_Text component not found on inventoryItemPrefab.");
+            }
         }
     }
 
@@ -99,16 +106,16 @@ public class InventoryUI : MonoBehaviour
         foreach (var slot in equippedItems)
         {
             var newItemSlot = Instantiate(specialItemPrefab, equippedItemsContainer);
-            newItemSlot.GetComponentInChildren<TMP_Text>().text = slot.Value != null ? slot.Value.Name : "Empty";
+            TMP_Text name = newItemSlot.gameObject.transform.GetChild(0).GetComponentInChildren<TMP_Text>();
+            string Name = name.text;
 
-            newItemSlot.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            Name = slot.Value != null ? slot.Value.Name : "Empty";
+
+            if (slot.Value != null)
             {
-                if (slot.Value != null)
-                {
-                    PlayerStatHandler.Instance.UnequipItem(slot.Value.Category);
-                    UpdateInventoryUI();
-                }
-            });
+                PlayerStatHandler.Instance.UnequipItem(slot.Value.Category);
+                UpdateInventoryUI();
+            }
         }
 
         List<Item> specialItems = InventorySystem.Instance.SpecialItems;
@@ -156,16 +163,15 @@ public class InventoryUI : MonoBehaviour
         foreach (var slot in equippedItems)
         {
             var newItemSlot = Instantiate(specialItemPrefab, equippedItemsContainer);
-            newItemSlot.GetComponentInChildren<TMP_Text>().text = slot.Value != null ? slot.Value.Name : "Empty";
+            TMP_Text name = newItemSlot.gameObject.transform.GetChild(0).GetComponentInChildren<TMP_Text>();
+            string Name = name.text;
 
-            newItemSlot.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            if (slot.Value != null)
             {
-                if (slot.Value != null)
-                {
-                    PlayerStatHandler.Instance.UnequipItem(slot.Value.Category);
-                    UpdateInventoryUI();
-                }
-            });
+                PlayerStatHandler.Instance.UnequipItem(slot.Value.Category);
+                UpdateInventoryUI();
+            }
+
         }
     }
     private void ClearUI(Transform container)

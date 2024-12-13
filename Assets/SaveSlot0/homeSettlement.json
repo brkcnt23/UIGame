@@ -6,7 +6,7 @@
         "levelToUnlock": 0,
         "Population": 10,
         "Wealth": 100,
-        "Quality": 1,
+        "Quality": 3,
         "Shops": [
             {
                 "Name": "Muhittin's Shop",
@@ -14,8 +14,33 @@
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
+                "Resources": [],
+                "upgradeHour": 24,
                 "ShopType": 7,
-                "Items": []
+                "Items": [
+                    {
+                        "ID": 0,
+                        "Name": "fasd",
+                        "Value": 437,
+                        "Category": 0,
+                        "StrengthModifier": 1,
+                        "ConstitutionModifier": 1,
+                        "DexterityModifier": 1,
+                        "CharismaModifier": -10,
+                        "Quantity": 2
+                    },
+                    {
+                        "ID": 0,
+                        "Name": "sada",
+                        "Value": 1071,
+                        "Category": 0,
+                        "StrengthModifier": 1,
+                        "ConstitutionModifier": 1,
+                        "DexterityModifier": 2,
+                        "CharismaModifier": 1,
+                        "Quantity": 0
+                    }
+                ]
             }
         ],
         "Tavern": {
@@ -24,14 +49,19 @@
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
-            "Quests": []
+            "Resources": [],
+            "upgradeHour": 56,
+            "Quests": [],
+            "Companions": []
         },
         "TownHall": {
             "Name": "Gora's Hall",
-            "level": 2,
-            "maxLevel": 0,
+            "level": 4,
+            "maxLevel": 5,
             "cost": 0,
             "income": 0,
+            "Resources": [],
+            "upgradeHour": 80,
             "Jobs": []
         },
         "Walls": {
@@ -39,7 +69,9 @@
             "level": 1,
             "maxLevel": 0,
             "cost": 0,
-            "income": 0
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 24
         },
         "Type": 0
     }

@@ -61,7 +61,7 @@ public class HomeSettlementHandler : MonoBehaviour
     public void OnSettlmentEntered()
     {
         UIHandler.Instance.HomePanelBG.SetActive(true);
-        GenerateRandomHappenings();
+        //GenerateRandomHappenings();
 
         ResidentalUIHnadler.Instance.UpdateUI();
     }
