@@ -2,7 +2,7 @@
     "events": [
         {
             "Type": 2,
-            "ID": 1001,
+            "ID": 0,
             "Name": "Bandit Ambush",
             "Description": "You are ambushed by a group of bandits on the road. How will you respond?",
             "DC": 12,
@@ -15,11 +15,11 @@
             "CompletionMinute": 0,
             "Experience": 150,
             "Silver": 100,
-            "TargetStat": "Strength",
+            "TargetStat": 0,
             "StatRewardMin": 1,
             "StatRewardMax": 3,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 3,
             "choices": [
                 {
                     "choiceText": "Fight the bandits head-on.",
@@ -37,7 +37,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -57,7 +57,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -77,7 +77,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -97,7 +97,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -119,7 +119,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -139,7 +139,7 @@
             "CompletionMinute": 0,
             "Experience": 300,
             "Silver": 200,
-            "TargetStat": "Dexterity",
+            "TargetStat": 0,
             "StatRewardMin": 2,
             "StatRewardMax": 4,
             "isHaveWar": false,
@@ -161,7 +161,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -181,7 +181,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -201,7 +201,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -223,7 +223,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -243,11 +243,11 @@
             "CompletionMinute": 30,
             "Experience": 150,
             "Silver": 200,
-            "TargetStat": "Constitution",
+            "TargetStat": 0,
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
-            "encounterCooldown": 2,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Provide medical aid to the knight.",
@@ -265,7 +265,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -285,7 +285,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -305,7 +305,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -325,7 +325,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -347,14 +347,14 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
         },
         {
             "Type": 2,
-            "ID": 3004,
+            "ID": 0,
             "Name": "Royal Gratitude",
             "Description": "The knight's family is grateful for your help and offers you a quest.",
             "DC": 12,
@@ -367,11 +367,11 @@
             "CompletionMinute": 0,
             "Experience": 500,
             "Silver": 1000,
-            "TargetStat": "Charisma",
+            "TargetStat": 0,
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 1,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -389,7 +389,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -409,7 +409,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -429,7 +429,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -449,7 +449,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -471,7 +471,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -491,7 +491,7 @@
             "CompletionMinute": 0,
             "Experience": 100,
             "Silver": 50,
-            "TargetStat": "Charisma",
+            "TargetStat": 0,
             "StatRewardMin": 1,
             "StatRewardMax": 3,
             "isHaveWar": false,
@@ -513,7 +513,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -533,7 +533,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -553,7 +553,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -573,7 +573,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -595,7 +595,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -615,7 +615,7 @@
             "CompletionMinute": 0,
             "Experience": 500,
             "Silver": 0,
-            "TargetStat": "Constitution",
+            "TargetStat": 0,
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
@@ -637,7 +637,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -657,7 +657,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -677,7 +677,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -697,7 +697,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -719,7 +719,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -739,7 +739,7 @@
             "CompletionMinute": 0,
             "Experience": 300,
             "Silver": 200,
-            "TargetStat": "Charisma",
+            "TargetStat": 0,
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
@@ -761,7 +761,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -781,7 +781,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -801,7 +801,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -821,7 +821,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -843,7 +843,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -863,7 +863,7 @@
             "CompletionMinute": 0,
             "Experience": 400,
             "Silver": 300,
-            "TargetStat": "Strength",
+            "TargetStat": 0,
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
@@ -885,7 +885,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -905,7 +905,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -925,7 +925,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -945,7 +945,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -967,7 +967,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
@@ -987,11 +987,11 @@
             "CompletionMinute": 0,
             "Experience": 1000,
             "Silver": 1000,
-            "TargetStat": "Dexterity",
+            "TargetStat": 0,
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 3,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Confront the dragon head-on.",
@@ -1009,7 +1009,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -1029,7 +1029,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -1049,7 +1049,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 },
@@ -1069,7 +1069,7 @@
                     "SilverReward": 0,
                     "StatRewardMin": 0,
                     "StatRewardMax": 0,
-                    "TargetStat": "",
+                    "TargetStat": 0,
                     "ExperienceReward": 0,
                     "AlignmentChange": 0
                 }
@@ -1091,7 +1091,7 @@
                 "SilverReward": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 0,
-                "TargetStat": "",
+                "TargetStat": 0,
                 "ExperienceReward": 0,
                 "AlignmentChange": 0
             }
