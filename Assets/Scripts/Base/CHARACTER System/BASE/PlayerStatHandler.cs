@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
+public enum StatType { Strength, Constitution, Charisma, Dexterity }
+//when we add stats we will use this enum for controling.
+//this enum is NOT the PLAYER DATA STATS
 
 public class PlayerStatHandler : MonoBehaviour
 {
@@ -140,31 +143,33 @@ public class PlayerStatHandler : MonoBehaviour
         Debug.Log("Level Down!");
     }
 
-    public void AddStats(string statType, int amount)
+
+public void AddStats(StatType statType, int amount)
+{
+    switch (statType)
     {
-        switch (statType.ToLower())
-        {
-            case "strength":
-                pd.Strength += amount;
-                Debug.Log($"STR increased by {amount}. Total: {pd.Strength}");
-                break;
-            case "constitution":
-                pd.Constitution += amount;
-                Debug.Log($"CONST increased by {amount}. Total: {pd.Constitution}");
-                break;
-            case "charisma":
-                pd.Charisma += amount;
-                Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
-                break;
-            case "dexterity":
-                pd.Dexterity += amount;
-                Debug.Log($"DEX increased by {amount}. Total: {pd.Dexterity}");
-                break;
-            default:
-                Debug.LogWarning($"Unknown stat type: {statType}");
-                break;
-        }
+        case StatType.Strength:
+            pd.Strength += amount;
+            Debug.Log($"STR increased by {amount}. Total: {pd.Strength}");
+            break;
+        case StatType.Constitution:
+            pd.Constitution += amount;
+            Debug.Log($"CONST increased by {amount}. Total: {pd.Constitution}");
+            break;
+        case StatType.Charisma:
+            pd.Charisma += amount;
+            Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
+            break;
+        case StatType.Dexterity:
+            pd.Dexterity += amount;
+            Debug.Log($"DEX increased by {amount}. Total: {pd.Dexterity}");
+            break;
+        default:
+            Debug.LogWarning("Unknown stat type.");
+            break;
     }
+}
+
 
 
     public Settlement LastVisitedSettlement()

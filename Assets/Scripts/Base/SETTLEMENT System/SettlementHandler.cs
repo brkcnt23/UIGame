@@ -44,7 +44,6 @@ public class SettlementHandler : MonoBehaviour
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
     }
-
     public void SaveSettlements()
     {
         settlements.Remove(HomeSettlementHandler.Instance.homeSettlement);
@@ -140,10 +139,10 @@ public class SettlementHandler : MonoBehaviour
         if (settlement == HomeSettlementHandler.Instance.homeSettlement)
         {
             HomeSettlementHandler.Instance.OnSettlmentEntered();
-            
+
         }
 
-        
+
         MapHandler.Instance.lastVisitedSettlement = null; // Remove this line
         MapHandler.Instance.destinationSettlement = null; // Remove this line
 

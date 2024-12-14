@@ -96,12 +96,12 @@ public class CraftingSystem
         {
             if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
             {
-                PlayerStatHandler.Instance.AddStats("Strength", 1);
+                PlayerStatHandler.Instance.AddStats(StatType.Strength, 1);
                 Debug.Log("Strength statı kazandınız!");
             }
             if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
             {
-                PlayerStatHandler.Instance.AddStats("Constitution", 1);
+                PlayerStatHandler.Instance.AddStats(StatType.Constitution, 1);
                 Debug.Log("Constitution statı kazandınız!");
             }
         }

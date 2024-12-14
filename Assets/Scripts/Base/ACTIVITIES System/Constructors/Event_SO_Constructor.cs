@@ -21,7 +21,7 @@ public class Event_SO_Constructor : SO_Base
 
         Silver = 100;
 
-        TargetStat = "Constitution";
+        TargetStat = StatType.Constitution;
         StatRewardMin = 1;
         StatRewardMax = 3;
     }
@@ -194,7 +194,7 @@ public class Choice
     public int SilverReward;
     public int StatRewardMin;
     public int StatRewardMax;
-    public string TargetStat; // e.g., "Constitution", "Strength", "Charisma", "Dexterity"
+    public StatType TargetStat; // e.g., "Constitution", "Strength", "Charisma", "Dexterity"
     public int ExperienceReward;
     public int AlignmentChange; // +1 for Good, -1 for Evil, 0 for Neutral/Success, etc.
 
@@ -252,7 +252,7 @@ public class Choice
             case "Good":
                 // Good: Generally positive alignment, some rewards
                 player.pd.Silver += SilverReward;
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.AddStats(TargetStat, statChange);
                 player.pd.Alignment += AlignmentChange;
                 AddExperience(player, ExperienceReward);
                 break;
@@ -260,7 +260,7 @@ public class Choice
             case "Evil":
                 // Evil: Gains might be higher in some resources but alignment decreases
                 player.pd.Silver += SilverReward;
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.AddStats(TargetStat, statChange);
                 player.pd.Alignment += AlignmentChange;
                 AddExperience(player, ExperienceReward);
                 break;
@@ -268,21 +268,21 @@ public class Choice
             case "Neutral":
                 // Neutral: Balanced outcome
                 player.pd.Silver += SilverReward;
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.AddStats(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
                 break;
 
             case "Success":
                 // Success: Usually a positive outcome with good rewards
                 player.pd.Silver += SilverReward;
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.AddStats(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
                 break;
 
             case "Fail":
                 // Fail: Negative outcome, might lose silver, stats or experience
                 player.pd.Silver -= SilverReward; // or apply negative silver if that makes sense
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, -statChange);
+                player.AddStats(TargetStat, -statChange);
                 AddExperience(player, -ExperienceReward); // Lose experience as penalty
                 break;
 
@@ -294,7 +294,7 @@ public class Choice
             case "FollowUp":
                 // FollowUp: Triggers another event. You can also give rewards before loading next event.
                 player.pd.Silver += SilverReward;
-                if (!string.IsNullOrEmpty(TargetStat)) player.AddStats(TargetStat, statChange);
+                player.AddStats(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
 
                 // Handling the follow-up event can be done outside this method, once you return followUpEventID.

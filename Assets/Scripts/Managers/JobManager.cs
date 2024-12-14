@@ -41,17 +41,17 @@ public class JobManager : MonoBehaviour
         Debug.Log($"Completed job: {job.Name}. Gained {rewardPoints} {job.TargetStat}.");
     }
 
-    private void GrantStatReward(string stat, int rewardPoints)
+    private void GrantStatReward(StatType stat, int rewardPoints)
     {
         switch (stat)
         {
-            case "Constitution":
+            case StatType.Constitution:
                 playerData.Constitution += rewardPoints;
                 break;
-            case "Charisma":
+            case StatType.Charisma:
                 playerData.Charisma += rewardPoints;
                 break;
-            case "Dexterity":
+            case StatType.Dexterity:
                 playerData.Dexterity += rewardPoints;
                 break;
             default:

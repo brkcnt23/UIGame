@@ -197,22 +197,18 @@ public class HomeSettlementHandler : MonoBehaviour
         int quantity = Dice.Roll(-shop.level * 10, shop.level * 10);
 
         Item item = items[itemIndex];
-        if (quantity != 0)
+
+        if (quantity > 0)
         {
-            item.AdjustValue(quantity); // Adjust value based on quantity change
+            print($"Shop {shop.Name} bought {item.Name} x{quantity} when you were away and spent {item.Value * quantity} silver");
 
-            if (quantity > 0)
-            {
-                print($"Shop {shop.Name} bought {item.Name} x{quantity} when you were away and spent {item.Value * quantity} silver");
+            homeSettlement.Wealth -= item.Value * quantity;
+        }
+        else
+        {
+            print($"Shop {shop.Name} sold {item.Name} x{-quantity} when you were away and made {item.Value * -quantity} silver");
 
-                homeSettlement.Wealth -= item.Value * quantity;
-            }
-            else
-            {
-                print($"Shop {shop.Name} sold {item.Name} x{-quantity} when you were away and made {item.Value * -quantity} silver");
-
-                homeSettlement.Wealth += item.Value * -quantity;
-            }
+            homeSettlement.Wealth += item.Value * -quantity;
         }
     }
 

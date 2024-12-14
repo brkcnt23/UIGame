@@ -77,7 +77,7 @@ public class Shops : Residentials
 
         foreach (var item in Items)
         {
-            item.AdjustValue(level);
+            //item.AdjustValue(level);
         }
     }
 }

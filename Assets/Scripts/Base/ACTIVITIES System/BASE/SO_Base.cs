@@ -26,7 +26,7 @@ public class SO_Base
     [Header("Reward")]
     public int Experience;
     public int Silver;
-    public string TargetStat;
+    public StatType TargetStat;
     public int StatRewardMin;
     public int StatRewardMax;
 }

@@ -139,7 +139,7 @@ public class TimeSystem : MonoBehaviour
                 }
                 else
                 {
-                    PlayerStatHandler.Instance.ConsumeDailyRations();
+                    FoodSystem.Instance.DailyRationConsumption();
                 }
             }
             
@@ -155,7 +155,7 @@ public class TimeSystem : MonoBehaviour
         int additionalSleepPerExhaustion = 2 * 60; // Her yorgunluk seviyesi için ek süre: 2 saat
         int totalSleepDuration = baseSleepDuration + (playerData.CurrentExhaustionLevel * additionalSleepPerExhaustion);
 
-        PlayerStatHandler.Instance.ConsumeDailyRations(); // Yemek tüketimini burada çağırıyoruz
+        FoodSystem.Instance.DailyRationConsumption(); // Yemek tüketimini burada çağırıyoruz
 
         if (playerData.Rations >= 0)
         {
@@ -175,7 +175,7 @@ public class TimeSystem : MonoBehaviour
     public void SleepWhileTraveling()
     {
         
-        PlayerStatHandler.Instance.ConsumeDailyRations();
+        FoodSystem.Instance.DailyRationConsumption();
 
         if (playerData.Rations >= 0)
         {

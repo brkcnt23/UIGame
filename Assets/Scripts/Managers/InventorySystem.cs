@@ -6,7 +6,7 @@ public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance { get; private set; }
 
-    public List<Item> inventory;      // Full inventory
+    public List<Item> inventory => PlayerStatHandler.Instance.pd.Items;  // Full inventory
     public List<Item> Resources;       // Only resource items
     public List<Item> SpecialItems;    // Only special items
 
@@ -25,31 +25,39 @@ public class InventorySystem : MonoBehaviour
 
     private void InitializeInventory()
     {
-        inventory = new List<Item>();
         Resources = new List<Item>();
         SpecialItems = new List<Item>();
     }
-
     public void AddItem(Item item)
     {
-        inventory.Add(item);
+        var existingItem = inventory.Find(x => x.ID == item.ID);
 
-        if (item.Category == ItemCategory.Resource)
+        if (existingItem != null)
         {
-            var existingResource = Resources.Find(x => x.ID == item.ID);
-            if (existingResource != null)
-            {
-                existingResource.Quantity += item.Quantity;
-            }
-            else
-            {
-                Resources.Add(item);
-            }
+            // Increase the quantity if the item already exists
+            existingItem.Quantity += item.Quantity;
         }
         else
         {
-            SpecialItems.Add(item);
+            // Add the new item to the inventory
+            inventory.Add(item);
+
+            if (item.Category == ItemCategory.Resource)
+            {
+                Resources.Add(item);
+            }
+            else
+            {
+                SpecialItems.Add(item);
+            }
         }
+
+        // Synchronize with PlayerData
+        SyncWithPlayerData();
+    }
+    private void SyncWithPlayerData()
+    {
+        PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
     }
 
     public void RemoveItem(Item item, int quantity = 1)
@@ -72,7 +80,11 @@ public class InventorySystem : MonoBehaviour
             SpecialItems.Remove(item);
             inventory.Remove(item);
         }
+
+        // Synchronize with PlayerData
+        SyncWithPlayerData();
     }
+
 
     public List<Item> GetInventory()
     {

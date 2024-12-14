@@ -51,7 +51,7 @@ public Army playerArmy;
         DisplayCasualties(result);
 
         // Savaş sonucuna göre rasyon tüketimini uygula
-        PlayerStatHandler.Instance.ConsumeDailyRations();
+        FoodSystem.Instance.DailyRationConsumption();
 
         // Savaş sonucuna göre yorgunluk seviyesini ve diğer istatistikleri güncelle
         UpdatePlayerStats(result);

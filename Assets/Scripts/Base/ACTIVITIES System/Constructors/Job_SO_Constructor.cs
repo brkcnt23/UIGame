@@ -18,7 +18,7 @@ public class Job_SO_Constructor : SO_Base
 
         Silver = 100;
         
-        TargetStat = "Constitution";
+        TargetStat = StatType.Constitution;
         StatRewardMin = 1;
         StatRewardMax = 3;
     }

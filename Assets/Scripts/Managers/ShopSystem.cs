@@ -79,7 +79,6 @@ public class ShopSystem : MonoBehaviour
             pd.Silver -= item.Value;
             InventorySystem.Instance.AddItem(item);
             Debug.Log($"Purchased {item.Name}");
-            pd.Items.Add(item);
             currentShop.Items.Remove(item);
             DisplayShopItems(currentShop);
         }
