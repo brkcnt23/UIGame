@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      greatsword_0: -9150576205834671035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

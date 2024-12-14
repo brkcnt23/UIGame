@@ -486,7 +486,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Horse_Idle_0: -3111763100740622692
+      Horse_Idle_1: 6368666205656453671
+      Horse_Idle_10: 6170528226679277848
+      Horse_Idle_11: 5388637237585019670
+      Horse_Idle_12: 5635875990961325360
+      Horse_Idle_2: -8972702074475634173
+      Horse_Idle_3: -1918351765551173753
+      Horse_Idle_4: -8329988690799480971
+      Horse_Idle_5: -2083302056398153563
+      Horse_Idle_6: -4622748143258257034
+      Horse_Idle_7: 8508511872217090590
+      Horse_Idle_8: 1938537559782762058
+      Horse_Idle_9: -8239004692516890051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

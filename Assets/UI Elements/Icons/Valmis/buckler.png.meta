@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      buckler_0: 7873332203463376436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

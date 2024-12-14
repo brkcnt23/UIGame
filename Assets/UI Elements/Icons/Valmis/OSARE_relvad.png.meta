@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OSARE_relvad_0: 8386596020162240604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -461,7 +461,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Horse_Eat_0: 2037433313697713640
+      Horse_Eat_1: -9081474296160514150
+      Horse_Eat_10: -3359042730398326444
+      Horse_Eat_11: 1430635037990054520
+      Horse_Eat_2: 5249186299362181119
+      Horse_Eat_3: 6292714403958583985
+      Horse_Eat_4: 8168149227261375125
+      Horse_Eat_5: -4518695336185770505
+      Horse_Eat_6: -8566636716044238746
+      Horse_Eat_7: -3810371999264384400
+      Horse_Eat_8: -6899401840017625710
+      Horse_Eat_9: 3404503536627806054
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

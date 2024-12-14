@@ -70,6 +70,7 @@ public class PlayerData
     public int LastSleepMinute;
     public List<Companion> Companions = new List<Companion>();
     public List<Item> Items = new List<Item>();
+    public List<Quest_SO_Constructor> Quests = new List<Quest_SO_Constructor>();
 
     public string LastSettlementName;
 
