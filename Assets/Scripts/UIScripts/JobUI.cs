@@ -5,23 +5,75 @@ using System.Collections.Generic;
 
 public class JobUI : MonoBehaviour
 {
-    [SerializeField] private GameObject jobPanel; // Panel for job UI
+    [Header("Stable Job Buttons")]
+    [SerializeField] private Button helpMerchantsButton;
+    [SerializeField] private Button helpScoutsButton;
+    [SerializeField] private Button cuttingWoodsButton;
+    [SerializeField] private Button laboringMinesButton;
+
+    [Header("Settlement Specialization Jobs")]
+    [SerializeField] private GameObject jobPanel; // Panel for specialization jobs
     [SerializeField] private Transform jobContainer; // Parent object for job entries
-    [SerializeField] private GameObject jobPrefab; // Prefab for job entry
-    private List<Job_SO_Constructor> jobs;
+    [SerializeField] private GameObject jobPrefab; // Prefab for specialization job entry
+
+    private List<Job_SO_Constructor> specializationJobs;
+
 
     private void Start()
     {
-        jobPanel.SetActive(false); // Hide job panel by default
-        jobs = JobManager.Instance.GetAvailableJobs();
+        // Assign button listeners for stable jobs
+        helpMerchantsButton.onClick.AddListener(() => JobManager.Instance.StartHelpMerchants());
+        helpScoutsButton.onClick.AddListener(() => JobManager.Instance.StartHelpScouts());
+        cuttingWoodsButton.onClick.AddListener(() => JobManager.Instance.StartCuttingWoods());
+        laboringMinesButton.onClick.AddListener(() => JobManager.Instance.StartLaboringMines());
+
+        // Hide specialization job panel by default
+        jobPanel.SetActive(false);
+
+        // Get available specialization jobs
+        specializationJobs = JobManager.Instance.GetAvailableJobs();
     }
 
-    public void ToggleJobUI()
+
+
+
+    public void ToggleSpecializationJobUI()
     {
         jobPanel.SetActive(!jobPanel.activeSelf);
         if (jobPanel.activeSelf)
         {
-            UpdateJobUI();
+            UpdateSpecializationJobUI();
+        }
+    }
+
+
+
+    private void UpdateSpecializationJobUI()
+    {
+        // Clear previous entries
+        foreach (Transform child in jobContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Populate specialization job entries using the prefab
+        foreach (Job_SO_Constructor job in specializationJobs)
+        {
+            GameObject newJob = Instantiate(jobPrefab, jobContainer);
+
+            // Set the title and description
+            TMP_Text titleText = newJob.transform.Find("Title").GetComponent<TMP_Text>();
+            TMP_Text descText = newJob.transform.Find("Description").GetComponent<TMP_Text>();
+            Button startButton = newJob.transform.Find("StartButton").GetComponent<Button>();
+
+            titleText.text = job.Name;
+            descText.text = job.Description;
+
+            startButton.onClick.AddListener(() =>
+            {
+                JobManager.Instance.StartJob(job);
+                ToggleSpecializationJobUI();
+            });
         }
     }
 
@@ -34,18 +86,37 @@ public class JobUI : MonoBehaviour
         }
 
         // Populate job entries
-        foreach (Job_SO_Constructor job in jobs)
+        foreach (Job_SO_Constructor job in specializationJobs)
         {
             GameObject newJob = Instantiate(jobPrefab, jobContainer);
             TMP_Text jobText = newJob.GetComponentInChildren<TMP_Text>();
-            jobText.text = $"{job.Name}\nReward: {job.StatRewardMin}-{job.StatRewardMax} {job.TargetStat}";
+            string rewardInfo = GetRewardInfo(job);
+
+            jobText.text = $"{job.Name}\n{rewardInfo}";
 
             Button jobButton = newJob.GetComponentInChildren<Button>();
             jobButton.onClick.AddListener(() =>
             {
                 JobManager.Instance.StartJob(job);
-                ToggleJobUI();
+                ToggleSpecializationJobUI();
             });
+        }
+    }
+
+    private string GetRewardInfo(Job_SO_Constructor job)
+    {
+        switch (job.Name)
+        {
+            case "Help the Merchants":
+                return "Reward: Silver & Charisma XP";
+            case "Help the Scouts":
+                return "Reward: Silver & Dexterity XP";
+            case "Cutting Woods":
+                return "Reward: Wood & Strength XP";
+            case "Laboring Mines":
+                return "Reward: Stone, Chance of Iron Ingot & Gold Nugget, Constitution XP";
+            default:
+                return $"Reward: {job.StatRewardMin}-{job.StatRewardMax} {job.TargetStat}";
         }
     }
 }

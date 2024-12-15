@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using NEXUS.Utilities;
-
+using System.Collections.Generic;
+using NEXUS;
 public enum CraftType
 {
     Smither,
@@ -25,10 +26,9 @@ public class CraftingSystem
     }
 
 
-    public void WorkAsBlacksmithApprentice(int jobLevel, string itemType)
+    public void WorkAsBlacksmith(int jobLevel, string itemType)
     {
-        int playerSkillLevel = playerData.SmitherSkillLevel;
-        int levelDifference = playerSkillLevel - jobLevel;
+        int levelDifference = GetCraftLevel(CraftType.Smither) - jobLevel;
 
         // Skill level check
         if (levelDifference < -5)
@@ -77,63 +77,123 @@ public class CraftingSystem
         // Reduce the required material
         InventorySystem.Instance.RemoveItem(requiredMaterial, requiredQuantity);
 
-        // Produce the item
-        Item producedItem = ProduceBlacksmithItem(itemType, successChance);
-
-        // Add the produced item to the inventory
-        InventorySystem.Instance.AddItem(producedItem);
+        ProduceBlacksmithItem(itemType, successChance);
 
         // Apply rewards
         CalculateAndApplyRewards(CraftType.Smither, jobLevel, successMultiplier, statMultiplier, randomValue);
 
         int workDurationInMinutes = CalculateWorkDuration(jobLevel);
         timeSystem.AdvanceTimeCoroutine(0, workDurationInMinutes / 60, workDurationInMinutes % 60);
-
-        Debug.Log($"Başarıyla {producedItem.Name} ürettiniz.");
     }
 
-    private Item ProduceBlacksmithItem(string itemType, int successChance)
+    public void WorkAsTanner(int jobLevel)
     {
-        // Determine stat modifiers based on success chance
-        int modifier = Mathf.RoundToInt((successChance / 100f) * 20) - 10; // Range: -10 to +10
-        modifier = Mathf.Clamp(modifier, -10, 10);
+        int levelDifference = GetCraftLevel(CraftType.Tanner) - jobLevel;
 
-        // Generate a unique ID for the item
-        int itemId = UnityEngine.Random.Range(1000, 9999);
-
-        string itemName;
-        int baseValue;
-
-        if (itemType.ToLower() == "weapon")
+        // Skill level check
+        if (levelDifference < -5)
         {
-            // Random weapon names
-            string[] weapons = { "Iron Sword", "Steel Dagger", "Battle Axe", "War Hammer" };
-            itemName = weapons[UnityEngine.Random.Range(0, weapons.Length)];
-            baseValue = 150;
-        }
-        else
-        {
-            // Random armor names
-            string[] armors = { "Iron Armor", "Steel Chestplate", "Chainmail", "Plate Armor" };
-            itemName = armors[UnityEngine.Random.Range(0, armors.Length)];
-            baseValue = 200;
+            Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
+            return;
         }
 
-        // Create the item with the calculated modifiers
-        Item newItem = new Item(
-            itemId,
-            itemName,
-            baseValue,
-            itemType.ToLower() == "weapon" ? ItemCategory.Weapon : ItemCategory.Armor,
-            strengthModifier: modifier,
-            constitutionModifier: modifier,
-            dexterityModifier: 0,
-            charismaModifier: 0,
-            quantity: 1
-        );
+        // Determine required material and quantity
+        Item requiredMaterial = new Item(6, "Leather", 50, ItemCategory.CraftingMaterial, 1);
+        int requiredQuantity = 1; // Boots üretimi için 1 Leather gerekli
 
-        Debug.Log($"{itemName} üretildi. Stat Modifiers: STR {modifier}, CON {modifier}");
-        return newItem;
+        // Material check
+        if (!InventorySystem.Instance.HasItem(requiredMaterial.ID, requiredQuantity))
+        {
+            Debug.Log($"Yeterli {requiredMaterial.Name} yok. Gerekli miktar: {requiredQuantity}");
+            return;
+        }
+
+        // Calculate success chance
+        float maxBonus = 10 + (playerData.Charisma / 2f);
+        float randomValue = UnityEngine.Random.Range(0f, maxBonus);
+
+        float successMultiplier = (playerData.Dexterity + playerData.Constitution + randomValue) / 2f;
+        float statMultiplier = (playerData.Dexterity + playerData.Constitution) / 10f;
+        int successChance = Mathf.Clamp(50 + (levelDifference * 5) + Mathf.RoundToInt(statMultiplier * 5), 0, 100);
+
+        Debug.Log($"Başarı şansı: {successChance}%");
+
+        int randomValueForSuccess = Dice.RollD100();
+
+        if (randomValueForSuccess >= successChance)
+        {
+            Debug.Log("Üretim başarısız oldu.");
+            int workDuration = CalculateWorkDuration(jobLevel);
+            timeSystem.AdvanceTimeCoroutine(0, workDuration / 60, workDuration % 60);
+            return;
+        }
+        InventorySystem.Instance.RemoveItem(requiredMaterial, requiredQuantity);
+
+        // Produce the item
+        ProduceTanningItem(successChance);
+
+        // Apply rewards
+        CalculateAndApplyRewards(CraftType.Tanner, jobLevel, successMultiplier, statMultiplier, randomValue);
+
+        int workDurationInMinutes = CalculateWorkDuration(jobLevel);
+        timeSystem.AdvanceTimeCoroutine(0, workDurationInMinutes / 60, workDurationInMinutes % 60);
+    }
+
+    public void WorkAsAlchemist(int jobLevel)
+    {
+        int levelDifference = GetCraftLevel(CraftType.Alchemist) - jobLevel;
+
+        // Skill level check
+        if (levelDifference < -5)
+        {
+            Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
+            return;
+        }
+
+        // Determine required material and quantity
+        Item requiredMaterial = new Item(7, "Herb", 30, ItemCategory.CraftingMaterial, 1);
+        int requiredQuantity = 5; // Potion üretimi için 5 Herb gerekli
+
+        // Material check
+        if (!InventorySystem.Instance.HasItem(requiredMaterial.ID, requiredQuantity))
+        {
+            Debug.Log($"Yeterli {requiredMaterial.Name} yok. Gerekli miktar: {requiredQuantity}");
+            return;
+        }
+
+        // Calculate success chance
+        float maxBonus = 10 + (playerData.Charisma / 2f);
+        float randomValue = UnityEngine.Random.Range(0f, maxBonus);
+
+        float successMultiplier = (playerData.Dexterity + playerData.Charisma + randomValue) / 2f;
+        float statMultiplier = (playerData.Dexterity + playerData.Charisma) / 10f;
+        int successChance = Mathf.Clamp(50 + (levelDifference * 5) + Mathf.RoundToInt(statMultiplier * 5), 0, 100);
+
+        Debug.Log($"Başarı şansı: {successChance}%");
+
+        int randomValueForSuccess = Dice.RollD100();
+
+        if (randomValueForSuccess >= successChance)
+        {
+            Debug.Log("Üretim başarısız oldu.");
+            int workDuration = CalculateWorkDuration(jobLevel);
+            timeSystem.AdvanceTimeCoroutine(0, workDuration / 60, workDuration % 60);
+            return;
+        }
+
+        // Reduce the required material
+        InventorySystem.Instance.RemoveItem(requiredMaterial, requiredQuantity);
+
+        // Produce the potion
+        ProduceAlchemyItem(successChance);
+
+        // Apply rewards
+        CalculateAndApplyRewards(CraftType.Alchemist, jobLevel, successMultiplier, statMultiplier, randomValue);
+
+        int workDurationInMinutes = CalculateWorkDuration(jobLevel);
+        timeSystem.AdvanceTimeCoroutine(0, workDurationInMinutes / 60, workDurationInMinutes % 60);
+
+        Debug.Log("Başarıyla Health Potion ürettiniz.");
     }
 
     private void CalculateAndApplyRewards(CraftType craftType, int jobLevel, float successMultiplier, float statMultiplier, float randomValue)
@@ -199,6 +259,163 @@ public class CraftingSystem
         Debug.Log($"Karakter {characterExpGain} EXP kazandı.");
     }
 
+    private Item ProduceBlacksmithItem(string itemType, int successChance)
+    {
+        int itemId = UnityEngine.Random.Range(1000, 9999);
+
+        string itemName;
+        int baseValue;
+
+
+        if (itemType.ToLower() == "weapon")
+        {
+            // Random weapon names
+            string[] weapons = { "Iron Sword", "Steel Dagger", "Battle Axe", "War Hammer", "Light Bow", "Hand Crossbow", "Morning Star" };
+            itemName = weapons[UnityEngine.Random.Range(0, weapons.Length)];
+            baseValue = 150;
+        }
+        else
+        {
+            // Random armor names
+            string[] armors = { "Iron Armor", "Steel Chestplate", "Chainmail", "Plate Armor", "Adamantine Plate" };
+            itemName = armors[UnityEngine.Random.Range(0, armors.Length)];
+            baseValue = 200;
+        }
+        // SuccessChance'i en yakın 5'in katına yuvarla
+        int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
+        int modifier = Mathf.RoundToInt((roundedSuccess / 100f) * 20) - 10;
+
+        // Determine stat modifiers based on success chance
+        int strengthModifier = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2));
+        int constitutionModifier = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2));
+        int dexterityModifier = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2));
+
+
+
+        float qualityMultiplier = 1 + ((successChance - 50) / 100f);
+
+        // Rastgelelik için küçük bir faktör ekle (-5% ile +5% arasında)
+        float randomFactor = UnityEngine.Random.Range(-0.05f, 0.05f);
+
+        // Nihai değeri hesapla
+        float newValue = baseValue * qualityMultiplier * (1 + randomFactor);
+
+        // Değeri yuvarla ve en az baseValue kadar olmasını sağla
+        int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
+
+
+        // Create the item with the calculated modifiers
+        List<StatModifier> modifiers = new List<StatModifier>
+    {
+        new StatModifier { Stat = StatType.Strength, Value = strengthModifier },
+        new StatModifier { Stat = StatType.Constitution, Value = constitutionModifier },
+        new StatModifier { Stat = StatType.Dexterity, Value = dexterityModifier }
+    };
+
+        Item newItem = new Item(
+            itemId,
+            itemName,
+            finalValue,
+            itemType.ToLower() == "weapon" ? ItemCategory.Weapon : ItemCategory.Armor,
+            modifiers,
+            1
+        );
+        AddCraftedItem(newItem);
+        Debug.Log($"{itemName} üretildi. Stat Modifiers: STR {strengthModifier}, CON {constitutionModifier}, DEX {dexterityModifier}");
+        return newItem;
+    }
+
+    private Item ProduceTanningItem(int successChance)
+    {
+        int itemId = UnityEngine.Random.Range(1000, 9999);
+        string itemName = "Leather Boots";
+        int baseValue = 100;
+        // SuccessChance'i en yakın 5'in katına yuvarla
+        int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
+        // Modifier hesapla: -10 ile +10 arasında
+        int modifier = Mathf.RoundToInt((roundedSuccess / 100f) * 20) - 10;
+
+        // Rastgele stat modifikasyonları belirle
+        List<StatModifier> modifiers = new List<StatModifier>();
+
+        // Ana stat: Dexterity ve Charisma, nadiren Strength ve Constitution
+        if (Dice.RollD100() < 80)
+        {
+            modifiers.Add(new StatModifier { Stat = StatType.Dexterity, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+            modifiers.Add(new StatModifier { Stat = StatType.Charisma, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+        }
+        else
+        {
+            modifiers.Add(new StatModifier { Stat = StatType.Strength, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+            modifiers.Add(new StatModifier { Stat = StatType.Constitution, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+        }
+
+        // Kaliteye göre değeri hesapla
+        float qualityMultiplier = 1 + ((successChance - 50) / 100f);
+
+        // Rastgelelik için küçük bir faktör ekle (-5% ile +5% arasında)
+        float randomFactor = UnityEngine.Random.Range(-0.05f, 0.05f);
+
+        // Nihai değeri hesapla
+        float newValue = baseValue * qualityMultiplier * (1 + randomFactor);
+
+        // Değeri yuvarla ve en az baseValue kadar olmasını sağla
+        int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
+
+        Item newItem = new Item(
+            itemId,
+            itemName,
+            finalValue,
+            ItemCategory.Boots,
+            modifiers,
+            1
+        );
+
+        AddCraftedItem(newItem);
+        Debug.Log($"{itemName} üretildi. Value: {finalValue} silver. Stat Modifiers: {string.Join(", ", modifiers)}");
+        return newItem;
+    }
+
+    private Item ProduceAlchemyItem(int successChance)
+    {
+        int itemId = UnityEngine.Random.Range(1000, 9999);
+        string itemName = "Health Potion";
+        int baseValue = 50;
+
+        // SuccessChance'i en yakın 5'in katına yuvarla
+        int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
+
+        // HealthRecovery ve ExhaustionReduction hesapla: başarı oranına göre değişir
+        int healthRecovery = Mathf.RoundToInt((roundedSuccess / 100f) * 50) + 10; // 10 ile 60 arasında
+        int exhaustionReduction = Mathf.RoundToInt((roundedSuccess / 100f) * 4) + 1; // 1 ile 5 arasında
+
+
+        // Item değeri:
+        float qualityMultiplier = 1 + ((successChance - 50) / 100f);
+
+        // Rastgelelik için küçük bir faktör ekle (-5% ile +5% arasında)
+        float randomFactor = UnityEngine.Random.Range(-0.05f, 0.05f);
+
+        // Nihai değeri hesapla
+        float newValue = baseValue * qualityMultiplier * (1 + randomFactor);
+
+        // Değeri yuvarla ve en az baseValue kadar olmasını sağla
+        int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
+
+        Item newItem = new Item(
+            itemId,
+            itemName,
+            finalValue,
+            healthRecovery,
+            exhaustionReduction,
+            1
+        );
+
+        AddCraftedItem(newItem);
+        Debug.Log($"{itemName} üretildi. Value: {finalValue} silver. Health Recovery: {healthRecovery}, Exhaustion Reduction: {exhaustionReduction}");
+        return newItem;
+    }
+
     private int GetDifficultyIndex(int jobLevel)
     {
         if (jobLevel >= 1 && jobLevel <= 5)
@@ -243,23 +460,12 @@ public class CraftingSystem
         return workDuration;
 
     }
-    private void AddCraftedItem(CraftType craftType)
+    private void AddCraftedItem(Item itemToAdd)
     {
-        // Create an item based on the crafting type
-        Item craftedItem = craftType switch
+        if (itemToAdd != null)
         {
-            CraftType.Smither => ItemDatabase.GetItemByID(1), // Iron Sword
-            CraftType.Tanner => ItemDatabase.GetItemByID(3), // Leather Armor
-            CraftType.Carpenter => ItemDatabase.GetItemByID(4), // Wooden Plank
-            CraftType.Mason => ItemDatabase.GetItemByID(5), // Stone Brick
-            CraftType.Alchemist => ItemDatabase.GetItemByID(2), // Health Potion
-            _ => null
-        };
-
-        if (craftedItem != null)
-        {
-            InventorySystem.Instance.AddItem(craftedItem);
-            Debug.Log($"Crafted {craftedItem.Name} and added to inventory.");
+            InventorySystem.Instance.AddItem(itemToAdd);
+            Debug.Log($"Crafted {itemToAdd.Name} and added to inventory.");
         }
     }
 }

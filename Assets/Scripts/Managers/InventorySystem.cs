@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance { get; private set; }
 
-    public List<Item> inventory => PlayerStatHandler.Instance.pd.Items;  // Full inventory
-    public List<Item> Resources;       // Only resource items
-    public List<Item> SpecialItems;    // Only special items
+    public List<Item> inventory => PlayerStatHandler.Instance.pd.Items; 
+    public List<Item> Resources;
+    public List<Item> SpecialItems;
 
     private void Awake()
     {
@@ -29,8 +28,15 @@ public class InventorySystem : MonoBehaviour
         Resources = new List<Item>();
         SpecialItems = new List<Item>();
     }
+
     public void AddItem(Item item)
     {
+        if (item == null)
+        {
+            Debug.LogWarning("AddItem: Eklenmek istenen item null.");
+            return;
+        }
+
         var existingItem = inventory.Find(x => x.ID == item.ID);
 
         if (existingItem != null)
@@ -42,60 +48,74 @@ public class InventorySystem : MonoBehaviour
         {
             // Add the new item to the inventory
             inventory.Add(item);
+            AddToCategoryLists(item);
+        }
 
-            if (item.Category == ItemCategory.Resource)
+        SyncWithPlayerData();
+    }
+
+    private void AddToCategoryLists(Item item)
+    {
+        if (item.Category == ItemCategory.Resource)
+        {
+            Resources.Add(item);
+        }
+        else
+        {
+            SpecialItems.Add(item);
+        }
+    }
+
+    public void RemoveItem(Item item, int quantity = 1)
+    {
+        if (item == null)
+        {
+            Debug.LogWarning("RemoveItem: Silinmek istenen item null.");
+            return;
+        }
+
+        var existingItem = inventory.Find(x => x.ID == item.ID);
+
+        if (existingItem != null)
+        {
+            existingItem.Quantity -= quantity;
+
+            if (existingItem.Quantity <= 0)
             {
-                Resources.Add(item);
-            }
-            else
-            {
-                SpecialItems.Add(item);
+                inventory.Remove(existingItem);
+                RemoveFromCategoryLists(existingItem);
             }
         }
 
-        // Synchronize with PlayerData
         SyncWithPlayerData();
     }
+
+    private void RemoveFromCategoryLists(Item item)
+    {
+        if (item.Category == ItemCategory.Resource)
+        {
+            Resources.Remove(item);
+        }
+        else
+        {
+            SpecialItems.Remove(item);
+        }
+    }
+
     private void SyncWithPlayerData()
     {
         PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
     }
 
-    public void RemoveItem(Item item, int quantity = 1)
-    {
-        if (item.Category == ItemCategory.Resource)
-        {
-            var resource = Resources.Find(x => x.ID == item.ID);
-            if (resource != null)
-            {
-                resource.Quantity -= quantity;
-                if (resource.Quantity <= 0)
-                {
-                    Resources.Remove(resource);
-                    inventory.Remove(resource);
-                }
-            }
-        }
-        else
-        {
-            SpecialItems.Remove(item);
-            inventory.Remove(item);
-        }
-
-        // Synchronize with PlayerData
-        SyncWithPlayerData();
-    }
-
-
     public List<Item> GetInventory()
     {
-        PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
-        return inventory;
+        SyncWithPlayerData();
+        return new List<Item>(inventory);
     }
 
     public bool HasItem(int itemId, int quantity)
     {
-        Item item = PlayerStatHandler.Instance.pd.Items.Find(i => i.ID == itemId);
+        var item = inventory.Find(i => i.ID == itemId);
         return item != null && item.Quantity >= quantity;
     }
 }

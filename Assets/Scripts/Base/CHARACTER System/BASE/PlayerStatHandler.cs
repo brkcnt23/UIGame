@@ -146,31 +146,31 @@ public class PlayerStatHandler : MonoBehaviour
     }
 
 
-public void AddStats(StatType statType, int amount)
-{
-    switch (statType)
+    public void AddStats(StatType statType, int amount)
     {
-        case StatType.Strength:
-            pd.Strength += amount;
-            Debug.Log($"STR increased by {amount}. Total: {pd.Strength}");
-            break;
-        case StatType.Constitution:
-            pd.Constitution += amount;
-            Debug.Log($"CONST increased by {amount}. Total: {pd.Constitution}");
-            break;
-        case StatType.Charisma:
-            pd.Charisma += amount;
-            Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
-            break;
-        case StatType.Dexterity:
-            pd.Dexterity += amount;
-            Debug.Log($"DEX increased by {amount}. Total: {pd.Dexterity}");
-            break;
-        default:
-            Debug.LogWarning("Unknown stat type.");
-            break;
+        switch (statType)
+        {
+            case StatType.Strength:
+                pd.Strength += amount;
+                Debug.Log($"STR increased by {amount}. Total: {pd.Strength}");
+                break;
+            case StatType.Constitution:
+                pd.Constitution += amount;
+                Debug.Log($"CONST increased by {amount}. Total: {pd.Constitution}");
+                break;
+            case StatType.Charisma:
+                pd.Charisma += amount;
+                Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
+                break;
+            case StatType.Dexterity:
+                pd.Dexterity += amount;
+                Debug.Log($"DEX increased by {amount}. Total: {pd.Dexterity}");
+                break;
+            default:
+                Debug.LogWarning("Unknown stat type.");
+                break;
+        }
     }
-}
 
 
 
@@ -209,19 +209,20 @@ public void AddStats(StatType statType, int amount)
             RemoveModifiers(itemToUnequip);
         }
     }
-    private void ApplyModifiers(Item item)
+    public void ApplyModifiers(Item item)
     {
-        pd.Strength += item.StrengthModifier;
-        pd.Constitution += item.ConstitutionModifier;
-        pd.Dexterity += item.DexterityModifier;
-        pd.Charisma += item.CharismaModifier;
+        foreach (var modifier in item.Modifiers)
+        {
+            AddStats(modifier.Stat, modifier.Value);
+        }
     }
-    private void RemoveModifiers(Item item)
+
+    public void RemoveModifiers(Item item)
     {
-        pd.Strength -= item.StrengthModifier;
-        pd.Constitution -= item.ConstitutionModifier;
-        pd.Dexterity -= item.DexterityModifier;
-        pd.Charisma -= item.CharismaModifier;
+        foreach (var modifier in item.Modifiers)
+        {
+            AddStats(modifier.Stat, -modifier.Value);
+        }
     }
 
     public void EquipItem(Item item)
@@ -464,6 +465,55 @@ public void AddStats(StatType statType, int amount)
             DecreaseRations(pd.Rations);
             IncreaseExhaustion();
             Debug.Log($"Not enough rations! Missing: {missingRations}. Increased exhaustion level.");
+        }
+    }
+    public void AddStatXP(StatType statType, int xpAmount)
+    {
+        switch (statType)
+        {
+            case StatType.Strength:
+                pd.StrengthXP += xpAmount;
+                while (pd.StrengthXP >= 100)
+                {
+                    pd.Strength++;
+                    pd.StrengthXP -= 100;
+                    Debug.Log($"Strength leveled up! New Strength: {pd.Strength}");
+                }
+                break;
+
+            case StatType.Dexterity:
+                pd.DexterityXP += xpAmount;
+                while (pd.DexterityXP >= 100)
+                {
+                    pd.Dexterity++;
+                    pd.DexterityXP -= 100;
+                    Debug.Log($"Dexterity leveled up! New Dexterity: {pd.Dexterity}");
+                }
+                break;
+
+            case StatType.Constitution:
+                pd.ConstitutionXP += xpAmount;
+                while (pd.ConstitutionXP >= 100)
+                {
+                    pd.Constitution++;
+                    pd.ConstitutionXP -= 100;
+                    Debug.Log($"Constitution leveled up! New Constitution: {pd.Constitution}");
+                }
+                break;
+
+            case StatType.Charisma:
+                pd.CharismaXP += xpAmount;
+                while (pd.CharismaXP >= 100)
+                {
+                    pd.Charisma++;
+                    pd.CharismaXP -= 100;
+                    Debug.Log($"Charisma leveled up! New Charisma: {pd.Charisma}");
+                }
+                break;
+
+            default:
+                Debug.LogWarning("Unknown stat type.");
+                break;
         }
     }
 
