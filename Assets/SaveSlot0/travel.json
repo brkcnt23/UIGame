@@ -1,5 +1,5 @@
 {
-    "inTravel": true,
+    "inTravel": false,
     "currentSettlementID": 4,
     "destinationID": 1,
     "remainingTime": 80,

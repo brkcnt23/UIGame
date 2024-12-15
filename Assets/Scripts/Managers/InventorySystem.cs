@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
@@ -90,5 +91,11 @@ public class InventorySystem : MonoBehaviour
     {
         PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
         return inventory;
+    }
+
+    public bool HasItem(int itemId, int quantity)
+    {
+        Item item = PlayerStatHandler.Instance.pd.Items.Find(i => i.ID == itemId);
+        return item != null && item.Quantity >= quantity;
     }
 }

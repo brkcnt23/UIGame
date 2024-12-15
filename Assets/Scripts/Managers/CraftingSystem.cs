@@ -24,86 +24,174 @@ public class CraftingSystem
         timeSystem = ts;
     }
 
-    public void WorkAsApprentice(CraftType craftType, int jobLevel)
+
+    public void WorkAsBlacksmithApprentice(int jobLevel, string itemType)
     {
-        // Oyuncunun beceri seviyesini ve seviye farkını alalım
-        int playerSkillLevel = GetCraftLevel(craftType);
+        int playerSkillLevel = playerData.SmitherSkillLevel;
         int levelDifference = playerSkillLevel - jobLevel;
 
+        // Skill level check
         if (levelDifference < -5)
         {
             Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
             return;
         }
 
-        // Başarı şansını hesaplayalım
-        int successChance = Mathf.Clamp(50 + (levelDifference * 5), 0, 100);
+        // Determine required material and quantity based on item type
+        Item requiredMaterial = new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial, 1);
+        int requiredQuantity = itemType.ToLower() == "armor" ? 2 : 1; // Armor requires 2 ingots, weapon requires 1
+
+        if (itemType.ToLower() != "weapon" && itemType.ToLower() != "armor")
+        {
+            Debug.Log("Geçersiz eşya türü. Lütfen 'weapon' veya 'armor' seçin.");
+            return;
+        }
+
+        // Material check
+        if (!InventorySystem.Instance.HasItem(requiredMaterial.ID, requiredQuantity))
+        {
+            Debug.Log($"Yeterli {requiredMaterial.Name} yok. Gerekli miktar: {requiredQuantity}");
+            return;
+        }
+
+        // Calculate success chance
+        float maxBonus = 10 + (playerData.Charisma / 2f);
+        float randomValue = UnityEngine.Random.Range(0f, maxBonus);
+
+        float successMultiplier = (playerData.Strength + playerData.Constitution + randomValue) / 2f;
+        float statMultiplier = (playerData.Strength + playerData.Constitution) / 10f;
+        int successChance = Mathf.Clamp(50 + (levelDifference * 5) + Mathf.RoundToInt(statMultiplier * 5), 0, 100);
+
+        Debug.Log($"Başarı şansı: {successChance}%");
+
         int randomValueForSuccess = Dice.RollD100();
 
         if (randomValueForSuccess >= successChance)
         {
             Debug.Log("Üretim başarısız oldu.");
             int workDuration = CalculateWorkDuration(jobLevel);
-            timeSystem.AdvanceTimeCoroutine(0, workDuration/60, workDuration%60);
+            timeSystem.AdvanceTimeCoroutine(0, workDuration / 60, workDuration % 60);
             return;
         }
 
-        // Üretim başarılı, ödülleri hesapla ve uygula
-        CalculateAndApplyRewards(craftType, jobLevel);
+        // Reduce the required material
+        InventorySystem.Instance.RemoveItem(requiredMaterial, requiredQuantity);
 
-        // İş süresini ilerlet
+        // Produce the item
+        Item producedItem = ProduceBlacksmithItem(itemType, successChance);
+
+        // Add the produced item to the inventory
+        InventorySystem.Instance.AddItem(producedItem);
+
+        // Apply rewards
+        CalculateAndApplyRewards(CraftType.Smither, jobLevel, successMultiplier, statMultiplier, randomValue);
+
         int workDurationInMinutes = CalculateWorkDuration(jobLevel);
         timeSystem.AdvanceTimeCoroutine(0, workDurationInMinutes / 60, workDurationInMinutes % 60);
 
-        // Sonuçları yazdır
-        Debug.Log($"Çırak olarak {craftType} alanında çalıştınız.");
-        Debug.Log($"Toplam Altın: {playerData.Gold}, Toplam Gümüş: {playerData.Silver}");
-        Debug.Log($"Zaman ilerledi: {workDurationInMinutes / 60} saat. {timeSystem.GetTimeString()}");
+        Debug.Log($"Başarıyla {producedItem.Name} ürettiniz.");
     }
 
-    private void CalculateAndApplyRewards(CraftType craftType, int jobLevel)
+    private Item ProduceBlacksmithItem(string itemType, int successChance)
     {
-        // Mevcut ödül hesaplamaları
-        float maxBonus = 10 + (playerData.Charisma / 2f);
-        float randomValue = UnityEngine.Random.Range(0f, maxBonus);
+        // Determine stat modifiers based on success chance
+        int modifier = Mathf.RoundToInt((successChance / 100f) * 20) - 10; // Range: -10 to +10
+        modifier = Mathf.Clamp(modifier, -10, 10);
 
-        float successMultiplier = (playerData.Strength + playerData.Constitution + randomValue) / 2f;
-        float statMultiplier = (playerData.Strength + playerData.Constitution) / 10f;
-        float baseMultiplier = 1 + (playerData.Level / 10f);
+        // Generate a unique ID for the item
+        int itemId = UnityEngine.Random.Range(1000, 9999);
+
+        string itemName;
+        int baseValue;
+
+        if (itemType.ToLower() == "weapon")
+        {
+            // Random weapon names
+            string[] weapons = { "Iron Sword", "Steel Dagger", "Battle Axe", "War Hammer" };
+            itemName = weapons[UnityEngine.Random.Range(0, weapons.Length)];
+            baseValue = 150;
+        }
+        else
+        {
+            // Random armor names
+            string[] armors = { "Iron Armor", "Steel Chestplate", "Chainmail", "Plate Armor" };
+            itemName = armors[UnityEngine.Random.Range(0, armors.Length)];
+            baseValue = 200;
+        }
+
+        // Create the item with the calculated modifiers
+        Item newItem = new Item(
+            itemId,
+            itemName,
+            baseValue,
+            itemType.ToLower() == "weapon" ? ItemCategory.Weapon : ItemCategory.Armor,
+            strengthModifier: modifier,
+            constitutionModifier: modifier,
+            dexterityModifier: 0,
+            charismaModifier: 0,
+            quantity: 1
+        );
+
+        Debug.Log($"{itemName} üretildi. Stat Modifiers: STR {modifier}, CON {modifier}");
+        return newItem;
+    }
+
+    private void CalculateAndApplyRewards(CraftType craftType, int jobLevel, float successMultiplier, float statMultiplier, float randomValue)
+    {
         int difficultyIndex = GetDifficultyIndex(jobLevel);
-
+        float baseMultiplier = 1 + (playerData.Level / 10f);
         float goldModifier = 0.5f;
         float expModifier = 0.5f;
 
-        float reward = ((difficultyIndex * successMultiplier * goldModifier) * randomValue + statMultiplier) * baseMultiplier;
-
-        int silverReward = Mathf.RoundToInt(reward);
-        float expReward = reward * expModifier;
-
-        // Gümüş ödülü
+        // Altın ödülü hesaplama
+        float rewardGold = ((difficultyIndex * successMultiplier * goldModifier) * randomValue + statMultiplier) * baseMultiplier;
+        int silverReward = Mathf.RoundToInt(rewardGold);
         economySystem.AddSilver(silverReward);
 
-        // Crafting EXP kazancı
-        int craftExp = Mathf.RoundToInt(expReward / 2);
+        // Deneyim ödülü hesaplama
+        float rewardExp = ((difficultyIndex * successMultiplier * expModifier) * randomValue + statMultiplier) * baseMultiplier;
+        int craftExp = Mathf.RoundToInt(rewardExp);
         ExperienceSystem.UpdateCraftLevel(playerData, craftType, craftExp);
 
-        // Karakter EXP kazancı (Crafting EXP'in yarısı kadar)
-        int characterExpGain = Mathf.RoundToInt(expReward);
+        int characterExpGain = Mathf.RoundToInt(rewardExp);
         PlayerStatHandler.Instance.AddCharacterExperience(characterExpGain);
 
-        // %50 ihtimalle stat kazancı
-        if (craftType != CraftType.Alchemist)
+        // Craft türüne göre stat artışlarını belirle
+        switch (craftType)
         {
-            if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
-            {
-                PlayerStatHandler.Instance.AddStats(StatType.Strength, 1);
-                Debug.Log("Strength statı kazandınız!");
-            }
-            if (UnityEngine.Random.Range(0, 100) < 50) // %50 ihtimal
-            {
-                PlayerStatHandler.Instance.AddStats(StatType.Constitution, 1);
-                Debug.Log("Constitution statı kazandınız!");
-            }
+            case CraftType.Smither:
+                if (UnityEngine.Random.Range(0, 100) < 50)
+                {
+                    PlayerStatHandler.Instance.AddStats(StatType.Strength, 1);
+                    Debug.Log("Strength statı kazandınız!");
+                }
+                if (UnityEngine.Random.Range(0, 100) < 50)
+                {
+                    PlayerStatHandler.Instance.AddStats(StatType.Constitution, 1);
+                    Debug.Log("Constitution statı kazandınız!");
+                }
+                break;
+
+            case CraftType.Tanner:
+                if (UnityEngine.Random.Range(0, 100) < 50)
+                {
+                    PlayerStatHandler.Instance.AddStats(StatType.Dexterity, 1);
+                    Debug.Log("Dexterity statı kazandınız!");
+                }
+                break;
+
+            case CraftType.Alchemist:
+                if (UnityEngine.Random.Range(0, 100) < 50)
+                {
+                    PlayerStatHandler.Instance.AddStats(StatType.Dexterity, 1);
+                    Debug.Log("Dexterity statı kazandınız!");
+                }
+                if (UnityEngine.Random.Range(0, 100) < 50)
+                {
+                    PlayerStatHandler.Instance.AddStats(StatType.Charisma, 1);
+                    Debug.Log("Charisma statı kazandınız!");
+                }
+                break;
         }
 
         // Sonuçları yazdır
@@ -139,10 +227,6 @@ public class CraftingSystem
                 return playerData.SmitherSkillLevel;
             case CraftType.Tanner:
                 return playerData.TannerSkillLevel;
-            case CraftType.Carpenter:
-                return playerData.CarpenterSkillLevel;
-            case CraftType.Mason:
-                return playerData.MasonSkillLevel;
             case CraftType.Alchemist:
                 return playerData.AlchemistSkillLevel;
             default:
@@ -178,5 +262,4 @@ public class CraftingSystem
             Debug.Log($"Crafted {craftedItem.Name} and added to inventory.");
         }
     }
-
 }
