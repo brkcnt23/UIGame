@@ -173,7 +173,7 @@
         {
             "Name": "Incan",
             "ID": 4,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 5500,
             "Wealth": 110000,
@@ -226,7 +226,7 @@
         {
             "Name": "Tarus",
             "ID": 5,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 7000,
             "Wealth": 140000,

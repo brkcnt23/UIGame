@@ -2,7 +2,6 @@ using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using TMPro;
 
 public class TravelSystem : MonoBehaviour
@@ -321,7 +320,7 @@ public class TravelSystem : MonoBehaviour
         currentSettlement = destination;
         MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
 
-        TimeSystem.Instance.AdvanceTimeCoroutine(0,0,remainingTimeMinutes);
+        TimeSystem.Instance.AdvanceTimeCoroutine(0, 0, remainingTimeMinutes);
     }
 
     public void HandleEvent()
@@ -331,47 +330,58 @@ public class TravelSystem : MonoBehaviour
         ShowEventPanel();
     }
 
- public void ShowEventPanel()
-{
-    if (eventPanel == null)
+    public void ShowEventPanel()
     {
-        Debug.LogError("eventPanel is not assigned to TravelSystem!");
-        return;
-    }
-
-    EventPanel ep = eventPanel.GetComponent<EventPanel>();
-    if (ep == null)
-    {
-        Debug.LogError("eventPanel does not have an EventPanel component attached!");
-        return;
-    }
-
-    if (currentEvent == null)
-    {
-        Debug.LogWarning("currentEvent is null, generating a new event.");
-        currentEvent = EventHandler.Instance.GenerateEvent();
-        if (currentEvent == null)
+        if (eventPanel == null)
         {
-            Debug.LogError("No events could be generated. Cannot show event panel.");
+            Debug.LogError("eventPanel is not assigned to TravelSystem!");
             return;
         }
-    }
 
-    if (currentEvent.ID == 0)
-    {
-        // If ID == 0, attempt to generate a new event
-        Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
-        currentEvent = randomEvent;
-        if (currentEvent == null)
+        EventPanel ep = eventPanel.GetComponent<EventPanel>();
+        if (ep == null)
         {
-            Debug.LogError("No events available to generate. Cannot show event panel.");
+            Debug.LogError("eventPanel does not have an EventPanel component attached!");
             return;
         }
-    }
-    eventPanel.SetActive(true);
-    ep.ShowEvent(currentEvent, remainingTime);
-}
 
+        if (currentEvent == null)
+        {
+            Debug.LogWarning("currentEvent is null, generating a new event.");
+            currentEvent = EventHandler.Instance.GenerateEvent();
+            if (currentEvent == null)
+            {
+                Debug.LogError("No events could be generated. Cannot show event panel.");
+                return;
+            }
+        }
+
+        if (currentEvent.ID == 0)
+        {
+            // If ID == 0, attempt to generate a new event
+            Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
+            currentEvent = randomEvent;
+            if (currentEvent == null)
+            {
+                Debug.LogError("No events available to generate. Cannot show event panel.");
+                return;
+            }
+        }
+        eventPanel.SetActive(true);
+        ep.ShowEvent(currentEvent, remainingTime);
+    }
+
+    public void CancelTravelAndReturn(int settlementID)
+    {
+        destination = GetSettlementButtonPointerByID(settlementID);
+        
+        StopAllCoroutines();
+        remainingTime = elapsedTravelTime;
+        elapsedTravelTime = 0;
+        eventTimes.Clear();
+        eventIndex = 0;
+        TravelToSettlement();
+    }
 
     public void ResetTravelData()
     {
@@ -424,6 +434,7 @@ public class TravelSystem : MonoBehaviour
         MapHandler.Instance.map.SetActive(false);
         MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
         GameManager.Instance.ShowSettlementPanel();
+        UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
         destination = null;
     }
 

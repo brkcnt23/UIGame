@@ -234,6 +234,8 @@ public class HomeSettlementHandler : MonoBehaviour
             homeSettlement.Wealth -= reward;
             print($"Tavern quest {quest.Name} was failed when you were away and you settlement lost {reward} silver");
         }
+
+        homeSettlement.Tavern.Quests.Remove(quest);
     }
 
     #region Upgrade Settlement

@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum QuestType
+{
+    defaultQuest,
+    Location
+}
 [System.Serializable]
 public class Quest_SO_Constructor : SO_Base
 {
@@ -30,9 +35,19 @@ public class Quest_SO_Constructor : SO_Base
     public List<Item> rewardItems = new List<Item>();
     public List<Item> questItems = new List<Item>();
     public int settlementID;
+    public bool isTaken;
+    public bool isCompleted;
+    public string questLocation;
+    public float[] questLocationCoordinates = new float[2];
+    public QuestType questType;
 
     public void QuestComplete(PlayerData playerData)
     {
+        if(isCompleted == false)
+        {
+            Debug.Log("Quest is not completed.");
+            return;
+        }
         foreach (Item item in requiredItems)
         {
             playerData.Items.Remove(item);
@@ -84,7 +99,17 @@ public class Quest_SO_Constructor : SO_Base
         // Remove quest from player's quest list
         playerData.Quests.Remove(this);
 
+        isTaken = false;
+
         Debug.Log("Quest failed.");
+
+        if(questType == QuestType.Location)
+        {
+            if(TravelSystem.Instance.inTravel)
+            {
+                TravelSystem.Instance.CancelTravelAndReturn(settlementID);
+            }
+        }
     }
 
     public void QuestStart(PlayerData playerData)
@@ -100,6 +125,8 @@ public class Quest_SO_Constructor : SO_Base
 
         Debug.Log($"Quest started: {Name} You have {hoursToComplete} hours to complete this quest.");
 
+        isTaken = true;
+
     }
 
     public void QuestCancel(PlayerData playerData)
@@ -113,12 +140,21 @@ public class Quest_SO_Constructor : SO_Base
         // Remove quest from player's quest list
         playerData.Quests.Remove(this);
 
+        isTaken = false;
+
         Debug.Log("Quest cancelled.");
     }
 
     public void QuestCheck(PlayerData playerData)
     {
         // Check if player has required items
+
+        if(hoursToComplete <= 0)
+        {
+            Debug.Log($"Quest {Name} has expired.");
+            QuestFail(playerData);
+            return;
+        }
 
         List<Item> requiredItems = new List<Item>();
 
@@ -135,14 +171,14 @@ public class Quest_SO_Constructor : SO_Base
         }
 
         // If player has all required items, complete quest
-        if (settlementID != SettlementHandler.Instance.settlement.ID)
+        if (settlementID != SettlementHandler.Instance.settlement.ID && settlementID != 0)
         {
             Debug.Log("Player is not in the correct settlement.");
             return;
         }
         if (requiredItems == this.requiredItems)
         {
-            QuestComplete(playerData);
+            isCompleted = true;
         }
         else
         {

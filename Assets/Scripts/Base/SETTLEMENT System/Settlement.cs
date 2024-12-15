@@ -7,6 +7,7 @@ public enum SettlementType
     Village,
     Castle,
     Town,
+    Quest,
     defaultSettlement
 }
 
@@ -47,7 +48,7 @@ public class Settlement
 
     public delegate void ShopAdded(Shops shop);
     public event ShopAdded OnShopAdded;
-    
+
     public delegate void ShopEntered(Shops shop);
     public event ShopEntered OnShopEntered;
 
@@ -81,6 +82,16 @@ public class Settlement
         Walls.Name = "Wall";
 
         Type = SettlementType.defaultSettlement;
+    }
+    public Settlement(Quest_SO_Constructor quest)
+    {
+        Type = SettlementType.Quest;
+        Name = quest.questLocation;
+        Population = 0;
+        Wealth = 0;
+        Quality = 0;
+        Tavern = new Taverns();
+        Tavern.Quests.Add(quest);
     }
 
     public void AddPopulation(int population)

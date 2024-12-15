@@ -2,6 +2,7 @@ using Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 public class UIHandler : MonoBehaviour
 {
     public static UIHandler Instance { get; private set; }
@@ -24,6 +25,13 @@ public class UIHandler : MonoBehaviour
     public GameObject HomeShopsPanel;
     public GameObject HomeWallsPanel;
 
+    [Header("Quest Settlement Panels")]
+    public GameObject QuestPanelBG;
+    public GameObject ResultsPanel;
+    public TMP_Text QuestInfo;
+    public Button[] GoBackButtons;
+    public Button FightButton;
+
 
     public void Awake()
     {
@@ -45,13 +53,19 @@ public class UIHandler : MonoBehaviour
         if(OnHome(settlement))
         {
             HomePanelBG.SetActive(true);
-
+            QuestPanelBG.SetActive(false);
+            SettlementPanelBG.SetActive(false);
+        }
+        else if(OnQuest(settlement))
+        {
+            QuestPanelBG.SetActive(true);
+            HomePanelBG.SetActive(false);
             SettlementPanelBG.SetActive(false);
         }
         else
         {
             HomePanelBG.SetActive(false);
-
+            QuestPanelBG.SetActive(false);
             SettlementPanelBG.SetActive(true);
         }
 
@@ -62,5 +76,10 @@ public class UIHandler : MonoBehaviour
     public bool OnHome(Settlement settlement)
     {
         return settlement == HomeSettlementHandler.Instance.homeSettlement;
+    }
+
+    public bool OnQuest(Settlement settlement)
+    {
+        return settlement.Type == SettlementType.Quest;
     }
 }

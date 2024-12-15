@@ -108,6 +108,16 @@ public class TimeSystem : MonoBehaviour
         {
             Minute -= 60;
             Hour += 1;
+
+            Quest_SO_Constructor[] quests = playerData.Quests.ToArray();
+            foreach (Quest_SO_Constructor quest in quests)
+            {
+                if (quest.hoursToComplete > 0)
+                {
+                    quest.hoursToComplete--;
+                    quest.QuestCheck(playerData);
+                }
+            }
         }
 
         while (Hour >= 24)
@@ -126,23 +136,23 @@ public class TimeSystem : MonoBehaviour
                 }
             }
 
-            if(TravelSystem.Instance.inTravel)
+            if (TravelSystem.Instance.inTravel)
             {
-                if(TravelSystem.Instance.isSleeping)
+                if (TravelSystem.Instance.isSleeping)
                 {
                     SleepWhileTraveling();
                 }
 
-                if(TravelSystem.Instance.isHuntingForRations)
+                if (TravelSystem.Instance.isHuntingForRations)
                 {
-                    
+
                 }
                 else
                 {
                     FoodSystem.Instance.DailyRationConsumption();
                 }
             }
-            
+
         }
     }
 
@@ -168,20 +178,20 @@ public class TimeSystem : MonoBehaviour
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
-        AdvanceTimeCoroutine(0,0,totalSleepDuration);
+        AdvanceTimeCoroutine(0, 0, totalSleepDuration);
         UpdateLastSleepTime();
     }
 
     public void SleepWhileTraveling()
     {
-        
+
         FoodSystem.Instance.DailyRationConsumption();
 
         if (playerData.Rations >= 0)
         {
             playerData.CurrentExhaustionLevel = 0;
             Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
-            
+
         }
         else
         {
@@ -196,37 +206,37 @@ public class TimeSystem : MonoBehaviour
     /// Yorgunluk seviyesini kontrol eder.
     /// </summary>
     private void CheckExhaustion()
-{
-    if (playerData == null)
     {
-        // Attempt to reinitialize if possible
-        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
-        {
-            playerData = PlayerStatHandler.Instance.pd;
-        }
-
         if (playerData == null)
         {
-            Debug.LogWarning("TimeSystem: playerData is null, cannot check exhaustion.");
-            return;
+            // Attempt to reinitialize if possible
+            if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
+            {
+                playerData = PlayerStatHandler.Instance.pd;
+            }
+
+            if (playerData == null)
+            {
+                Debug.LogWarning("TimeSystem: playerData is null, cannot check exhaustion.");
+                return;
+            }
+        }
+
+        int timeSinceLastSleep = GetTimeDifferenceInMinutes(
+            playerData.LastSleepDay,
+            playerData.LastSleepHour,
+            playerData.LastSleepMinute,
+            Day,
+            Hour,
+            Minute);
+
+        if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
+        {
+            PlayerStatHandler.Instance.IncreaseExhaustion();
+            Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
+            UpdateLastSleepTime();
         }
     }
-
-    int timeSinceLastSleep = GetTimeDifferenceInMinutes(
-        playerData.LastSleepDay,
-        playerData.LastSleepHour,
-        playerData.LastSleepMinute,
-        Day,
-        Hour,
-        Minute);
-
-    if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
-    {
-        PlayerStatHandler.Instance.IncreaseExhaustion();
-        Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
-        UpdateLastSleepTime();
-    }
-}
 
 
     /// <summary>

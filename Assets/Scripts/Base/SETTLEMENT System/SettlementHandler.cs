@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NEXUS.Utilities;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 
 public class SettlementHandler : MonoBehaviour
@@ -47,6 +48,7 @@ public class SettlementHandler : MonoBehaviour
     public void SaveSettlements()
     {
         settlements.Remove(HomeSettlementHandler.Instance.homeSettlement);
+        settlements.Remove(settlements.Find(x => x.Type == SettlementType.Quest));
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new SettlementListWrapper { settlements = settlements }, "settlements.json");
     }
@@ -115,6 +117,14 @@ public class SettlementHandler : MonoBehaviour
     {
         settlement = settlements.Find(x => x.Name == _settlement.Name);
         HomeSettlementHandler.Instance.GenerateRandomHappenings();
+        if(settlement.Type == SettlementType.Quest)
+        {
+            UIHandler.Instance.UpdateSettlementInfo(settlement);
+            HandleQuestSettlementEntered();
+
+            return;
+        }
+
         if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
             if (settlement.Tavern != null)
@@ -149,6 +159,25 @@ public class SettlementHandler : MonoBehaviour
         UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
 
+    public void HandleQuestSettlementEntered()
+    {
+        foreach(Button button in UIHandler.Instance.GoBackButtons)
+        {
+            button.onClick.RemoveAllListeners();
+            SettlementButtonPointer settlementButtonPointer = TravelSystem.Instance.GetSettlementButtonPointerByID(settlement.Tavern.Quests[0].ID);
+            button.AddComponent<SettlementButtonPointer>().settlement = settlementButtonPointer.settlement;
+        }
+
+        UIHandler.Instance.QuestInfo.text = $"You have entered {settlement.Name}. It seems that there is no one here except you. But in the distance, you can see mentioned area. Do you want to go there?";
+
+        UIHandler.Instance.FightButton.onClick.RemoveAllListeners();
+        UIHandler.Instance.FightButton.onClick.AddListener(() =>
+        {
+            UIHandler.Instance.QuestPanelBG.SetActive(false);
+            UIHandler.Instance.ResultsPanel.SetActive(true);
+            UIHandler.Instance.ResultsPanel.GetComponentInChildren<TMPro.TMP_Text>().text = $"You fight the your way to the mentioned area. Now there is really no one here. You can go back to the {TravelSystem.Instance.GetSettlementButtonPointerByID(settlement.Tavern.Quests[0].ID).settlement.Name} to report your journey.";
+        });
+    }
 
 
     public void OnSettlementExited()

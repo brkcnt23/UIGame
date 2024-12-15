@@ -61,7 +61,9 @@ public class SettlementButtonPointer : MonoBehaviour
         }
     }
 
-    public void OpenTheTravelDecider(SettlementButtonPointer settlementButtonPointer)
+    public void SetQuestSettlement(Settlement settlement)
     {
+        this.settlement = settlement;
+        button = GetComponent<Button>();
     }
 }
