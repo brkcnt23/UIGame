@@ -31,9 +31,12 @@ public class PlayerUISystem : MonoBehaviour
     private void Start()
     {
         timeSystem = TimeSystem.Instance;
+        TimeSystem.Instance.clockText = ClockText;
+        TimeSystem.Instance.dayText = DayText;
         UpdateClockText();
         UpdateExhaustionText();
         UpdateRationText();
+
     }
 
     public void UpdateHealthText()

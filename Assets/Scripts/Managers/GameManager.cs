@@ -221,6 +221,11 @@ public class GameManager : MonoBehaviour
         playerData.PlayerArmy = new Army();
         playerData.LastSleepDay = 1;
         playerData.LastSleepHour = 6;
+        playerData.LastSleepMinute = 0;
+        playerData.LastMealDay = 1;
+        playerData.LastMealHour = 6;
+        playerData.LastMealMinute = 0;
+
 
         playerData.HasDied = false;
 

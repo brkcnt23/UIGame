@@ -2,9 +2,9 @@ using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
 
-public class JobManager : MonoBehaviour
+public class JobSystem : MonoBehaviour
 {
-    public static JobManager Instance { get; private set; }
+    public static JobSystem Instance { get; private set; }
     [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
     private PlayerData playerData;
     private TimeSystem timeSystem;
@@ -62,8 +62,9 @@ public class JobManager : MonoBehaviour
     // General method to handle job duration
     private void StartJobWithDuration()
     {
-        int jobDurationMinutes = 12 * 60; // 12 hours
-        timeSystem.AdvanceTimeCoroutine(0, jobDurationMinutes / 60, jobDurationMinutes % 60);
+        //int jobDurationMinutes = 12 * 60; // 12 hours
+        //StartCoroutine(timeSystem.AdvanceTimeCoroutine(0,12,0));
+        TimeSystem.Instance.AnimateTimeChange(0 , 12 , 0 , 0.5f);
     }
 
     // Public method for starting custom jobs

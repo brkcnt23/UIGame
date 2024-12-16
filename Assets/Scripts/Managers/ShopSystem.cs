@@ -87,6 +87,25 @@ public class ShopSystem : MonoBehaviour
             Debug.Log("Not enough silver to buy this item.");
         }
     }
+    // public void BuyItem(Item item)
+    // {
+    //     PlayerData pd = PlayerStatHandler.Instance.pd;
+
+    //     // Calculate item cost in gold and silver
+    //     int itemCostInGold = item.Value / 100;
+    //     int itemCostInSilver = item.Value % 100;
+
+    //     // Deduct the cost using the ConsumeMoney method
+    //     PlayerStatHandler.Instance.ConsumeMoney(itemCostInGold, itemCostInSilver);
+
+    //     // Add the item to the player's inventory
+    //     InventorySystem.Instance.AddItem(item);
+    //     Debug.Log($"Purchased {item.Name} for {itemCostInGold} Gold and {itemCostInSilver} Silver.");
+
+    //     // Remove the item from the shop and refresh the display
+    //     currentShop.Items.Remove(item);
+    //     DisplayShopItems(currentShop);
+    // }
 
     public void DisplayShopItems(Shops shop)
     {

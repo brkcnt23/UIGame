@@ -68,6 +68,11 @@ public class PlayerData
     public int LastSleepDay;
     public int LastSleepHour;
     public int LastSleepMinute;
+
+    public int LastMealDay;
+    public int LastMealHour;
+    public int LastMealMinute;
+    
     public List<Companion> Companions = new List<Companion>();
     public List<Item> Items = new List<Item>();
     public List<Quest_SO_Constructor> Quests = new List<Quest_SO_Constructor>();

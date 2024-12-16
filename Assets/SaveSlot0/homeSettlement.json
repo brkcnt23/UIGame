@@ -5,7 +5,7 @@
         "isUnlocked": true,
         "levelToUnlock": 0,
         "Population": 10,
-        "Wealth": 100,
+        "Wealth": 362,
         "Quality": 3,
         "Shops": [
             {
@@ -23,14 +23,16 @@
                         "Name": "fasd",
                         "Value": 437,
                         "Category": 0,
-                        "Quantity": 2
+                        "Quantity": 2,
+                        "Modifiers": []
                     },
                     {
                         "ID": 0,
                         "Name": "sada",
                         "Value": 1071,
                         "Category": 0,
-                        "Quantity": 0
+                        "Quantity": 0,
+                        "Modifiers": []
                     }
                 ]
             }

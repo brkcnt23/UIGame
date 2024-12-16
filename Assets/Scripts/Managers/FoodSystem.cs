@@ -28,6 +28,7 @@ public class FoodSystem : MonoBehaviour
         {
             PlayerStatHandler.Instance.IncreaseExhaustion();
         }
+        
     }
 
     public void DailyRationConsumption()

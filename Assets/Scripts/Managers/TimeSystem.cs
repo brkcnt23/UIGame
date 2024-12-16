@@ -1,17 +1,23 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+using DG.Tweening;
+using TMPro;
 public class TimeSystem : MonoBehaviour
 {
     public int Hour { get; private set; }    // Saat (0-23)
     public int Minute { get; private set; }  // Dakika (0-59)
     public int Day { get; private set; }     // Gün (1 ve üstü)
 
+    public bool isTimeLapsing = false;
     private PlayerData playerData;
 
     // Singleton Instance
     public static TimeSystem Instance { get; private set; }
+
+    [Header("UI")]
+    [SerializeField] public TMP_Text clockText; // Reference to the clock text
+    [SerializeField] public TMP_Text dayText; // Reference to the clock text
 
     private void Awake()
     {
@@ -24,13 +30,13 @@ public class TimeSystem : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void InitializeLastActionTimes()
     {
         playerData = PlayerStatHandler.Instance.pd;
         Day = playerData.Day;
         Hour = playerData.Hour;
         Minute = playerData.Minute;
+
     }
 
     /// <summary>
@@ -50,6 +56,7 @@ public class TimeSystem : MonoBehaviour
 
     public void AdvanceTime(int days, int hours, int minutes)
     {
+        if (isTimeLapsing == true) return;
         int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
         AdvanceTime(totalMinutes);
     }
@@ -57,6 +64,7 @@ public class TimeSystem : MonoBehaviour
     //we will advance time but with a IEnumerator so we can see the time passing
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
+        isTimeLapsing = true;
         int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
         int increment; // Adjust the increment (e.g., 10 minutes)
 
@@ -94,65 +102,113 @@ public class TimeSystem : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(waitTime);
         }
-
+        Debug.Log("AdvenceTimeCoroutine");
+        isTimeLapsing = false;
         // Update player data
         playerData.Day = Day;
         playerData.Hour = Hour;
         playerData.Minute = Minute;
     }
+    public void AnimateTimeChange(int day, int hour, int minute, float time)
+    {
+        if (isTimeLapsing == true) return;
+        isTimeLapsing = true;
+        int targetDay = Day + day;
+        int targetHour = Hour + hour;
+        int targetMinute = Minute + minute;
+
+        // Handle minute overflow before the tween
+        if (targetMinute >= 60)
+        {
+            targetHour += targetMinute / 60;
+            targetMinute %= 60;
+        }
+
+        // Handle hour overflow before the tween
+        if (targetHour >= 24)
+        {
+            targetDay += targetHour / 24;
+            targetHour %= 24;
+        }
+
+        Sequence timeSequence = DOTween.Sequence();
+
+        timeSequence.Append(DOTween.To(() => Minute, x => Minute = x, targetMinute, time)
+        .OnUpdate(UpdateClockText));
+
+        // Animate hour change
+        timeSequence.Append(DOTween.To(() => Hour, x => Hour = x, targetHour, time)
+            .OnUpdate(UpdateClockText));
+
+        // Animate day change
+        timeSequence.Append(DOTween.To(() => Day, x => Day = x, targetDay, 0.1f)
+            .OnUpdate(UpdateClockText));
+
+        timeSequence.Play().OnComplete(() =>
+        {
+            playerData.Day = targetDay;
+            playerData.Hour = targetHour;
+            playerData.Minute = targetMinute;
+            isTimeLapsing = false;
+            Debug.Log("Time advancement completed with tween.");
+        });
 
 
+    }
+    private void UpdateClockText()
+    {
+        string timeString = $"{Hour:D2}:{Minute:D2}";
+        clockText.text = $"{timeString}";
+        dayText.text = $"Day: {Day}";
+    }
     private void NormalizeTime()
     {
-        while (Minute >= 60)
-        {
-            Minute -= 60;
-            Hour += 1;
+        // Calculate total hours and minutes overflow at once
+        Hour += Minute / 60;
+        Minute %= 60;
 
-            Quest_SO_Constructor[] quests = playerData.Quests.ToArray();
-            foreach (Quest_SO_Constructor quest in quests)
+        Day += Hour / 24;
+        Hour %= 24;
+
+        // Process quest hours reduction once based on the total overflow
+        int hoursToReduce = Minute / 60 + Hour;
+        if (hoursToReduce > 0)
+        {
+            foreach (var quest in playerData.Quests)
             {
                 if (quest.hoursToComplete > 0)
                 {
-                    quest.hoursToComplete--;
+                    quest.hoursToComplete -= hoursToReduce;
+                    if (quest.hoursToComplete < 0) quest.hoursToComplete = 0;
                     quest.QuestCheck(playerData);
                 }
             }
         }
 
-        while (Hour >= 24)
+        // Process event cooldown reduction once based on the total day overflow
+        if (Day > 0)
         {
-            Hour -= 24;
-            Day += 1;
-
-
-            Event_SO_Constructor[] events = EventHandler.Instance.events.ToArray();
-            // Eventlerin hepsinin süresini her gün için 1 azalt (min 0 olacak)
-            foreach (Event_SO_Constructor e in events)
+            foreach (var e in EventHandler.Instance.events)
             {
                 if (e.encounterCooldown > 0)
                 {
-                    e.encounterCooldown--;
+                    e.encounterCooldown -= Day;
+                    if (e.encounterCooldown < 0) e.encounterCooldown = 0;
                 }
             }
 
+            // Handle travel-related logic once for the day overflow
             if (TravelSystem.Instance.inTravel)
             {
                 if (TravelSystem.Instance.isSleeping)
                 {
                     SleepWhileTraveling();
                 }
-
-                if (TravelSystem.Instance.isHuntingForRations)
-                {
-
-                }
-                else
+                else if (!TravelSystem.Instance.isHuntingForRations)
                 {
                     FoodSystem.Instance.DailyRationConsumption();
                 }
             }
-
         }
     }
 
@@ -178,10 +234,22 @@ public class TimeSystem : MonoBehaviour
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
-        AdvanceTimeCoroutine(0, 0, totalSleepDuration);
+        //AdvanceTimeCoroutine(0, 0, totalSleepDuration);
+        AnimateTimeChange(0, 0, totalSleepDuration, 1f);
         UpdateLastSleepTime();
+        UpdateLastMealTime();
     }
+    public void SleepTavern()
+    {
+        int baseSleepDuration = 6 * 60; // Temel uyku süresi: 6 saat
+        int additionalSleepPerExhaustion = 2 * 60; // Her yorgunluk seviyesi için ek süre: 2 saat
+        int totalSleepDuration = baseSleepDuration + (playerData.CurrentExhaustionLevel * additionalSleepPerExhaustion);
 
+        AnimateTimeChange(0, 0, totalSleepDuration, 1f);
+        UpdateLastSleepTime();
+        UpdateLastMealTime();
+    }
+    
     public void SleepWhileTraveling()
     {
 
@@ -191,7 +259,7 @@ public class TimeSystem : MonoBehaviour
         {
             playerData.CurrentExhaustionLevel = 0;
             Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
-
+            UpdateLastMealTime();
         }
         else
         {
@@ -221,6 +289,13 @@ public class TimeSystem : MonoBehaviour
                 return;
             }
         }
+        int timeSinceLastMeal = GetTimeDifferenceInMinutes(
+            playerData.LastMealDay,
+            playerData.LastMealHour,
+            playerData.LastMealMinute,
+            Day,
+            Hour,
+            Minute);
 
         int timeSinceLastSleep = GetTimeDifferenceInMinutes(
             playerData.LastSleepDay,
@@ -235,6 +310,12 @@ public class TimeSystem : MonoBehaviour
             PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
             UpdateLastSleepTime();
+        }
+        if (timeSinceLastMeal > 1440)
+        {
+            PlayerStatHandler.Instance.IncreaseExhaustion();
+            Debug.Log("24 saattir açsınız! Yorgunluk seviyeniz arttı.");
+            UpdateLastMealTime();
         }
     }
 
@@ -252,11 +333,18 @@ public class TimeSystem : MonoBehaviour
     /// <summary>
     /// Son uyuma zamanını günceller.
     /// </summary>
-    private void UpdateLastSleepTime()
+    public void UpdateLastSleepTime()
     {
         playerData.LastSleepDay = Day;
         playerData.LastSleepHour = Hour;
         playerData.LastSleepMinute = Minute;
+    }
+
+    public void UpdateLastMealTime()
+    {
+        playerData.LastMealDay = Day;
+        playerData.LastMealHour = Hour;
+        playerData.LastMealMinute = Minute;
     }
 
     /// <summary>

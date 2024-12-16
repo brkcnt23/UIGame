@@ -22,16 +22,16 @@ public class JobUI : MonoBehaviour
     private void Start()
     {
         // Assign button listeners for stable jobs
-        helpMerchantsButton.onClick.AddListener(() => JobManager.Instance.StartHelpMerchants());
-        helpScoutsButton.onClick.AddListener(() => JobManager.Instance.StartHelpScouts());
-        cuttingWoodsButton.onClick.AddListener(() => JobManager.Instance.StartCuttingWoods());
-        laboringMinesButton.onClick.AddListener(() => JobManager.Instance.StartLaboringMines());
+        helpMerchantsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpMerchants());
+        helpScoutsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpScouts());
+        cuttingWoodsButton.onClick.AddListener(() => JobSystem.Instance.StartCuttingWoods());
+        laboringMinesButton.onClick.AddListener(() => JobSystem.Instance.StartLaboringMines());
 
         // Hide specialization job panel by default
         jobPanel.SetActive(false);
 
         // Get available specialization jobs
-        specializationJobs = JobManager.Instance.GetAvailableJobs();
+        specializationJobs = JobSystem.Instance.GetAvailableJobs();
     }
 
 
@@ -71,7 +71,7 @@ public class JobUI : MonoBehaviour
 
             startButton.onClick.AddListener(() =>
             {
-                JobManager.Instance.StartJob(job);
+                JobSystem.Instance.StartJob(job);
                 ToggleSpecializationJobUI();
             });
         }
@@ -97,7 +97,7 @@ public class JobUI : MonoBehaviour
             Button jobButton = newJob.GetComponentInChildren<Button>();
             jobButton.onClick.AddListener(() =>
             {
-                JobManager.Instance.StartJob(job);
+                JobSystem.Instance.StartJob(job);
                 ToggleSpecializationJobUI();
             });
         }

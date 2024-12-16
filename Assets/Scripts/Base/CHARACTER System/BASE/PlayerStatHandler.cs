@@ -467,6 +467,47 @@ public class PlayerStatHandler : MonoBehaviour
             Debug.Log($"Not enough rations! Missing: {missingRations}. Increased exhaustion level.");
         }
     }
+    public void ConsumeMoney(int gold, int silver)
+    {
+        if (silver >= 100)
+        {
+            gold += silver / 100;
+            silver %= 100;
+        }
+
+        // Check if the player has enough gold and silver
+        if (pd.Gold < gold || (pd.Gold == gold && pd.Silver < silver))
+        {
+            Debug.Log("Not enough money!");
+            return;
+        }
+
+        // Deduct silver first
+        if (pd.Silver >= silver)
+        {
+            pd.Silver -= silver;
+        }
+        else
+        {
+            // Borrow 1 gold to cover the silver deficit
+            if (pd.Gold > 0)
+            {
+                pd.Gold -= 1;
+                pd.Silver += 100;
+                pd.Silver -= silver;
+            }
+            else
+            {
+                Debug.Log("Not enough silver!");
+                return;
+            }
+        }
+
+        // Deduct gold
+        pd.Gold -= gold;
+
+        Debug.Log($"Transaction successful! Remaining Gold: {pd.Gold}, Silver: {pd.Silver}");
+    }
     public void AddStatXP(StatType statType, int xpAmount)
     {
         switch (statType)
