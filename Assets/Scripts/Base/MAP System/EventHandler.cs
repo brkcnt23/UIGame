@@ -1,7 +1,6 @@
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class EventHandler : MonoBehaviour
 {

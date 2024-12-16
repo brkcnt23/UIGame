@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
+
 public enum StatType { Strength, Constitution, Charisma, Dexterity }
 //when we add stats we will use this enum for controling.
 //this enum is NOT the PLAYER DATA STATS

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Shop_SO_Constructor : SO_Base
 {

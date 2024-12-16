@@ -1,8 +1,4 @@
-
-using System;
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
-using UnityEngine;
 
 [System.Serializable]
 public class PlayerData

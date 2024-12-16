@@ -1,7 +1,5 @@
 using UnityEngine;
-using System.Collections;
 using TMPro;
-using System;
 
 namespace ntw.CurvedTextMeshPro
 {

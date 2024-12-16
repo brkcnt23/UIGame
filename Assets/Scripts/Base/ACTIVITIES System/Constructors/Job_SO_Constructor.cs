@@ -1,4 +1,3 @@
-using UnityEngine;
 [System.Serializable]
 public class Job_SO_Constructor : SO_Base
 {

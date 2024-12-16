@@ -1,9 +1,5 @@
-using System.Collections;
 using TMPro;
-using Unity.UI;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 public class PlayerUISystem : MonoBehaviour
 {

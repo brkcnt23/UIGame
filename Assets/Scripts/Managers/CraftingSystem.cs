@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
-using NEXUS;
 public enum CraftType
 {
     Smither,
