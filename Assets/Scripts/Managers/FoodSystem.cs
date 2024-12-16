@@ -16,21 +16,6 @@ public class FoodSystem : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void ConsumeRationPack()
-    {
-        if (PlayerStatHandler.Instance.GetRations() > 0)
-        {
-            PlayerStatHandler.Instance.DecreaseRations(1);
-
-        }
-        else
-        {
-            PlayerStatHandler.Instance.IncreaseExhaustion();
-        }
-        
-    }
-
     public void DailyRationConsumption()
     {
         PlayerStatHandler.Instance.ConsumeDailyRations();

@@ -130,10 +130,12 @@ public class JobSystem : MonoBehaviour
                 break;
 
             case StatType.Strength:
+                playerData.Silver += job.Silver;
                 playerData.StrengthXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 
             case StatType.Constitution:
+                playerData.Silver += job.Silver;
                 playerData.ConstitutionXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 

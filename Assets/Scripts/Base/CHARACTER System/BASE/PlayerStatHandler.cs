@@ -242,12 +242,6 @@ public class PlayerStatHandler : MonoBehaviour
             case ItemCategory.Potion:
                 EquippedPotion = item;
                 break;
-            case ItemCategory.CraftingMaterial:
-                Debug.Log("Cannot equip crafting materials.");
-                return;
-            case ItemCategory.Resource:
-                Debug.Log("Cannot equip resources.");
-                return;
             case ItemCategory.Misc:
                 EquippedMisc = item;
                 break;
@@ -425,13 +419,6 @@ public class PlayerStatHandler : MonoBehaviour
             }
         }
         UpdateArmyCapacity();
-    }
-
-    public void UpdateCharisma(int newCharismaValue)
-    {
-        pd.Charisma = newCharismaValue;
-        UpdateArmyCapacity();
-        Debug.Log($"Charisma updated to {newCharismaValue}. Army capacity recalculated.");
     }
 
     public int GetExhaustionLevel()

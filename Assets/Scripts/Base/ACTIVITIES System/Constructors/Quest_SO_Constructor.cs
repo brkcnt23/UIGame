@@ -78,7 +78,7 @@ public class Quest_SO_Constructor : SO_Base
         playerData.CheckIfSilverToGold();
         playerData.Experience += Experience;
         
-        PlayerStatHandler.Instance.AddStats(TargetStat, Random.Range(StatRewardMin, StatRewardMax + 1));
+        PlayerStatHandler.Instance.AddStatXP(TargetStat, Random.Range(StatRewardMin, StatRewardMax));
         
         ExperienceSystem.UpdateCharacterLevel(playerData);
     }

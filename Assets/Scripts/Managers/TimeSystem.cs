@@ -157,8 +157,7 @@ public class TimeSystem : MonoBehaviour
     }
     private void UpdateClockText()
     {
-        string timeString = $"{Hour:D2}:{Minute:D2}";
-        clockText.text = $"{timeString}";
+        clockText.text = $"{Hour:D2}:{Minute:D2}";
         dayText.text = $"Day: {Day}";
     }
     private void NormalizeTime()

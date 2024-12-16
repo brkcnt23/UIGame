@@ -222,12 +222,12 @@ public class CraftingSystem
             case CraftType.Smither:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                 {
-                    PlayerStatHandler.Instance.AddStats(StatType.Strength, 1);
+                    PlayerStatHandler.Instance.AddStatXP(StatType.Strength, 50);
                     Debug.Log("Strength statı kazandınız!");
                 }
                 if (UnityEngine.Random.Range(0, 100) < 50)
                 {
-                    PlayerStatHandler.Instance.AddStats(StatType.Constitution, 1);
+                    PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, 50);
                     Debug.Log("Constitution statı kazandınız!");
                 }
                 break;
@@ -235,7 +235,7 @@ public class CraftingSystem
             case CraftType.Tanner:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                 {
-                    PlayerStatHandler.Instance.AddStats(StatType.Dexterity, 1);
+                    PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, 50);
                     Debug.Log("Dexterity statı kazandınız!");
                 }
                 break;
@@ -243,12 +243,12 @@ public class CraftingSystem
             case CraftType.Alchemist:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                 {
-                    PlayerStatHandler.Instance.AddStats(StatType.Dexterity, 1);
+                    PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, 50);
                     Debug.Log("Dexterity statı kazandınız!");
                 }
                 if (UnityEngine.Random.Range(0, 100) < 50)
                 {
-                    PlayerStatHandler.Instance.AddStats(StatType.Charisma, 1);
+                    PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, 50);
                     Debug.Log("Charisma statı kazandınız!");
                 }
                 break;

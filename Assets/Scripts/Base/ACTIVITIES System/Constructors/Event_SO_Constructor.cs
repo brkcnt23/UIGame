@@ -64,7 +64,7 @@ public class Event_SO_Constructor : SO_Base
     public void GoodChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
-        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStatXP(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax));
         player.pd.Alignment += 1;
 
         AddExperience(player, Experience);
@@ -87,7 +87,7 @@ public class Event_SO_Constructor : SO_Base
     public void FailChoice(PlayerStatHandler player)
     {
         player.pd.Silver -= Silver;
-        player.AddStats(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStatXP(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax));
 
         AddExperience(player, Experience * 2);
     }
@@ -95,7 +95,7 @@ public class Event_SO_Constructor : SO_Base
     public void NeutralChoce(PlayerStatHandler player)
     {
         player.pd.Silver += Silver / 2;
-        player.AddStats(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax + 1) / 2);
+        player.AddStatXP(TargetStat, -UnityRandom.Range(StatRewardMin, StatRewardMax) / 2);
 
         AddExperience(player, Experience);
     }
@@ -103,7 +103,7 @@ public class Event_SO_Constructor : SO_Base
     public void EvilChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver * 2;
-        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStatXP(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax));
         player.pd.Alignment -= 1;
 
         AddExperience(player, Experience);
@@ -112,7 +112,7 @@ public class Event_SO_Constructor : SO_Base
     public void SuccessChoice(PlayerStatHandler player)
     {
         player.pd.Silver += Silver;
-        player.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
+        player.AddStatXP(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax));
 
         AddExperience(player, Experience);
     }
@@ -125,7 +125,7 @@ public class Event_SO_Constructor : SO_Base
     public void FollowUpEvent(PlayerStatHandler playerData)
     {
         playerData.pd.Silver += Silver;
-        playerData.AddStats(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax + 1));
+        playerData.AddStatXP(TargetStat, UnityRandom.Range(StatRewardMin, StatRewardMax));
         AddExperience(playerData, Experience);
     }
 
@@ -244,7 +244,7 @@ public class Choice
         if (StatRewardMin != 0 || StatRewardMax != 0)
         {
             // If stat rewards are specified, get a random amount in the range
-            statChange = UnityRandom.Range(StatRewardMin, StatRewardMax + 1);
+            statChange = UnityRandom.Range(StatRewardMin, StatRewardMax);
         }
 
         switch (choiceType)
@@ -252,7 +252,7 @@ public class Choice
             case "Good":
                 // Good: Generally positive alignment, some rewards
                 player.pd.Silver += SilverReward;
-                player.AddStats(TargetStat, statChange);
+                player.AddStatXP(TargetStat, statChange);
                 player.pd.Alignment += AlignmentChange;
                 AddExperience(player, ExperienceReward);
                 break;
@@ -260,7 +260,7 @@ public class Choice
             case "Evil":
                 // Evil: Gains might be higher in some resources but alignment decreases
                 player.pd.Silver += SilverReward;
-                player.AddStats(TargetStat, statChange);
+                player.AddStatXP(TargetStat, statChange);
                 player.pd.Alignment += AlignmentChange;
                 AddExperience(player, ExperienceReward);
                 break;
@@ -268,21 +268,21 @@ public class Choice
             case "Neutral":
                 // Neutral: Balanced outcome
                 player.pd.Silver += SilverReward;
-                player.AddStats(TargetStat, statChange);
+                player.AddStatXP(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
                 break;
 
             case "Success":
                 // Success: Usually a positive outcome with good rewards
                 player.pd.Silver += SilverReward;
-                player.AddStats(TargetStat, statChange);
+                player.AddStatXP(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
                 break;
 
             case "Fail":
                 // Fail: Negative outcome, might lose silver, stats or experience
                 player.pd.Silver -= SilverReward; // or apply negative silver if that makes sense
-                player.AddStats(TargetStat, -statChange);
+                player.AddStatXP(TargetStat, -statChange);
                 AddExperience(player, -ExperienceReward); // Lose experience as penalty
                 break;
 
@@ -294,7 +294,7 @@ public class Choice
             case "FollowUp":
                 // FollowUp: Triggers another event. You can also give rewards before loading next event.
                 player.pd.Silver += SilverReward;
-                player.AddStats(TargetStat, statChange);
+                player.AddStatXP(TargetStat, statChange);
                 AddExperience(player, ExperienceReward);
 
                 // Handling the follow-up event can be done outside this method, once you return followUpEventID.
