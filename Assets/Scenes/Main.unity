@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 38789402}
   - component: {fileID: 38789401}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartSmithingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10351,6 +10351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524062920}
+  - component: {fileID: 524062921}
   m_Layer: 0
   m_Name: Manager Holder
   m_TagString: Untagged
@@ -10367,7 +10368,7 @@ Transform:
   m_GameObject: {fileID: 524062919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 471.031, y: 1171.5632, z: 8.921491}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10377,6 +10378,21 @@ Transform:
   - {fileID: 288301633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &524062921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524062919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea58b2c317fc0548aec15a00c79e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartSmithingButton: {fileID: 38789401}
+  StartTanningButton: {fileID: 994859724}
+  StartAlchemyButton: {fileID: 1653764147}
 --- !u!1 &530778473
 GameObject:
   m_ObjectHideFlags: 0
@@ -15765,7 +15781,7 @@ GameObject:
   - component: {fileID: 819127999}
   - component: {fileID: 819127998}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15833,7 +15849,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 819127999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913676951}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &819127999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35585,6 +35613,7 @@ GameObject:
   - component: {fileID: 1776068956}
   - component: {fileID: 1776068957}
   - component: {fileID: 1776068958}
+  - component: {fileID: 1776068959}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -36369,6 +36398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableJobs: []
+--- !u!114 &1776068959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776068937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76719cb52e3460044ae4bc4ee332b918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1783090889
 GameObject:
   m_ObjectHideFlags: 0
