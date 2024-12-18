@@ -3,9 +3,9 @@
         "ID": 0,
         "Name": "Arif",
         "VillageName": "Gora",
-        "Hour": 16,
+        "Hour": 0,
         "Minute": 0,
-        "Day": 3,
+        "Day": 27,
         "Level": 1,
         "Health": 100,
         "MaxHealth": 100,
@@ -18,13 +18,13 @@
         "StrengthXP": 21,
         "Dexterity": 19,
         "DexterityXP": 24,
-        "Constitution": 8,
-        "ConstitutionXP": 38,
+        "Constitution": 21,
+        "ConstitutionXP": 0,
         "Charisma": 13,
         "CharismaXP": 58,
-        "Rations": 6,
+        "Rations": 0,
         "MaxExhaustionLevel": 3,
-        "CurrentExhaustionLevel": 0,
+        "CurrentExhaustionLevel": 334,
         "SmitherSkillLevel": 1,
         "SmitherSkillXP": 0,
         "TannerSkillLevel": 1,
@@ -38,14 +38,23 @@
         "TotalBattlesFought": 0,
         "TotalBattlesWon": 0,
         "TotalBattlesLost": 0,
-        "LastSleepDay": 3,
+        "LastSleepDay": 5,
         "LastSleepHour": 10,
-        "LastSleepMinute": 0,
-        "LastMealDay": 3,
+        "LastSleepMinute": 20,
+        "LastMealDay": 5,
         "LastMealHour": 16,
-        "LastMealMinute": 0,
+        "LastMealMinute": 20,
         "Companions": [],
-        "Items": [],
+        "Items": [
+            {
+                "ID": 8,
+                "Name": "Stone",
+                "Value": 10,
+                "Category": 5,
+                "Quantity": 4,
+                "Modifiers": []
+            }
+        ],
         "Quests": [
             {
                 "Type": 1,
@@ -65,7 +74,7 @@
                 "TargetStat": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 1,
-                "hoursToComplete": 9999,
+                "hoursToComplete": 5767,
                 "requiredItems": [],
                 "rewardItems": [],
                 "questItems": [],
@@ -80,7 +89,7 @@
                 "questType": 0
             }
         ],
-        "LastSettlementName": "Incan",
+        "LastSettlementName": "Mege",
         "HasDied": false
     }
 }

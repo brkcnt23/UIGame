@@ -22,7 +22,6 @@ public class ShopSystem : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            shopItems = ItemDatabase.GetAllItems(); // Load items from database
         }
         else
         {

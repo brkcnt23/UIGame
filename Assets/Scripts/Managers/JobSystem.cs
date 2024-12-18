@@ -6,7 +6,6 @@ public class JobSystem : MonoBehaviour
 {
     public static JobSystem Instance { get; set; }
     [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
-    private PlayerData playerData;
     private TimeSystem timeSystem;
 
     private void Awake()
@@ -23,7 +22,6 @@ public class JobSystem : MonoBehaviour
 
     private void Start()
     {
-        playerData = PlayerStatHandler.Instance.pd;
         timeSystem = TimeSystem.Instance;
     }
 
@@ -74,44 +72,56 @@ public class JobSystem : MonoBehaviour
         StartJobWithDuration();
         GrantJobRewards(job);
     }
+    private int GetRand(int min,int max){
+        int rand = Random.Range(min, max+1);
+        return rand;
+    }
 
     // Individual reward methods
     private void GrantMerchantsReward()
     {
-        playerData.Silver += 100;
-        PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, Random.Range(20, 40));
-        Debug.Log("Reward: 100 Silver & Charisma XP");
+        int randxp =  GetRand(20,40);
+        int randmn =  GetRand(80,120);
+        PlayerStatHandler.Instance.pd.Silver += randmn;
+        PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, randxp);
+        Debug.Log($"Reward: {randmn} Silver & {randxp} Charisma XP");
     }
 
     private void GrantScoutsReward()
     {
-        playerData.Silver += 100;
-        PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, Random.Range(20, 40));
-        Debug.Log("Reward: 100 Silver & Dexterity XP");
+        int randxp =  GetRand(20,40);
+        int randmn =  GetRand(80,120);
+        PlayerStatHandler.Instance.pd.Silver += 100;
+        PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randxp);
+        Debug.Log($"Reward: {randmn} Silver & {randxp} Dexterity XP");
     }
 
     private void GrantCuttingWoodsReward()
     {
-        playerData.Items.Add(new Item(9, "Wood", 30, ItemCategory.Resource, quantity: Random.Range(3, 6)));
-        PlayerStatHandler.Instance.AddStatXP(StatType.Strength, Random.Range(20, 40));
-        Debug.Log("Reward: Wood (3-6) & Strength XP");
+        int randw =  GetRand(3,6);
+        int randxp =  GetRand(20,40);
+        PlayerStatHandler.Instance.pd.Items.Add(new Item(9 , "Wood" , 30 , ItemCategory.Resource , randw));
+        PlayerStatHandler.Instance.AddStatXP(StatType.Strength , randxp);
+        Debug.Log($"Reward: Wood {randw} & Strength XP");
     }
 
     private void GrantLaboringMinesReward()
     {
-        playerData.Items.Add(new Item(8, "Stone", 40, ItemCategory.Resource, quantity: Random.Range(3, 6)));
+        int randxp =  GetRand(20,40);
+        int rands =  GetRand(3,6);
+        PlayerStatHandler.Instance.pd.Items.Add(new Item(8, "Stone", 10, ItemCategory.Resource,rands));
         if (Dice.Roll(100) <= 20)
         {
-            playerData.Items.Add(new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial, quantity: 1));
+            PlayerStatHandler.Instance.pd.Items.Add(new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial,1));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
         if (Dice.Roll(100) <= 5)
         {
-            playerData.Items.Add(new Item(10, "Gold Nugget", 500, ItemCategory.CraftingMaterial, quantity: 1));
+            PlayerStatHandler.Instance.pd.Items.Add(new Item(10, "Gold Nugget", 500, ItemCategory.Misc,1));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
-        PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, Random.Range(20, 40));
-        Debug.Log("Reward: Stone (3-6) & Constitution XP");
+        PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, randxp);
+        Debug.Log($"Reward: Stone {rands} & {randxp} Constitution XP");
     }
 
     // General reward method for custom jobs
@@ -120,23 +130,23 @@ public class JobSystem : MonoBehaviour
         switch (job.TargetStat)
         {
             case StatType.Charisma:
-                playerData.Silver += job.Silver;
-                playerData.CharismaXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
+                PlayerStatHandler.Instance.pd.Silver += job.Silver;
+                PlayerStatHandler.Instance.pd.CharismaXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 
             case StatType.Dexterity:
-                playerData.Silver += job.Silver;
-                playerData.DexterityXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
+                PlayerStatHandler.Instance.pd.Silver += job.Silver;
+                PlayerStatHandler.Instance.pd.DexterityXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 
             case StatType.Strength:
-                playerData.Silver += job.Silver;
-                playerData.StrengthXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
+                PlayerStatHandler.Instance.pd.Silver += job.Silver;
+                PlayerStatHandler.Instance.pd.StrengthXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 
             case StatType.Constitution:
-                playerData.Silver += job.Silver;
-                playerData.ConstitutionXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
+                PlayerStatHandler.Instance.pd.Silver += job.Silver;
+                PlayerStatHandler.Instance.pd.ConstitutionXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
                 break;
 
             default:

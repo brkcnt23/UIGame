@@ -10,12 +10,26 @@ public enum CraftType
     Alchemist
 }
 
-public class CraftingSystem
+public class CraftingSystem : MonoBehaviour
 {
     private PlayerData playerData;
     private EconomySystem economySystem;
     private TimeSystem timeSystem;
 
+    public static CraftingSystem Instance;
+
+    //check instance in awake method
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public CraftingSystem(PlayerData pd, TimeSystem ts)
     {
         playerData = pd;
@@ -439,11 +453,11 @@ public class CraftingSystem
         switch (craftType)
         {
             case CraftType.Smither:
-                return playerData.SmitherSkillLevel;
+                return PlayerStatHandler.Instance.pd.SmitherSkillLevel;
             case CraftType.Tanner:
-                return playerData.TannerSkillLevel;
+                return PlayerStatHandler.Instance.pd.TannerSkillLevel;
             case CraftType.Alchemist:
-                return playerData.AlchemistSkillLevel;
+                return PlayerStatHandler.Instance.pd.AlchemistSkillLevel;
             default:
                 return 1;
         }
