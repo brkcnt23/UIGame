@@ -46,7 +46,40 @@
         "LastMealMinute": 0,
         "Companions": [],
         "Items": [],
-        "Quests": [],
+        "Quests": [
+            {
+                "Type": 1,
+                "ID": 2003,
+                "Name": "Night Terrors",
+                "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+                "DC": 20,
+                "HealthRequirement": 0,
+                "ArmyPowerRequirement": 0,
+                "SilverRequirement": 0,
+                "StatRequirement": 0,
+                "CompletionDay": 0,
+                "CompletionHour": 8,
+                "CompletionMinute": 30,
+                "Experience": 0,
+                "Silver": 100,
+                "TargetStat": 0,
+                "StatRewardMin": 0,
+                "StatRewardMax": 1,
+                "hoursToComplete": 9999,
+                "requiredItems": [],
+                "rewardItems": [],
+                "questItems": [],
+                "settlementID": 0,
+                "isTaken": true,
+                "isCompleted": false,
+                "questLocation": "",
+                "questLocationCoordinates": [
+                    0.0,
+                    0.0
+                ],
+                "questType": 0
+            }
+        ],
         "LastSettlementName": "Incan",
         "HasDied": false
     }

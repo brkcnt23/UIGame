@@ -8,6 +8,7 @@ public class UIHandler : MonoBehaviour
     public static UIHandler Instance { get; private set; }
 
     [Header("Settlement Info")]
+    public GameObject SettlementInfoPanel;
     public TMP_Text SettlementName;
     public TMP_Text SettlementDescription;
 
@@ -50,6 +51,10 @@ public class UIHandler : MonoBehaviour
 
     public void UpdateSettlementInfo(Settlement settlement)
     {
+        SettlementName.text = settlement.Name;
+        SettlementDescription.text = $"Population: {settlement.Population}\nQuality:{settlement.Quality}\nWealth:{settlement.Wealth}";
+
+        SettlementInfoPanel.SetActive(true);
         if(OnHome(settlement))
         {
             HomePanelBG.SetActive(true);
@@ -61,6 +66,7 @@ public class UIHandler : MonoBehaviour
             QuestPanelBG.SetActive(true);
             HomePanelBG.SetActive(false);
             SettlementPanelBG.SetActive(false);
+            SettlementDescription.text = "";
         }
         else
         {
@@ -68,9 +74,6 @@ public class UIHandler : MonoBehaviour
             QuestPanelBG.SetActive(false);
             SettlementPanelBG.SetActive(true);
         }
-
-        SettlementName.text = settlement.Name;
-        SettlementDescription.text = $"Population: {settlement.Population}\nQuality:{settlement.Quality}\nWealth:{settlement.Wealth}";
     }
 
     public bool OnHome(Settlement settlement)

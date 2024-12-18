@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class JobSystem : MonoBehaviour
 {
-    public static JobSystem Instance { get; private set; }
+    public static JobSystem Instance { get; set; }
     [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
     private PlayerData playerData;
     private TimeSystem timeSystem;

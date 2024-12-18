@@ -12,7 +12,20 @@
             "Gold": 500,
             "TargetStat": "Dexterity",
             "StatRewardMin": 1,
-            "StatRewardMax": 2
+            "StatRewardMax": 2,
+            "hoursToComplete": 9999,
+            "requiredItems": [],
+            "rewardItems": [],
+            "questItems": [],
+            "settlementID": 0,
+            "isTaken": false,
+            "isCompleted": false,
+            "questLocation": "",
+            "questLocationCoordinates": [
+                0.0,
+                0.0
+            ],
+            "questType": 0
         },
         {
             "Type": 1,
@@ -26,7 +39,20 @@
             "Gold": 1500,
             "TargetStat": "Charisma",
             "StatRewardMin": 2,
-            "StatRewardMax": 3
+            "StatRewardMax": 3,
+            "hoursToComplete": 9999,
+            "requiredItems": [],
+            "rewardItems": [],
+            "questItems": [],
+            "settlementID": 0,
+            "isTaken": false,
+            "isCompleted": false,
+            "questLocation": "",
+            "questLocationCoordinates": [
+                0.0,
+                0.0
+            ],
+            "questType": 0
         },
         {
             "Type": 1,
@@ -40,7 +66,20 @@
             "Gold": 2500,
             "TargetStat": "Constitution",
             "StatRewardMin": 0,
-            "StatRewardMax": 1
+            "StatRewardMax": 1,
+            "hoursToComplete": 9999,
+            "requiredItems": [],
+            "rewardItems": [],
+            "questItems": [],
+            "settlementID": 0,
+            "isTaken": false,
+            "isCompleted": false,
+            "questLocation": "",
+            "questLocationCoordinates": [
+                0.0,
+                0.0
+            ],
+            "questType": 0
         },
         {
             "Type": 1,
@@ -54,7 +93,20 @@
             "Gold": 3500,
             "TargetStat": "Dexterity",
             "StatRewardMin": 2,
-            "StatRewardMax": 2
+            "StatRewardMax": 2,
+            "hoursToComplete": 9999,
+            "requiredItems": [],
+            "rewardItems": [],
+            "questItems": [],
+            "settlementID": 0,
+            "isTaken": false,
+            "isCompleted": false,
+            "questLocation": "",
+            "questLocationCoordinates": [
+                0.0,
+                0.0
+            ],
+            "questType": 0
         },
         {
             "Type": 1,
@@ -68,7 +120,20 @@
             "Gold": 4500,
             "TargetStat": "Strength",
             "StatRewardMin": 3,
-            "StatRewardMax": 4
+            "StatRewardMax": 4,
+            "hoursToComplete": 9999,
+            "requiredItems": [],
+            "rewardItems": [],
+            "questItems": [],
+            "settlementID": 0,
+            "isTaken": false,
+            "isCompleted": false,
+            "questLocation": "",
+            "questLocationCoordinates": [
+                0.0,
+                0.0
+            ],
+            "questType": 0
         }
     ]
 }

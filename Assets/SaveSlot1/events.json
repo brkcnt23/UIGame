@@ -371,7 +371,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 3,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -743,7 +743,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
-            "encounterCooldown": 4,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Perform a ritual to put the spirits to rest.",
@@ -867,7 +867,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 2,
             "choices": [
                 {
                     "choiceText": "Destroy the artifact with brute force.",

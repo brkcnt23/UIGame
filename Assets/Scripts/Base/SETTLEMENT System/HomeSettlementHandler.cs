@@ -176,7 +176,7 @@ public class HomeSettlementHandler : MonoBehaviour
     public void RandomShopEvent()
     {
         int selectedShop = Dice.Roll(homeSettlement.Shops.Count);
-        Shops shop = homeSettlement.Shops[selectedShop];
+        Shops shop = homeSettlement.Shops[selectedShop] ?? null;
         if (shop == null)
         {
             return;
