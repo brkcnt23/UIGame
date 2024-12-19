@@ -29,6 +29,7 @@ public class MapHandler : MonoBehaviour
 
     public Settlement lastVisitedSettlement;
     public Settlement destinationSettlement;
+    public GameObject playerIcon;
 
     public void MovePlayerToLastVisitedSettlement(Settlement _settlement)
     {
@@ -37,6 +38,11 @@ public class MapHandler : MonoBehaviour
         foreach (GameObject child in children)
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if(settlementButtonPointer == null)
+            {
+                continue;
+            }
 
             if (settlementButtonPointer.settlement == _settlement)
             {
@@ -49,6 +55,8 @@ public class MapHandler : MonoBehaviour
                 else
                     OnOpenField();
                 selectedSettlement = child;
+
+                UpdatePlayerPosition(child.transform.position);
             }
         }
 
@@ -105,12 +113,24 @@ public class MapHandler : MonoBehaviour
             }
         }
     }
+    public void UpdatePlayerPosition(Vector2 position)
+    {
+        if (playerIcon != null)
+        {
+            playerIcon.transform.position = position;
+        }
+    }
 
     public SettlementButtonPointer GetLastVisitedSettlement()
     {
         foreach (GameObject child in children)
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+            if(settlementButtonPointer == null)
+            {
+                continue;
+            }
 
             if (settlementButtonPointer.settlement == PlayerStatHandler.Instance.LastVisitedSettlement())
             {

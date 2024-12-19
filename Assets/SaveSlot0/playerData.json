@@ -3,19 +3,26 @@
         "ID": 0,
         "Name": "Arif",
         "VillageName": "Gora",
+<<<<<<< Updated upstream
         "Hour": 0,
         "Minute": 0,
         "Day": 27,
         "Level": 1,
+=======
+        "Hour": 16,
+        "Minute": 10,
+        "Day": 10,
+        "Level": 11,
+>>>>>>> Stashed changes
         "Health": 100,
         "MaxHealth": 100,
-        "Experience": 0,
-        "MaxExperience": 200,
-        "Gold": 3,
+        "Experience": 2500,
+        "MaxExperience": 3000,
+        "Gold": 30,
         "Silver": 0,
-        "Alignment": 0,
+        "Alignment": 2,
         "Strength": 9,
-        "StrengthXP": 21,
+        "StrengthXP": 37,
         "Dexterity": 19,
         "DexterityXP": 24,
         "Constitution": 21,
@@ -24,7 +31,11 @@
         "CharismaXP": 58,
         "Rations": 0,
         "MaxExhaustionLevel": 3,
+<<<<<<< Updated upstream
         "CurrentExhaustionLevel": 334,
+=======
+        "CurrentExhaustionLevel": 9,
+>>>>>>> Stashed changes
         "SmitherSkillLevel": 1,
         "SmitherSkillXP": 0,
         "TannerSkillLevel": 1,
@@ -38,12 +49,21 @@
         "TotalBattlesFought": 0,
         "TotalBattlesWon": 0,
         "TotalBattlesLost": 0,
+<<<<<<< Updated upstream
         "LastSleepDay": 5,
         "LastSleepHour": 10,
         "LastSleepMinute": 20,
         "LastMealDay": 5,
         "LastMealHour": 16,
         "LastMealMinute": 20,
+=======
+        "LastSleepDay": 10,
+        "LastSleepHour": 5,
+        "LastSleepMinute": 10,
+        "LastMealDay": 10,
+        "LastMealHour": 5,
+        "LastMealMinute": 10,
+>>>>>>> Stashed changes
         "Companions": [],
         "Items": [
             {
@@ -74,7 +94,11 @@
                 "TargetStat": 0,
                 "StatRewardMin": 0,
                 "StatRewardMax": 1,
+<<<<<<< Updated upstream
                 "hoursToComplete": 5767,
+=======
+                "hoursToComplete": 4241,
+>>>>>>> Stashed changes
                 "requiredItems": [],
                 "rewardItems": [],
                 "questItems": [],
@@ -89,7 +113,11 @@
                 "questType": 0
             }
         ],
+<<<<<<< Updated upstream
         "LastSettlementName": "Mege",
+=======
+        "LastSettlementName": "Gora",
+>>>>>>> Stashed changes
         "HasDied": false
     }
 }

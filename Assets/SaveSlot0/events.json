@@ -2,7 +2,7 @@
     "events": [
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 1001,
             "Name": "Bandit Ambush",
             "Description": "You are ambushed by a group of bandits on the road. How will you respond?",
             "DC": 12,
@@ -126,7 +126,7 @@
         },
         {
             "Type": 2,
-            "ID": 1002,
+            "ID": 0,
             "Name": "Bandit Leader's Hideout",
             "Description": "After defeating the bandits, you discover their hideout. What will you do?",
             "DC": 14,
@@ -143,7 +143,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 4,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 4,
             "choices": [
                 {
                     "choiceText": "Raid the hideout and take the loot.",
@@ -230,7 +230,7 @@
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 1003,
             "Name": "Wounded Knight",
             "Description": "A wounded knight collapses at the gates of your camp, seeking aid.",
             "DC": 8,
@@ -330,7 +330,7 @@
                     "AlignmentChange": 0
                 }
             ],
-            "followUpEventID": 3004,
+            "followUpEventID": 1004,
             "choiceForTheFollowUpEvent": {
                 "choiceText": "Remind them of your previous encounter with the knight.",
                 "choiceType": "FollowUp",
@@ -371,7 +371,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 4,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -478,7 +478,7 @@
         },
         {
             "Type": 2,
-            "ID": 2002,
+            "ID": 0,
             "Name": "Lost Child",
             "Description": "A lost child wanders into your camp, seeking help to find their family.",
             "DC": 6,
@@ -602,7 +602,7 @@
         },
         {
             "Type": 2,
-            "ID": 2003,
+            "ID": 1005,
             "Name": "Mysterious Stranger",
             "Description": "A mysterious stranger approaches you with an offer of power in exchange for a favor.",
             "DC": 15,
@@ -726,7 +726,7 @@
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 1006,
             "Name": "Haunted Forest",
             "Description": "The villagers speak of a haunted forest where the dead walk at night. They ask for your help in putting the spirits to rest.",
             "DC": 10,
@@ -850,7 +850,7 @@
         },
         {
             "Type": 2,
-            "ID": 2005,
+            "ID": 1006,
             "Name": "Cursed Artifact",
             "Description": "A villager brings you a cursed artifact that is causing trouble in the village. They ask for your help in destroying it.",
             "DC": 12,

@@ -60,6 +60,19 @@ public class TimeSystem : MonoBehaviour
         AdvanceTime(totalMinutes);
     }
 
+    public void UpdatePlayerPosition()
+    {
+        if (TravelSystem.Instance.inTravel == false) return;
+
+        float progress =  TravelSystem.Instance.progress;
+        Vector2 startPosition = TravelSystem.Instance.startPosition;
+        Vector2 endPosition = TravelSystem.Instance.endPosition;
+        Vector2 currentPosition;
+        
+        currentPosition = Vector2.Lerp(startPosition, endPosition, progress);
+        MapHandler.Instance.playerIcon.transform.position = currentPosition;
+    }
+
     //we will advance time but with a IEnumerator so we can see the time passing
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
@@ -98,6 +111,8 @@ public class TimeSystem : MonoBehaviour
             // Smooth the speed of time progression
             float progress = (float)minutesPassed / totalMinutes;
             float waitTime = Mathf.Lerp(0.1f, 0.01f, progress);
+
+            UpdatePlayerPosition();
 
             yield return new WaitForSecondsRealtime(waitTime);
         }
@@ -161,30 +176,24 @@ public class TimeSystem : MonoBehaviour
     }
     private void NormalizeTime()
     {
-        // Calculate total hours and minutes overflow at once
         Hour += Minute / 60;
-        Minute %= 60;
-
-        Day += Hour / 24;
-        Hour %= 24;
-
-        // Process quest hours reduction once based on the total overflow
-        int hoursToReduce = Minute / 60 + Hour;
-        if (hoursToReduce > 0)
+        
+        if (Minute > 60)
         {
             foreach (var quest in playerData.Quests)
             {
                 if (quest.hoursToComplete > 0)
                 {
-                    quest.hoursToComplete -= hoursToReduce;
+                    quest.hoursToComplete -= Hour;
                     if (quest.hoursToComplete < 0) quest.hoursToComplete = 0;
-                    quest.QuestCheck(playerData);
                 }
             }
         }
+        Minute %= 60;
 
-        // Process event cooldown reduction once based on the total day overflow
-        if (Day > 0)
+        Day += Hour / 24;
+
+        if (Hour > 24)
         {
             foreach (var e in EventHandler.Instance.events)
             {
@@ -208,6 +217,9 @@ public class TimeSystem : MonoBehaviour
                 }
             }
         }
+
+        Hour %= 24;
+
     }
 
     /// <summary>
@@ -247,7 +259,7 @@ public class TimeSystem : MonoBehaviour
         UpdateLastSleepTime();
         UpdateLastMealTime();
     }
-    
+
     public void SleepWhileTraveling()
     {
 
