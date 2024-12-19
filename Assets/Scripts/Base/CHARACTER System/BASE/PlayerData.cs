@@ -71,6 +71,7 @@ public class PlayerData
     
     public List<Companion> Companions = new List<Companion>();
     public List<Item> Items;
+    public List<Unit> Units;
     public List<Quest_SO_Constructor> Quests = new List<Quest_SO_Constructor>();
 
     public string LastSettlementName;

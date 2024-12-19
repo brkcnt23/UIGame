@@ -7,7 +7,7 @@ public class JobSystem : MonoBehaviour
     public static JobSystem Instance { get; set; }
     [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
     private TimeSystem timeSystem;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -100,7 +100,7 @@ public class JobSystem : MonoBehaviour
     {
         int randw =  GetRand(3,6);
         int randxp =  GetRand(20,40);
-        PlayerStatHandler.Instance.pd.Items.Add(new Item(9 , "Wood" , 30 , ItemCategory.Resource , randw));
+        InventorySystem.Instance.AddItem(new Item(9 , "Wood" , 10 , ItemCategory.Resource , randw));
         PlayerStatHandler.Instance.AddStatXP(StatType.Strength , randxp);
         Debug.Log($"Reward: Wood {randw} & Strength XP");
     }
@@ -109,15 +109,15 @@ public class JobSystem : MonoBehaviour
     {
         int randxp =  GetRand(20,40);
         int rands =  GetRand(3,6);
-        PlayerStatHandler.Instance.pd.Items.Add(new Item(8, "Stone", 10, ItemCategory.Resource,rands));
+        InventorySystem.Instance.AddItem(new Item(8, "Stone", 10, ItemCategory.Resource,rands));
         if (Dice.Roll(100) <= 20)
         {
-            PlayerStatHandler.Instance.pd.Items.Add(new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial,1));
+            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial,1));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
         if (Dice.Roll(100) <= 5)
         {
-            PlayerStatHandler.Instance.pd.Items.Add(new Item(10, "Gold Nugget", 500, ItemCategory.Misc,1));
+            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 500, ItemCategory.Misc,1));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
         PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, randxp);

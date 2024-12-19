@@ -12,22 +12,10 @@ public class BattleManager : MonoBehaviour
     [Header("UI Elements")]
     public Text battleResultText; // Savaş sonucunu göstermek için UI Text bileşeni
     public Text battleCasualtiesText; // Savaş kayıplarını göstermek için ek UI Text bileşeni
-public Army playerArmy;
+    public Army playerArmy;
     private void Start()
     {
         simulator = new BattleSimulator();
-        InitializeArmies();
-    }
-    private void InitializeArmies()
-    {
-        // Oyuncu ordusunu oluştur
-        playerArmy = new Army();
-        playerArmy.AddUnit(new Unit(UnitType.Knight, 100));
-        playerArmy.AddUnit(new Unit(UnitType.Soldier, 200));
-        playerArmy.AddUnit(new Unit(UnitType.Archer, 150));
-        playerArmy.AddUnit(new Unit(UnitType.Pikeman, 100));
-        playerArmy.AddUnit(new Unit(UnitType.Shielder, 50));
-
     }
 
     /// <summary>

@@ -130,6 +130,8 @@ public class PlayerStatHandler : MonoBehaviour
     public void AddCharacterExperience(int xp)
     {
         ExperienceSystem.AddExperience(pd, xp);
+        ExperienceSystem.UpdateCharacterLevel(pd);
+
     }
     public void AddSilverToPlayer(int silver)
     {
@@ -162,6 +164,7 @@ public class PlayerStatHandler : MonoBehaviour
             case StatType.Charisma:
                 pd.Charisma += amount;
                 Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
+                
                 break;
             case StatType.Dexterity:
                 pd.Dexterity += amount;
@@ -388,39 +391,6 @@ public class PlayerStatHandler : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Ordunun kapasitesini günceller.
-    /// </summary>
-    public void AddUnitToArmy(UnitType type, int count)
-    {
-        var existingUnit = pd.PlayerArmy.Units.Find(unit => unit.Type == type);
-        if (existingUnit != null)
-        {
-            existingUnit.Count += count;
-        }
-        else
-        {
-            pd.PlayerArmy.Units.Add(new Unit(type, count));
-        }
-        UpdateArmyCapacity();
-    }
-
-    /// <summary>
-    /// Ordudan birimleri çıkarır.
-    /// </summary>
-    public void RemoveUnitFromArmy(UnitType type, int count)
-    {
-        var unit = pd.PlayerArmy.Units.Find(u => u.Type == type);
-        if (unit != null)
-        {
-            unit.Count = Mathf.Max(0, unit.Count - count);
-            if (unit.Count == 0)
-            {
-                pd.PlayerArmy.Units.Remove(unit);
-            }
-        }
-        UpdateArmyCapacity();
-    }
 
     public int GetExhaustionLevel()
     {
@@ -504,7 +474,7 @@ public class PlayerStatHandler : MonoBehaviour
                 pd.StrengthXP += xpAmount;
                 while (pd.StrengthXP >= 100)
                 {
-                    pd.Strength++;
+                    AddStats(StatType.Strength, 1);
                     pd.StrengthXP -= 100;
                     Debug.Log($"Strength leveled up! New Strength: {pd.Strength}");
                 }
@@ -514,7 +484,7 @@ public class PlayerStatHandler : MonoBehaviour
                 pd.DexterityXP += xpAmount;
                 while (pd.DexterityXP >= 100)
                 {
-                    pd.Dexterity++;
+                    AddStats(StatType.Dexterity, 1);
                     pd.DexterityXP -= 100;
                     Debug.Log($"Dexterity leveled up! New Dexterity: {pd.Dexterity}");
                 }
@@ -524,7 +494,7 @@ public class PlayerStatHandler : MonoBehaviour
                 pd.ConstitutionXP += xpAmount;
                 while (pd.ConstitutionXP >= 100)
                 {
-                    pd.Constitution++;
+                    AddStats(StatType.Constitution, 1);
                     pd.ConstitutionXP -= 100;
                     Debug.Log($"Constitution leveled up! New Constitution: {pd.Constitution}");
                 }
@@ -534,7 +504,8 @@ public class PlayerStatHandler : MonoBehaviour
                 pd.CharismaXP += xpAmount;
                 while (pd.CharismaXP >= 100)
                 {
-                    pd.Charisma++;
+                    AddStats(StatType.Charisma, 1);
+                    UpdateArmyCapacity();
                     pd.CharismaXP -= 100;
                     Debug.Log($"Charisma leveled up! New Charisma: {pd.Charisma}");
                 }
