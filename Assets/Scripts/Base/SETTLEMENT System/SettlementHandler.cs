@@ -154,10 +154,6 @@ public class SettlementHandler : MonoBehaviour
 
         }
 
-
-        MapHandler.Instance.lastVisitedSettlement = null; // Remove this line
-        MapHandler.Instance.destinationSettlement = null; // Remove this line
-
         UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
 
@@ -184,13 +180,27 @@ public class SettlementHandler : MonoBehaviour
 
     public void OnSettlementExited()
     {
-        if (settlement.Tavern != null && settlement.Tavern.Quests.Count > 0)
+        if (settlement.Tavern != null && settlement.Tavern.Quests.Count > 5)
         {
-            settlement.Tavern.Quests.Clear();
+            int random = Random.Range(1, 4);
+            for (int i = 0; i < random; i++)
+            {
+                if (!settlement.Tavern.Quests[random].isTaken && settlement.Tavern.Quests[random] != null)
+                {
+                    settlement.Tavern.Quests.RemoveAt(random);
+                }
+            }
         }
-        if (settlement.TownHall != null && settlement.TownHall.Jobs.Count > 0)
+        if (settlement.TownHall != null && settlement.TownHall.Jobs.Count > 6)
         {
-            settlement.TownHall.Jobs.Clear();
+            int random = Random.Range(1, 4);
+            for (int i = 0; i < random; i++)
+            {
+                if (settlement.TownHall.Jobs[random] != null)
+                {
+                    settlement.TownHall.Jobs.RemoveAt(random);
+                }
+            }
         }
 
         UIHandler.Instance.HomePanelBG.SetActive(false);

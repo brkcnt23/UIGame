@@ -214,7 +214,7 @@ public class HomeSettlementHandler : MonoBehaviour
     public void RandomTavernEvent()
     {
         int selectedQuest = Dice.Roll(homeSettlement.Tavern.Quests.Count);
-        Quest_SO_Constructor quest = homeSettlement.Tavern.Quests[selectedQuest];
+        Quest_SO_Constructor quest = homeSettlement.Tavern.Quests[selectedQuest] ?? null;
         if (quest == null)
         {
             return;
@@ -234,6 +234,8 @@ public class HomeSettlementHandler : MonoBehaviour
             print($"Tavern quest {quest.Name} was failed when you were away and you settlement lost {reward} silver");
         }
 
+        if(quest.isTaken)
+            quest.QuestFail(PlayerStatHandler.Instance.pd);
         homeSettlement.Tavern.Quests.Remove(quest);
     }
 
