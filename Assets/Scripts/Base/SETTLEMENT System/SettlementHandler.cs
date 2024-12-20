@@ -37,7 +37,10 @@ public class SettlementHandler : MonoBehaviour
 
         settlement = settlements.Find(x => x.Name == PlayerStatHandler.Instance.LastVisitedSettlement().Name);
     }
-
+    public Settlement GetCurrentSettlement()
+    {
+        return settlement;
+    }
     public void LoadSettlementsFromSourceData()
     {
         JSONhandler = new JSONDataHandler("SourceData");
@@ -116,7 +119,7 @@ public class SettlementHandler : MonoBehaviour
     {
         settlement = settlements.Find(x => x.Name == _settlement.Name);
         HomeSettlementHandler.Instance.GenerateRandomHappenings();
-        if(settlement.Type == SettlementType.Quest)
+        if (settlement.Type == SettlementType.Quest)
         {
             UIHandler.Instance.UpdateSettlementInfo(settlement);
             HandleQuestSettlementEntered();
@@ -160,7 +163,7 @@ public class SettlementHandler : MonoBehaviour
 
     public void HandleQuestSettlementEntered()
     {
-        foreach(Button button in UIHandler.Instance.GoBackButtons)
+        foreach (Button button in UIHandler.Instance.GoBackButtons)
         {
             button.onClick.RemoveAllListeners();
             SettlementButtonPointer settlementButtonPointer = TravelSystem.Instance.GetSettlementButtonPointerByID(settlement.Tavern.Quests[0].ID);

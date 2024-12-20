@@ -26,6 +26,56 @@
                     "income": 6000,
                     "ShopType": 1,
                     "Items": []
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 5,
+                    "maxLevel": 5,
+                    "cost": 25000,
+                    "income": 2500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 5,
+                    "maxLevel": 5,
+                    "cost": 25000,
+                    "income": 2500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -70,6 +120,84 @@
                     "income": 4000,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -114,6 +242,84 @@
                     "income": 4500,
                     "ShopType": 3,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -158,6 +364,84 @@
                     "income": 3500,
                     "ShopType": 4,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -202,6 +486,84 @@
                     "income": 5000,
                     "ShopType": 2,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -246,6 +608,84 @@
                     "income": 500,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -290,6 +730,84 @@
                     "income": 600,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -334,6 +852,84 @@
                     "income": 600,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -378,6 +974,84 @@
                     "income": 300,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -422,6 +1096,84 @@
                     "income": 800,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -466,6 +1218,84 @@
                     "income": 700,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -510,6 +1340,84 @@
                     "income": 1000,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -554,6 +1462,84 @@
                     "income": 200,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": 150,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": 300,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": 100,
+                            "Quantity": 1
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": 200,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": 50,
+                            "Quantity": 5
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": 50,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": 75,
+                            "Quantity": 1
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": 30,
+                            "Quantity": 10
+                        }
+                    ]
                 }
             ],
             "Tavern": {

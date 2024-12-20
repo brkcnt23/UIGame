@@ -213,7 +213,7 @@ public class TravelSystem : MonoBehaviour
         {
             endPosition = destination.transform.position;
         }
-
+        print("Started Travel");
         SettlementHandler.Instance.OnSettlementExited();
         ContinueTravel();
 
@@ -306,6 +306,8 @@ public class TravelSystem : MonoBehaviour
             travelData.eventTimes = eventTimes;
         }
 
+        print($"Started Travel in {totalTravelTime}");
+
         while (remainingTime > 0)
         {
             int timeUntilNextEvent = remainingTime;
@@ -375,7 +377,7 @@ public class TravelSystem : MonoBehaviour
     public void HandleEvent()
     {
         TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
-
+        print("Handle Event");
         ShowEventPanel();
     }
 
@@ -475,6 +477,7 @@ public class TravelSystem : MonoBehaviour
         travelInfoText.text = "";
         TravelingDeciderPanel.SetActive(false);
         destination = MapHandler.Instance.selectedSettlement.GetComponent<SettlementButtonPointer>();
+        print("Accepted travel");
         TravelToSettlement();
     }
 
