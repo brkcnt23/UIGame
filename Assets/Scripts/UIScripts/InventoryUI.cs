@@ -144,7 +144,7 @@ public class InventoryUI : MonoBehaviour
         newResource.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
         {
             InventorySystem.Instance.RemoveItem(resource, 1);
-            PlayerStatHandler.Instance.AddSilverToPlayer(resource.Value);
+            PlayerStatHandler.Instance.AddSilverToPlayer(resource.Value.Silver);
             UpdateInventoryUI();
         });
     }

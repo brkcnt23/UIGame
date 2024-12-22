@@ -18,7 +18,7 @@ public class Settlement
     public bool isUnlocked;
     public int levelToUnlock;
     public int Population;
-    public int Wealth;
+    public Currency Wealth;
     public int Quality;
     public List<Shops> Shops;
     public Taverns Tavern;
@@ -39,7 +39,7 @@ public class Settlement
     public delegate void PopulationChanged(int population);
     public event PopulationChanged OnPopulationChanged;
 
-    public delegate void WealthChanged(int wealth);
+    public delegate void WealthChanged(Currency wealth);
     public event WealthChanged OnWealthChanged;
 
     public delegate void QualityChanged(int quality);
@@ -67,7 +67,8 @@ public class Settlement
     {
         Name = "";
         Population = 0;
-        Wealth = 0;
+        Wealth.Gold = 0;
+        Wealth.Silver = 0;
         Quality = 0;
         Shops = new List<Shops>();
         Shops shop = new Shops();
@@ -87,7 +88,8 @@ public class Settlement
         Type = SettlementType.Quest;
         Name = quest.questLocation;
         Population = 0;
-        Wealth = 0;
+        Wealth.Gold = 0;
+        Wealth.Silver = 0;
         Quality = 0;
         Tavern = new Taverns();
         Tavern.Quests.Add(quest);
@@ -101,7 +103,7 @@ public class Settlement
 
     public void AddWealth(int wealth)
     {
-        Wealth += wealth;
+        Wealth.Gold += wealth;
         OnWealthChanged?.Invoke(Wealth);
     }
 

@@ -8,6 +8,7 @@ public class JobUI : MonoBehaviour
     [Header("Stable Job Buttons")]
     [SerializeField] private Button helpMerchantsButton;
     [SerializeField] private Button helpScoutsButton;
+    [SerializeField] private Button gatherHerbsButton;
     [SerializeField] private Button cuttingWoodsButton;
     [SerializeField] private Button laboringMinesButton;
 
@@ -24,6 +25,7 @@ public class JobUI : MonoBehaviour
         // Assign button listeners for stable jobs
         helpMerchantsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpMerchants());
         helpScoutsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpScouts());
+        gatherHerbsButton.onClick.AddListener(() => JobSystem.Instance.StartGatherHerbs());
         cuttingWoodsButton.onClick.AddListener(() => JobSystem.Instance.StartCuttingWoods());
         laboringMinesButton.onClick.AddListener(() => JobSystem.Instance.StartLaboringMines());
 

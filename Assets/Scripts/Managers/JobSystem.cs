@@ -7,7 +7,7 @@ public class JobSystem : MonoBehaviour
     public static JobSystem Instance { get; set; }
     [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
     private TimeSystem timeSystem;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -40,6 +40,12 @@ public class JobSystem : MonoBehaviour
         StartJobWithDuration();
         GrantScoutsReward();
     }
+    public void StartGatherHerbs()
+    {
+        Debug.Log("Starting job: Gathering Herbs");
+        StartJobWithDuration(); // Use the time system to simulate job duration
+        GrantGatherHerbsReward();
+    }
 
     // Method for "Cutting Woods"
     public void StartCuttingWoods()
@@ -62,7 +68,7 @@ public class JobSystem : MonoBehaviour
     {
         //int jobDurationMinutes = 12 * 60; // 12 hours
         //StartCoroutine(timeSystem.AdvanceTimeCoroutine(0,12,0));
-        TimeSystem.Instance.AnimateTimeChange(0 , 12 , 0 , 0.5f);
+        TimeSystem.Instance.AnimateTimeChange(0, 12, 0, 0.5f);
     }
 
     // Public method for starting custom jobs
@@ -72,16 +78,17 @@ public class JobSystem : MonoBehaviour
         StartJobWithDuration();
         GrantJobRewards(job);
     }
-    private int GetRand(int min,int max){
-        int rand = Random.Range(min, max+1);
+    private int GetRand(int min, int max)
+    {
+        int rand = Random.Range(min, max + 1);
         return rand;
     }
 
     // Individual reward methods
     private void GrantMerchantsReward()
     {
-        int randxp =  GetRand(20,40);
-        int randmn =  GetRand(80,120);
+        int randxp = GetRand(20, 40);
+        int randmn = GetRand(80, 120);
         PlayerStatHandler.Instance.pd.Silver += randmn;
         PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, randxp);
         Debug.Log($"Reward: {randmn} Silver & {randxp} Charisma XP");
@@ -89,35 +96,44 @@ public class JobSystem : MonoBehaviour
 
     private void GrantScoutsReward()
     {
-        int randxp =  GetRand(20,40);
-        int randmn =  GetRand(80,120);
-        PlayerStatHandler.Instance.pd.Silver += 100;
+        int randxp = GetRand(20, 40);
+        int randmn = GetRand(120, 150);
+        PlayerStatHandler.Instance.pd.Silver += randmn;
         PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randxp);
         Debug.Log($"Reward: {randmn} Silver & {randxp} Dexterity XP");
     }
 
+    private void GrantGatherHerbsReward()
+    {
+        int randH = GetRand(5, 10); // Randomly determine the number of herbs
+        int randXP = GetRand(15, 30); // Random XP reward for gathering herbs
+        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randH));
+        Debug.Log($"Reward: {randH} Herbs & {randXP} Dexterity XP");
+
+    }
+
     private void GrantCuttingWoodsReward()
     {
-        int randw =  GetRand(3,6);
-        int randxp =  GetRand(20,40);
-        InventorySystem.Instance.AddItem(new Item(9 , "Wood" , 10 , ItemCategory.Resource , randw));
-        PlayerStatHandler.Instance.AddStatXP(StatType.Strength , randxp);
+        int randw = GetRand(3, 6);
+        int randxp = GetRand(20, 40);
+        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randw));
+        PlayerStatHandler.Instance.AddStatXP(StatType.Strength, randxp);
         Debug.Log($"Reward: Wood {randw} & Strength XP");
     }
 
     private void GrantLaboringMinesReward()
     {
-        int randxp =  GetRand(20,40);
-        int rands =  GetRand(3,6);
-        InventorySystem.Instance.AddItem(new Item(8, "Stone", 10, ItemCategory.Resource,rands));
+        int randxp = GetRand(20, 40);
+        int rands = GetRand(3, 6);
+        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, rands));
         if (Dice.Roll(100) <= 20)
         {
-            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial,1));
+            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
         if (Dice.Roll(100) <= 5)
         {
-            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 500, ItemCategory.Misc,1));
+            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
         PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, randxp);

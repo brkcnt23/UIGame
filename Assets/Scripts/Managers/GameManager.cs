@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using NEXUS.Utilities;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Save Slot Container")]
     public GameObject saveSlotContainer;
     Button[] saveSlotButtons = new Button[3];
-
+    public Button[] deleteSlotButtons;
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject startGamePanel;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
             int _index = button.gameObject.transform.GetSiblingIndex();
             button.onClick.RemoveAllListeners();
+
             if (playerData[_index].Name == null)
             {
                 button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index + 1}\nClick to Start New Game";
@@ -77,13 +79,18 @@ public class GameManager : MonoBehaviour
                     PlayerPrefs.SetInt("Slot", _index);
                     DisableAllPanels();
                     InputPanel.SetActive(true);
-                }
-                );
+                });
+                deleteSlotButtons[_index].gameObject.SetActive(false);
             }
             else
             {
                 button.onClick.AddListener(() => LoadGame(_index));
                 button.GetComponentInChildren<TextMeshProUGUI>().text = $"{playerData[_index].Name} of {playerData[_index].VillageName}\nDay: {playerData[_index].Day}";
+
+                // Show and assign the delete button
+                deleteSlotButtons[_index].gameObject.SetActive(true);
+                deleteSlotButtons[_index].onClick.RemoveAllListeners();
+                deleteSlotButtons[_index].onClick.AddListener(() => DeleteSaveSlot(_index));
             }
         }
     }
@@ -104,6 +111,27 @@ public class GameManager : MonoBehaviour
             ShowSettlementPanel();
         }
 
+    }
+
+    public void DeleteSaveSlot(int slotIndex)
+    {
+        string slotFolderPath = Path.Combine(Application.dataPath, $"SaveSlot{slotIndex}");
+
+        if (Directory.Exists(slotFolderPath))
+        {
+            Directory.Delete(slotFolderPath, true);
+            Debug.Log($"Deleted SaveSlot{slotIndex}");
+        }
+        else
+        {
+            Debug.LogWarning($"SaveSlot{slotIndex} does not exist.");
+        }
+
+        // Reset the PlayerData for the slot
+        playerData[slotIndex] = new PlayerData();
+
+        // Update the UI
+        PopulateButtonsAndTexts();
     }
 
     public void DisableAllPanels()
@@ -236,7 +264,8 @@ public class GameManager : MonoBehaviour
         homeSettlement.Type = SettlementType.Village;
         homeSettlement.Quality = 1;
         homeSettlement.Population = 10;
-        homeSettlement.Wealth = 100;
+        homeSettlement.Wealth.Gold = 100;
+        homeSettlement.Wealth.Silver = 0;
         homeSettlement.Tavern = new Taverns();
         homeSettlement.Tavern.Name = "Mükremin's Tavern";
         homeSettlement.Shops = new List<Shops>();

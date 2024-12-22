@@ -14,13 +14,13 @@ public class TavernUI : MonoBehaviour
         PlayerStatHandler.Instance.ConsumeMoney(2,0);
         Debug.Log("you eat and sleep for 2 golds");
         TimeSystem.Instance.SleepTavern();
-        PlayerUISystem.Instance.UpdateGoldandSilverText();
+        PlayerUISystem.Instance.UpdateCurrencyUI();
     }
 
     public void EatInTavern(){
         PlayerStatHandler.Instance.ConsumeMoney(1,0);
         Debug.Log("you eat for 1 golds");
         TimeSystem.Instance.UpdateLastMealTime();
-        PlayerUISystem.Instance.UpdateGoldandSilverText();
+        PlayerUISystem.Instance.UpdateCurrencyUI();
     }
 }

@@ -137,7 +137,16 @@ public class HomeSettlementHandler : MonoBehaviour
     {
         int wealth = Dice.Roll(-300, 300);
 
-        homeSettlement.Wealth += wealth;
+        if (wealth > 0)
+        {
+            homeSettlement.Wealth.Add(0, wealth); // Add positive wealth as silver
+            print($"Merchants sold their goods and brought {wealth} silver to the settlement while you were away.");
+        }
+        else
+        {
+            homeSettlement.Wealth.Subtract(0, Mathf.Abs(wealth)); // Subtract negative wealth as silver
+            print($"Merchants bought goods and took {Mathf.Abs(wealth)} silver from the settlement while you were away.");
+        }
 
         print(wealth > 0 ? "Merchants sold their goods" : "Merchants bought goods" + " when you were away");
     }
@@ -197,17 +206,19 @@ public class HomeSettlementHandler : MonoBehaviour
 
         Item item = items[itemIndex];
 
+        Currency itemCost = new Currency(0, item.Value.Silver);
+        Currency transactionAmount = itemCost * Mathf.Abs(quantity);
         if (quantity > 0)
         {
-            print($"Shop {shop.Name} bought {item.Name} x{quantity} when you were away and spent {item.Value * quantity} silver");
 
-            homeSettlement.Wealth -= item.Value * quantity;
+            print($"Shop {shop.Name} bought {item.Name} x{quantity} when you were away and spent {transactionAmount}");
+            homeSettlement.Wealth.Subtract(transactionAmount.Gold, transactionAmount.Silver);
         }
         else
         {
-            print($"Shop {shop.Name} sold {item.Name} x{-quantity} when you were away and made {item.Value * -quantity} silver");
-
-            homeSettlement.Wealth += item.Value * -quantity;
+            // Shop sold items
+            print($"Shop {shop.Name} sold {item.Name} x{-quantity} when you were away and made {transactionAmount}");
+            homeSettlement.Wealth.Add(transactionAmount.Gold, transactionAmount.Silver);
         }
     }
 
@@ -220,22 +231,23 @@ public class HomeSettlementHandler : MonoBehaviour
             return;
         }
 
-        int reward = Dice.Roll(quest.Silver / 2, quest.Silver * 2);
+        int reward = Dice.Roll(quest.Silver / 2, quest.Silver * 2); // Reward in silver
         int dice = Dice.RollD100();
 
         if (dice <= 10)
         {
-            homeSettlement.Wealth += reward;
+            homeSettlement.Wealth.Add(0, reward); // Add reward to the settlement's wealth
             print($"Tavern quest {quest.Name} was completed when you were away and your settlement earned {reward} silver");
         }
         else
         {
-            homeSettlement.Wealth -= reward;
-            print($"Tavern quest {quest.Name} was failed when you were away and you settlement lost {reward} silver");
+            homeSettlement.Wealth.Subtract(0, reward); // Subtract reward from the settlement's wealth
+            print($"Tavern quest {quest.Name} was failed when you were away and your settlement lost {reward} silver");
         }
 
         homeSettlement.Tavern.Quests.Remove(quest);
     }
+
 
     #region Upgrade Settlement
     public void UpgradeSettlement()
@@ -386,29 +398,24 @@ public class HomeSettlementHandler : MonoBehaviour
     {
         //we will check if the wealth is enough to upgrade the settlement (1000 silver for village, 5000 silver for castle, 10000 silver for town) can be changed
         //if not, we will return false
-        int requiredWealth = 0;
+        Currency requiredWealth = new Currency(0, 0);
 
         switch (homeSettlement.Type)
         {
             case SettlementType.Village:
-                requiredWealth = 1000;
+                requiredWealth = new Currency(0, 1000); // 1000 silver
                 break;
             case SettlementType.Castle:
-                requiredWealth = 5000;
+                requiredWealth = new Currency(0, 5000); // 5000 silver
                 break;
             case SettlementType.Town:
-                requiredWealth = 10000;
+                requiredWealth = new Currency(0, 10000); // 10000 silver
                 break;
             default:
                 break;
         }
 
-        if (homeSettlement.Wealth < requiredWealth)
-        {
-            return false;
-        }
-
-        return true;
+        return homeSettlement.Wealth.HasEnough(requiredWealth.Gold, requiredWealth.Silver);
     }
 
     public bool CheckPopulation()

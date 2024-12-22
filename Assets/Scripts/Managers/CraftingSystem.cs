@@ -50,7 +50,7 @@ public class CraftingSystem : MonoBehaviour
         }
 
         // Determine required material and quantity based on item type
-        Item requiredMaterial = new Item(5, "Iron Ingot", 100, ItemCategory.CraftingMaterial, 1);
+        Item requiredMaterial = new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1);
         int requiredQuantity = itemType.ToLower() == "armor" ? 2 : 1; // Armor requires 2 ingots, weapon requires 1
 
         if (itemType.ToLower() != "weapon" && itemType.ToLower() != "armor")
@@ -110,7 +110,7 @@ public class CraftingSystem : MonoBehaviour
         }
 
         // Determine required material and quantity
-        Item requiredMaterial = new Item(6, "Leather", 50, ItemCategory.CraftingMaterial, 1);
+        Item requiredMaterial = new Item(6, "Leather", 0, 50, ItemCategory.CraftingMaterial, 1);
         int requiredQuantity = 1; // Boots üretimi için 1 Leather gerekli
 
         // Material check
@@ -163,7 +163,7 @@ public class CraftingSystem : MonoBehaviour
         }
 
         // Determine required material and quantity
-        Item requiredMaterial = new Item(7, "Herb", 30, ItemCategory.CraftingMaterial, 1);
+        Item requiredMaterial = new Item(7, "Herb", 0, 30, ItemCategory.CraftingMaterial, 1);
         int requiredQuantity = 5; // Potion üretimi için 5 Herb gerekli
 
         // Material check
@@ -314,7 +314,8 @@ public class CraftingSystem : MonoBehaviour
 
         // Değeri yuvarla ve en az baseValue kadar olmasını sağla
         int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
-
+        int gold = finalValue / 100;
+        int silver = finalValue % 100;
 
         // Create the item with the calculated modifiers
         List<StatModifier> modifiers = new List<StatModifier>
@@ -327,7 +328,8 @@ public class CraftingSystem : MonoBehaviour
         Item newItem = new Item(
             itemId,
             itemName,
-            finalValue,
+            gold,
+            silver,
             itemType.ToLower() == "weapon" ? ItemCategory.Weapon : ItemCategory.Armor,
             modifiers,
             1
@@ -373,11 +375,13 @@ public class CraftingSystem : MonoBehaviour
 
         // Değeri yuvarla ve en az baseValue kadar olmasını sağla
         int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
-
+        int gold = finalValue / 100;
+        int silver = finalValue % 100;
         Item newItem = new Item(
             itemId,
             itemName,
-            finalValue,
+            gold,
+            silver,
             ItemCategory.Boots,
             modifiers,
             1
@@ -413,16 +417,17 @@ public class CraftingSystem : MonoBehaviour
 
         // Değeri yuvarla ve en az baseValue kadar olmasını sağla
         int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
-
+        int gold = finalValue / 100;
+        int silver = finalValue % 100;
         Item newItem = new Item(
             itemId,
             itemName,
-            finalValue,
+            gold,
+            silver,
             healthRecovery,
             exhaustionReduction,
             1
         );
-
         AddCraftedItem(newItem);
         Debug.Log($"{itemName} üretildi. Value: {finalValue} silver. Health Recovery: {healthRecovery}, Exhaustion Reduction: {exhaustionReduction}");
         return newItem;
