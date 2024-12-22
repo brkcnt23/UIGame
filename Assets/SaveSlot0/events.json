@@ -2,7 +2,7 @@
     "events": [
         {
             "Type": 2,
-            "ID": 1001,
+            "ID": 0,
             "Name": "Bandit Ambush",
             "Description": "You are ambushed by a group of bandits on the road. How will you respond?",
             "DC": 12,
@@ -143,7 +143,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 4,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 2,
             "choices": [
                 {
                     "choiceText": "Raid the hideout and take the loot.",
