@@ -205,7 +205,7 @@ public class SettlementHandler : MonoBehaviour
         Print($"Population changed to {population}");
     }
 
-    void HandleWealthChanged(int wealth)
+    void HandleWealthChanged(Currency wealth)
     {
         Print($"Wealth changed to {wealth}");
     }

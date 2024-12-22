@@ -6,7 +6,10 @@
             "isUnlocked": true,
             "levelToUnlock": 30,
             "Population": 8000,
-            "Wealth": 160000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 900,
             "Shops": [
                 {
@@ -30,6 +33,85 @@
                     "upgradeHour": 0,
                     "ShopType": 1,
                     "Items": []
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 5,
+                    "maxLevel": 5,
+                    "cost": 25000,
+                    "income": 2500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 5,
+                    "maxLevel": 5,
+                    "cost": 25000,
+                    "income": 2500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -70,7 +152,10 @@
             "isUnlocked": false,
             "levelToUnlock": 25,
             "Population": 6500,
-            "Wealth": 130000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 850,
             "Shops": [
                 {
@@ -83,6 +168,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -123,7 +332,10 @@
             "isUnlocked": false,
             "levelToUnlock": 25,
             "Population": 6500,
-            "Wealth": 130000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 850,
             "Shops": [
                 {
@@ -136,6 +348,130 @@
                     "upgradeHour": 0,
                     "ShopType": 3,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -173,10 +509,13 @@
         {
             "Name": "Incan",
             "ID": 4,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 20,
             "Population": 5500,
-            "Wealth": 110000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 800,
             "Shops": [
                 {
@@ -189,6 +528,130 @@
                     "upgradeHour": 0,
                     "ShopType": 4,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -226,10 +689,13 @@
         {
             "Name": "Tarus",
             "ID": 5,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 20,
             "Population": 7000,
-            "Wealth": 140000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 870,
             "Shops": [
                 {
@@ -242,6 +708,130 @@
                     "upgradeHour": 0,
                     "ShopType": 2,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 4,
+                    "maxLevel": 5,
+                    "cost": 20000,
+                    "income": 2000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -279,10 +869,13 @@
         {
             "Name": "Cryssborn",
             "ID": 6,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 15,
             "Population": 800,
-            "Wealth": 16000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 300,
             "Shops": [
                 {
@@ -295,6 +888,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -332,10 +1049,13 @@
         {
             "Name": "Woodholmers",
             "ID": 7,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 10,
             "Population": 1000,
-            "Wealth": 20000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 350,
             "Shops": [
                 {
@@ -348,6 +1068,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -385,10 +1229,13 @@
         {
             "Name": "Mineholmers",
             "ID": 8,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 7,
             "Population": 1000,
-            "Wealth": 20000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 350,
             "Shops": [
                 {
@@ -401,6 +1248,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -438,10 +1409,13 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 5,
             "Population": 400,
-            "Wealth": 8000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 200,
             "Shops": [
                 {
@@ -454,6 +1428,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -491,10 +1589,13 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 5,
             "Population": 1600,
-            "Wealth": 32000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 400,
             "Shops": [
                 {
@@ -507,6 +1608,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -544,10 +1769,13 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 3,
             "Population": 1400,
-            "Wealth": 28000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 380,
             "Shops": [
                 {
@@ -560,6 +1788,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 2,
+                    "maxLevel": 5,
+                    "cost": 10000,
+                    "income": 1000,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -597,10 +1949,13 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 3,
             "Population": 2000,
-            "Wealth": 40000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 450,
             "Shops": [
                 {
@@ -613,6 +1968,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 3,
+                    "maxLevel": 5,
+                    "cost": 15000,
+                    "income": 1500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -653,7 +2132,10 @@
             "isUnlocked": true,
             "levelToUnlock": 1,
             "Population": 200,
-            "Wealth": 4000,
+            "Wealth": {
+                "Gold": 0,
+                "Silver": 0
+            },
             "Quality": 150,
             "Shops": [
                 {
@@ -666,6 +2148,130 @@
                     "upgradeHour": 0,
                     "ShopType": 5,
                     "Items": []
+                },
+                {
+                    "Name": "Blacksmith",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 1,
+                    "Items": [
+                        {
+                            "ID": 1,
+                            "Name": "Iron Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 3,
+                            "Name": "Enchanted Sword",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 6,
+                            "Name": "Iron Ingot",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Tanner",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 6,
+                    "Items": [
+                        {
+                            "ID": 2,
+                            "Name": "Leather Armor",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 7,
+                            "Name": "Leather",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 5,
+                            "Modifiers": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "Alchemist",
+                    "level": 1,
+                    "maxLevel": 5,
+                    "cost": 5000,
+                    "income": 500,
+                    "Resources": [],
+                    "upgradeHour": 0,
+                    "ShopType": 4,
+                    "Items": [
+                        {
+                            "ID": 4,
+                            "Name": "Health Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 5,
+                            "Name": "Energy Potion",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 1,
+                            "Modifiers": []
+                        },
+                        {
+                            "ID": 8,
+                            "Name": "Herbs",
+                            "Value": {
+                                "Gold": 0,
+                                "Silver": 0
+                            },
+                            "Category": 0,
+                            "Quantity": 10,
+                            "Modifiers": []
+                        }
+                    ]
                 }
             ],
             "Tavern": {
@@ -676,72 +2282,7 @@
                 "income": 300,
                 "Resources": [],
                 "upgradeHour": 0,
-                "Quests": [
-                    {
-                        "Type": 1,
-                        "ID": 2001,
-                        "Name": "The Missing Heirloom",
-                        "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 1,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": 0,
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2,
-                        "hoursToComplete": 9999,
-                        "requiredItems": [],
-                        "rewardItems": [],
-                        "questItems": [],
-                        "settlementID": 0,
-                        "isTaken": false,
-                        "isCompleted": false,
-                        "questLocation": "",
-                        "questLocationCoordinates": [
-                            0.0,
-                            0.0
-                        ],
-                        "questType": 0
-                    },
-                    {
-                        "Type": 1,
-                        "ID": 2001,
-                        "Name": "The Missing Heirloom",
-                        "Description": "A local merchant has lost a family heirloom and is offering a reward for its return.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 1,
-                        "CompletionMinute": 30,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": 0,
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2,
-                        "hoursToComplete": 9999,
-                        "requiredItems": [],
-                        "rewardItems": [],
-                        "questItems": [],
-                        "settlementID": 0,
-                        "isTaken": false,
-                        "isCompleted": false,
-                        "questLocation": "",
-                        "questLocationCoordinates": [
-                            0.0,
-                            0.0
-                        ],
-                        "questType": 0
-                    }
-                ],
+                "Quests": [],
                 "Companions": []
             },
             "TownHall": {
@@ -752,27 +2293,7 @@
                 "income": 400,
                 "Resources": [],
                 "upgradeHour": 0,
-                "Jobs": [
-                    {
-                        "Type": 0,
-                        "ID": 1001,
-                        "Name": "Guard",
-                        "Description": "Protect the town from bandits and other threats.",
-                        "DC": 10,
-                        "HealthRequirement": 0,
-                        "ArmyPowerRequirement": 0,
-                        "SilverRequirement": 0,
-                        "StatRequirement": 0,
-                        "CompletionDay": 0,
-                        "CompletionHour": 6,
-                        "CompletionMinute": 0,
-                        "Experience": 0,
-                        "Silver": 100,
-                        "TargetStat": 0,
-                        "StatRewardMin": 1,
-                        "StatRewardMax": 2
-                    }
-                ]
+                "Jobs": []
             },
             "Walls": {
                 "Name": "Simple Fence",

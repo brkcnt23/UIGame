@@ -18,8 +18,11 @@ public class PlayerData
     public int MaxHealth;
     public int Experience;
     public int MaxExperience;
+
     public int Gold;
     public int Silver;
+
+    public Currency Currency; // Player's currency (gold and silver)
 
     public int Alignment;
 

@@ -1,182 +1,57 @@
 {
     "homeSettlement": {
-        "Name": "Gora",
+        "Name": "CANNO",
         "ID": 0,
         "isUnlocked": true,
         "levelToUnlock": 0,
-        "Population": 3,
-        "Wealth": 623,
-        "Quality": 3,
+        "Population": 10,
+        "Wealth": {
+            "Gold": 101,
+            "Silver": 44
+        },
+        "Quality": 1,
         "Shops": [
             {
-                "Name": "Rasu Market",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 7000,
-                "income": 700,
-                "Resources": [],
-                "upgradeHour": 0,
-                "ShopType": 5,
-                "Items": []
-            },
-            {
-                "Name": "Blacksmith",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 10000,
-                "income": 1000,
-                "Resources": [],
-                "upgradeHour": 0,
-                "ShopType": 1,
-                "Items": [
-                    {
-                        "ID": 1,
-                        "Name": "Iron Sword",
-                        "Value": 150,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 3,
-                        "Name": "Enchanted Sword",
-                        "Value": 300,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 6,
-                        "Name": "Iron Ingot",
-                        "Value": 100,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    }
-                ]
-            },
-            {
-                "Name": "Tanner",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 10000,
-                "income": 1000,
-                "Resources": [],
-                "upgradeHour": 0,
-                "ShopType": 6,
-                "Items": [
-                    {
-                        "ID": 2,
-                        "Name": "Leather Armor",
-                        "Value": 200,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 7,
-                        "Name": "Leather",
-                        "Value": 50,
-                        "Category": 0,
-                        "Quantity": 5,
-                        "Modifiers": []
-                    }
-                ]
-            },
-            {
-                "Name": "Alchemist",
-                "level": 2,
-                "maxLevel": 5,
-                "cost": 10000,
-                "income": 1000,
-                "Resources": [],
-                "upgradeHour": 0,
-                "ShopType": 4,
-                "Items": [
-                    {
-                        "ID": 4,
-                        "Name": "Health Potion",
-                        "Value": 50,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 5,
-                        "Name": "Energy Potion",
-                        "Value": 75,
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 8,
-                        "Name": "Herbs",
-                        "Value": 30,
-                        "Category": 0,
-                        "Quantity": 10,
-                        "Modifiers": []
-                    }
-                ]
-            },
-            {
                 "Name": "Muhittin's Shop",
-                "level": 1,
+                "level": 0,
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
                 "Resources": [],
-                "upgradeHour": 24,
+                "upgradeHour": 0,
                 "ShopType": 7,
-                "Items": [
-                    {
-                        "ID": 0,
-                        "Name": "fasd",
-                        "Value": 437,
-                        "Category": 0,
-                        "Quantity": 2,
-                        "Modifiers": []
-                    },
-                    {
-                        "ID": 0,
-                        "Name": "sada",
-                        "Value": 1071,
-                        "Category": 0,
-                        "Quantity": 0,
-                        "Modifiers": []
-                    }
-                ]
+                "Items": []
             }
         ],
         "Tavern": {
             "Name": "Mükremin's Tavern",
-            "level": 3,
+            "level": 0,
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
             "Resources": [],
-            "upgradeHour": 56,
+            "upgradeHour": 0,
             "Quests": [],
             "Companions": []
         },
         "TownHall": {
-            "Name": "Gora's Hall",
-            "level": 4,
-            "maxLevel": 5,
-            "cost": 0,
-            "income": 0,
-            "Resources": [],
-            "upgradeHour": 80,
-            "Jobs": []
-        },
-        "Walls": {
-            "Name": "Gora's Wall",
-            "level": 1,
+            "Name": "CANNO's Hall",
+            "level": 0,
             "maxLevel": 0,
             "cost": 0,
             "income": 0,
             "Resources": [],
-            "upgradeHour": 24
+            "upgradeHour": 0,
+            "Jobs": []
+        },
+        "Walls": {
+            "Name": "CANNO's Wall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0
         },
         "Type": 0
     }

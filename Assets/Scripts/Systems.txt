@@ -1,0 +1,564 @@
+CraftingSystem:
+
+Variables
+
+PlayerData playerData
+
+EconomySystem economySystem
+
+TimeSystem timeSystem
+
+static CraftingSystem Instance
+
+Methods
+
+Awake
+
+CraftingSystem
+
+WorkAsBlacksmith
+
+WorkAsTanner
+
+WorkAsAlchemist
+
+CalculateAndApplyRewards
+
+ProduceBlacksmithItem
+
+ProduceTanningItem
+
+ProduceAlchemyItem
+
+GetDifficultyIndex
+
+GetCraftLevel
+
+CalculateWorkDuration
+
+AddCraftedItem
+
+JobManager:
+
+Variables
+
+static JobManager Instance
+
+List<Job_SO_Constructor> availableJobs
+
+PlayerData playerData
+
+TimeSystem timeSystem
+
+Methods
+
+Awake
+
+Start
+
+StartJob
+
+StartHelpMerchants
+
+StartHelpScouts
+
+StartCuttingWoods
+
+StartLaboringMines
+
+GrantJobRewards
+
+GrantMerchantsReward
+
+GrantScoutsReward
+
+GrantCuttingWoodsReward
+
+GrantLaboringMinesReward
+
+PlayerStatHandler:
+
+Variables
+
+static PlayerStatHandler Instance
+
+PlayerData pd
+
+EconomySystem economySystem
+
+JSONDataHandler JSONhandler
+
+Item EquippedSword
+
+Item EquippedArmor
+
+Item EquippedPotion
+
+Item EquippedMisc
+
+Methods
+
+Awake
+
+Start
+
+SavePlayerData
+
+LoadPlayerData
+
+OnApplicationQuit
+
+GetPlayerCompanions
+
+AddCharacterExperience
+
+AddSilverToPlayer
+
+LevelUp
+
+LevelDown
+
+AddStats
+
+UnequipItem
+
+EquipItem
+
+ConsumeDailyRations
+
+UpdateArmyCapacity
+
+DecreaseRations
+
+IncreaseRations
+
+IncreaseExhaustion
+
+CheckExhaustionMaxed
+
+AddUnitToArmy
+
+RemoveUnitFromArmy
+
+UpdateCharisma
+
+GetExhaustionLevel
+
+GetRations
+
+SetExhaustionLevel
+
+ConsumeArmyRations
+
+Print
+
+TimeSystem:
+
+Variables
+
+static TimeSystem Instance
+
+int Hour
+
+int Minute
+
+int Day
+
+TMP_Text clockText
+
+PlayerData playerData
+
+Methods
+
+Awake
+
+InitializeLastActionTimes
+
+AdvanceTime
+
+AdvanceTimeCoroutine
+
+AnimateTimeChange
+
+UpdateClockText
+
+NormalizeTime
+
+Sleep
+
+SleepWhileTraveling
+
+CheckExhaustion
+
+GetTimeDifferenceInMinutes
+
+UpdateLastSleepTime
+
+GetTimeString
+
+HomeSettlementHandler:
+
+Variables
+
+static HomeSettlementHandler Instance
+
+Settlement homeSettlement
+
+JSONDataHandler JSONhandler
+
+Methods
+
+Awake
+
+LoadHomeSettlement
+
+SaveHomeSettlement
+
+HandleTownHallEntered
+
+OnSettlementEntered
+
+UpgradeResidental
+
+UpgradeTavern
+
+UpgradeTownHall
+
+UpgradeWalls
+
+UpgradeShop
+
+GenerateRandomHappenings
+
+RandomPopulationEvent
+
+RandomWealthEvent
+
+RandomQualityEvent
+
+RandomShopEvent
+
+RandomTavernEvent
+
+UpgradeSettlement
+
+UpgradeHomeSettlement
+
+GetResidentials
+
+CheckResidentialLevels
+
+CheckResidentialDistance
+
+CheckResidentialMaxLevel
+
+CheckWealth
+
+CheckPopulation
+
+EventHandler:
+
+Variables
+
+static EventHandler Instance
+
+List<Event_SO_Constructor> events
+
+Event_SO_Constructor currentEvent
+
+JSONDataHandler JSONDataHandler
+
+Methods
+
+Awake
+
+SaveEvents
+
+LoadEvents
+
+LoadEventsFromSourceData
+
+HandleEvent
+
+GenerateEvent
+
+GetEventByID
+
+InventorySystem:
+
+Variables
+
+static InventorySystem Instance
+
+Methods
+
+AddItem
+
+RemoveItem
+
+HasItem
+
+GetItems
+
+ClearInventory
+
+EconomySystem:
+
+Variables
+
+PlayerData playerData
+
+Methods
+
+AddSilver
+
+RemoveSilver
+
+AddGold
+
+RemoveGold
+
+ConvertSilverToGold
+
+Dice:
+
+Methods
+
+Roll
+
+RollD100
+
+RollD20
+
+RollD12
+
+RollD10
+
+RollD8
+
+RollD6
+
+RollD4
+
+RollSuccess
+
+RollCriticalSuccess
+
+RollCriticalFailure
+
+TravelSystem:
+
+Variables
+
+static TravelSystem Instance
+
+SettlementButtonPointer currentSettlement
+
+SettlementButtonPointer destination
+
+bool inTravel
+
+bool isHuntingForRations
+
+bool isSleeping
+
+List eventTimes
+
+TMP_Text travelInfoText
+
+TMP_Text travelTimeText
+
+GameObject TravelingDeciderPanel
+
+GameObject TravelingPanel
+
+Methods
+
+Awake
+
+TravelToSettlement
+
+CalculateDistance
+
+ContinueTravel
+
+TravelUntilEvent
+
+TravelDone
+
+EnterSettlement
+
+HandleEvent
+
+ShowEventPanel
+
+ResetTravelData
+
+UpdateTravelTimeText
+
+PlayerWantsToHunt
+
+PlayerWantsToSleep
+
+PlayerAcceptedToTravel
+
+PlayerDeclinedToTravel
+
+PlayerMiniGameClosed
+
+Quest_SO_Constructor:
+
+Variables
+
+int hoursToComplete
+
+List requiredItems
+
+List rewardItems
+
+List questItems
+
+int settlementID
+
+Methods
+
+QuestComplete
+
+Reward
+
+QuestFail
+
+QuestStart
+
+QuestCancel
+
+QuestCheck
+
+TryToTake
+
+SettlementButtonPointer:
+
+Variables
+
+Settlement settlement
+
+TMP_Text SettlementName
+
+Button button
+
+Methods
+
+Awake
+
+SetSettlement
+
+OpenTheTravelDecider
+
+Shop_SO_Constructor:
+
+Variables
+
+List Items
+
+Methods
+
+AddItem
+
+RemoveItem
+
+Residentials:
+
+Variables
+
+string Name
+
+int level
+
+int maxLevel
+
+int cost
+
+int income
+
+List Resources
+
+int upgradeHour
+
+Methods
+
+LevelUpResidential
+
+RequiredResourceAmount
+
+CalculateUpgradeHour
+
+ChangeIncome
+
+ChangeCost
+
+ChangeMaxLevel
+
+PlayerData:
+
+Variables
+
+int ID
+
+string Name
+
+string VillageName
+
+int Hour
+
+int Minute
+
+int Day
+
+int Level
+
+int Health
+
+int MaxHealth
+
+int Experience
+
+int MaxExperience
+
+int Gold
+
+int Silver
+
+int Alignment
+
+int Strength
+
+int StrengthXP
+
+int Dexterity
+
+int DexterityXP
+
+int Constitution
+
+int ConstitutionXP
+
+int Charisma
+
+int CharismaXP
+
+int Rations
+
+List Items
+
+List Companions
+
+List<Quest_SO_Constructor> Quests
+
+string LastSettlementName
+
+bool HasDied
+
+Methods
+
+CheckIfSilverToGold
+

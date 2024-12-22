@@ -18,7 +18,7 @@ public class PlayerUISystem : MonoBehaviour
     }
 
     public TMP_Text HealthText;
-    public TMP_Text GoldandSilverText;
+    public TMP_Text currencyText;
     public TMP_Text ClockText;
     public TMP_Text DayText;
     public TMP_Text ExhaustText;
@@ -39,9 +39,10 @@ public class PlayerUISystem : MonoBehaviour
     {
         HealthText.text = $"{PlayerStatHandler.Instance.pd.Health}";
     }
-    public void UpdateGoldandSilverText()
+    public void UpdateCurrencyUI()
     {
-        GoldandSilverText.text = $"{PlayerStatHandler.Instance.pd.Gold} {PlayerStatHandler.Instance.pd.Silver}";
+        PlayerData pd = PlayerStatHandler.Instance.pd;
+        currencyText.text = $"Gold: {pd.Currency.Gold}, Silver: {pd.Currency.Silver}";
     }
     public void UpdateRationText()
     {
@@ -91,7 +92,7 @@ public class PlayerUISystem : MonoBehaviour
     public void UpdateUIObjects()
     {
         UpdateHealthText();
-        UpdateGoldandSilverText();
+        UpdateCurrencyUI();
         UpdateExhaustionText();
         UpdateRationText();
     }

@@ -135,8 +135,21 @@ public class PlayerStatHandler : MonoBehaviour
     }
     public void AddSilverToPlayer(int silver)
     {
-        economySystem.AddSilver(silver);
+        pd.Currency.Add(0, silver); // Add silver directly using Currency
+        Debug.Log($"Added {silver} Silver. New Balance: {pd.Currency}");
     }
+    public void SpendMoney(int gold, int silver)
+    {
+        if (!pd.Currency.HasEnough(gold, silver))
+        {
+            Debug.Log("Not enough money!");
+            return;
+        }
+
+        pd.Currency.Subtract(gold, silver);
+        Debug.Log($"Spent {gold} Gold and {silver} Silver. Remaining Balance: {pd.Currency}");
+    }
+
 
     public void LevelUp()
     {
@@ -164,7 +177,7 @@ public class PlayerStatHandler : MonoBehaviour
             case StatType.Charisma:
                 pd.Charisma += amount;
                 Debug.Log($"CHA increased by {amount}. Total: {pd.Charisma}");
-                
+
                 break;
             case StatType.Dexterity:
                 pd.Dexterity += amount;

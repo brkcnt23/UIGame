@@ -72,38 +72,33 @@ public class ShopSystem : MonoBehaviour
     public void BuyItem(Item item)
     {
         PlayerData pd = PlayerStatHandler.Instance.pd;
-        if (pd.Silver >= item.Value)
+
+        // Convert the item's value (int) to a Currency instance
+        Currency itemCost = new Currency(0, item.Value.Silver);
+
+        // Check if the player has enough currency
+        if (pd.Currency.HasEnough(itemCost.Gold, itemCost.Silver))
         {
-            pd.Silver -= item.Value;
+            // Deduct the item cost from the player's currency
+            pd.Currency.Subtract(itemCost.Gold, itemCost.Silver);
+
+            // Add the item to the player's inventory
             InventorySystem.Instance.AddItem(item);
-            Debug.Log($"Purchased {item.Name}");
+            Debug.Log($"Purchased {item.Name} for {itemCost}");
+
+            // Remove the item from the shop's inventory and refresh the display
             currentShop.Items.Remove(item);
             DisplayShopItems(currentShop);
         }
         else
         {
-            Debug.Log("Not enough silver to buy this item.");
+            Debug.Log("Not enough currency to buy this item.");
         }
     }
-    // public void BuyItem(Item item)
-    // {
-    //     PlayerData pd = PlayerStatHandler.Instance.pd;
 
-    //     // Calculate item cost in gold and silver
-    //     int itemCostInGold = item.Value / 100;
-    //     int itemCostInSilver = item.Value % 100;
 
-    //     // Deduct the cost using the ConsumeMoney method
-    //     PlayerStatHandler.Instance.ConsumeMoney(itemCostInGold, itemCostInSilver);
 
-    //     // Add the item to the player's inventory
-    //     InventorySystem.Instance.AddItem(item);
-    //     Debug.Log($"Purchased {item.Name} for {itemCostInGold} Gold and {itemCostInSilver} Silver.");
 
-    //     // Remove the item from the shop and refresh the display
-    //     currentShop.Items.Remove(item);
-    //     DisplayShopItems(currentShop);
-    // }
 
     public void DisplayShopItems(Shops shop)
     {
