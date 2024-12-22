@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BLACKSMITH BG_0: -3472683856329271871
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

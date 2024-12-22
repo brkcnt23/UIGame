@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ALCHEMIST.BG_0: 7252479083552720720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
