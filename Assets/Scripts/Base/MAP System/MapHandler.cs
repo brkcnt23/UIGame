@@ -28,6 +28,7 @@ public class MapHandler : MonoBehaviour
     public List<GameObject> children = new List<GameObject>();
 
     public Settlement lastVisitedSettlement;
+    public Settlement destinationSettlement;
     public GameObject playerIcon;
 
     public void MovePlayerToLastVisitedSettlement(Settlement _settlement)
@@ -38,7 +39,7 @@ public class MapHandler : MonoBehaviour
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
-            if (settlementButtonPointer == null)
+            if(settlementButtonPointer == null)
             {
                 continue;
             }
@@ -54,10 +55,10 @@ public class MapHandler : MonoBehaviour
                 else
                     OnOpenField();
                 selectedSettlement = child;
+
+                UpdatePlayerPosition(child.transform.position);
             }
         }
-
-        UpdatePlayerPosition(selectedSettlement.transform.position);
 
         PopulateMap();
     }
@@ -114,7 +115,10 @@ public class MapHandler : MonoBehaviour
     }
     public void UpdatePlayerPosition(Vector2 position)
     {
-        playerIcon.transform.position = position;
+        if (playerIcon != null)
+        {
+            playerIcon.transform.position = position;
+        }
     }
 
     public SettlementButtonPointer GetLastVisitedSettlement()
@@ -123,7 +127,7 @@ public class MapHandler : MonoBehaviour
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
-            if (settlementButtonPointer == null)
+            if(settlementButtonPointer == null)
             {
                 continue;
             }
@@ -155,6 +159,7 @@ public class MapHandler : MonoBehaviour
     public void OnOpenField()
     {
         lastVisitedSettlement = PlayerStatHandler.Instance.LastVisitedSettlement();
+        destinationSettlement = TravelSystem.Instance.destination.settlement;
         UIHandler.Instance.UpdateSettlementInfo(lastVisitedSettlement);
     }
 

@@ -3,7 +3,6 @@ using NEXUS.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 
 public class TravelSystem : MonoBehaviour
 {
@@ -58,14 +57,20 @@ public class TravelSystem : MonoBehaviour
 
     public Vector2 startPosition;
     public Vector2 endPosition;
+    public Vector2 currentPosition;
     public float progress;
 
     public void SaveTravelData()
     {
+        if (!inTravel)
+        {
+            return;
+        }
         travelData.inTravel = inTravel;
         if (MapHandler.Instance.playerIcon != null)
         {
-            travelData.playerPosition = new float[] { MapHandler.Instance.playerIcon.transform.position.x, MapHandler.Instance.playerIcon.transform.position.y };
+            Vector2 playerPosition = MapHandler.Instance.playerIcon.transform.position;
+            travelData.playerPosition = new int[2] { (int)playerPosition.x, (int)playerPosition.y };
         }
         currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
         destination = MapHandler.Instance.GetDestinationSettlement();
@@ -129,7 +134,7 @@ public class TravelSystem : MonoBehaviour
             if (travelData.playerPosition != null && travelData.playerPosition.Length == 2)
             {
                 Vector2 playerPosition = new Vector2(travelData.playerPosition[0], travelData.playerPosition[1]);
-                startPosition = playerPosition;
+                MapHandler.Instance.UpdatePlayerPosition(playerPosition);
             }
             inTravel = travelData.inTravel;
 
@@ -253,35 +258,43 @@ public class TravelSystem : MonoBehaviour
             {
                 HandleEvent();
             }
+        }
+        else
+        {
+            if (currentSettlement != null)
+            {
+                startPosition = currentSettlement.transform.position;
+            }
             else
             {
-                if (destination != null)
-                {
-                    endPosition = destination.transform.position;
-                }
-
-                StartCoroutine(TravelUntilEvent());
+                startPosition = MapHandler.Instance.playerIcon.transform.position;
             }
-        }
 
+            if (destination != null)
+            {
+                endPosition = destination.transform.position;
+            }
+
+            StartCoroutine(TravelUntilEvent());
+        }
     }
 
 
     private int elapsedTravelTime = 0;
     private int eventIndex = 0;
 
-    public int nextEventTime = 0;
-
     public IEnumerator TravelUntilEvent()
     {
         int totalTravelTime = remainingTime + elapsedTravelTime;
-
+        // If eventTimes is null or empty, generate them
         if (eventTimes == null || eventTimes.Count == 0)
         {
+            // Determine the number of events
             int minEvents = this.minEvents;
             int maxEvents = Mathf.Max(1, totalTravelTime / 15);
             int numberOfEvents = Random.Range(minEvents, maxEvents + 1);
 
+            // Generate event times
             eventTimes = new List<int>();
             for (int i = 0; i < numberOfEvents; i++)
             {
@@ -290,14 +303,10 @@ public class TravelSystem : MonoBehaviour
             }
             eventTimes.Sort();
 
-            print($"Generated {numberOfEvents} events at {string.Join(", ", eventTimes)}");
-
             travelData.eventTimes = eventTimes;
         }
 
         print($"Started Travel in {totalTravelTime}");
-        Vector2 startPosition = currentSettlement.transform.position;
-        Vector2 destinationPosition = destination.transform.position;
 
         while (remainingTime > 0)
         {
@@ -311,16 +320,10 @@ public class TravelSystem : MonoBehaviour
 
             int travelSegment = Mathf.Min(timeUntilNextEvent, remainingTime);
 
-            // Calculate progress for this segment
-            float startProgress = elapsedTravelTime / totalTravelTime;
-            float endProgress = (elapsedTravelTime + travelSegment) / totalTravelTime;
+            progress = (float)elapsedTravelTime / totalTravelTime;
 
-            // Calculate start and end positions based on the progress
-            Vector2 segmentStartPosition = Vector2.Lerp(startPosition, destinationPosition, startProgress);
-            Vector2 segmentEndPosition = Vector2.Lerp(startPosition, destinationPosition, endProgress);
-
-            // Advance time and move player icon
-            yield return StartCoroutine(TimeSystem.Instance.AdvanceTimeCoroutine(0, travelSegment, 0, segmentStartPosition, segmentEndPosition));
+            // Advance time smoothly
+            yield return StartCoroutine(TimeSystem.Instance.AdvanceTimeCoroutine(0, travelSegment, 0));
 
             remainingTime -= travelSegment;
             elapsedTravelTime += travelSegment;
@@ -337,8 +340,6 @@ public class TravelSystem : MonoBehaviour
                 yield return new WaitUntil(() => !isEventActive);
                 isEventActive = false;
                 currentEvent.ID = 0;
-
-                startPosition = segmentEndPosition;
             }
         }
 
@@ -369,17 +370,13 @@ public class TravelSystem : MonoBehaviour
 
         TimeSystem.Instance.AdvanceTimeCoroutine(0, 0, remainingTimeMinutes);
 
-        foreach (GameObject child in MapHandler.Instance.children)
-        {
-            if (child.GetComponent<SettlementButtonPointer>() == null) continue;
-            child.GetComponent<SettlementButtonPointer>().button.interactable = true;
-        }
+        currentPosition = endPosition;
 
     }
 
     public void HandleEvent()
     {
-        //TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
+        TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
         print("Handle Event");
         ShowEventPanel();
     }
@@ -480,11 +477,7 @@ public class TravelSystem : MonoBehaviour
         travelInfoText.text = "";
         TravelingDeciderPanel.SetActive(false);
         destination = MapHandler.Instance.selectedSettlement.GetComponent<SettlementButtonPointer>();
-        foreach (GameObject child in MapHandler.Instance.children)
-        {
-            if (child.GetComponent<SettlementButtonPointer>() == null) continue;
-            child.GetComponent<SettlementButtonPointer>().button.interactable = false;
-        }
+        print("Accepted travel");
         TravelToSettlement();
     }
 
@@ -519,5 +512,5 @@ public class TravelWrapper
     public int currentEventID = 0;
     public int elapsedTravelTime = 0;
     public int eventIndex = 0;
-    public float[] playerPosition = new float[2];
+    public int[] playerPosition = new int[2];
 }

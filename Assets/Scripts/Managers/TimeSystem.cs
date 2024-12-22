@@ -60,6 +60,19 @@ public class TimeSystem : MonoBehaviour
         AdvanceTime(totalMinutes);
     }
 
+    public void UpdatePlayerPosition()
+    {
+        if (TravelSystem.Instance.inTravel == false) return;
+
+        float progress =  TravelSystem.Instance.progress;
+        Vector2 startPosition = TravelSystem.Instance.startPosition;
+        Vector2 endPosition = TravelSystem.Instance.endPosition;
+        Vector2 currentPosition;
+        
+        currentPosition = Vector2.Lerp(startPosition, endPosition, progress);
+        MapHandler.Instance.playerIcon.transform.position = currentPosition;
+    }
+
     //we will advance time but with a IEnumerator so we can see the time passing
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
@@ -86,9 +99,9 @@ public class TimeSystem : MonoBehaviour
         {
             // Determine how much time to advance in this step
             int step = Mathf.Min(increment, totalMinutes - minutesPassed);
+
             // Advance time
             AdvanceTime(step);
-
 
             // Update the UI
             PlayerUISystem.Instance.UpdateClockText();
@@ -99,55 +112,13 @@ public class TimeSystem : MonoBehaviour
             float progress = (float)minutesPassed / totalMinutes;
             float waitTime = Mathf.Lerp(0.1f, 0.01f, progress);
 
+            UpdatePlayerPosition();
+
             yield return new WaitForSecondsRealtime(waitTime);
         }
         Debug.Log("AdvenceTimeCoroutine");
         isTimeLapsing = false;
         // Update player data
-        playerData.Day = Day;
-        playerData.Hour = Hour;
-        playerData.Minute = Minute;
-    }
-
-    public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes, Vector2 segmentStartPosition, Vector2 segmentEndPosition)
-    {
-        isTimeLapsing = true;
-        int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
-        int increment;
-
-        if (days > 0)
-        {
-            increment = 60;
-        }
-        else if (hours > 0)
-        {
-            increment = 10;
-        }
-        else
-        {
-            increment = 1;
-        }
-
-        int minutesPassed = 0;
-        while (minutesPassed < totalMinutes)
-        {
-            int step = Mathf.Min(increment, totalMinutes - minutesPassed);
-            AdvanceTime(step);
-
-            PlayerUISystem.Instance.UpdateClockText();
-
-            minutesPassed += step;
-
-            // Calculate progress for moving the player icon
-            float progress = (float)minutesPassed / totalMinutes;
-            Vector2 currentPosition = Vector2.Lerp(segmentStartPosition, segmentEndPosition, progress);
-            MapHandler.Instance.UpdatePlayerPosition(currentPosition);
-
-            float waitTime = Mathf.Lerp(0.1f, 0.01f, progress);
-            yield return new WaitForSecondsRealtime(waitTime);
-        }
-        isTimeLapsing = false;
-
         playerData.Day = Day;
         playerData.Hour = Hour;
         playerData.Minute = Minute;
@@ -206,7 +177,7 @@ public class TimeSystem : MonoBehaviour
     private void NormalizeTime()
     {
         Hour += Minute / 60;
-
+        
         if (Minute > 60)
         {
             foreach (var quest in playerData.Quests)

@@ -136,7 +136,7 @@ public class Event_SO_Constructor : SO_Base
 
     public void HandleEvent(PlayerStatHandler playerData, Choice choice)
     {
-        encounterCooldown = 2;
+        encounterCooldown = 4;
 
         //call the appropriate method based on the choice type
         switch (choice.choiceType)
