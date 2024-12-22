@@ -1,0 +1,58 @@
+{
+    "homeSettlement": {
+        "Name": "tarr",
+        "ID": 0,
+        "isUnlocked": true,
+        "levelToUnlock": 0,
+        "Population": 10,
+        "Wealth": {
+            "Gold": 100,
+            "Silver": 0
+        },
+        "Quality": 1,
+        "Shops": [
+            {
+                "Name": "Muhittin's Shop",
+                "level": 0,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0,
+                "ShopType": 7,
+                "Items": []
+            }
+        ],
+        "Tavern": {
+            "Name": "Mükremin's Tavern",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0,
+            "Quests": [],
+            "Companions": []
+        },
+        "TownHall": {
+            "Name": "tarr's Hall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0,
+            "Jobs": []
+        },
+        "Walls": {
+            "Name": "tarr's Wall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0
+        },
+        "Type": 0
+    }
+}

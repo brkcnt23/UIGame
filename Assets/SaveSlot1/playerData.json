@@ -1,0 +1,69 @@
+{
+    "pd": {
+        "ID": 0,
+        "Name": "furq",
+        "VillageName": "tarr",
+        "Hour": 18,
+        "Minute": 0,
+        "Day": 1,
+        "Level": 1,
+        "Health": 100,
+        "MaxHealth": 100,
+        "Experience": 0,
+        "MaxExperience": 149,
+        "Gold": 5,
+        "Silver": 0,
+        "Currency": {
+            "Gold": 0,
+            "Silver": 0
+        },
+        "Alignment": 0,
+        "Strength": 1,
+        "StrengthXP": 149,
+        "Dexterity": 1,
+        "DexterityXP": 149,
+        "Constitution": 1,
+        "ConstitutionXP": 149,
+        "Charisma": 1,
+        "CharismaXP": 149,
+        "Rations": 10,
+        "MaxExhaustionLevel": 10,
+        "CurrentExhaustionLevel": 0,
+        "SmitherSkillLevel": 1,
+        "SmitherSkillXP": 149,
+        "TannerSkillLevel": 1,
+        "TannerSkillXP": 149,
+        "CarpenterSkillLevel": 1,
+        "CarpenterSkillXP": 149,
+        "MasonSkillLevel": 1,
+        "MasonSkillXP": 149,
+        "AlchemistSkillLevel": 1,
+        "AlchemistSkillXP": 149,
+        "TotalBattlesFought": 0,
+        "TotalBattlesWon": 0,
+        "TotalBattlesLost": 0,
+        "LastSleepDay": 1,
+        "LastSleepHour": 6,
+        "LastSleepMinute": 0,
+        "LastMealDay": 1,
+        "LastMealHour": 6,
+        "LastMealMinute": 0,
+        "Companions": [],
+        "Items": [
+            {
+                "ID": 7,
+                "Name": "Herb",
+                "Value": {
+                    "Gold": 0,
+                    "Silver": 10
+                },
+                "Category": 4,
+                "Quantity": 10,
+                "Modifiers": []
+            }
+        ],
+        "Quests": [],
+        "LastSettlementName": "tarr",
+        "HasDied": false
+    }
+}
