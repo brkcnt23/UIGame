@@ -1,9 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class ButtonPanel : MonoBehaviour
+public class NavPanelAnimation : MonoBehaviour
 {
-
     public void OpenPanel()
     {
         if (gameObject.activeSelf)

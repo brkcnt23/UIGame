@@ -8,6 +8,7 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public ItemSpriteDatabase spriteDatabase;
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 
@@ -257,25 +258,57 @@ public class GameManager : MonoBehaviour
 
         playerData.HasDied = false;
 
-        Settlement homeSettlement = new Settlement();
-        homeSettlement.ID = 0;
-        homeSettlement.Name = villageName;
-        homeSettlement.isUnlocked = true;
-        homeSettlement.Type = SettlementType.Village;
-        homeSettlement.Quality = 1;
-        homeSettlement.Population = 10;
-        homeSettlement.Wealth.Gold = 100;
-        homeSettlement.Wealth.Silver = 0;
-        homeSettlement.Tavern = new Taverns();
-        homeSettlement.Tavern.Name = "Mükremin's Tavern";
-        homeSettlement.Shops = new List<Shops>();
-        Shops shop = new Shops();
-        shop.Name = "Muhittin's Shop";
-        homeSettlement.Shops.Add(shop);
-        homeSettlement.TownHall = new TownHalls();
-        homeSettlement.TownHall.Name = villageName + "'s Hall";
-        homeSettlement.Walls = new Walls();
-        homeSettlement.Walls.Name = villageName + "'s Wall";
+        Settlement homeSettlement = new Settlement
+        {
+            ID = 0,
+            Name = villageName,
+            isUnlocked = true,
+            Type = SettlementType.Village,
+            Quality = 1,
+            Population = 10,
+            Wealth = new Currency(100, 0),
+            Tavern = new Taverns { Name = "Mükremin's Tavern" },
+            Shops = new List<Shops>(),
+            TownHall = new TownHalls { Name = $"{villageName}'s Hall" },
+            Walls = new Walls { Name = $"{villageName}'s Wall" }
+        };
+        Shops blacksmithShop = new Shops
+        {
+            Name = "Muhittin's Blacksmith",
+            ShopType = ShopTypes.Blacksmith,
+            level = 1
+        };
+        blacksmithShop.Items.AddRange(ItemGenerator.GenerateItems(ShopTypes.Blacksmith, blacksmithShop.level, spriteDatabase));
+        List<StatModifier> modifiers = new List<StatModifier>
+        {
+            new StatModifier(StatType.Strength, 10, "Crafting"),
+            new StatModifier(StatType.Constitution, 5, "Crafting")
+        };
+
+        Sprite armorSprite = spriteDatabase.GetSprite(ItemCategory.Armor, 1);
+
+        Item customArmor = new Item(
+            1500,                       // ID
+            "Armor",                    // Name
+            54,                         // Gold value
+            80,                         // Silver value
+            ItemCategory.Armor,         // Category
+            modifiers,                  // Modifiers
+            armorSprite,                // Item image
+            1,                          // Quality
+            1                           // Quantity
+        );
+
+        blacksmithShop.Items.Add(customArmor);
+        homeSettlement.Shops.Add(blacksmithShop);
+
+        Shops generalStore = new Shops
+        {
+            Name = "General Store",
+            ShopType = ShopTypes.GeneralStore,
+            level = 1
+        };
+        generalStore.Items.AddRange(ItemGenerator.GenerateItems(ShopTypes.GeneralStore, generalStore.level, spriteDatabase));
 
         PlayerStatHandler.Instance.pd = playerData;
         HomeSettlementHandler.Instance.homeSettlement = homeSettlement;

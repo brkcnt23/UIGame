@@ -15,6 +15,8 @@ public class PlayerStatHandler : MonoBehaviour
     private EconomySystem economySystem;
     public Item EquippedSword { get; private set; }
     public Item EquippedArmor { get; private set; }
+    public Item EquippedLeggings { get; private set; }
+    public Item EquippedBoots { get; private set; }
     public Item EquippedPotion { get; private set; }
     public Item EquippedMisc { get; private set; }
 
@@ -211,6 +213,14 @@ public class PlayerStatHandler : MonoBehaviour
                 itemToUnequip = EquippedArmor;
                 EquippedArmor = null;
                 break;
+            case ItemCategory.Leggings:
+                itemToUnequip = EquippedLeggings;
+                EquippedLeggings = null;
+                break;
+            case ItemCategory.Boots:
+                itemToUnequip = EquippedBoots;
+                EquippedBoots = null;
+                break;
             case ItemCategory.Potion:
                 itemToUnequip = EquippedPotion;
                 EquippedPotion = null;
@@ -230,7 +240,7 @@ public class PlayerStatHandler : MonoBehaviour
     {
         foreach (var modifier in item.Modifiers)
         {
-            AddStats(modifier.Stat, modifier.Value);
+            AddStats(modifier.Type, modifier.Value);
         }
     }
 
@@ -238,7 +248,7 @@ public class PlayerStatHandler : MonoBehaviour
     {
         foreach (var modifier in item.Modifiers)
         {
-            AddStats(modifier.Stat, -modifier.Value);
+            AddStats(modifier.Type, -modifier.Value);
         }
     }
 
@@ -255,6 +265,12 @@ public class PlayerStatHandler : MonoBehaviour
                 break;
             case ItemCategory.Armor:
                 EquippedArmor = item;
+                break;
+            case ItemCategory.Leggings:
+                EquippedLeggings = item;
+                break;
+            case ItemCategory.Boots:
+                EquippedBoots = item;
                 break;
             case ItemCategory.Potion:
                 EquippedPotion = item;

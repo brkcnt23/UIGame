@@ -4,10 +4,10 @@
         "ID": 0,
         "isUnlocked": true,
         "levelToUnlock": 0,
-        "Population": 10,
+        "Population": 12,
         "Wealth": {
-            "Gold": 101,
-            "Silver": 44
+            "Gold": 102,
+            "Silver": 4
         },
         "Quality": 1,
         "Shops": [
@@ -20,7 +20,68 @@
                 "Resources": [],
                 "upgradeHour": 0,
                 "ShopType": 7,
-                "Items": []
+                "Items": [
+                    {
+                        "ID": 1141,
+                        "Name": "defaultShop Item 1",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 44
+                        },
+                        "Category": 7,
+                        "Quantity": 3,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 7473,
+                        "Name": "defaultShop Item 2",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 22
+                        },
+                        "Category": 7,
+                        "Quantity": 3,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 9340,
+                        "Name": "defaultShop Item 3",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 44
+                        },
+                        "Category": 7,
+                        "Quantity": 4,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 5985,
+                        "Name": "defaultShop Item 4",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 89
+                        },
+                        "Category": 7,
+                        "Quantity": 1,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    }
+                ]
             }
         ],
         "Tavern": {

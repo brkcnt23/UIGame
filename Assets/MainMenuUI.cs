@@ -8,7 +8,7 @@ public class MainMenuUI : MonoBehaviour
     public Button continueButton;
     public Button creditsButton;
     public Button settingsButton;
-
+    
     private void Start()
     {
         startGameButton.onClick.AddListener(() => GameManager.Instance.ShowStartGamePanel());

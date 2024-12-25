@@ -15,7 +15,7 @@ public class CraftingSystem : MonoBehaviour
     private PlayerData playerData;
     private EconomySystem economySystem;
     private TimeSystem timeSystem;
-
+    public ItemSpriteDatabase spriteDatabase;
     public static CraftingSystem Instance;
 
     //check instance in awake method
@@ -51,7 +51,7 @@ public class CraftingSystem : MonoBehaviour
 
         // Determine required material and quantity based on item type
         Item requiredMaterial = new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1);
-        int requiredQuantity = itemType.ToLower() == "armor" ? 2 : 1; // Armor requires 2 ingots, weapon requires 1
+        int requiredQuantity = itemType.ToLower() == "armor" ? 5 : 2; // Armor requires 5 ingots, weapon requires 2
 
         if (itemType.ToLower() != "weapon" && itemType.ToLower() != "armor")
         {
@@ -277,7 +277,8 @@ public class CraftingSystem : MonoBehaviour
 
         string itemName;
         int baseValue;
-
+        ItemCategory category;
+        int quality = Mathf.Clamp(successChance / 20, 1, 3);
 
         if (itemType.ToLower() == "weapon")
         {
@@ -285,6 +286,7 @@ public class CraftingSystem : MonoBehaviour
             string[] weapons = { "Iron Sword", "Steel Dagger", "Battle Axe", "War Hammer", "Light Bow", "Hand Crossbow", "Morning Star" };
             itemName = weapons[UnityEngine.Random.Range(0, weapons.Length)];
             baseValue = 150;
+            category = ItemCategory.Weapon;
         }
         else
         {
@@ -292,7 +294,12 @@ public class CraftingSystem : MonoBehaviour
             string[] armors = { "Iron Armor", "Steel Chestplate", "Chainmail", "Plate Armor", "Adamantine Plate" };
             itemName = armors[UnityEngine.Random.Range(0, armors.Length)];
             baseValue = 200;
+            category = ItemCategory.Armor;
         }
+
+        Sprite itemSprite = spriteDatabase.GetSprite(category, quality);
+
+
         // SuccessChance'i en yakın 5'in katına yuvarla
         int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
         int modifier = Mathf.RoundToInt((roundedSuccess / 100f) * 20) - 10;
@@ -319,19 +326,22 @@ public class CraftingSystem : MonoBehaviour
 
         // Create the item with the calculated modifiers
         List<StatModifier> modifiers = new List<StatModifier>
-    {
-        new StatModifier { Stat = StatType.Strength, Value = strengthModifier },
-        new StatModifier { Stat = StatType.Constitution, Value = constitutionModifier },
-        new StatModifier { Stat = StatType.Dexterity, Value = dexterityModifier }
-    };
+        {
+            new StatModifier(StatType.Strength, strengthModifier, "Crafting"),
+            new StatModifier(StatType.Constitution, constitutionModifier, "Crafting"),
+            new StatModifier(StatType.Dexterity, dexterityModifier, "Crafting")
+        };
+
 
         Item newItem = new Item(
             itemId,
             itemName,
             gold,
             silver,
-            itemType.ToLower() == "weapon" ? ItemCategory.Weapon : ItemCategory.Armor,
+            category,
             modifiers,
+            itemSprite,
+            quality,
             1
         );
         AddCraftedItem(newItem);
@@ -341,6 +351,13 @@ public class CraftingSystem : MonoBehaviour
 
     private Item ProduceTanningItem(int successChance)
     {
+
+
+
+//item category boots ve leggings
+//LEGGINGS EKLE
+
+
         int itemId = UnityEngine.Random.Range(1000, 9999);
         string itemName = "Leather Boots";
         int baseValue = 100;
@@ -348,6 +365,8 @@ public class CraftingSystem : MonoBehaviour
         int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
         // Modifier hesapla: -10 ile +10 arasında
         int modifier = Mathf.RoundToInt((roundedSuccess / 100f) * 20) - 10;
+        ItemCategory category = ItemCategory.Boots;
+        int quality = Mathf.Clamp(successChance / 20, 1, 3);
 
         // Rastgele stat modifikasyonları belirle
         List<StatModifier> modifiers = new List<StatModifier>();
@@ -355,14 +374,16 @@ public class CraftingSystem : MonoBehaviour
         // Ana stat: Dexterity ve Charisma, nadiren Strength ve Constitution
         if (Dice.RollD100() < 80)
         {
-            modifiers.Add(new StatModifier { Stat = StatType.Dexterity, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
-            modifiers.Add(new StatModifier { Stat = StatType.Charisma, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+            modifiers.Add(new StatModifier(StatType.Dexterity, Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2))));
+            modifiers.Add(new StatModifier(StatType.Charisma, Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2))));
         }
         else
         {
-            modifiers.Add(new StatModifier { Stat = StatType.Strength, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
-            modifiers.Add(new StatModifier { Stat = StatType.Constitution, Value = Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2)) });
+            modifiers.Add(new StatModifier(StatType.Strength, Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2))));
+            modifiers.Add(new StatModifier(StatType.Constitution, Mathf.RoundToInt(UnityEngine.Random.Range(modifier - 1, modifier + 2))));
         }
+
+        Sprite itemSprite = spriteDatabase.GetSprite(category, quality);
 
         // Kaliteye göre değeri hesapla
         float qualityMultiplier = 1 + ((successChance - 50) / 100f);
@@ -382,8 +403,10 @@ public class CraftingSystem : MonoBehaviour
             itemName,
             gold,
             silver,
-            ItemCategory.Boots,
+            category,
             modifiers,
+            itemSprite,
+            quality,
             1
         );
 
@@ -397,7 +420,8 @@ public class CraftingSystem : MonoBehaviour
         int itemId = UnityEngine.Random.Range(1000, 9999);
         string itemName = "Health Potion";
         int baseValue = 50;
-
+        ItemCategory category = ItemCategory.Potion;
+        int quality = Mathf.Clamp(successChance / 20, 1, 3);
         // SuccessChance'i en yakın 5'in katına yuvarla
         int roundedSuccess = Mathf.RoundToInt(successChance / 5f) * 5;
 
@@ -419,6 +443,10 @@ public class CraftingSystem : MonoBehaviour
         int finalValue = Mathf.Max(Mathf.RoundToInt(newValue), Mathf.RoundToInt(baseValue * 0.5f));
         int gold = finalValue / 100;
         int silver = finalValue % 100;
+
+        Sprite itemSprite = spriteDatabase.GetSprite(category, quality);
+
+
         Item newItem = new Item(
             itemId,
             itemName,
@@ -426,6 +454,8 @@ public class CraftingSystem : MonoBehaviour
             silver,
             healthRecovery,
             exhaustionReduction,
+            itemSprite,
+            quality,
             1
         );
         AddCraftedItem(newItem);
@@ -449,7 +479,7 @@ public class CraftingSystem : MonoBehaviour
         }
         else
         {
-            return 1; // Varsayılan olarak 1
+            return 1;
         }
     }
 

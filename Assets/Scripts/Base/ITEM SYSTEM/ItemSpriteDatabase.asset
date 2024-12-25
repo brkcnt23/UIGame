@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2617493a64f144d916a2eefc8c1eaf, type: 3}
+  m_Name: ItemSpriteDatabase
+  m_EditorClassIdentifier: 
+  itemSprites:
+  - Category: 1
+    Quality: 1
+    Image: {fileID: -7738418464615677082, guid: 611c60703aa71a34ca26bf59f39338c5, type: 3}
+  - Category: 1
+    Quality: 2
+    Image: {fileID: 2423229769272001261, guid: 25c64986303eadf438d05ff0d61b68a2, type: 3}
+  - Category: 1
+    Quality: 3
+    Image: {fileID: -4041799970271435751, guid: e8856136fef5b6842a2abb7b79ef77b3, type: 3}
+  - Category: 3
+    Quality: 1
+    Image: {fileID: -1317747999575850223, guid: 0082c7832d2f52948bb4ba6ee16d96a5, type: 3}
+  - Category: 3
+    Quality: 2
+    Image: {fileID: 5796952523283896062, guid: a9e35d0df931dbf47839fb46d54b9f04, type: 3}
+  - Category: 3
+    Quality: 3
+    Image: {fileID: -6770765052408041425, guid: d3a1377a16c8bee4b9d4f3be21c9314c, type: 3}

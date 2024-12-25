@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SettlementHandler : MonoBehaviour
 {
     public static SettlementHandler Instance { get; private set; }
+    public ItemSpriteDatabase spriteDatabase;
 
     private void Awake()
     {
@@ -154,6 +155,16 @@ public class SettlementHandler : MonoBehaviour
 
         }
 
+        // Add shop inventory refresh logic here
+        if (settlement.Shops != null && settlement.Shops.Count > 0)
+        {
+            foreach (var shop in settlement.Shops)
+            {
+                shop.Items.Clear(); // Clear existing inventory
+                shop.Items.AddRange(ItemGenerator.GenerateItems(shop.ShopType, shop.level, spriteDatabase)); // Generate new inventory
+                Debug.Log($"Shop {shop.Name} refreshed with new items.");
+            }
+        }
 
         MapHandler.Instance.lastVisitedSettlement = null; // Remove this line
         MapHandler.Instance.destinationSettlement = null; // Remove this line
