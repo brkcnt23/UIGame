@@ -35,8 +35,6 @@ public class SettlementHandler : MonoBehaviour
         settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
 
         settlements.Insert(0, HomeSettlementHandler.Instance.homeSettlement);
-
-        settlement = settlements.Find(x => x.Name == PlayerStatHandler.Instance.LastVisitedSettlement().Name);
     }
     public Settlement GetCurrentSettlement()
     {
@@ -179,6 +177,9 @@ public class SettlementHandler : MonoBehaviour
             button.onClick.RemoveAllListeners();
             SettlementButtonPointer settlementButtonPointer = TravelSystem.Instance.GetSettlementButtonPointerByID(settlement.Tavern.Quests[0].ID);
             button.AddComponent<SettlementButtonPointer>().settlement = settlementButtonPointer.settlement;
+
+            MapHandler.Instance.RemoveQuestSettlement(settlementButtonPointer);
+            MapHandler.Instance.map.transform.parent.gameObject.SetActive(true);
         }
 
         UIHandler.Instance.QuestInfo.text = $"You have entered {settlement.Name}. It seems that there is no one here except you. But in the distance, you can see mentioned area. Do you want to go there?";
@@ -188,7 +189,7 @@ public class SettlementHandler : MonoBehaviour
         {
             UIHandler.Instance.QuestPanelBG.SetActive(false);
             UIHandler.Instance.ResultsPanel.SetActive(true);
-            UIHandler.Instance.ResultsPanel.GetComponentInChildren<TMPro.TMP_Text>().text = $"You fight the your way to the mentioned area. Now there is really no one here. You can go back to the {TravelSystem.Instance.GetSettlementButtonPointerByID(settlement.Tavern.Quests[0].ID).settlement.Name} to report your journey.";
+            UIHandler.Instance.ResultsPanel.GetComponentInChildren<TMPro.TMP_Text>().text = $"You fight the your way to the mentioned area. Now there is really no one here. You can go back to the tavern to report your journey.";
         });
     }
 
@@ -205,6 +206,10 @@ public class SettlementHandler : MonoBehaviour
         }
 
         UIHandler.Instance.HomePanelBG.SetActive(false);
+        UIHandler.Instance.QuestPanelBG.SetActive(false);
+        UIHandler.Instance.SettlementPanelBG.SetActive(false);
+        settlement = null;
+        MapHandler.Instance.PopulateMap();
     }
 
     public void OnSettlmenUnlocked(Settlement settlement)

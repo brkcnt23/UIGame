@@ -211,6 +211,7 @@ public class TavernQuestHandler : MonoBehaviour
             {
                 Settlement questsSettlement = new Settlement(selectedQuest);
                 MapHandler.Instance.AddQuestSettlement(questsSettlement, ref selectedQuest.questLocationCoordinates);
+                
             }
         }
     }

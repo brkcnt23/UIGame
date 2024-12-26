@@ -29,17 +29,16 @@ public class MapHandler : MonoBehaviour
 
     public Settlement lastVisitedSettlement;
     public Settlement destinationSettlement;
-    public GameObject playerIcon;
 
     public void MovePlayerToLastVisitedSettlement(Settlement _settlement)
     {
         PopulateMap();
 
-        foreach (GameObject child in children)
+        for (int i = 0; i < 14; i++)
         {
-            SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+            SettlementButtonPointer settlementButtonPointer = children[i].GetComponent<SettlementButtonPointer>();
 
-            if(settlementButtonPointer == null)
+            if (settlementButtonPointer == null)
             {
                 continue;
             }
@@ -54,11 +53,10 @@ public class MapHandler : MonoBehaviour
                     SettlementHandler.Instance.OnSettlementEntered(_settlement);
                 else
                     OnOpenField();
-                selectedSettlement = child;
-
-                UpdatePlayerPosition(child.transform.position);
+                selectedSettlement = children[i];
             }
         }
+        MapAvatarHandler.Instance.CreatePlayerIcon();
 
         PopulateMap();
     }
@@ -87,16 +85,11 @@ public class MapHandler : MonoBehaviour
 
             if (settlement.isUnlocked)
             {
-                settlementButtonPointer.GetComponent<Image>().color = Color.green;
+                settlementButtonPointer.GetComponent<Image>().color = Color.white;
             }
             else
             {
                 settlementButtonPointer.GetComponent<Image>().color = Color.gray;
-            }
-
-            if (settlement == SettlementHandler.Instance.settlement)
-            {
-                settlementButtonPointer.GetComponent<Image>().color = Color.blue;
             }
         }
 
@@ -113,13 +106,6 @@ public class MapHandler : MonoBehaviour
             }
         }
     }
-    public void UpdatePlayerPosition(Vector2 position)
-    {
-        if (playerIcon != null)
-        {
-            playerIcon.transform.position = position;
-        }
-    }
 
     public SettlementButtonPointer GetLastVisitedSettlement()
     {
@@ -127,7 +113,7 @@ public class MapHandler : MonoBehaviour
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
-            if(settlementButtonPointer == null)
+            if (settlementButtonPointer == null)
             {
                 continue;
             }
@@ -170,7 +156,6 @@ public class MapHandler : MonoBehaviour
             if (quest.questType == QuestType.Location)
             {
                 Settlement questsSettlement = new Settlement(quest);
-                questsSettlement.ID = quest.settlementID;
                 AddQuestSettlement(questsSettlement, ref quest.questLocationCoordinates);
             }
         }
@@ -190,7 +175,7 @@ public class MapHandler : MonoBehaviour
             List<Vector2> positions = new List<Vector2>();
             foreach (Transform child in map.transform)
             {
-                positions.Add(child.position);
+                positions.Add(child.localPosition);
             }
 
             float mapMinX = -1400f;
@@ -214,10 +199,11 @@ public class MapHandler : MonoBehaviour
             _coordinates[1] = (int)position.y;
         }
 
-        settlementButtonPointer.transform.position = position;
+        settlementButtonPointer.transform.localPosition = position;
 
         settlementButtonPointer.settlement = _settlement;
 
+        print("Quest Settlement added: " + _settlement.Name);
         SettlementHandler.Instance.settlements.Add(_settlement);
 
 

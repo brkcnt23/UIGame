@@ -21,7 +21,83 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 1456,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 15,
+                                "Silver": 83
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8774,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 45,
+                                "Silver": 98
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6391,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 40,
+                                "Silver": 12
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6682,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 25,
+                                "Silver": 22
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 5110,
+                            "Name": "GeneralStore Item 5",
+                            "Value": {
+                                "Gold": 35,
+                                "Silver": 62
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -32,7 +108,104 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 1,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 8634,
+                            "Name": "Tanner Item 1",
+                            "Value": {
+                                "Gold": 45,
+                                "Silver": 79
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 2598,
+                            "Name": "Tanner Item 2",
+                            "Value": {
+                                "Gold": 45,
+                                "Silver": 21
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 6842,
+                            "Name": "Tanner Item 3",
+                            "Value": {
+                                "Gold": 35,
+                                "Silver": 23
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 1788,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 5,
+                                "Silver": 56
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
+                        }
+                    ]
                 },
                 {
                     "Name": "Tanner",
@@ -45,14 +218,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 2458,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 45,
+                                "Silver": 87
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 7,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -60,14 +233,59 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 1937,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 45,
+                                "Silver": 64
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6381,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 25,
+                                "Silver": 71
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4317,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 20,
+                                "Silver": 14
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6187,
+                            "Name": "Mystic Item 5",
+                            "Value": {
+                                "Gold": 40,
+                                "Silver": 98
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -87,13 +305,58 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 8314,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 35,
+                                "Silver": 64
                             },
-                            "Category": 0,
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8568,
+                            "Name": "Mason Item 2",
+                            "Value": {
+                                "Gold": 35,
+                                "Silver": 98
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1433,
+                            "Name": "Mason Item 3",
+                            "Value": {
+                                "Gold": 10,
+                                "Silver": 98
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9730,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 20,
+                                "Silver": 95
+                            },
+                            "Category": 5,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -102,29 +365,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 9119,
+                            "Name": "Mason Item 5",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 15,
+                                "Silver": 23
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 8,
-                            "Name": "Herbs",
-                            "Value": {
-                                "Gold": 0,
-                                "Silver": 0
-                            },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -169,7 +417,7 @@
         {
             "Name": "Shahum",
             "ID": 2,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": {
@@ -187,7 +435,68 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 9854,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 65
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 5627,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 26
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3200,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 96
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4084,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 72
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -200,49 +509,124 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 8112,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 12
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50480
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 2070,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 28,
+                                "Silver": 20
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50480
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 8713,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 12,
+                                "Silver": 39
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50480
                             },
-                            "Quality": 0
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 6198,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 24,
+                                "Silver": 85
+                            },
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50480
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 2114,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 20
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50480
+                            },
+                            "Quality": 3
                         }
                     ]
                 },
@@ -257,13 +641,13 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 8757,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 16,
+                                "Silver": 71
                             },
-                            "Category": 0,
+                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -272,14 +656,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 6974,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 12,
+                                "Silver": 52
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2498,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 56
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4919,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 12,
+                                "Silver": 41
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -299,14 +713,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 4749,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 32,
+                                "Silver": 15
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -314,14 +728,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 7455,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 32,
+                                "Silver": 88
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -329,14 +743,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 4193,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 70
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8822,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 25
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -381,7 +810,7 @@
         {
             "Name": "Yrad'si",
             "ID": 3,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 25,
             "Population": 6500,
             "Wealth": {
@@ -593,7 +1022,7 @@
         {
             "Name": "Incan",
             "ID": 4,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 5500,
             "Wealth": {
@@ -611,7 +1040,53 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 4,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 6126,
+                            "Name": "Mason Item 1",
+                            "Value": {
+                                "Gold": 15,
+                                "Silver": 65
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9817,
+                            "Name": "Mason Item 2",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 69
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4267,
+                            "Name": "Mason Item 3",
+                            "Value": {
+                                "Gold": 12,
+                                "Silver": 80
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -624,49 +1099,76 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 5790,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 18,
+                                "Silver": 36
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 1254,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 3,
+                                "Silver": 14
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 6821,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 12,
+                                "Silver": 51
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         }
                     ]
                 },
@@ -681,14 +1183,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 8547,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 24,
+                                "Silver": 57
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -696,14 +1198,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 8820,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 18,
+                                "Silver": 32
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2776,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 33
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1470,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 37
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -723,14 +1255,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 9066,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 15,
+                                "Silver": 60
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -738,14 +1270,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 2167,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 9,
+                                "Silver": 24
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -753,14 +1285,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 9655,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 27,
+                                "Silver": 60
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -805,7 +1337,7 @@
         {
             "Name": "Tarus",
             "ID": 5,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 20,
             "Population": 7000,
             "Wealth": {
@@ -823,7 +1355,68 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 2,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 5509,
+                            "Name": "Carpenter Item 1",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 37
+                            },
+                            "Category": 6,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2573,
+                            "Name": "Carpenter Item 2",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 99
+                            },
+                            "Category": 6,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3324,
+                            "Name": "Carpenter Item 3",
+                            "Value": {
+                                "Gold": 36,
+                                "Silver": 99
+                            },
+                            "Category": 6,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2571,
+                            "Name": "Carpenter Item 4",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 40
+                            },
+                            "Category": 6,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -836,49 +1429,76 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 4609,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 20,
+                                "Silver": 85
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 8913,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 32,
+                                "Silver": 30
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 7455,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 12,
+                                "Silver": 58
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 46654
                             },
-                            "Quality": 0
+                            "Quality": 3
                         }
                     ]
                 },
@@ -893,13 +1513,28 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 9382,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 16,
+                                "Silver": 21
                             },
-                            "Category": 0,
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 7614,
+                            "Name": "Mystic Item 2",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 12
+                            },
+                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -908,14 +1543,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 4391,
+                            "Name": "Mystic Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 50
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1357,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 29
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -935,13 +1585,28 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 8942,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 16,
+                                "Silver": 39
                             },
-                            "Category": 0,
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2840,
+                            "Name": "Mason Item 2",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 12
+                            },
+                            "Category": 5,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -950,29 +1615,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 3710,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 88
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 8,
-                            "Name": "Herbs",
-                            "Value": {
-                                "Gold": 0,
-                                "Silver": 0
-                            },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1017,7 +1667,7 @@
         {
             "Name": "Cryssborn",
             "ID": 6,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 15,
             "Population": 800,
             "Wealth": {
@@ -1229,7 +1879,7 @@
         {
             "Name": "Woodholmers",
             "ID": 7,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 10,
             "Population": 1000,
             "Wealth": {
@@ -1441,7 +2091,7 @@
         {
             "Name": "Mineholmers",
             "ID": 8,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 7,
             "Population": 1000,
             "Wealth": {
@@ -1459,7 +2109,68 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 1791,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 52
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 5491,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 66
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9731,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 87
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1334,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 10
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -1472,49 +2183,100 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 1829,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 1,
+                                "Silver": 42
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50476
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 2535,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 6,
+                                "Silver": 15
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50476
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 4054,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 1,
+                                "Silver": 53
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50476
                             },
-                            "Quality": 0
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 2098,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 95
+                            },
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50476
+                            },
+                            "Quality": 1
                         }
                     ]
                 },
@@ -1529,13 +2291,13 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 3255,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 2,
+                                "Silver": 38
                             },
-                            "Category": 0,
+                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -1544,14 +2306,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 5431,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 67
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9820,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 2,
+                                "Silver": 50
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1571,14 +2348,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 3331,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 1,
+                                "Silver": 22
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1586,14 +2363,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 9545,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 2,
+                                "Silver": 30
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1601,14 +2378,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 4749,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 9,
+                                "Silver": 15
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1653,7 +2430,7 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 400,
             "Wealth": {
@@ -1671,7 +2448,53 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 7059,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 92
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2087,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 1,
+                                "Silver": 23
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9949,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 2,
+                                "Silver": 87
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -1684,49 +2507,124 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 5210,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 5,
+                                "Silver": 51
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 3086,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 12
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 1961,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 1,
+                                "Silver": 23
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 7372,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 85
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 4172,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 5,
+                                "Silver": 12
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1
                         }
                     ]
                 },
@@ -1741,14 +2639,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 4007,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 5,
+                                "Silver": 22
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1756,14 +2654,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 2900,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 2,
+                                "Silver": 40
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 5387,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 19
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2919,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 69
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1783,13 +2711,28 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 8644,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 9,
+                                "Silver": 20
                             },
-                            "Category": 0,
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4674,
+                            "Name": "Mason Item 2",
+                            "Value": {
+                                "Gold": 5,
+                                "Silver": 95
+                            },
+                            "Category": 5,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -1798,14 +2741,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 7478,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 5,
+                                "Silver": 37
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1813,14 +2756,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 6242,
+                            "Name": "Mason Item 4",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 7,
+                                "Silver": 74
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1865,7 +2808,7 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": {
@@ -1883,7 +2826,68 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 2936,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 46
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4273,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 38
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3920,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 10,
+                                "Silver": 32
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8506,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 2,
+                                "Silver": 82
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -1896,49 +2900,124 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 9068,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 62
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50332
                             },
-                            "Quality": 0
+                            "Quality": 2
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 3487,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 16,
+                                "Silver": 90
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50332
                             },
-                            "Quality": 0
+                            "Quality": 2
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 5870,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 6,
+                                "Silver": 74
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50332
                             },
-                            "Quality": 0
+                            "Quality": 2
+                        },
+                        {
+                            "ID": 6925,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 14,
+                                "Silver": 18
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50332
+                            },
+                            "Quality": 2
+                        },
+                        {
+                            "ID": 7360,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 55
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50332
+                            },
+                            "Quality": 2
                         }
                     ]
                 },
@@ -1953,14 +3032,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 1976,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 14,
+                                "Silver": 77
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 7,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1968,14 +3047,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 1170,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 6,
+                                "Silver": 22
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9463,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 14,
+                                "Silver": 25
+                            },
+                            "Category": 7,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1995,14 +3089,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 7658,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 27
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2010,14 +3104,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 6691,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 6,
+                                "Silver": 47
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2025,14 +3119,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 2072,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 10,
+                                "Silver": 80
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8384,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 10,
+                                "Silver": 41
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2268,
+                            "Name": "Mason Item 5",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 30
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2077,7 +3201,7 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": {
@@ -2289,7 +3413,7 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": {
@@ -2307,7 +3431,53 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 9741,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 12,
+                                "Silver": 65
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 7841,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 69
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9862,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 30
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -2320,49 +3490,124 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 2608,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 27,
+                                "Silver": 62
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50334
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 2218,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 21,
+                                "Silver": 47
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50334
                             },
-                            "Quality": 0
+                            "Quality": 3
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 9116,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 21,
+                                "Silver": 66
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50334
                             },
-                            "Quality": 0
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 6012,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 99
+                            },
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 6878,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 35
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50334
+                            },
+                            "Quality": 3
                         }
                     ]
                 },
@@ -2377,13 +3622,13 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 5316,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 27,
+                                "Silver": 45
                             },
-                            "Category": 0,
+                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -2392,14 +3637,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 7555,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 9,
+                                "Silver": 12
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9144,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 21,
+                                "Silver": 10
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6208,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 18,
+                                "Silver": 10
+                            },
+                            "Category": 7,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2419,13 +3694,58 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 2210,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 27,
+                                "Silver": 12
                             },
-                            "Category": 0,
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1501,
+                            "Name": "Mason Item 2",
+                            "Value": {
+                                "Gold": 27,
+                                "Silver": 40
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6702,
+                            "Name": "Mason Item 3",
+                            "Value": {
+                                "Gold": 12,
+                                "Silver": 14
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 7617,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 34
+                            },
+                            "Category": 5,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -2434,29 +3754,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 2225,
+                            "Name": "Mason Item 5",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 27,
+                                "Silver": 84
                             },
-                            "Category": 0,
+                            "Category": 5,
                             "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 8,
-                            "Name": "Herbs",
-                            "Value": {
-                                "Gold": 0,
-                                "Silver": 0
-                            },
-                            "Category": 0,
-                            "Quantity": 10,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2519,7 +3824,83 @@
                     "Resources": [],
                     "upgradeHour": 0,
                     "ShopType": 5,
-                    "Items": []
+                    "Items": [
+                        {
+                            "ID": 5230,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 74
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1846,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 47
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1997,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 35
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9219,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 98
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3913,
+                            "Name": "GeneralStore Item 5",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 99
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        }
+                    ]
                 },
                 {
                     "Name": "Blacksmith",
@@ -2532,49 +3913,124 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 1971,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 9,
+                                "Silver": 82
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 8886,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 3,
+                                "Silver": 18
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 2085,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 6,
+                                "Silver": 28
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 6022,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 1,
+                                "Silver": 46
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 3389,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 93
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1
                         }
                     ]
                 },
@@ -2589,14 +4045,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 4106,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 93
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 7,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2604,14 +4060,59 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 5445,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 3,
+                                "Silver": 97
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8904,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 72
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3963,
+                            "Name": "Mystic Item 4",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 75
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9029,
+                            "Name": "Mystic Item 5",
+                            "Value": {
+                                "Gold": 5,
+                                "Silver": 53
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2631,14 +4132,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 4303,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 84
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2646,14 +4147,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 1721,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 93
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2661,14 +4162,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 9016,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 1,
+                                "Silver": 75
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0

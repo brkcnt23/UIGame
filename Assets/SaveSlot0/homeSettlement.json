@@ -6,10 +6,10 @@
         "levelToUnlock": 0,
         "Population": 12,
         "Wealth": {
-            "Gold": 102,
-            "Silver": 4
+            "Gold": 103,
+            "Silver": 21
         },
-        "Quality": 1,
+        "Quality": 0,
         "Shops": [
             {
                 "Name": "Muhittin's Shop",
@@ -22,14 +22,14 @@
                 "ShopType": 7,
                 "Items": [
                     {
-                        "ID": 1141,
+                        "ID": 8646,
                         "Name": "defaultShop Item 1",
                         "Value": {
                             "Gold": 0,
-                            "Silver": 44
+                            "Silver": 83
                         },
                         "Category": 7,
-                        "Quantity": 3,
+                        "Quantity": 1,
                         "Modifiers": [],
                         "ItemImage": {
                             "instanceID": 0
@@ -37,26 +37,11 @@
                         "Quality": 0
                     },
                     {
-                        "ID": 7473,
+                        "ID": 7008,
                         "Name": "defaultShop Item 2",
                         "Value": {
                             "Gold": 0,
                             "Silver": 22
-                        },
-                        "Category": 7,
-                        "Quantity": 3,
-                        "Modifiers": [],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 0
-                    },
-                    {
-                        "ID": 9340,
-                        "Name": "defaultShop Item 3",
-                        "Value": {
-                            "Gold": 0,
-                            "Silver": 44
                         },
                         "Category": 7,
                         "Quantity": 4,
@@ -67,14 +52,14 @@
                         "Quality": 0
                     },
                     {
-                        "ID": 5985,
-                        "Name": "defaultShop Item 4",
+                        "ID": 5625,
+                        "Name": "defaultShop Item 3",
                         "Value": {
                             "Gold": 0,
-                            "Silver": 89
+                            "Silver": 51
                         },
                         "Category": 7,
-                        "Quantity": 1,
+                        "Quantity": 3,
                         "Modifiers": [],
                         "ItemImage": {
                             "instanceID": 0

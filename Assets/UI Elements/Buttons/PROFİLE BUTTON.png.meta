@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "PROF\u0130LE BUTTON_0": 2365169109057419251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

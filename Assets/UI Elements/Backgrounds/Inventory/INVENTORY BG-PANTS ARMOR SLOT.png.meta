@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      INVENTORY BG-PANTS ARMOR SLOT_0: 4215227073232274530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

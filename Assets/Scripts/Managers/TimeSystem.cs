@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using System.Collections.Generic;
 public class TimeSystem : MonoBehaviour
 {
     public int Hour { get; private set; }    // Saat (0-23)
@@ -15,8 +16,8 @@ public class TimeSystem : MonoBehaviour
     public static TimeSystem Instance { get; private set; }
 
     [Header("UI")]
-    [SerializeField] public TMP_Text clockText; // Reference to the clock text
-    [SerializeField] public TMP_Text dayText; // Reference to the clock text
+    public TMP_Text clockText; // Reference to the clock text
+    public TMP_Text dayText; // Reference to the clock text
 
     private void Awake()
     {
@@ -60,19 +61,6 @@ public class TimeSystem : MonoBehaviour
         AdvanceTime(totalMinutes);
     }
 
-    public void UpdatePlayerPosition()
-    {
-        if (TravelSystem.Instance.inTravel == false) return;
-
-        float progress =  TravelSystem.Instance.progress;
-        Vector2 startPosition = TravelSystem.Instance.startPosition;
-        Vector2 endPosition = TravelSystem.Instance.endPosition;
-        Vector2 currentPosition;
-        
-        currentPosition = Vector2.Lerp(startPosition, endPosition, progress);
-        MapHandler.Instance.playerIcon.transform.position = currentPosition;
-    }
-
     //we will advance time but with a IEnumerator so we can see the time passing
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
@@ -110,9 +98,10 @@ public class TimeSystem : MonoBehaviour
 
             // Smooth the speed of time progression
             float progress = (float)minutesPassed / totalMinutes;
-            float waitTime = Mathf.Lerp(0.1f, 0.01f, progress);
+            float waitTime = Mathf.Lerp(0.1f, 0.05f, progress);
 
-            UpdatePlayerPosition();
+            MapAvatarHandler.Instance.StopAllCoroutines();
+            MapAvatarHandler.Instance.StartCoroutine(MapAvatarHandler.Instance.MovePlayerIconToNextSegment(progress));
 
             yield return new WaitForSecondsRealtime(waitTime);
         }
@@ -177,8 +166,8 @@ public class TimeSystem : MonoBehaviour
     private void NormalizeTime()
     {
         Hour += Minute / 60;
-        
-        if (Minute > 60)
+
+        if (Minute >= 60)
         {
             foreach (var quest in playerData.Quests)
             {
@@ -193,13 +182,13 @@ public class TimeSystem : MonoBehaviour
 
         Day += Hour / 24;
 
-        if (Hour > 24)
+        if (Hour >= 24)
         {
             foreach (var e in EventHandler.Instance.events)
             {
                 if (e.encounterCooldown > 0)
                 {
-                    e.encounterCooldown -= Day;
+                    e.encounterCooldown -= 1;
                     if (e.encounterCooldown < 0) e.encounterCooldown = 0;
                 }
             }
@@ -207,14 +196,8 @@ public class TimeSystem : MonoBehaviour
             // Handle travel-related logic once for the day overflow
             if (TravelSystem.Instance.inTravel)
             {
-                if (TravelSystem.Instance.isSleeping)
-                {
-                    SleepWhileTraveling();
-                }
-                else if (!TravelSystem.Instance.isHuntingForRations)
-                {
-                    FoodSystem.Instance.DailyRationConsumption();
-                }
+                SleepAndEatWhileTraveling();
+                print("Traveling");
             }
         }
 
@@ -260,23 +243,40 @@ public class TimeSystem : MonoBehaviour
         UpdateLastMealTime();
     }
 
-    public void SleepWhileTraveling()
+    public void SleepAndEatWhileTraveling()
     {
-
-        FoodSystem.Instance.DailyRationConsumption();
-
-        if (playerData.Rations >= 0)
+        if (TravelSystem.Instance.isSleeping)
         {
-            playerData.CurrentExhaustionLevel = 0;
-            Debug.Log("Uyudunuz ve dinlendiniz. Yorgunluk seviyeniz sıfırlandı.");
-            UpdateLastMealTime();
+            if (TravelSystem.Instance.isHuntingForRations)
+            {
+                playerData.CurrentExhaustionLevel = 0;
+            }
+            else if (playerData.Rations >= 0)
+            {
+                playerData.CurrentExhaustionLevel = 0;
+            }
+            else
+            {
+                PlayerStatHandler.Instance.IncreaseExhaustion();
+            }
         }
         else
         {
+            if (TravelSystem.Instance.isHuntingForRations)
+            {
+            }
+            else if (playerData.Rations >= 0)
+            {
+            }
+            else
+            {
+                PlayerStatHandler.Instance.IncreaseExhaustion();
+            }
+
             PlayerStatHandler.Instance.IncreaseExhaustion();
-            Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
+        UpdateLastMealTime();
         UpdateLastSleepTime();
     }
 

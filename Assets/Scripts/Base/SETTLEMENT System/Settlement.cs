@@ -87,6 +87,7 @@ public class Settlement
     {
         Type = SettlementType.Quest;
         Name = quest.questLocation;
+        ID = quest.settlementID;
         Population = 0;
         Wealth.Gold = 0;
         Wealth.Silver = 0;

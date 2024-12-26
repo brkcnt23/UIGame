@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PANTS ARMOR 3_0: -6770765052408041425
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

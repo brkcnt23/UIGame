@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      INVENTORY BG-CHEST ARMOR SLOT_0: -3916067545900928153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

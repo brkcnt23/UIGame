@@ -89,10 +89,10 @@ public class PlayerStatHandler : MonoBehaviour
         HomeSettlementHandler.Instance.LoadHomeSettlement();
         SettlementHandler.Instance.LoadSettlements();
 
+        MapHandler.Instance.LoadQuestSettlements();
         TravelSystem.Instance.LoadTravelData();
         MapHandler.Instance.MovePlayerToLastVisitedSettlement(LastVisitedSettlement());
 
-        MapHandler.Instance.LoadQuestSettlements();
 
         TimeSystem.Instance.InitializeLastActionTimes();
         PlayerUISystem.Instance.UpdateClockText();

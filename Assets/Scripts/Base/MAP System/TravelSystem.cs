@@ -55,43 +55,37 @@ public class TravelSystem : MonoBehaviour
 
     public TravelWrapper travelData = new TravelWrapper();
 
-    public Vector2 startPosition;
-    public Vector2 endPosition;
-    public Vector2 currentPosition;
-    public float progress;
-
     public void SaveTravelData()
     {
-        if (!inTravel)
-        {
-            return;
-        }
         travelData.inTravel = inTravel;
-        if (MapHandler.Instance.playerIcon != null)
+        if (inTravel)
         {
-            Vector2 playerPosition = MapHandler.Instance.playerIcon.transform.position;
-            travelData.playerPosition = new int[2] { (int)playerPosition.x, (int)playerPosition.y };
-        }
-        currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
-        destination = MapHandler.Instance.GetDestinationSettlement();
-        currentEvent = EventHandler.Instance.currentEvent;
-        travelData.currentSettlementID = currentSettlement != null ? currentSettlement.settlement.ID : 0;
-        travelData.destinationID = destination != null ? destination.settlement.ID : 0;
-        if (isEventActive)
-        {
-            travelData.isEventActive = isEventActive;
-            if (currentEvent != null || currentEvent.ID != 0)
+            if (MapAvatarHandler.Instance.playerIcon != null)
             {
-                travelData.currentEventID = currentEvent.ID;
+                Vector2 playerPosition = MapAvatarHandler.Instance.GetPlayerPosition();
+                travelData.playerPosition = new int[2] { (int)playerPosition.x, (int)playerPosition.y };
             }
+            currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
+            destination = MapHandler.Instance.GetDestinationSettlement();
+            currentEvent = EventHandler.Instance.currentEvent;
+            travelData.currentSettlementID = currentSettlement != null ? currentSettlement.settlement.ID : 0;
+            travelData.destinationID = destination != null ? destination.settlement.ID : 0;
+            if (isEventActive)
+            {
+                travelData.isEventActive = isEventActive;
+                if (currentEvent != null || currentEvent.ID != 0)
+                {
+                    travelData.currentEventID = currentEvent.ID;
+                }
+            }
+            travelData.remainingTime = remainingTime;
+            travelData.remainingTimeMinutes = remainingTimeMinutes;
+            travelData.minEvents = minEvents;
+            travelData.eventTimes = eventTimes;
+            travelData.PlayerWantsToHandleEventorEnterSettlement = PlayerWantsToHandleEventorEnterSettlement;
+            travelData.elapsedTravelTime = elapsedTravelTime;
+            travelData.eventIndex = eventIndex;
         }
-        travelData.remainingTime = remainingTime;
-        travelData.remainingTimeMinutes = remainingTimeMinutes;
-        travelData.minEvents = minEvents;
-        travelData.eventTimes = eventTimes;
-        travelData.PlayerWantsToHandleEventorEnterSettlement = PlayerWantsToHandleEventorEnterSettlement;
-        travelData.elapsedTravelTime = elapsedTravelTime;
-        travelData.eventIndex = eventIndex;
 
         JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         jSONDataHandler.SaveData(travelData, "travel.json");
@@ -134,8 +128,12 @@ public class TravelSystem : MonoBehaviour
             if (travelData.playerPosition != null && travelData.playerPosition.Length == 2)
             {
                 Vector2 playerPosition = new Vector2(travelData.playerPosition[0], travelData.playerPosition[1]);
-                MapHandler.Instance.UpdatePlayerPosition(playerPosition);
+                MapAvatarHandler.Instance.CreatePlayerIcon();
+                MapAvatarHandler.Instance.UpdatePlayerPosition(playerPosition);
+                MapAvatarHandler.Instance.currentPosition = MapAvatarHandler.Instance.playerIcon.transform;
+                MapAvatarHandler.Instance.startPosition = MapHandler.Instance.GetLastVisitedSettlement().transform;
             }
+
             inTravel = travelData.inTravel;
 
             if (EventHandler.Instance != null)
@@ -186,11 +184,10 @@ public class TravelSystem : MonoBehaviour
 
         return null;
     }
-    public void TravelToSettlement()
+    public void TravelToSettlement(Vector2 _currentPos = new Vector2())
     {
-        inTravel = true;
         remainingTime = 0;
-        int minutes = CalculateDistance();
+        int minutes = CalculateDistance(_currentPos);
 
         int hours = minutes / 60;
         minutes = minutes % 60;
@@ -199,33 +196,25 @@ public class TravelSystem : MonoBehaviour
 
         int days = hours / 24;
         hours = hours % 24;
+        print("Started Travel");
+        if (!inTravel) SettlementHandler.Instance.OnSettlementExited();
+        ContinueTravel();
+    }
 
-        if (currentSettlement != null)
+    public int CalculateDistance(Vector2 _currentPos)
+    {
+        if (_currentPos == Vector2.zero)
         {
-            startPosition = currentSettlement.transform.position;
+            _currentPos = currentSettlement.transform.localPosition;
         }
         else
         {
-            startPosition = MapHandler.Instance.playerIcon.transform.position;
+            _currentPos = MapAvatarHandler.Instance.GetPlayerPosition();
+            MapAvatarHandler.Instance.currentPosition = MapAvatarHandler.Instance.playerIcon.transform;
         }
+        Vector2 destinationPos = destination.transform.localPosition;
 
-        if (destination != null)
-        {
-            endPosition = destination.transform.position;
-        }
-        print("Started Travel");
-        SettlementHandler.Instance.OnSettlementExited();
-        ContinueTravel();
-
-
-    }
-
-    public int CalculateDistance()
-    {
-        Vector2 currentPos = currentSettlement.transform.position;
-        Vector2 destinationPos = destination.transform.position;
-
-        float distance = Vector2.Distance(currentPos, destinationPos) * distanceMultiplier;
+        float distance = Vector2.Distance(_currentPos, destinationPos) * distanceMultiplier;
         int minutes = (int)distance;
         int hours = minutes / 60;
         int days = hours / 24;
@@ -237,7 +226,12 @@ public class TravelSystem : MonoBehaviour
 
         if (isSleeping)
         {
-            distance += 360 * days + PlayerStatHandler.Instance.pd.CurrentExhaustionLevel * 120; //add 360 minutes for each day of sleeping and 120 minutes for each exhaustion level
+            distance += 360 * days; //add 360 minutes for each day of sleeping
+
+            if (PlayerStatHandler.Instance.GetExhaustionLevel() > 0)
+            {
+                distance += 120; // add if the player is exhausted before starting the travel
+            }
         }
 
         return (int)distance;
@@ -251,6 +245,19 @@ public class TravelSystem : MonoBehaviour
         //{
         //TravelingPanel.SetActive(true);
         //}
+        MapAvatarHandler.Instance.CreatePlayerIcon();
+        MapAvatarHandler.Instance.endPosition = destination.transform;
+        if (!inTravel)
+        {
+            MapAvatarHandler.Instance.startPosition = currentSettlement.transform;
+            MapAvatarHandler.Instance.currentPosition = currentSettlement.transform;
+            MapAvatarHandler.Instance.MovePlayerIconToLastVisitedSettlement();
+        }
+        else
+        {
+            MapAvatarHandler.Instance.startPosition = MapAvatarHandler.Instance.currentPosition;
+        }
+        inTravel = true;
 
         if (currentEvent != null)
         {
@@ -258,30 +265,22 @@ public class TravelSystem : MonoBehaviour
             {
                 HandleEvent();
             }
+            else
+            {
+                StartCoroutine(TravelUntilEvent());
+            }
+
         }
         else
         {
-            if (currentSettlement != null)
-            {
-                startPosition = currentSettlement.transform.position;
-            }
-            else
-            {
-                startPosition = MapHandler.Instance.playerIcon.transform.position;
-            }
-
-            if (destination != null)
-            {
-                endPosition = destination.transform.position;
-            }
-
             StartCoroutine(TravelUntilEvent());
         }
+
     }
 
 
     private int elapsedTravelTime = 0;
-    private int eventIndex = 0;
+    public int eventIndex = 0;
 
     public IEnumerator TravelUntilEvent()
     {
@@ -291,14 +290,14 @@ public class TravelSystem : MonoBehaviour
         {
             // Determine the number of events
             int minEvents = this.minEvents;
-            int maxEvents = Mathf.Max(1, totalTravelTime / 15);
+            int maxEvents = Mathf.Max(1, totalTravelTime / 20);
             int numberOfEvents = Random.Range(minEvents, maxEvents + 1);
 
             // Generate event times
             eventTimes = new List<int>();
             for (int i = 0; i < numberOfEvents; i++)
             {
-                int eventTime = Random.Range(1, totalTravelTime - 1);
+                int eventTime = Random.Range(3, totalTravelTime - 3);
                 eventTimes.Add(eventTime);
             }
             eventTimes.Sort();
@@ -307,6 +306,16 @@ public class TravelSystem : MonoBehaviour
         }
 
         print($"Started Travel in {totalTravelTime}");
+        List<int> eventT = new List<int>(eventTimes);
+        for (int i = 0; i < eventT.Count; i++)
+        {
+            if (eventT[i] <= elapsedTravelTime)
+            {
+                eventT.RemoveAt(i);
+            }
+
+        }
+        MapAvatarHandler.Instance.SetSegments(eventT, eventIndex);
 
         while (remainingTime > 0)
         {
@@ -319,8 +328,6 @@ public class TravelSystem : MonoBehaviour
             }
 
             int travelSegment = Mathf.Min(timeUntilNextEvent, remainingTime);
-
-            progress = (float)elapsedTravelTime / totalTravelTime;
 
             // Advance time smoothly
             yield return StartCoroutine(TimeSystem.Instance.AdvanceTimeCoroutine(0, travelSegment, 0));
@@ -340,13 +347,13 @@ public class TravelSystem : MonoBehaviour
                 yield return new WaitUntil(() => !isEventActive);
                 isEventActive = false;
                 currentEvent.ID = 0;
+
+                MapAvatarHandler.Instance.segments.RemoveAt(0);
             }
         }
 
         if (remainingTime <= 0)
         {
-            print("Arrived at destination");
-
             TravelDone();
         }
     }
@@ -354,24 +361,23 @@ public class TravelSystem : MonoBehaviour
     public void TravelDone()
     {
         EnterSettlement();
-
+        print("Travel Done");
         inTravel = false;
+        travelData.inTravel = false;
         ResetTravelData();
     }
 
     public void EnterSettlement()
     {
-        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
-        GameManager.Instance.ShowSettlementPanel();
-
-
         currentSettlement = destination;
+
+        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+
         MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
 
         TimeSystem.Instance.AdvanceTimeCoroutine(0, 0, remainingTimeMinutes);
-
-        currentPosition = endPosition;
-
+        GameManager.Instance.ShowSettlementPanel();
+        UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
     }
 
     public void HandleEvent()
@@ -446,12 +452,11 @@ public class TravelSystem : MonoBehaviour
         PlayerWantsToHandleEventorEnterSettlement = false;
         elapsedTravelTime = 0;
         eventIndex = 0;
-        progress = 0;
     }
 
     public void UpdateTravelTimeText()
     {
-        int minutes = CalculateDistance();
+        int minutes = CalculateDistance(MapAvatarHandler.Instance.GetPlayerPosition());
         int hours = minutes / 60;
         minutes = minutes % 60;
         int days = hours / 24;
@@ -476,18 +481,38 @@ public class TravelSystem : MonoBehaviour
         travelTimeText.text = "";
         travelInfoText.text = "";
         TravelingDeciderPanel.SetActive(false);
+        ResetTravelData();
         destination = MapHandler.Instance.selectedSettlement.GetComponent<SettlementButtonPointer>();
         print("Accepted travel");
-        TravelToSettlement();
+        if (!inTravel)
+        {
+            TravelToSettlement();
+        }
+        else
+        {
+            StopAllCoroutines();
+            TravelToSettlement(MapAvatarHandler.Instance.GetPlayerPosition());
+        }
     }
 
     public void PlayerDeclinedToTravel()
     {
-        TravelingDeciderPanel.SetActive(false);
-        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
-        GameManager.Instance.ShowSettlementPanel();
-        UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
-        destination = null;
+        if (!inTravel)
+        {
+            TravelingDeciderPanel.SetActive(false);
+            MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+            GameManager.Instance.ShowSettlementPanel();
+            UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
+            destination = null;
+        }
+        else
+        {
+            StopAllCoroutines();
+            TravelingDeciderPanel.SetActive(false);
+            ResetTravelData();
+            destination = GetSettlementButtonPointerByID(currentSettlement.settlement.ID);
+            TravelToSettlement(MapAvatarHandler.Instance.GetPlayerPosition());
+        }
     }
 
     public void PlayerMiniGameClosed()

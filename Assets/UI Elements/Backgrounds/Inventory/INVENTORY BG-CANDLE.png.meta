@@ -236,7 +236,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      INVENTORY BG-CANDLE_0: -2391021067815767616
+      INVENTORY BG-CANDLE_1: 8464763106780626179
+      INVENTORY BG-CANDLE_2: -5139504817554013742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

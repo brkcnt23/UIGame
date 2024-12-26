@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      INVENTORY BG-POTION SLOT_0: 3180734776002699107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
