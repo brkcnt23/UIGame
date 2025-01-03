@@ -6,7 +6,7 @@
     "remainingTimeMinutes": 45,
     "minEvents": 0,
     "eventTimes": [
-        3
+        16
     ],
     "isEventActive": false,
     "PlayerWantsToHandleEventorEnterSettlement": true,

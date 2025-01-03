@@ -437,41 +437,11 @@
                     "ShopType": 5,
                     "Items": [
                         {
-                            "ID": 9854,
+                            "ID": 1858,
                             "Name": "GeneralStore Item 1",
                             "Value": {
-                                "Gold": 16,
-                                "Silver": 65
-                            },
-                            "Category": 5,
-                            "Quantity": 2,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 5627,
-                            "Name": "GeneralStore Item 2",
-                            "Value": {
-                                "Gold": 4,
-                                "Silver": 26
-                            },
-                            "Category": 5,
-                            "Quantity": 2,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 3200,
-                            "Name": "GeneralStore Item 3",
-                            "Value": {
-                                "Gold": 32,
-                                "Silver": 96
+                                "Gold": 28,
+                                "Silver": 27
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -482,11 +452,41 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4084,
+                            "ID": 4809,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 78
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3111,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 82
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8456,
                             "Name": "GeneralStore Item 4",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 72
+                                "Gold": 20,
+                                "Silver": 88
                             },
                             "Category": 5,
                             "Quantity": 1,
@@ -509,110 +509,14 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 8112,
+                            "ID": 9432,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 4,
-                                "Silver": 12
-                            },
-                            "Category": 1,
-                            "Quantity": 1,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50480
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 2070,
-                            "Name": "Tanner Item 2",
-                            "Value": {
-                                "Gold": 28,
-                                "Silver": 20
+                                "Gold": 20,
+                                "Silver": 67
                             },
                             "Category": 1,
                             "Quantity": 4,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50480
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 8713,
-                            "Name": "Tanner Item 3",
-                            "Value": {
-                                "Gold": 12,
-                                "Silver": 39
-                            },
-                            "Category": 1,
-                            "Quantity": 2,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50480
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 6198,
-                            "Name": "Tanner Item 4",
-                            "Value": {
-                                "Gold": 24,
-                                "Silver": 85
-                            },
-                            "Category": 1,
-                            "Quantity": 4,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50480
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 2114,
-                            "Name": "Tanner Item 5",
-                            "Value": {
-                                "Gold": 32,
-                                "Silver": 20
-                            },
-                            "Category": 1,
-                            "Quantity": 1,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -624,7 +528,103 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50480
+                                "instanceID": 50562
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 1039,
+                            "Name": "Tanner Item 2",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 58
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50562
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 6217,
+                            "Name": "Tanner Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 74
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50562
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 2434,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 37
+                            },
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50562
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 5004,
+                            "Name": "Tanner Item 5",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 96
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50562
                             },
                             "Quality": 3
                         }
@@ -641,11 +641,11 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 8757,
+                            "ID": 9471,
                             "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 16,
-                                "Silver": 71
+                                "Gold": 32,
+                                "Silver": 78
                             },
                             "Category": 7,
                             "Quantity": 1,
@@ -656,28 +656,13 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 6974,
+                            "ID": 6326,
                             "Name": "Mystic Item 2",
                             "Value": {
                                 "Gold": 12,
                                 "Silver": 52
                             },
                             "Category": 7,
-                            "Quantity": 2,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 2498,
-                            "Name": "Mystic Item 3",
-                            "Value": {
-                                "Gold": 16,
-                                "Silver": 56
-                            },
-                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
@@ -686,14 +671,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4919,
-                            "Name": "Mystic Item 4",
+                            "ID": 3339,
+                            "Name": "Mystic Item 3",
                             "Value": {
-                                "Gold": 12,
-                                "Silver": 41
+                                "Gold": 32,
+                                "Silver": 25
                             },
                             "Category": 7,
-                            "Quantity": 3,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -713,11 +698,11 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4749,
+                            "ID": 3729,
                             "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 15
+                                "Gold": 36,
+                                "Silver": 42
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -728,11 +713,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7455,
+                            "ID": 9189,
                             "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 88
+                                "Gold": 28,
+                                "Silver": 73
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -743,11 +728,26 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4193,
+                            "ID": 3459,
                             "Name": "Mason Item 3",
                             "Value": {
+                                "Gold": 12,
+                                "Silver": 82
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8314,
+                            "Name": "Mason Item 4",
+                            "Value": {
                                 "Gold": 4,
-                                "Silver": 70
+                                "Silver": 98
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -758,11 +758,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8822,
-                            "Name": "Mason Item 4",
+                            "ID": 5082,
+                            "Name": "Mason Item 5",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 25
+                                "Gold": 24,
+                                "Silver": 52
                             },
                             "Category": 5,
                             "Quantity": 1,
@@ -1357,11 +1357,41 @@
                     "ShopType": 2,
                     "Items": [
                         {
-                            "ID": 5509,
+                            "ID": 5414,
                             "Name": "Carpenter Item 1",
                             "Value": {
+                                "Gold": 32,
+                                "Silver": 83
+                            },
+                            "Category": 6,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8264,
+                            "Name": "Carpenter Item 2",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 42
+                            },
+                            "Category": 6,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6885,
+                            "Name": "Carpenter Item 3",
+                            "Value": {
                                 "Gold": 4,
-                                "Silver": 37
+                                "Silver": 53
                             },
                             "Category": 6,
                             "Quantity": 3,
@@ -1372,44 +1402,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 2573,
-                            "Name": "Carpenter Item 2",
-                            "Value": {
-                                "Gold": 4,
-                                "Silver": 99
-                            },
-                            "Category": 6,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 3324,
-                            "Name": "Carpenter Item 3",
-                            "Value": {
-                                "Gold": 36,
-                                "Silver": 99
-                            },
-                            "Category": 6,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 2571,
+                            "ID": 9301,
                             "Name": "Carpenter Item 4",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 40
+                                "Gold": 8,
+                                "Silver": 20
                             },
                             "Category": 6,
-                            "Quantity": 4,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1429,14 +1429,14 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 4609,
+                            "ID": 5976,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 20,
-                                "Silver": 85
+                                "Gold": 16,
+                                "Silver": 43
                             },
                             "Category": 1,
-                            "Quantity": 1,
+                            "Quantity": 3,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -1448,23 +1448,23 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 46654
+                                "instanceID": 50562
                             },
                             "Quality": 3
                         },
                         {
-                            "ID": 8913,
+                            "ID": 7594,
                             "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 30
+                                "Gold": 8,
+                                "Silver": 63
                             },
                             "Category": 1,
                             "Quantity": 1,
                             "Modifiers": [
                                 {
                                     "Type": 3,
-                                    "Value": 2
+                                    "Value": 1
                                 },
                                 {
                                     "Type": 2,
@@ -1472,23 +1472,23 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 46654
+                                "instanceID": 50562
                             },
                             "Quality": 3
                         },
                         {
-                            "ID": 7455,
+                            "ID": 8191,
                             "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 12,
-                                "Silver": 58
+                                "Gold": 24,
+                                "Silver": 47
                             },
                             "Category": 1,
-                            "Quantity": 1,
+                            "Quantity": 2,
                             "Modifiers": [
                                 {
                                     "Type": 3,
-                                    "Value": 2
+                                    "Value": 1
                                 },
                                 {
                                     "Type": 2,
@@ -1496,7 +1496,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 46654
+                                "instanceID": 50562
                             },
                             "Quality": 3
                         }
@@ -1513,14 +1513,14 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 9382,
+                            "ID": 1914,
                             "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 16,
-                                "Silver": 21
+                                "Gold": 12,
+                                "Silver": 32
                             },
                             "Category": 7,
-                            "Quantity": 3,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1528,11 +1528,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7614,
+                            "ID": 2237,
                             "Name": "Mystic Item 2",
                             "Value": {
                                 "Gold": 16,
-                                "Silver": 12
+                                "Silver": 68
                             },
                             "Category": 7,
                             "Quantity": 1,
@@ -1543,11 +1543,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4391,
+                            "ID": 9649,
                             "Name": "Mystic Item 3",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 50
+                                "Gold": 24,
+                                "Silver": 98
                             },
                             "Category": 7,
                             "Quantity": 3,
@@ -1558,14 +1558,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 1357,
+                            "ID": 1810,
                             "Name": "Mystic Item 4",
                             "Value": {
-                                "Gold": 16,
-                                "Silver": 29
+                                "Gold": 8,
+                                "Silver": 11
                             },
                             "Category": 7,
-                            "Quantity": 1,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1585,11 +1585,26 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 8942,
+                            "ID": 2311,
                             "Name": "Mason Item 1",
                             "Value": {
+                                "Gold": 20,
+                                "Silver": 59
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 9860,
+                            "Name": "Mason Item 2",
+                            "Value": {
                                 "Gold": 16,
-                                "Silver": 39
+                                "Silver": 89
                             },
                             "Category": 5,
                             "Quantity": 3,
@@ -1600,29 +1615,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 2840,
-                            "Name": "Mason Item 2",
-                            "Value": {
-                                "Gold": 16,
-                                "Silver": 12
-                            },
-                            "Category": 5,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 3710,
+                            "ID": 3807,
                             "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 4,
-                                "Silver": 88
+                                "Gold": 8,
+                                "Silver": 63
                             },
                             "Category": 5,
-                            "Quantity": 2,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1640,7 +1640,72 @@
                 "income": 7000,
                 "Resources": [],
                 "upgradeHour": 0,
-                "Quests": [],
+                "Quests": [
+                    {
+                        "Type": 1,
+                        "ID": 2004,
+                        "Name": "The Lost Pet",
+                        "Description": "A local family has lost their beloved pet and is offering a reward for its safe return.",
+                        "DC": 25,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 12,
+                        "CompletionMinute": 0,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 2,
+                        "StatRewardMax": 2,
+                        "hoursToComplete": 9999,
+                        "requiredItems": [],
+                        "rewardItems": [],
+                        "questItems": [],
+                        "settlementID": 0,
+                        "isTaken": false,
+                        "isCompleted": false,
+                        "questLocation": "",
+                        "questLocationCoordinates": [
+                            0.0,
+                            0.0
+                        ],
+                        "questType": 0
+                    },
+                    {
+                        "Type": 1,
+                        "ID": 2003,
+                        "Name": "Night Terrors",
+                        "Description": "A local child has been having nightmares and is too scared to sleep. They need help finding a way to overcome their fears.",
+                        "DC": 20,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 8,
+                        "CompletionMinute": 30,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 0,
+                        "StatRewardMax": 1,
+                        "hoursToComplete": 9999,
+                        "requiredItems": [],
+                        "rewardItems": [],
+                        "questItems": [],
+                        "settlementID": 0,
+                        "isTaken": false,
+                        "isCompleted": false,
+                        "questLocation": "",
+                        "questLocationCoordinates": [
+                            0.0,
+                            0.0
+                        ],
+                        "questType": 0
+                    }
+                ],
                 "Companions": []
             },
             "TownHall": {
@@ -2111,14 +2176,14 @@
                     "ShopType": 5,
                     "Items": [
                         {
-                            "ID": 1791,
+                            "ID": 1891,
                             "Name": "GeneralStore Item 1",
                             "Value": {
                                 "Gold": 4,
-                                "Silver": 52
+                                "Silver": 60
                             },
                             "Category": 5,
-                            "Quantity": 1,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2126,44 +2191,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5491,
+                            "ID": 5676,
                             "Name": "GeneralStore Item 2",
                             "Value": {
-                                "Gold": 9,
-                                "Silver": 66
+                                "Gold": 1,
+                                "Silver": 89
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 8002,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 94
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2863,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 45
                             },
                             "Category": 5,
                             "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 9731,
-                            "Name": "GeneralStore Item 3",
-                            "Value": {
-                                "Gold": 6,
-                                "Silver": 87
-                            },
-                            "Category": 5,
-                            "Quantity": 2,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 1334,
-                            "Name": "GeneralStore Item 4",
-                            "Value": {
-                                "Gold": 3,
-                                "Silver": 10
-                            },
-                            "Category": 5,
-                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2183,11 +2248,11 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1829,
+                            "ID": 9143,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 1,
-                                "Silver": 42
+                                "Gold": 5,
+                                "Silver": 71
                             },
                             "Category": 1,
                             "Quantity": 3,
@@ -2202,19 +2267,19 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50476
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         },
                         {
-                            "ID": 2535,
+                            "ID": 1111,
                             "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 6,
-                                "Silver": 15
+                                "Gold": 5,
+                                "Silver": 30
                             },
                             "Category": 1,
-                            "Quantity": 4,
+                            "Quantity": 1,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -2226,19 +2291,19 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50476
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         },
                         {
-                            "ID": 4054,
+                            "ID": 8922,
                             "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 1,
-                                "Silver": 53
+                                "Gold": 6,
+                                "Silver": 77
                             },
                             "Category": 1,
-                            "Quantity": 2,
+                            "Quantity": 4,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -2250,31 +2315,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50476
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 2098,
-                            "Name": "Tanner Item 4",
-                            "Value": {
-                                "Gold": 6,
-                                "Silver": 95
-                            },
-                            "Category": 1,
-                            "Quantity": 4,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50476
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         }
@@ -2291,11 +2332,41 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 3255,
+                            "ID": 9030,
                             "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 2,
+                                "Gold": 8,
                                 "Silver": 38
+                            },
+                            "Category": 7,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 7441,
+                            "Name": "Mystic Item 2",
+                            "Value": {
+                                "Gold": 5,
+                                "Silver": 38
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1443,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 53
                             },
                             "Category": 7,
                             "Quantity": 1,
@@ -2306,11 +2377,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5431,
-                            "Name": "Mystic Item 2",
+                            "ID": 7626,
+                            "Name": "Mystic Item 4",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 67
+                                "Gold": 7,
+                                "Silver": 90
                             },
                             "Category": 7,
                             "Quantity": 2,
@@ -2321,14 +2392,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9820,
-                            "Name": "Mystic Item 3",
+                            "ID": 7309,
+                            "Name": "Mystic Item 5",
                             "Value": {
-                                "Gold": 2,
-                                "Silver": 50
+                                "Gold": 9,
+                                "Silver": 29
                             },
                             "Category": 7,
-                            "Quantity": 1,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2348,14 +2419,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 3331,
+                            "ID": 1090,
                             "Name": "Mason Item 1",
                             "Value": {
                                 "Gold": 1,
-                                "Silver": 22
+                                "Silver": 68
                             },
                             "Category": 5,
-                            "Quantity": 4,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2363,11 +2434,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9545,
+                            "ID": 2905,
                             "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 2,
-                                "Silver": 30
+                                "Gold": 8,
+                                "Silver": 12
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -2378,11 +2449,41 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4749,
+                            "ID": 2737,
                             "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 9,
-                                "Silver": 15
+                                "Gold": 3,
+                                "Silver": 81
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1850,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 94
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6156,
+                            "Name": "Mason Item 5",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 12
                             },
                             "Category": 5,
                             "Quantity": 3,
@@ -2450,11 +2551,11 @@
                     "ShopType": 5,
                     "Items": [
                         {
-                            "ID": 7059,
+                            "ID": 8114,
                             "Name": "GeneralStore Item 1",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 92
+                                "Gold": 2,
+                                "Silver": 36
                             },
                             "Category": 5,
                             "Quantity": 1,
@@ -2465,14 +2566,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 2087,
+                            "ID": 2580,
                             "Name": "GeneralStore Item 2",
                             "Value": {
-                                "Gold": 1,
-                                "Silver": 23
+                                "Gold": 5,
+                                "Silver": 99
                             },
                             "Category": 5,
-                            "Quantity": 3,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2480,11 +2581,41 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9949,
+                            "ID": 9249,
                             "Name": "GeneralStore Item 3",
                             "Value": {
                                 "Gold": 2,
-                                "Silver": 87
+                                "Silver": 64
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 2693,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 14
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3985,
+                            "Name": "GeneralStore Item 5",
+                            "Value": {
+                                "Gold": 2,
+                                "Silver": 11
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -2507,18 +2638,18 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 5210,
+                            "ID": 6419,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 5,
-                                "Silver": 51
+                                "Gold": 1,
+                                "Silver": 19
                             },
                             "Category": 1,
-                            "Quantity": 3,
+                            "Quantity": 1,
                             "Modifiers": [
                                 {
                                     "Type": 3,
-                                    "Value": 2
+                                    "Value": 1
                                 },
                                 {
                                     "Type": 2,
@@ -2526,46 +2657,46 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         },
                         {
-                            "ID": 3086,
+                            "ID": 4107,
                             "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 4,
-                                "Silver": 12
+                                "Gold": 2,
+                                "Silver": 74
+                            },
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50558
+                            },
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 3680,
+                            "Name": "Tanner Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 98
                             },
                             "Category": 1,
                             "Quantity": 4,
                             "Modifiers": [
                                 {
                                     "Type": 3,
-                                    "Value": 2
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 1961,
-                            "Name": "Tanner Item 3",
-                            "Value": {
-                                "Gold": 1,
-                                "Silver": 23
-                            },
-                            "Category": 1,
-                            "Quantity": 3,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
                                     "Value": 1
                                 },
                                 {
@@ -2574,16 +2705,16 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         },
                         {
-                            "ID": 7372,
+                            "ID": 4098,
                             "Name": "Tanner Item 4",
                             "Value": {
-                                "Gold": 4,
-                                "Silver": 85
+                                "Gold": 2,
+                                "Silver": 91
                             },
                             "Category": 1,
                             "Quantity": 1,
@@ -2598,31 +2729,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 4172,
-                            "Name": "Tanner Item 5",
-                            "Value": {
-                                "Gold": 5,
-                                "Silver": 12
-                            },
-                            "Category": 1,
-                            "Quantity": 3,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 2
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         }
@@ -2639,11 +2746,11 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 4007,
+                            "ID": 9353,
                             "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 5,
-                                "Silver": 22
+                                "Gold": 4,
+                                "Silver": 11
                             },
                             "Category": 7,
                             "Quantity": 3,
@@ -2654,11 +2761,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 2900,
+                            "ID": 3964,
                             "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 2,
-                                "Silver": 40
+                                "Gold": 4,
+                                "Silver": 80
                             },
                             "Category": 7,
                             "Quantity": 4,
@@ -2669,29 +2776,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 5387,
+                            "ID": 5634,
                             "Name": "Mystic Item 3",
                             "Value": {
-                                "Gold": 9,
-                                "Silver": 19
+                                "Gold": 5,
+                                "Silver": 99
                             },
                             "Category": 7,
-                            "Quantity": 4,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 2919,
-                            "Name": "Mystic Item 4",
-                            "Value": {
-                                "Gold": 8,
-                                "Silver": 69
-                            },
-                            "Category": 7,
-                            "Quantity": 3,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2711,11 +2803,11 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 8644,
+                            "ID": 3745,
                             "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 9,
-                                "Silver": 20
+                                "Gold": 5,
+                                "Silver": 84
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -2726,14 +2818,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 4674,
+                            "ID": 4886,
                             "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 5,
-                                "Silver": 95
+                                "Gold": 2,
+                                "Silver": 78
                             },
                             "Category": 5,
-                            "Quantity": 1,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2741,29 +2833,14 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 7478,
+                            "ID": 8097,
                             "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 5,
-                                "Silver": 37
+                                "Gold": 9,
+                                "Silver": 12
                             },
                             "Category": 5,
-                            "Quantity": 3,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 6242,
-                            "Name": "Mason Item 4",
-                            "Value": {
-                                "Gold": 7,
-                                "Silver": 74
-                            },
-                            "Category": 5,
-                            "Quantity": 1,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2919,7 +2996,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50332
+                                "instanceID": 0
                             },
                             "Quality": 2
                         },
@@ -2943,7 +3020,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50332
+                                "instanceID": 0
                             },
                             "Quality": 2
                         },
@@ -2967,7 +3044,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50332
+                                "instanceID": 0
                             },
                             "Quality": 2
                         },
@@ -2991,7 +3068,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50332
+                                "instanceID": 0
                             },
                             "Quality": 2
                         },
@@ -3015,7 +3092,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50332
+                                "instanceID": 0
                             },
                             "Quality": 2
                         }
@@ -3826,14 +3903,14 @@
                     "ShopType": 5,
                     "Items": [
                         {
-                            "ID": 5230,
+                            "ID": 6211,
                             "Name": "GeneralStore Item 1",
                             "Value": {
-                                "Gold": 3,
-                                "Silver": 74
+                                "Gold": 6,
+                                "Silver": 55
                             },
                             "Category": 5,
-                            "Quantity": 1,
+                            "Quantity": 4,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -3841,11 +3918,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 1846,
+                            "ID": 5256,
                             "Name": "GeneralStore Item 2",
                             "Value": {
-                                "Gold": 7,
-                                "Silver": 47
+                                "Gold": 1,
+                                "Silver": 13
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -3856,11 +3933,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 1997,
+                            "ID": 2638,
                             "Name": "GeneralStore Item 3",
                             "Value": {
-                                "Gold": 7,
-                                "Silver": 35
+                                "Gold": 8,
+                                "Silver": 19
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -3871,26 +3948,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9219,
+                            "ID": 3540,
                             "Name": "GeneralStore Item 4",
                             "Value": {
-                                "Gold": 3,
-                                "Silver": 98
-                            },
-                            "Category": 5,
-                            "Quantity": 3,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 3913,
-                            "Name": "GeneralStore Item 5",
-                            "Value": {
-                                "Gold": 9,
-                                "Silver": 99
+                                "Gold": 5,
+                                "Silver": 24
                             },
                             "Category": 5,
                             "Quantity": 2,
@@ -3913,62 +3975,14 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1971,
+                            "ID": 5359,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 9,
-                                "Silver": 82
+                                "Gold": 7,
+                                "Silver": 54
                             },
                             "Category": 1,
-                            "Quantity": 4,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 8886,
-                            "Name": "Tanner Item 2",
-                            "Value": {
-                                "Gold": 3,
-                                "Silver": 18
-                            },
-                            "Category": 1,
-                            "Quantity": 4,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 2085,
-                            "Name": "Tanner Item 3",
-                            "Value": {
-                                "Gold": 6,
-                                "Silver": 28
-                            },
-                            "Category": 1,
-                            "Quantity": 2,
+                            "Quantity": 1,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -3980,19 +3994,67 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         },
                         {
-                            "ID": 6022,
+                            "ID": 7053,
+                            "Name": "Tanner Item 2",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 35
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50558
+                            },
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 6859,
+                            "Name": "Tanner Item 3",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 40
+                            },
+                            "Category": 1,
+                            "Quantity": 4,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50558
+                            },
+                            "Quality": 1
+                        },
+                        {
+                            "ID": 4274,
                             "Name": "Tanner Item 4",
                             "Value": {
                                 "Gold": 1,
-                                "Silver": 46
+                                "Silver": 88
                             },
                             "Category": 1,
-                            "Quantity": 2,
+                            "Quantity": 3,
                             "Modifiers": [
                                 {
                                     "Type": 3,
@@ -4004,31 +4066,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 1
-                        },
-                        {
-                            "ID": 3389,
-                            "Name": "Tanner Item 5",
-                            "Value": {
-                                "Gold": 3,
-                                "Silver": 93
-                            },
-                            "Category": 1,
-                            "Quantity": 2,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 2
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 50558
                             },
                             "Quality": 1
                         }
@@ -4045,26 +4083,11 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 4106,
+                            "ID": 2466,
                             "Name": "Mystic Item 1",
                             "Value": {
                                 "Gold": 4,
-                                "Silver": 93
-                            },
-                            "Category": 7,
-                            "Quantity": 3,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 5445,
-                            "Name": "Mystic Item 2",
-                            "Value": {
-                                "Gold": 3,
-                                "Silver": 97
+                                "Silver": 92
                             },
                             "Category": 7,
                             "Quantity": 2,
@@ -4075,41 +4098,26 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 8904,
+                            "ID": 7988,
+                            "Name": "Mystic Item 2",
+                            "Value": {
+                                "Gold": 1,
+                                "Silver": 11
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 3039,
                             "Name": "Mystic Item 3",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 72
-                            },
-                            "Category": 7,
-                            "Quantity": 3,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 3963,
-                            "Name": "Mystic Item 4",
-                            "Value": {
-                                "Gold": 9,
-                                "Silver": 75
-                            },
-                            "Category": 7,
-                            "Quantity": 4,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 9029,
-                            "Name": "Mystic Item 5",
-                            "Value": {
-                                "Gold": 5,
-                                "Silver": 53
+                                "Gold": 1,
+                                "Silver": 65
                             },
                             "Category": 7,
                             "Quantity": 1,
@@ -4132,14 +4140,14 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4303,
+                            "ID": 9153,
                             "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 84
+                                "Gold": 2,
+                                "Silver": 85
                             },
                             "Category": 5,
-                            "Quantity": 2,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -4147,11 +4155,11 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 1721,
+                            "ID": 1260,
                             "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 4,
-                                "Silver": 93
+                                "Gold": 8,
+                                "Silver": 90
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -4162,14 +4170,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9016,
+                            "ID": 4704,
                             "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 1,
+                                "Gold": 4,
+                                "Silver": 85
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1197,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 5,
                                 "Silver": 75
                             },
                             "Category": 5,
-                            "Quantity": 3,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
