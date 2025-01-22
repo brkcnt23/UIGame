@@ -96,6 +96,28 @@
                 "Quality": 0
             }
         ],
+        "Units": [
+            {
+                "Type": 0,
+                "Count": 20
+            },
+            {
+                "Type": 1,
+                "Count": 15
+            },
+            {
+                "Type": 2,
+                "Count": 14
+            },
+            {
+                "Type": 3,
+                "Count": 10
+            },
+            {
+                "Type": 4,
+                "Count": 9
+            }
+        ],
         "Quests": [],
         "LastSettlementName": "Tarus",
         "HasDied": false

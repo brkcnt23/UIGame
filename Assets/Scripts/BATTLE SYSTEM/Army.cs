@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class Army
 {
     public List<Unit> Units { get; private set; }
@@ -21,10 +22,14 @@ public class Army
             return PlayerStatHandler.pd.Units;
         }
     }
-
     public Army()
     {
         Units = new List<Unit>();
+    }
+
+    public void SetUnits(List<Unit> units)
+    {
+        Units = units;
     }
 
     /// <summary>
@@ -114,7 +119,7 @@ public class Army
         }
         else
         {
-            PlayerUnits.Add(new Unit(type, count));
+            PlayerUnits.Add(new Unit() { Type = type, Count = count });
         }
         return true;
     }

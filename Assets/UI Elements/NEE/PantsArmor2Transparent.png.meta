@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PantsArmor2Transparent_0: 2960777791729506964
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

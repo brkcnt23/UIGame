@@ -82,8 +82,14 @@ public class PlayerStatHandler : MonoBehaviour
 
         if (pd.PlayerArmy == null)
         {
-            pd.PlayerArmy = new Army(); // Or handle if the army is optional
+            pd.PlayerArmy = new Army();
         }
+
+        // Load player companions
+        //GetPlayerCompanions();
+
+        // Load player Units
+        pd.PlayerArmy.SetUnits(pd.Units);
 
         EventHandler.Instance.LoadEvents();
         HomeSettlementHandler.Instance.LoadHomeSettlement();

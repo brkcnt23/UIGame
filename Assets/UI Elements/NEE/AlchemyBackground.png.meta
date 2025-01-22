@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AlchemyBackground_0: -4577074942668878614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

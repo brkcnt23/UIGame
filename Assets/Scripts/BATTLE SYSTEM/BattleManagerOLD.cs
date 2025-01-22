@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleManager : MonoBehaviour
+public class BattleManagerOLD : MonoBehaviour
 {
     [Header("Battle Settings")]
     public int enemyTotalUnits = 500; // Rastgele oluşturulacak düşman ordusundaki toplam asker sayısı

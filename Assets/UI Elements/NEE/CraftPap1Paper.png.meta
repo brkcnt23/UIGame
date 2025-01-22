@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CraftPap1Paper_0: -7481984347783851797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

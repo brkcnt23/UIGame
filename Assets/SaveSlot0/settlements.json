@@ -129,7 +129,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -153,7 +153,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -177,7 +177,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -201,7 +201,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         }
@@ -528,7 +528,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -552,7 +552,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -576,7 +576,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -600,7 +600,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -624,7 +624,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 0
                             },
                             "Quality": 3
                         }
@@ -1357,41 +1357,11 @@
                     "ShopType": 2,
                     "Items": [
                         {
-                            "ID": 5414,
+                            "ID": 1006,
                             "Name": "Carpenter Item 1",
                             "Value": {
-                                "Gold": 32,
-                                "Silver": 83
-                            },
-                            "Category": 6,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 8264,
-                            "Name": "Carpenter Item 2",
-                            "Value": {
-                                "Gold": 32,
-                                "Silver": 42
-                            },
-                            "Category": 6,
-                            "Quantity": 4,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 6885,
-                            "Name": "Carpenter Item 3",
-                            "Value": {
-                                "Gold": 4,
-                                "Silver": 53
+                                "Gold": 36,
+                                "Silver": 96
                             },
                             "Category": 6,
                             "Quantity": 3,
@@ -1402,11 +1372,41 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9301,
+                            "ID": 8592,
+                            "Name": "Carpenter Item 2",
+                            "Value": {
+                                "Gold": 16,
+                                "Silver": 28
+                            },
+                            "Category": 6,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1755,
+                            "Name": "Carpenter Item 3",
+                            "Value": {
+                                "Gold": 24,
+                                "Silver": 88
+                            },
+                            "Category": 6,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4603,
                             "Name": "Carpenter Item 4",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 20
+                                "Gold": 4,
+                                "Silver": 50
                             },
                             "Category": 6,
                             "Quantity": 3,
@@ -1429,11 +1429,59 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 5976,
+                            "ID": 5340,
                             "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 16,
-                                "Silver": 43
+                                "Gold": 4,
+                                "Silver": 92
+                            },
+                            "Category": 1,
+                            "Quantity": 1,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50772
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 9862,
+                            "Name": "Tanner Item 2",
+                            "Value": {
+                                "Gold": 36,
+                                "Silver": 53
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 50772
+                            },
+                            "Quality": 3
+                        },
+                        {
+                            "ID": 5942,
+                            "Name": "Tanner Item 3",
+                            "Value": {
+                                "Gold": 36,
+                                "Silver": 14
                             },
                             "Category": 1,
                             "Quantity": 3,
@@ -1448,55 +1496,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50562
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 7594,
-                            "Name": "Tanner Item 2",
-                            "Value": {
-                                "Gold": 8,
-                                "Silver": 63
-                            },
-                            "Category": 1,
-                            "Quantity": 1,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50562
-                            },
-                            "Quality": 3
-                        },
-                        {
-                            "ID": 8191,
-                            "Name": "Tanner Item 3",
-                            "Value": {
-                                "Gold": 24,
-                                "Silver": 47
-                            },
-                            "Category": 1,
-                            "Quantity": 2,
-                            "Modifiers": [
-                                {
-                                    "Type": 3,
-                                    "Value": 1
-                                },
-                                {
-                                    "Type": 2,
-                                    "Value": 1
-                                }
-                            ],
-                            "ItemImage": {
-                                "instanceID": 50562
+                                "instanceID": 50772
                             },
                             "Quality": 3
                         }
@@ -1513,41 +1513,11 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 1914,
+                            "ID": 9293,
                             "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 12,
-                                "Silver": 32
-                            },
-                            "Category": 7,
-                            "Quantity": 2,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 2237,
-                            "Name": "Mystic Item 2",
-                            "Value": {
-                                "Gold": 16,
-                                "Silver": 68
-                            },
-                            "Category": 7,
-                            "Quantity": 1,
-                            "Modifiers": [],
-                            "ItemImage": {
-                                "instanceID": 0
-                            },
-                            "Quality": 0
-                        },
-                        {
-                            "ID": 9649,
-                            "Name": "Mystic Item 3",
-                            "Value": {
-                                "Gold": 24,
-                                "Silver": 98
+                                "Gold": 8,
+                                "Silver": 85
                             },
                             "Category": 7,
                             "Quantity": 3,
@@ -1558,14 +1528,44 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 1810,
+                            "ID": 8093,
+                            "Name": "Mystic Item 2",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 46
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 7848,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 32,
+                                "Silver": 48
+                            },
+                            "Category": 7,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 6891,
                             "Name": "Mystic Item 4",
                             "Value": {
                                 "Gold": 8,
-                                "Silver": 11
+                                "Silver": 71
                             },
                             "Category": 7,
-                            "Quantity": 2,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -1585,11 +1585,11 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 2311,
+                            "ID": 5155,
                             "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 20,
-                                "Silver": 59
+                                "Gold": 36,
+                                "Silver": 39
                             },
                             "Category": 5,
                             "Quantity": 4,
@@ -1600,11 +1600,26 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 9860,
+                            "ID": 4355,
                             "Name": "Mason Item 2",
                             "Value": {
+                                "Gold": 32,
+                                "Silver": 97
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 1839,
+                            "Name": "Mason Item 3",
+                            "Value": {
                                 "Gold": 16,
-                                "Silver": 89
+                                "Silver": 63
                             },
                             "Category": 5,
                             "Quantity": 3,
@@ -1615,14 +1630,29 @@
                             "Quality": 0
                         },
                         {
-                            "ID": 3807,
-                            "Name": "Mason Item 3",
+                            "ID": 5859,
+                            "Name": "Mason Item 4",
                             "Value": {
-                                "Gold": 8,
-                                "Silver": 63
+                                "Gold": 36,
+                                "Silver": 14
                             },
                             "Category": 5,
-                            "Quantity": 3,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 0
+                        },
+                        {
+                            "ID": 4888,
+                            "Name": "Mason Item 5",
+                            "Value": {
+                                "Gold": 28,
+                                "Silver": 20
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
@@ -2267,7 +2297,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -2291,7 +2321,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -2315,7 +2345,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         }
@@ -2657,7 +2687,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -2681,7 +2711,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -2705,7 +2735,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -2729,7 +2759,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         }
@@ -3586,7 +3616,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -3610,7 +3640,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -3634,7 +3664,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -3658,7 +3688,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         },
@@ -3682,7 +3712,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50334
+                                "instanceID": 0
                             },
                             "Quality": 3
                         }
@@ -3994,7 +4024,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -4018,7 +4048,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -4042,7 +4072,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         },
@@ -4066,7 +4096,7 @@
                                 }
                             ],
                             "ItemImage": {
-                                "instanceID": 50558
+                                "instanceID": 0
                             },
                             "Quality": 1
                         }

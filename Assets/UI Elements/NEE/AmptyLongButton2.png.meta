@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AmptyLongButton2_0: 2155411781463508790
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

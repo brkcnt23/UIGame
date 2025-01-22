@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChestArmor1Transparent_0: -1032876408697478858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

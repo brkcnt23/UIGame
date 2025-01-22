@@ -211,7 +211,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Greadsword3Transparent_0: 4905854704812390581
+      Greadsword3Transparent_1: -4556007266720613781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

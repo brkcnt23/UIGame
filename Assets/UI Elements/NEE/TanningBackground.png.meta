@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TanningBackground_0: -7364166694750853765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

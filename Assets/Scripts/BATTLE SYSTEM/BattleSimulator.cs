@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class BattleSimulator
     /// <param name="ownArmy">Kendi ordunuz.</param>
     /// <param name="enemyArmy">Düşman ordusu.</param>
     /// <returns>Toplam savaş gücü.</returns>
-    private float CalculateArmyPower(Army ownArmy, Army enemyArmy, TerrainType terrain, WeatherType weather)
+    public float CalculateArmyPower(Army ownArmy, Army enemyArmy, TerrainType terrain, WeatherType weather)
     {
         float power = 0f;
 
@@ -92,11 +93,9 @@ public class BattleSimulator
     /// <param name="army1">Birinci ordu.</param>
     /// <param name="army2">İkinci ordu.</param>
     /// <returns>Savaş sonucu.</returns>
-    public BattleResult SimulateBattle(Army army1, Army army2)
+    public BattleResult SimulateBattle(Army army1, Army army2, TerrainType terrain = TerrainType.Plains, WeatherType weather = WeatherType.Clear)
     {
         // Randomly determine terrain and weather
-        TerrainType terrain = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
-        WeatherType weather = (WeatherType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(WeatherType)).Length);
 
         float army1Power = CalculateArmyPower(army1, army2, terrain, weather);
         float army2Power = CalculateArmyPower(army2, army1, terrain, weather);
@@ -130,7 +129,7 @@ public class BattleSimulator
         List<string> battleEvents = GenerateBattleEvents(army1, army2, terrain, weather);
 
         // Return enhanced battle result with events
-        return new BattleResult(winner, loser, resultMessage, winnerCasualties, loserCasualties, battleEvents,terrain,weather);
+        return new BattleResult(winner, loser, resultMessage, winnerCasualties, loserCasualties, battleEvents, terrain, weather);
     }
 
     /// <summary>
@@ -184,14 +183,14 @@ public class BattleSimulator
             if (i == unitTypesCount - 1)
             {
                 // Son birlik türü için kalan tüm askerleri ata
-                enemyArmy.AddUnit(new Unit(unitTypes[i], remainingUnits));
+                enemyArmy.AddUnit(new Unit() { Type = unitTypes[i], Count = remainingUnits });
             }
             else
             {
                 // Rastgele bir sayı belirle, kalan asker sayısını aşmayacak şekilde
                 int maxUnitsForThisType = Mathf.Max(1, remainingUnits - (unitTypesCount - i - 1));
                 int unitsForThisType = UnityEngine.Random.Range(1, maxUnitsForThisType + 1);
-                enemyArmy.AddUnit(new Unit(unitTypes[i], unitsForThisType));
+                enemyArmy.AddUnit(new Unit() { Type = unitTypes[i], Count = unitsForThisType });
                 remainingUnits -= unitsForThisType;
             }
         }
@@ -284,6 +283,130 @@ public class BattleSimulator
         { UnitType.Knight, WeatherType.Fog },
         { UnitType.Soldier, WeatherType.Storm }
     };
+
+
+    /// <summary>
+    /// Coroutine to simulate the battle in stages.
+    /// </summary>
+    /// <param name="army1">First army.</param>
+    /// <param name="army2">Second army.</param>
+    /// <param name="onUpdate">Action to update the UI after each stage.</param>
+    /// <param name="onComplete">Action to call when the battle is complete.</param>
+    public IEnumerator SimulateBattleInStages(Army army1, Army army2, System.Action<BattleResult> onUpdate, System.Action<BattleResult> onComplete)
+    {
+        BattleResult result = new BattleResult();
+        // Initialize result with initial values...
+
+        while (army1.GetTotalUnits() > 0 && army2.GetTotalUnits() > 0)
+        {
+            // Simulate a single stage of the battle...
+            SimulateBattleStage(army1, army2, result);
+
+            // Update the total unit counts for each army
+            result.TotalUnitsArmy1 = army1.GetTotalUnits();
+            result.TotalUnitsArmy2 = army2.GetTotalUnits();
+
+            // Call the onUpdate action to update the UI
+            onUpdate(result);
+
+            // Wait for a short duration before the next stage
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        // Determine the winner and finalize the result...
+        DetermineWinner(army1, army2, result);
+        onComplete(result);
+    }
+
+    private void SimulateBattleStage(Army army1, Army army2, BattleResult result)
+    {
+        // Simulate a single stage of the battle...
+        // Update the result with the current state...
+        foreach (var unit1 in army1.Units)
+        {
+            foreach (var unit2 in army2.Units)
+            {
+                if (StrongAgainst.TryGetValue(unit1.Type, out UnitType strongAgainstType) && strongAgainstType == unit2.Type)
+                 {
+                    // Unit1 has an advantage over Unit2
+                    int casualties = Mathf.Min(UnityEngine.Random.Range(1, unit2.Count / 10), unit2.Count);
+                    unit2.Count -= casualties;
+                    if (!result.LoserCasualties.ContainsKey(unit2.Type))
+                    {
+                        result.LoserCasualties[unit2.Type] = 0;
+                    }
+                    result.LoserCasualties[unit2.Type] += casualties;
+                }
+                else if (StrongAgainst.TryGetValue(unit2.Type, out UnitType strongAgainstType2) && strongAgainstType2 == unit1.Type)
+                {
+                    // Unit2 has an advantage over Unit1
+                    int casualties = Mathf.Min(UnityEngine.Random.Range(1, unit1.Count / 10), unit1.Count);
+                    unit1.Count -= casualties;
+                    if (!result.WinnerCasualties.ContainsKey(unit1.Type))
+                    {
+                        result.WinnerCasualties[unit1.Type] = 0;
+                    }
+                    result.WinnerCasualties[unit1.Type] += casualties;
+                }
+                else
+                {
+                    // No advantage, both units take casualties
+                    int casualties1 = Mathf.Min(UnityEngine.Random.Range(1, unit1.Count / 20), unit1.Count);
+                    int casualties2 = Mathf.Min(UnityEngine.Random.Range(1, unit2.Count / 20), unit2.Count);
+                    unit1.Count -= casualties1;
+                    unit2.Count -= casualties2;
+                    if (!result.WinnerCasualties.ContainsKey(unit1.Type))
+                    {
+                        result.WinnerCasualties[unit1.Type] = 0;
+                    }
+                    if (!result.LoserCasualties.ContainsKey(unit2.Type))
+                    {
+                        result.LoserCasualties[unit2.Type] = 0;
+                    }
+                    result.WinnerCasualties[unit1.Type] += casualties1;
+                    result.LoserCasualties[unit2.Type] += casualties2;
+                }
+            }
+        }
+
+        // Add a battle event to the result
+        result.BattleEvents.Add($"Battle stage: {army1.GetTotalUnits()} vs {army2.GetTotalUnits()}");
+    }
+
+    private void DetermineWinner(Army army1, Army army2, BattleResult result)
+    {
+        if (army1.GetTotalUnits() > army2.GetTotalUnits())
+        {
+            result.Winner = army1;
+            result.Loser = army2;
+            result.ResultMessage = "You won the battle!";
+        }
+        else
+        {
+            result.Winner = army2;
+            result.Loser = army1;
+            result.ResultMessage = "You lost the battle!";
+        }
+    }
+
+    /// <summary>
+    /// Handles retreating from the battle.
+    /// </summary>
+    /// <param name="army">The army that is retreating.</param>
+    /// <returns>Casualties suffered during the retreat.</returns>
+    public Dictionary<UnitType, int> HandleRetreat(Army army)
+    {
+        Dictionary<UnitType, int> retreatCasualties = new Dictionary<UnitType, int>();
+
+        foreach (var unit in army.Units)
+        {
+            int casualties = UnityEngine.Random.Range(0, unit.Count / 2); // Randomly lose up to half of each unit type
+            unit.Count -= casualties;
+            retreatCasualties[unit.Type] = casualties;
+        }
+
+        return retreatCasualties;
+    }
 }
 
 
@@ -294,14 +417,16 @@ public enum WeatherType { Clear, Rain, Fog, Storm }
 
 public class BattleResult
 {
-    public Army Winner { get; private set; }
-    public Army Loser { get; private set; }
-    public string ResultMessage { get; private set; }
+    public Army Winner { get; set; }
+    public Army Loser { get; set; }
+    public string ResultMessage { get; set; }
     public Dictionary<UnitType, int> WinnerCasualties { get; private set; }
     public Dictionary<UnitType, int> LoserCasualties { get; private set; }
     public List<string> BattleEvents { get; private set; }
     public TerrainType Terrain { get; private set; }
     public WeatherType Weather { get; private set; }
+    public int TotalUnitsArmy1 { get; set; }
+    public int TotalUnitsArmy2 { get; set; }
 
     public BattleResult(Army winner, Army loser, string message,
                        Dictionary<UnitType, int> winnerCasualties,
@@ -319,4 +444,13 @@ public class BattleResult
         Terrain = terrain;
         Weather = weather;
     }
+
+    public BattleResult()
+    {
+        WinnerCasualties = new Dictionary<UnitType, int>();
+        LoserCasualties = new Dictionary<UnitType, int>();
+        BattleEvents = new List<string>();
+    }
+
+
 }

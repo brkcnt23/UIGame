@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BootsArmor3Transparent_0: -796497264555979323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

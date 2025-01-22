@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      steel_ingot_0: -3651005545543592653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
