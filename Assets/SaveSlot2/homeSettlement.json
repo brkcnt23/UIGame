@@ -1,0 +1,295 @@
+{
+    "homeSettlement": {
+        "Name": "turk",
+        "ID": 0,
+        "isUnlocked": true,
+        "levelToUnlock": 0,
+        "Population": 10,
+        "Wealth": {
+            "Gold": 100,
+            "Silver": 0
+        },
+        "Quality": 1,
+        "Shops": [
+            {
+                "Name": "Muhittin's Blacksmith",
+                "level": 1,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0,
+                "ShopType": 0,
+                "Items": [
+                    {
+                        "ID": 2893,
+                        "Name": "Blacksmith Item 1",
+                        "Value": {
+                            "Gold": 7,
+                            "Silver": 47
+                        },
+                        "Category": 0,
+                        "Quantity": 2,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 1
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 4
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 8463,
+                        "Name": "Blacksmith Item 2",
+                        "Value": {
+                            "Gold": 4,
+                            "Silver": 12
+                        },
+                        "Category": 0,
+                        "Quantity": 2,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 3
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 4
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 7179,
+                        "Name": "Blacksmith Item 3",
+                        "Value": {
+                            "Gold": 9,
+                            "Silver": 51
+                        },
+                        "Category": 0,
+                        "Quantity": 4,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 3
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 2
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 4853,
+                        "Name": "Blacksmith Item 4",
+                        "Value": {
+                            "Gold": 5,
+                            "Silver": 93
+                        },
+                        "Category": 0,
+                        "Quantity": 3,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 3
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 2
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    }
+                ],
+                "ItemEntries": [],
+                "Cash": {
+                    "Gold": 3,
+                    "Silver": 50
+                },
+                "BuyMultiplier": 0.6000000238418579,
+                "SellMultiplier": 1.0,
+                "MaxAffordableItemQuality": 10,
+                "AcceptedCategories": [
+                    6,
+                    5,
+                    7
+                ]
+            },
+            {
+                "Name": "General Store",
+                "level": 1,
+                "maxLevel": 0,
+                "cost": 0,
+                "income": 0,
+                "Resources": [],
+                "upgradeHour": 0,
+                "ShopType": 5,
+                "Items": [
+                    {
+                        "ID": 6847,
+                        "Name": "GeneralStore Item 1",
+                        "Value": {
+                            "Gold": 7,
+                            "Silver": 22
+                        },
+                        "Category": 5,
+                        "Quantity": 4,
+                        "Weight": 1.0,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 9370,
+                        "Name": "GeneralStore Item 2",
+                        "Value": {
+                            "Gold": 3,
+                            "Silver": 94
+                        },
+                        "Category": 5,
+                        "Quantity": 2,
+                        "Weight": 1.0,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 1197,
+                        "Name": "GeneralStore Item 3",
+                        "Value": {
+                            "Gold": 5,
+                            "Silver": 17
+                        },
+                        "Category": 5,
+                        "Quantity": 2,
+                        "Weight": 1.0,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 2885,
+                        "Name": "GeneralStore Item 4",
+                        "Value": {
+                            "Gold": 4,
+                            "Silver": 21
+                        },
+                        "Category": 5,
+                        "Quantity": 3,
+                        "Weight": 1.0,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    },
+                    {
+                        "ID": 6562,
+                        "Name": "GeneralStore Item 5",
+                        "Value": {
+                            "Gold": 7,
+                            "Silver": 75
+                        },
+                        "Category": 5,
+                        "Quantity": 1,
+                        "Weight": 1.0,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1
+                    }
+                ],
+                "ItemEntries": [],
+                "Cash": {
+                    "Gold": 5,
+                    "Silver": 0
+                },
+                "BuyMultiplier": 0.6000000238418579,
+                "SellMultiplier": 1.0,
+                "MaxAffordableItemQuality": 10,
+                "AcceptedCategories": [
+                    6,
+                    5,
+                    7
+                ]
+            }
+        ],
+        "Tavern": {
+            "Name": "Mükremin's Tavern",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0,
+            "Quests": [],
+            "Companions": []
+        },
+        "TownHall": {
+            "Name": "turk's Hall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0,
+            "Jobs": []
+        },
+        "Walls": {
+            "Name": "turk's Wall",
+            "level": 0,
+            "maxLevel": 0,
+            "cost": 0,
+            "income": 0,
+            "Resources": [],
+            "upgradeHour": 0
+        },
+        "Type": 0
+    }
+}

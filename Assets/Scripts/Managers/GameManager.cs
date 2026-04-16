@@ -8,14 +8,16 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
     public ItemSpriteDatabase spriteDatabase;
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 
     [Header("Save Slot Container")]
     public GameObject saveSlotContainer;
-    Button[] saveSlotButtons = new Button[3];
+    private Button[] saveSlotButtons = new Button[3];
     public Button[] deleteSlotButtons;
+
     [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject startGamePanel;
@@ -41,77 +43,128 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
+
     private void Start()
     {
         DisableAllPanels();
-        mainMenuPanel.SetActive(true);
-        navPanel.SetActive(false);
-        infoPanel.SetActive(false);
+
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
+        if (navPanel != null) navPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
 
         LoadPlayerData();
         PopulateButtonsAndTexts();
     }
 
+    // -----------------------------
+    // SAVE SLOT UI
+    // -----------------------------
+
     public void LoadPlayerData()
     {
+        playerData.Clear();
+
         for (int i = 0; i <= 2; i++)
         {
-            JSONDataHandler JSONhandler = new JSONDataHandler(i);
-            PlayerDataWrapper wrapper = JSONhandler.LoadData<PlayerDataWrapper>("playerData.json");
-            playerData.Add(wrapper != null ? wrapper.pd : new PlayerData());
+            JSONDataHandler jsonHandler = new JSONDataHandler(i);
+            PlayerDataWrapper wrapper = jsonHandler.LoadData<PlayerDataWrapper>("playerData.json");
+
+            PlayerData pd = wrapper != null ? wrapper.pd : new PlayerData();
+            pd.InitializeMoneyFromLegacyIfNeeded();
+
+            if (pd.Items == null) pd.Items = new List<Item>();
+            if (pd.ItemStacks == null) pd.ItemStacks = new List<ItemStackData>();
+            if (pd.Companions == null) pd.Companions = new List<Companion>();
+            if (pd.Quests == null) pd.Quests = new List<Quest_SO_Constructor>();
+            if (pd.Units == null) pd.Units = new List<Unit>();
+            if (pd.PlayerArmy == null) pd.PlayerArmy = new Army();
+
+            playerData.Add(pd);
         }
     }
+
     public void PopulateButtonsAndTexts()
     {
+        if (saveSlotContainer == null)
+        {
+            Debug.LogError("GameManager: saveSlotContainer is null!");
+            return;
+        }
+
         saveSlotButtons = saveSlotContainer.GetComponentsInChildren<Button>();
+
+        if (saveSlotButtons == null || saveSlotButtons.Length == 0)
+        {
+            Debug.LogWarning("GameManager: No save slot buttons found!");
+            return;
+        }
 
         foreach (Button button in saveSlotButtons)
         {
-            int _index = button.gameObject.transform.GetSiblingIndex();
+            int index = button.gameObject.transform.GetSiblingIndex();
             button.onClick.RemoveAllListeners();
 
-            if (playerData[_index].Name == null)
+            PlayerData pd = playerData[index];
+
+            if (string.IsNullOrEmpty(pd.Name))
             {
-                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {_index + 1}\nClick to Start New Game";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {index + 1}\nClick to Start New Game";
                 button.onClick.AddListener(() =>
                 {
-                    PlayerPrefs.SetInt("Slot", _index);
+                    PlayerPrefs.SetInt("Slot", index);
                     DisableAllPanels();
-                    InputPanel.SetActive(true);
+                    if (InputPanel != null) InputPanel.SetActive(true);
                 });
-                deleteSlotButtons[_index].gameObject.SetActive(false);
+
+                if (deleteSlotButtons != null && index < deleteSlotButtons.Length && deleteSlotButtons[index] != null)
+                    deleteSlotButtons[index].gameObject.SetActive(false);
             }
             else
             {
-                button.onClick.AddListener(() => LoadGame(_index));
-                button.GetComponentInChildren<TextMeshProUGUI>().text = $"{playerData[_index].Name} of {playerData[_index].VillageName}\nDay: {playerData[_index].Day}";
+                button.GetComponentInChildren<TextMeshProUGUI>().text =
+                    $"{pd.Name} of {pd.VillageName}\nDay: {pd.Day}\nMoney: {pd.Money.Gold}g {pd.Money.Silver}s";
 
-                // Show and assign the delete button
-                deleteSlotButtons[_index].gameObject.SetActive(true);
-                deleteSlotButtons[_index].onClick.RemoveAllListeners();
-                deleteSlotButtons[_index].onClick.AddListener(() => DeleteSaveSlot(_index));
+                button.onClick.AddListener(() => LoadGame(index));
+
+                if (deleteSlotButtons != null && index < deleteSlotButtons.Length && deleteSlotButtons[index] != null)
+                {
+                    deleteSlotButtons[index].gameObject.SetActive(true);
+                    deleteSlotButtons[index].onClick.RemoveAllListeners();
+                    deleteSlotButtons[index].onClick.AddListener(() => DeleteSaveSlot(index));
+                }
             }
         }
     }
 
     public void LoadGame(int slot)
     {
-        if (playerData[slot] == null)
+        if (slot < 0 || slot >= playerData.Count)
         {
-            print("No Game Data Found... Starting New Game");
+            Debug.LogError($"GameManager: Invalid slot index {slot}");
+            return;
+        }
+
+        if (playerData[slot] == null || string.IsNullOrEmpty(playerData[slot].Name))
+        {
+            Debug.Log("No Game Data Found... Starting New Game");
             ShowStartGamePanel();
             return;
         }
-        else
+
+        Debug.Log("Loading Game...");
+        PlayerPrefs.SetInt("Slot", slot);
+
+        if (PlayerStatHandler.Instance == null)
         {
-            print("Loading Game...");
-            PlayerPrefs.SetInt("Slot", slot);
-            PlayerStatHandler.Instance.LoadPlayerData();
-            ShowSettlementPanel();
+            Debug.LogError("GameManager: PlayerStatHandler.Instance is null!");
+            return;
         }
 
+        PlayerStatHandler.Instance.LoadPlayerData();
+        ShowSettlementPanel();
     }
 
     public void DeleteSaveSlot(int slotIndex)
@@ -128,30 +181,39 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning($"SaveSlot{slotIndex} does not exist.");
         }
 
-        // Reset the PlayerData for the slot
         playerData[slotIndex] = new PlayerData();
-
-        // Update the UI
         PopulateButtonsAndTexts();
     }
 
+    // -----------------------------
+    // PANEL CONTROL
+    // -----------------------------
+
     public void DisableAllPanels()
     {
-        mainMenuPanel.SetActive(false);
-        startGamePanel.SetActive(false);
-        loadGamePanel.SetActive(false);
-        creditsPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        InputPanel.SetActive(false);
-        saveSlotsPanel.SetActive(false);
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+        if (startGamePanel != null) startGamePanel.SetActive(false);
+        if (loadGamePanel != null) loadGamePanel.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (InputPanel != null) InputPanel.SetActive(false);
+        if (saveSlotsPanel != null) saveSlotsPanel.SetActive(false);
     }
 
     public void ShowSettlementPanel()
     {
         DisableAllPanels();
-        navPanel.SetActive(true);
-        infoPanel.SetActive(true);
-        startGamePanel.SetActive(true);
+
+        if (navPanel != null) navPanel.SetActive(true);
+        if (infoPanel != null) infoPanel.SetActive(true);
+        if (startGamePanel != null) startGamePanel.SetActive(true);
+
+        // NAV içindeki alt panelleri kapat
+        NavUISystem navUi = FindObjectOfType<NavUISystem>(true);
+        if (navUi != null)
+        {
+            navUi.DisableAllNavPanels();
+        }
 
         isEnteredSettlement = true;
     }
@@ -159,30 +221,33 @@ public class GameManager : MonoBehaviour
     public void ShowMainMenuPanel()
     {
         DisableAllPanels();
-        navPanel.SetActive(false);
-        infoPanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
+
+        if (navPanel != null) navPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
     }
 
     public void ShowStartGamePanel()
     {
         DisableAllPanels();
+        LoadPlayerData();
         PopulateButtonsAndTexts();
-        saveSlotsPanel.SetActive(true);
+
+        if (saveSlotsPanel != null) saveSlotsPanel.SetActive(true);
     }
 
     public void ShowCreditsPanel()
     {
         DisableAllPanels();
-        startGamePanel.SetActive(true);
-        creditsPanel.SetActive(true);
+        if (startGamePanel != null) startGamePanel.SetActive(true);
+        if (creditsPanel != null) creditsPanel.SetActive(true);
     }
 
     public void ShowSettingsPanel()
     {
         DisableAllPanels();
-        startGamePanel.SetActive(true);
-        settingsPanel.SetActive(true);
+        if (startGamePanel != null) startGamePanel.SetActive(true);
+        if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 
     public void LoadLastSavedGame()
@@ -195,69 +260,93 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You are Dead...");
     }
+
+    // -----------------------------
+    // NEW GAME
+    // -----------------------------
+
     public void StartNewGame()
     {
         SetPlayerData();
+        LoadPlayerData();
         LoadGame(PlayerPrefs.GetInt("Slot"));
     }
 
     public void SetPlayerData()
     {
-        string name, villageName;
-        name = PlayerNameInput.text;
-        villageName = VillageNameInput.text;
+        string name = PlayerNameInput != null ? PlayerNameInput.text.Trim() : "";
+        string villageName = VillageNameInput != null ? VillageNameInput.text.Trim() : "";
 
         if (name.Length == 0 || villageName.Length == 0)
             return;
 
-        PlayerData playerData = new PlayerData();
-        playerData.Name = name;
-        playerData.VillageName = villageName;
-        playerData.Day = 1;
-        playerData.Hour = 6;
-        playerData.Level = 1;
-        playerData.Health = 100;
-        playerData.MaxHealth = 100;
-        playerData.Experience = 0;
-        playerData.MaxExperience = 149;
-        playerData.Gold = 5;
-        playerData.Silver = 0;
-        playerData.Alignment = 0;
-        playerData.Strength = 1;
-        playerData.StrengthXP = 149;
-        playerData.Dexterity = 1;
-        playerData.DexterityXP = 149;
-        playerData.Constitution = 1;
-        playerData.ConstitutionXP = 149;
-        playerData.Charisma = 1;
-        playerData.CharismaXP = 149;
-        playerData.SmitherSkillLevel = 1;
-        playerData.SmitherSkillXP = 149;
-        playerData.TannerSkillLevel = 1;
-        playerData.TannerSkillXP = 149;
-        playerData.CarpenterSkillLevel = 1;
-        playerData.CarpenterSkillXP = 149;
-        playerData.MasonSkillLevel = 1;
-        playerData.MasonSkillXP = 149;
-        playerData.AlchemistSkillLevel = 1;
-        playerData.AlchemistSkillXP = 149;
-        playerData.TotalBattlesFought = 0;
-        playerData.TotalBattlesWon = 0;
-        playerData.TotalBattlesLost = 0;
-        playerData.MaxExhaustionLevel = 10;
-        playerData.CurrentExhaustionLevel = 0;
-        playerData.Rations = 10;
-        playerData.PlayerArmy = new Army();
-        playerData.LastSleepDay = 1;
-        playerData.LastSleepHour = 6;
-        playerData.LastSleepMinute = 0;
-        playerData.LastMealDay = 1;
-        playerData.LastMealHour = 6;
-        playerData.LastMealMinute = 0;
+        PlayerData pd = new PlayerData
+        {
+            Name = name,
+            VillageName = villageName,
+            Day = 1,
+            Hour = 6,
+            Minute = 0,
 
+            Level = 1,
+            Health = 100,
+            MaxHealth = 100,
+            Experience = 0,
+            MaxExperience = 149,
 
-        playerData.HasDied = false;
+            Alignment = 0,
 
+            Strength = 1,
+            StrengthXP = 149,
+            Dexterity = 1,
+            DexterityXP = 149,
+            Constitution = 1,
+            ConstitutionXP = 149,
+            Charisma = 1,
+            CharismaXP = 149,
+
+            SmitherSkillLevel = 1,
+            SmitherSkillXP = 149,
+            TannerSkillLevel = 1,
+            TannerSkillXP = 149,
+            CarpenterSkillLevel = 1,
+            CarpenterSkillXP = 149,
+            MasonSkillLevel = 1,
+            MasonSkillXP = 149,
+            AlchemistSkillLevel = 1,
+            AlchemistSkillXP = 149,
+
+            TotalBattlesFought = 0,
+            TotalBattlesWon = 0,
+            TotalBattlesLost = 0,
+
+            MaxExhaustionLevel = 10,
+            CurrentExhaustionLevel = 0,
+
+            Rations = 10,
+            PlayerArmy = new Army(),
+
+            LastSleepDay = 1,
+            LastSleepHour = 6,
+            LastSleepMinute = 0,
+
+            LastMealDay = 1,
+            LastMealHour = 6,
+            LastMealMinute = 0,
+
+            HasDied = false,
+
+            Companions = new List<Companion>(),
+            Items = new List<Item>(),
+            ItemStacks = new List<ItemStackData>(),
+            Units = new List<Unit>(),
+            Quests = new List<Quest_SO_Constructor>()
+        };
+
+        // Yeni para sistemi
+        pd.SetMoney(5, 0);
+
+        // Home settlement
         Settlement homeSettlement = new Settlement
         {
             ID = 0,
@@ -272,50 +361,102 @@ public class GameManager : MonoBehaviour
             TownHall = new TownHalls { Name = $"{villageName}'s Hall" },
             Walls = new Walls { Name = $"{villageName}'s Wall" }
         };
+
+        // Blacksmith
         Shops blacksmithShop = new Shops
         {
             Name = "Muhittin's Blacksmith",
             ShopType = ShopTypes.Blacksmith,
             level = 1
         };
+
         blacksmithShop.Items.AddRange(ItemGenerator.GenerateItems(ShopTypes.Blacksmith, blacksmithShop.level, spriteDatabase));
+        blacksmithShop.Cash = new Currency(3, 50);
+
         List<StatModifier> modifiers = new List<StatModifier>
         {
             new StatModifier(StatType.Strength, 10, "Crafting"),
             new StatModifier(StatType.Constitution, 5, "Crafting")
         };
 
-        Sprite armorSprite = spriteDatabase.GetSprite(ItemCategory.Armor, 1);
+        Sprite armorSprite = spriteDatabase != null ? spriteDatabase.GetSprite(ItemCategory.Armor, 1) : null;
 
         Item customArmor = new Item(
-            1500,                       // ID
-            "Armor",                    // Name
-            54,                         // Gold value
-            80,                         // Silver value
-            ItemCategory.Armor,         // Category
-            modifiers,                  // Modifiers
-            armorSprite,                // Item image
-            1,                          // Quality
-            1                           // Quantity
+            1500,
+            "Armor",
+            54,
+            80,
+            ItemCategory.Armor,
+            modifiers,
+            armorSprite,
+            1,
+            1,
+            8f,
+            false,
+            1
         );
 
         blacksmithShop.Items.Add(customArmor);
         homeSettlement.Shops.Add(blacksmithShop);
 
+        // General store
         Shops generalStore = new Shops
         {
             Name = "General Store",
             ShopType = ShopTypes.GeneralStore,
-            level = 1
+            level = 1,
+            Cash = new Currency(5, 0)
         };
+
         generalStore.Items.AddRange(ItemGenerator.GenerateItems(ShopTypes.GeneralStore, generalStore.level, spriteDatabase));
+        homeSettlement.Shops.Add(generalStore);
 
-        PlayerStatHandler.Instance.pd = playerData;
-        HomeSettlementHandler.Instance.homeSettlement = homeSettlement;
+        if (PlayerStatHandler.Instance != null)
+        {
+            PlayerStatHandler.Instance.pd = pd;
+        }
+        else
+        {
+            Debug.LogError("GameManager: PlayerStatHandler.Instance is null during new game creation!");
+            return;
+        }
 
-        EventHandler.Instance.LoadEventsFromSourceData();
-        SettlementHandler.Instance.LoadSettlementsFromSourceData();
-        TravelSystem.Instance.LoadTravelDataFromSourceData();
+        if (HomeSettlementHandler.Instance != null)
+        {
+            HomeSettlementHandler.Instance.homeSettlement = homeSettlement;
+        }
+        else
+        {
+            Debug.LogError("GameManager: HomeSettlementHandler.Instance is null!");
+        }
+
+        if (EventHandler.Instance != null)
+        {
+            EventHandler.Instance.LoadEventsFromSourceData();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: EventHandler.Instance is null!");
+        }
+
+        if (SettlementHandler.Instance != null)
+        {
+            SettlementHandler.Instance.LoadSettlementsFromSourceData();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: SettlementHandler.Instance is null!");
+        }
+
+        if (TravelSystem.Instance != null)
+        {
+            TravelSystem.Instance.LoadTravelDataFromSourceData();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: TravelSystem.Instance is null!");
+        }
+
         PlayerStatHandler.Instance.SavePlayerData();
     }
 }

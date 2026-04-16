@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class JobSystem : MonoBehaviour
 {
     public static JobSystem Instance { get; set; }
-    [SerializeField] private List<Job_SO_Constructor> availableJobs; // List of available jobs
+
+    [SerializeField] private List<Job_SO_Constructor> availableJobs;
     private TimeSystem timeSystem;
 
     private void Awake()
@@ -17,15 +18,24 @@ public class JobSystem : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
     private void Start()
     {
         timeSystem = TimeSystem.Instance;
+
+        if (timeSystem == null)
+        {
+            Debug.LogWarning("JobSystem: TimeSystem.Instance is null!");
+        }
     }
 
-    // Method for "Help the Merchants"
+    // -----------------------------
+    // STABLE JOBS
+    // -----------------------------
+
     public void StartHelpMerchants()
     {
         Debug.Log("Starting job: Help the Merchants");
@@ -33,21 +43,20 @@ public class JobSystem : MonoBehaviour
         GrantMerchantsReward();
     }
 
-    // Method for "Help the Scouts"
     public void StartHelpScouts()
     {
         Debug.Log("Starting job: Help the Scouts");
         StartJobWithDuration();
         GrantScoutsReward();
     }
+
     public void StartGatherHerbs()
     {
         Debug.Log("Starting job: Gathering Herbs");
-        StartJobWithDuration(); // Use the time system to simulate job duration
+        StartJobWithDuration();
         GrantGatherHerbsReward();
     }
 
-    // Method for "Cutting Woods"
     public void StartCuttingWoods()
     {
         Debug.Log("Starting job: Cutting Woods");
@@ -55,7 +64,6 @@ public class JobSystem : MonoBehaviour
         GrantCuttingWoodsReward();
     }
 
-    // Method for "Laboring Mines"
     public void StartLaboringMines()
     {
         Debug.Log("Starting job: Laboring Mines");
@@ -63,119 +71,179 @@ public class JobSystem : MonoBehaviour
         GrantLaboringMinesReward();
     }
 
-    // General method to handle job duration
     private void StartJobWithDuration()
     {
-        //int jobDurationMinutes = 12 * 60; // 12 hours
-        //StartCoroutine(timeSystem.AdvanceTimeCoroutine(0,12,0));
-        TimeSystem.Instance.AnimateTimeChange(0, 12, 0, 0.5f);
+        if (TimeSystem.Instance != null)
+        {
+            TimeSystem.Instance.AnimateTimeChange(0, 12, 0, 0.5f);
+        }
+        else
+        {
+            Debug.LogError("JobSystem: TimeSystem.Instance is null! Cannot advance time.");
+        }
     }
 
-    // Public method for starting custom jobs
     public void StartJob(Job_SO_Constructor job)
     {
+        if (job == null)
+        {
+            Debug.LogWarning("JobSystem: job is null.");
+            return;
+        }
+
         Debug.Log($"Starting job: {job.Name}");
         StartJobWithDuration();
         GrantJobRewards(job);
     }
+
     private int GetRand(int min, int max)
     {
-        int rand = Random.Range(min, max + 1);
-        return rand;
+        return Random.Range(min, max + 1);
     }
 
-    // Individual reward methods
+    // -----------------------------
+    // STABLE JOB REWARDS
+    // -----------------------------
+
     private void GrantMerchantsReward()
     {
+        if (PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("JobSystem: PlayerStatHandler.Instance is null! Cannot grant merchants reward.");
+            return;
+        }
+
         int randxp = GetRand(20, 40);
-        int randmn = GetRand(80, 120);
-        PlayerStatHandler.Instance.pd.Silver += randmn;
+        int randMoney = GetRand(80, 120);
+
+        PlayerStatHandler.Instance.pd.AddMoney(0, randMoney);
         PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, randxp);
-        Debug.Log($"Reward: {randmn} Silver & {randxp} Charisma XP");
+
+        Debug.Log($"Reward: {randMoney} Silver & {randxp} Charisma XP");
+        RefreshUI();
     }
 
     private void GrantScoutsReward()
     {
+        if (PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("JobSystem: PlayerStatHandler.Instance is null! Cannot grant scouts reward.");
+            return;
+        }
+
         int randxp = GetRand(20, 40);
-        int randmn = GetRand(120, 150);
-        PlayerStatHandler.Instance.pd.Silver += randmn;
+        int randMoney = GetRand(120, 150);
+
+        PlayerStatHandler.Instance.pd.AddMoney(0, randMoney);
         PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randxp);
-        Debug.Log($"Reward: {randmn} Silver & {randxp} Dexterity XP");
+
+        Debug.Log($"Reward: {randMoney} Silver & {randxp} Dexterity XP");
+        RefreshUI();
     }
 
     private void GrantGatherHerbsReward()
     {
-        int randH = GetRand(5, 10); // Randomly determine the number of herbs
-        int randXP = GetRand(15, 30); // Random XP reward for gathering herbs
-        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randH));
-        Debug.Log($"Reward: {randH} Herbs & {randXP} Dexterity XP");
+        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("JobSystem: required systems are null! Cannot grant gather herbs reward.");
+            return;
+        }
 
+        int randHerbs = GetRand(5, 10);
+        int randXP = GetRand(15, 30);
+
+        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randHerbs, 0.2f, true, 99));
+        PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randXP);
+
+        Debug.Log($"Reward: {randHerbs} Herbs & {randXP} Dexterity XP");
+        RefreshUI();
     }
 
     private void GrantCuttingWoodsReward()
     {
-        int randw = GetRand(3, 6);
+        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("JobSystem: required systems are null! Cannot grant cutting woods reward.");
+            return;
+        }
+
+        int randWood = GetRand(3, 6);
         int randxp = GetRand(20, 40);
-        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randw));
+
+        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randWood, 1.5f, true, 99));
         PlayerStatHandler.Instance.AddStatXP(StatType.Strength, randxp);
-        Debug.Log($"Reward: Wood {randw} & Strength XP");
+
+        Debug.Log($"Reward: Wood x{randWood} & Strength XP");
+        RefreshUI();
     }
 
     private void GrantLaboringMinesReward()
     {
+        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("JobSystem: required systems are null! Cannot grant laboring mines reward.");
+            return;
+        }
+
         int randxp = GetRand(20, 40);
-        int rands = GetRand(3, 6);
-        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, rands));
+        int randStone = GetRand(3, 6);
+
+        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, randStone, 2.0f, true, 99));
+
         if (Dice.Roll(100) <= 20)
         {
-            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1));
+            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1, 1.0f, true, 99));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
+
         if (Dice.Roll(100) <= 5)
         {
-            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1));
+            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1, 0.3f, true, 99));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
+
         PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, randxp);
-        Debug.Log($"Reward: Stone {rands} & {randxp} Constitution XP");
+
+        Debug.Log($"Reward: Stone x{randStone} & {randxp} Constitution XP");
+        RefreshUI();
     }
 
-    // General reward method for custom jobs
+    // -----------------------------
+    // CUSTOM JOB REWARDS
+    // -----------------------------
+
     private void GrantJobRewards(Job_SO_Constructor job)
     {
-        switch (job.TargetStat)
+        if (PlayerStatHandler.Instance == null)
         {
-            case StatType.Charisma:
-                PlayerStatHandler.Instance.pd.Silver += job.Silver;
-                PlayerStatHandler.Instance.pd.CharismaXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
-                break;
-
-            case StatType.Dexterity:
-                PlayerStatHandler.Instance.pd.Silver += job.Silver;
-                PlayerStatHandler.Instance.pd.DexterityXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
-                break;
-
-            case StatType.Strength:
-                PlayerStatHandler.Instance.pd.Silver += job.Silver;
-                PlayerStatHandler.Instance.pd.StrengthXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
-                break;
-
-            case StatType.Constitution:
-                PlayerStatHandler.Instance.pd.Silver += job.Silver;
-                PlayerStatHandler.Instance.pd.ConstitutionXP += Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
-                break;
-
-            default:
-                Debug.LogWarning("Unknown stat type for rewards.");
-                break;
+            Debug.LogError("JobSystem: PlayerStatHandler.Instance is null! Cannot grant job rewards.");
+            return;
         }
 
-        Debug.Log($"Gained {job.Silver} Silver and {job.TargetStat} XP.");
-        PlayerUISystem.Instance.UpdateExhaustionText();
+        int statXp = Random.Range(job.StatRewardMin, job.StatRewardMax + 1);
+
+        PlayerStatHandler.Instance.pd.AddMoney(0, job.Silver);
+        PlayerStatHandler.Instance.AddStatXP(job.TargetStat, statXp);
+
+        Debug.Log($"Gained {job.Silver} Silver and {statXp} {job.TargetStat} XP.");
+        RefreshUI();
     }
 
     public List<Job_SO_Constructor> GetAvailableJobs()
     {
         return availableJobs;
+    }
+
+    private void RefreshUI()
+    {
+        if (PlayerUISystem.Instance != null)
+        {
+            PlayerUISystem.Instance.UpdateUIObjects();
+        }
+
+        if (InventoryUI.Instance != null)
+        {
+            InventoryUI.Instance.UpdateInventoryUI();
+        }
     }
 }

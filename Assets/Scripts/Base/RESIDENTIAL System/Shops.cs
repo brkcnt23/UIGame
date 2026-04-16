@@ -3,80 +3,98 @@ using UnityEngine;
 
 public enum ShopTypes
 {
-    Blacksmith,    // Weapons, armors
-    Tanner,        // Leather goods
-    Carpenter,     // Wooden items
-    Alchemist,     // Potions and rare ingredients
-    Mason,         // Building materials
-    GeneralStore,  // General items and resources
-    Mystic,        // Rare, magical items
-    defaultShop    // Fallback/default shop
+    Blacksmith,
+    Tanner,
+    Carpenter,
+    Alchemist,
+    Mason,
+    GeneralStore,
+    Mystic,
+    defaultShop
 }
 
 [System.Serializable]
 public class Shops : Residentials
 {
-    public ShopTypes ShopType;                  // Type of shop
-    public List<Item> Items;                    // For JSON deserialization
+    public string ShopId;                  // Unique per-settlement shop id
+    public string StockProfileId;          // SO profile lookup key
+    public string OwnerNpcId;              // NPC binding
+    public List<string> ShopTags = new();  // rare_stock, noble_clientele, frontier, etc.
+
+    public ShopTypes ShopType;
+
+    // Runtime / legacy
+    public List<Item> Items;
+    public List<ShopItemEntry> ItemEntries;
+
+    // Economy
+    public Currency Cash;
+    public float BuyMultiplier = 0.6f;
+    public float SellMultiplier = 1.0f;
+    public int MaxAffordableItemQuality = 10;
+    public List<ItemCategory> AcceptedCategories = new();
 
     public Shops()
     {
+        ShopId = string.Empty;
+        StockProfileId = string.Empty;
+        OwnerNpcId = string.Empty;
+
         ShopType = ShopTypes.defaultShop;
+
         Items = new List<Item>();
+        ItemEntries = new List<ShopItemEntry>();
+        ShopTags = new List<string>();
+
+        Cash = new Currency(0, 0);
+        BuyMultiplier = 0.6f;
+        SellMultiplier = 1.0f;
+        MaxAffordableItemQuality = 10;
+        AcceptedCategories = new List<ItemCategory>();
     }
 
-    /// <summary>
-    /// Add an item to the shop's inventory.
-    /// </summary>
-    /// <param name="item">The item to add.</param>
     public void AddItem(Item item)
     {
+        if (item == null) return;
         Items.Add(item);
     }
 
-    /// <summary>
-    /// Remove an item from the shop's inventory.
-    /// </summary>
-    /// <param name="item">The item to remove.</param>
     public void RemoveItem(Item item)
     {
-        if (Items.Contains(item))
-        {
-            Items.Remove(item);
-        }
+        if (item == null) return;
+        Items.Remove(item);
     }
 
-
-    /// <summary>
-    /// Get all items of a specific category.
-    /// </summary>
-    /// <param name="category">The item category to filter by.</param>
-    /// <returns>A list of items in the specified category.</returns>
     public List<Item> GetItemsByCategory(ItemCategory category)
     {
-        return Items.FindAll(item => item.Category == category);
+        return Items.FindAll(item => item != null && item.Category == category);
     }
 
-    /// <summary>
-    /// Display the shop's inventory in the console for debugging.
-    /// </summary>
-    public void DisplayInventory()
+    public void ClearRuntimeItems()
     {
-        Debug.Log($"Shop: {Name} (Type: {ShopType}) Inventory:");
-        foreach (var item in Items)
-        {
-            Debug.Log($"- {item.Name} (Category: {item.Category}, Value: {item.Value} silver)");
-        }
+        Items.Clear();
     }
 
-    public override void LevelUpResidential(ref PlayerData _Player)
+    public bool CanAcceptCategory(ItemCategory category)
     {
-        base.LevelUpResidential(ref _Player);
-        upgradeHour = CalculateUpgradeHour(_Player);
+        if (AcceptedCategories == null || AcceptedCategories.Count == 0)
+            return true;
 
-        foreach (var item in Items)
-        {
-            //item.AdjustValue(level);
-        }
+        return AcceptedCategories.Contains(category);
     }
+
+    public override void LevelUpResidential(ref PlayerData player)
+    {
+        base.LevelUpResidential(ref player);
+        upgradeHour = CalculateUpgradeHour(player);
+    }
+}
+
+[System.Serializable]
+public class ShopItemEntry
+{
+    public int ItemId;
+    public int Quantity = 1;
+    public int GoldOverride = -1;
+    public int SilverOverride = -1;
 }

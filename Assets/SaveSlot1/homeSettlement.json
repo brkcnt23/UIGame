@@ -20,7 +20,84 @@
                 "Resources": [],
                 "upgradeHour": 0,
                 "ShopType": 7,
-                "Items": []
+                "Items": [
+                    {
+                        "ID": 9471,
+                        "Name": "defaultShop Item 1",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 40
+                        },
+                        "Category": 7,
+                        "Quantity": 2,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 3512,
+                        "Name": "defaultShop Item 2",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 22
+                        },
+                        "Category": 7,
+                        "Quantity": 3,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 6252,
+                        "Name": "defaultShop Item 3",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 71
+                        },
+                        "Category": 7,
+                        "Quantity": 1,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 7176,
+                        "Name": "defaultShop Item 4",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 29
+                        },
+                        "Category": 7,
+                        "Quantity": 4,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    },
+                    {
+                        "ID": 9636,
+                        "Name": "defaultShop Item 5",
+                        "Value": {
+                            "Gold": 0,
+                            "Silver": 91
+                        },
+                        "Category": 7,
+                        "Quantity": 1,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 0
+                    }
+                ],
+                "ItemEntries": []
             }
         ],
         "Tavern": {

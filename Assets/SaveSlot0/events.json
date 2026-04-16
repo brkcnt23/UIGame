@@ -19,7 +19,7 @@
             "StatRewardMin": 1,
             "StatRewardMax": 3,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 2,
             "choices": [
                 {
                     "choiceText": "Fight the bandits head-on.",
@@ -31,6 +31,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 10,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -39,7 +41,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Try to negotiate with the bandits.",
@@ -51,6 +54,8 @@
                     "RequireMoney": 50,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -59,7 +64,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Run away as fast as you can.",
@@ -71,6 +77,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -79,7 +87,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Ignore the bandits and keep walking.",
@@ -91,6 +100,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -99,7 +110,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -113,6 +125,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -121,12 +135,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 1002,
             "Name": "Bandit Leader's Hideout",
             "Description": "After defeating the bandits, you discover their hideout. What will you do?",
             "DC": 14,
@@ -155,6 +170,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 5,
@@ -163,7 +180,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Report the hideout to the authorities.",
@@ -175,6 +193,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -183,7 +203,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Set the hideout on fire and leave.",
@@ -195,6 +216,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -203,27 +226,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
-                },
-                {
-                    "choiceText": "Leave the hideout and run away.",
-                    "choiceType": "Fail",
-                    "outcome": "You escape the hideout.",
-                    "followUpEventID": 0,
-                    "RequireStat": "Dexterity",
-                    "RequireStatValue": 0,
-                    "RequireMoney": 0,
-                    "isFight": false,
-                    "RequireItemName": "",
-                    "RequireHealth": 0,
-                    "RequireRation": 0,
-                    "RequireArmySize": 0,
-                    "SilverReward": 0,
-                    "StatRewardMin": 0,
-                    "StatRewardMax": 0,
-                    "TargetStat": 0,
-                    "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -237,6 +241,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -245,12 +251,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2001,
             "Name": "Wounded Knight",
             "Description": "A wounded knight collapses at the gates of your camp, seeking aid.",
             "DC": 8,
@@ -279,6 +286,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "Bandage",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -287,7 +296,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Take his belongings and leave him to his fate.",
@@ -299,6 +309,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -307,7 +319,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Escort the knight back to his kingdom.",
@@ -319,6 +332,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 2,
                     "RequireArmySize": 0,
@@ -327,7 +342,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Ignore him and continue your journey.",
@@ -339,6 +355,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -347,7 +365,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 3004,
@@ -361,6 +380,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -369,12 +390,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 3004,
             "Name": "Royal Gratitude",
             "Description": "The knight's family is grateful for your help and offers you a quest.",
             "DC": 12,
@@ -403,6 +425,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -411,7 +435,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Politely decline the offer.",
@@ -423,6 +448,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -431,7 +458,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Demand more payment upfront.",
@@ -443,6 +471,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -451,7 +481,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Leave without a word.",
@@ -463,6 +494,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -471,7 +504,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -485,6 +519,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -493,12 +529,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2002,
             "Name": "Lost Child",
             "Description": "A lost child wanders into your camp, seeking help to find their family.",
             "DC": 6,
@@ -515,7 +552,7 @@
             "StatRewardMin": 1,
             "StatRewardMax": 3,
             "isHaveWar": false,
-            "encounterCooldown": 1,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Help the child find their family.",
@@ -527,6 +564,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -535,7 +574,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Use the child as a distraction for a robbery.",
@@ -547,6 +587,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -555,7 +597,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Ignore the child and continue your journey.",
@@ -567,6 +610,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -575,7 +620,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Take the child to the authorities.",
@@ -587,6 +633,8 @@
                     "RequireMoney": 50,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -595,7 +643,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -609,6 +658,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -617,12 +668,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2003,
             "Name": "Mysterious Stranger",
             "Description": "A mysterious stranger approaches you with an offer of power in exchange for a favor.",
             "DC": 15,
@@ -651,6 +703,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -659,7 +713,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Refuse the stranger's offer.",
@@ -671,6 +726,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -679,7 +736,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Attack the stranger.",
@@ -691,6 +749,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -699,7 +759,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Ask for more information before deciding.",
@@ -711,6 +772,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -719,7 +782,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -733,6 +797,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -741,12 +807,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2004,
             "Name": "Haunted Forest",
             "Description": "The villagers speak of a haunted forest where the dead walk at night. They ask for your help in putting the spirits to rest.",
             "DC": 10,
@@ -775,6 +842,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "Holy Water",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -783,7 +852,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Destroy the spirits with force.",
@@ -795,6 +865,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -803,7 +875,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Ignore the villagers' request.",
@@ -815,6 +888,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -823,7 +898,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Investigate the forest for more information.",
@@ -835,6 +911,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -843,7 +921,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -857,6 +936,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -865,12 +946,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2005,
             "Name": "Cursed Artifact",
             "Description": "A villager brings you a cursed artifact that is causing trouble in the village. They ask for your help in destroying it.",
             "DC": 12,
@@ -899,6 +981,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -907,7 +991,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Use the artifact to gain power.",
@@ -919,6 +1004,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -927,7 +1014,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Bury the artifact to contain its curse.",
@@ -939,6 +1027,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -947,7 +1037,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Study the artifact for more information.",
@@ -959,6 +1050,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -967,7 +1060,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -981,6 +1075,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -989,12 +1085,13 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2006,
             "Name": "Dragon Attack",
             "Description": "A dragon attacks the village, threatening to destroy everything in its path. The villagers ask for your help in slaying the beast.",
             "DC": 15,
@@ -1023,6 +1120,8 @@
                     "RequireMoney": 0,
                     "isFight": true,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -1031,7 +1130,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Negotiate with the dragon.",
@@ -1043,6 +1143,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -1051,7 +1153,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Flee and warn the villagers.",
@@ -1063,6 +1166,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -1071,7 +1176,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 },
                 {
                     "choiceText": "Use the villagers as bait to lure the dragon away.",
@@ -1083,6 +1189,8 @@
                     "RequireMoney": 0,
                     "isFight": false,
                     "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
                     "RequireHealth": 0,
                     "RequireRation": 0,
                     "RequireArmySize": 0,
@@ -1091,7 +1199,8 @@
                     "StatRewardMax": 0,
                     "TargetStat": 0,
                     "ExperienceReward": 0,
-                    "AlignmentChange": 0
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -1105,6 +1214,8 @@
                 "RequireMoney": 0,
                 "isFight": false,
                 "RequireItemName": "",
+                "RequireItemId": 0,
+                "RequireItemQuantity": 1,
                 "RequireHealth": 0,
                 "RequireRation": 0,
                 "RequireArmySize": 0,
@@ -1113,7 +1224,8 @@
                 "StatRewardMax": 0,
                 "TargetStat": 0,
                 "ExperienceReward": 0,
-                "AlignmentChange": 0
+                "AlignmentChange": 0,
+                "RewardItemStacks": []
             }
         }
     ]

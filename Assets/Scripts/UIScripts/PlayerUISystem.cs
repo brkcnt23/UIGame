@@ -4,7 +4,20 @@ using UnityEngine;
 public class PlayerUISystem : MonoBehaviour
 {
     public static PlayerUISystem Instance { get; private set; }
+
     private TimeSystem timeSystem;
+
+    public TMP_Text HealthText;
+    public TMP_Text currencyText;
+    public TMP_Text ClockText;
+    public TMP_Text DayText;
+    public TMP_Text ExhaustText;
+    public TMP_Text RationPackText;
+    public TMP_Text ActionLogText;
+
+    // İstersen sonra inspector'dan bağlarız
+    public TMP_Text WeightText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -14,79 +27,98 @@ public class PlayerUISystem : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
-    public TMP_Text HealthText;
-    public TMP_Text currencyText;
-    public TMP_Text ClockText;
-    public TMP_Text DayText;
-    public TMP_Text ExhaustText;
-    public TMP_Text RationPackText;
-    public TMP_Text ActionLogText;
     private void Start()
     {
         timeSystem = TimeSystem.Instance;
-        TimeSystem.Instance.clockText = ClockText;
-        TimeSystem.Instance.dayText = DayText;
-        UpdateClockText();
-        UpdateExhaustionText();
-        UpdateRationText();
 
+        if (TimeSystem.Instance != null)
+        {
+            TimeSystem.Instance.clockText = ClockText;
+            TimeSystem.Instance.dayText = DayText;
+        }
+
+        UpdateUIObjects();
+        UpdateClockText();
     }
 
     public void UpdateHealthText()
     {
+        if (HealthText == null) return;
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null) return;
+
         HealthText.text = $"{PlayerStatHandler.Instance.pd.Health}";
     }
+
     public void UpdateCurrencyUI()
     {
-        PlayerData pd = PlayerStatHandler.Instance.pd;
-        currencyText.text = $"Gold: {pd.Currency.Gold}, Silver: {pd.Currency.Silver}";
+        if (currencyText == null) return;
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null) return;
+
+        Currency money = PlayerStatHandler.Instance.pd.GetMoney();
+        currencyText.text = $"Gold: {money.Gold}, Silver: {money.Silver}";
     }
+
     public void UpdateRationText()
     {
+        if (RationPackText == null) return;
+        if (PlayerStatHandler.Instance == null) return;
+
         RationPackText.text = $"Ration: {PlayerStatHandler.Instance.GetRations()}";
     }
+
     public void UpdateExhaustionText()
     {
+        if (ExhaustText == null) return;
+        if (PlayerStatHandler.Instance == null) return;
+
         ExhaustText.text = $"Exhaustion: {PlayerStatHandler.Instance.GetExhaustionLevel()}";
     }
+
+    public void UpdateWeightText()
+    {
+        if (WeightText == null) return;
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null) return;
+
+        float currentWeight = PlayerStatHandler.Instance.GetCurrentWeight();
+        float capacity = PlayerStatHandler.Instance.GetCarryCapacity();
+
+        WeightText.text = $"Load: {currentWeight:0.0} / {capacity:0.0}";
+    }
+
     public void UpdateClockText()
     {
         if (timeSystem == null)
         {
-            Debug.LogWarning("UpdateClockText: timeSystem is null.");
-            return;
-        }
-
-        if (ClockText == null)
-        {
-            Debug.LogWarning("UpdateClockText: ClockText is null.");
-            return;
-        }
-
-        if (DayText == null)
-        {
-            Debug.LogWarning("UpdateClockText: DayText is null.");
-            return;
+            timeSystem = TimeSystem.Instance;
         }
 
         if (timeSystem == null)
         {
-            Debug.LogWarning("UpdateClockText: timeSystem is null.");
+            Debug.LogWarning("PlayerUISystem.UpdateClockText: timeSystem is null.");
             return;
         }
 
-        DayText.text = $"Day: {timeSystem.Day}";
+        if (ClockText != null)
+        {
+            ClockText.text = $"{timeSystem.Hour:00}:{timeSystem.Minute:00}";
+        }
 
-        ClockText.text = $"{timeSystem.Hour:00}:{timeSystem.Minute:00}";
+        if (DayText != null)
+        {
+            DayText.text = $"Day: {timeSystem.Day}";
+        }
 
         UpdateUIObjects();
     }
-    public void UpdateActionLog(string ActionLog)
+
+    public void UpdateActionLog(string actionLog)
     {
-        ActionLogText.text = $"{ActionLog}";
+        if (ActionLogText == null) return;
+        ActionLogText.text = actionLog;
     }
 
     public void UpdateUIObjects()
@@ -95,5 +127,6 @@ public class PlayerUISystem : MonoBehaviour
         UpdateCurrencyUI();
         UpdateExhaustionText();
         UpdateRationText();
+        UpdateWeightText();
     }
 }

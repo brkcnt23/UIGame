@@ -12,8 +12,8 @@ public class TestScript : MonoBehaviour
         playerStatHandler = PlayerStatHandler.Instance;
         timeSystem = TimeSystem.Instance;
 
-        // CraftingSystem'ı başlat
-        craftingSystem = new CraftingSystem(playerStatHandler.pd, timeSystem);
+        // CraftingSystem'ı al
+        craftingSystem = CraftingSystem.Instance;
     }
 
     // Bu metodu butona bağlayacağız

@@ -25,6 +25,10 @@ public class Settlement
     public TownHalls TownHall;
     public Walls Walls;
 
+    public string RulerNpcId;
+    public List<string> SettlementTags = new();
+    public List<string> CultureTags = new();
+
     public SettlementType Type;
 
     public delegate void SettlementEntered(Settlement settlement);
@@ -67,33 +71,42 @@ public class Settlement
     {
         Name = "";
         Population = 0;
-        Wealth.Gold = 0;
-        Wealth.Silver = 0;
+        Wealth = new Currency(0, 0);
         Quality = 0;
-        Shops = new List<Shops>();
-        Shops shop = new Shops();
-        shop.Name = "Shop";
-        Shops.Add(shop);
+
+        Shops = new List<Shops>(); // default boş kalsın, otomatik dummy shop ekleme
+
         Tavern = new Taverns();
         Tavern.Name = "Tavern";
+
         TownHall = new TownHalls();
         TownHall.Name = "Town Hall";
+
         Walls = new Walls();
         Walls.Name = "Wall";
 
         Type = SettlementType.defaultSettlement;
+        RulerNpcId = string.Empty;
+        SettlementTags = new List<string>();
+        CultureTags = new List<string>();
     }
+
     public Settlement(Quest_SO_Constructor quest)
     {
         Type = SettlementType.Quest;
         Name = quest.questLocation;
         ID = quest.settlementID;
         Population = 0;
-        Wealth.Gold = 0;
-        Wealth.Silver = 0;
+        Wealth = new Currency(0, 0);
         Quality = 0;
+        Shops = new List<Shops>();
         Tavern = new Taverns();
         Tavern.Quests.Add(quest);
+        TownHall = new TownHalls();
+        Walls = new Walls();
+        RulerNpcId = string.Empty;
+        SettlementTags = new List<string>();
+        CultureTags = new List<string>();
     }
 
     public void AddPopulation(int population)

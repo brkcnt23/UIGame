@@ -2,88 +2,127 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
 {
     [Header("Battle Settings")]
-    public int enemyTotalUnits = 500; // Total units in the randomly generated enemy army
+    public int enemyTotalUnits = 500;
 
     [Header("Battle Simulator")]
     private BattleSimulator simulator;
 
     [Header("Pre-Battle UI Elements")]
-    public TMP_Text terrainText; // Text to display terrain information
-    public TMP_Text weatherText; // Text to display weather information
-    public TMP_Text playerArmyInfoText; // Text to display player army information
-    public TMP_Text enemyArmyInfoText; // Text to display enemy army information
-    public TMP_Text winProbabilityText; // Text to display win probability
-    public Button negotiateButton; // Button to negotiate before the battle
-    public Button preBattleRetreatButton; // Button to retreat before the battle
-
+    public TMP_Text terrainText;
+    public TMP_Text weatherText;
+    public TMP_Text playerArmyInfoText;
+    public TMP_Text enemyArmyInfoText;
+    public TMP_Text winProbabilityText;
+    public Button negotiateButton;
+    public Button preBattleRetreatButton;
 
     [Header("UI Elements")]
-    public GameObject battleSimulationPanel; // Reference to the Battle Simulation Panel
-    public Button startBattleButton; // Button to start the battle
-    public Button continueBattleButton; // Button to continue the battle
-    public Button retreatButton; // Button to retreat from the battle
-    public TMP_Text battleResultText; // Text to display the battle result
-    public TMP_Text PlayerbattleCasualtiesText; // Text to display the Player's battle casualties
-    public TMP_Text EnemybattleCasualtiesText; // Text to display the Enemy's battle casualties
-    public Transform battleEventsContainer; // Container to display battle events
-    public GameObject battleEventPrefab; // Prefab for battle event entries
+    public GameObject battleSimulationPanel;
+    public Button startBattleButton;
+    public Button continueBattleButton;
+    public Button retreatButton;
+    public TMP_Text battleResultText;
+    public TMP_Text PlayerbattleCasualtiesText;
+    public TMP_Text EnemybattleCasualtiesText;
+    public Transform battleEventsContainer;
+    public GameObject battleEventPrefab;
 
-    private Coroutine battleCoroutine; // Coroutine to simulate the battle
+    private Coroutine battleCoroutine;
+
+    private Army currentPlayerArmy;
+    private Army currentEnemyArmy;
+
+    private TerrainType terrainType;
+    private WeatherType weatherType;
 
     private void Start()
     {
         simulator = new BattleSimulator();
-        startBattleButton.onClick.AddListener(StartBattle);
-        continueBattleButton.onClick.AddListener(ContinueBattle);
-        retreatButton.onClick.AddListener(Retreat);
-        negotiateButton.onClick.AddListener(Negotiate);
-        preBattleRetreatButton.onClick.AddListener(PreBattleRetreat);
+
+        if (startBattleButton != null)
+        {
+            startBattleButton.onClick.RemoveAllListeners();
+            startBattleButton.onClick.AddListener(StartBattle);
+        }
+
+        if (continueBattleButton != null)
+        {
+            continueBattleButton.onClick.RemoveAllListeners();
+            continueBattleButton.onClick.AddListener(ContinueBattle);
+        }
+
+        if (retreatButton != null)
+        {
+            retreatButton.onClick.RemoveAllListeners();
+            retreatButton.onClick.AddListener(Retreat);
+        }
+
+        if (negotiateButton != null)
+        {
+            negotiateButton.onClick.RemoveAllListeners();
+            negotiateButton.onClick.AddListener(Negotiate);
+        }
+
+        if (preBattleRetreatButton != null)
+        {
+            preBattleRetreatButton.onClick.RemoveAllListeners();
+            preBattleRetreatButton.onClick.AddListener(PreBattleRetreat);
+        }
     }
 
     public void OpenPanelAndDisplayPreBattleInfo()
     {
-        // Generate and display pre-battle information
         DisplayPreBattleInfo();
     }
 
-    /// <summary>
-    /// Generates and displays pre-battle information.
-    /// </summary>
     private void DisplayPreBattleInfo()
     {
-        battleSimulationPanel.SetActive(true);
+        if (battleSimulationPanel != null)
+            battleSimulationPanel.SetActive(true);
 
         terrainType = (TerrainType)Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
         weatherType = (WeatherType)Random.Range(0, System.Enum.GetValues(typeof(WeatherType)).Length);
-        // Generate terrain and weather
-        TerrainType terrain = terrainType;
-        WeatherType weather = weatherType;
 
-        // Get the player's army from PlayerStatHandler
-        Army playerArmy = PlayerStatHandler.Instance.pd.PlayerArmy;
+        currentPlayerArmy = GetPlayerArmy();
+        currentEnemyArmy = simulator.GenerateRandomEnemyArmy(enemyTotalUnits);
 
-        // Generate a random enemy army
-        Army enemyArmy = simulator.GenerateRandomEnemyArmy(enemyTotalUnits);
+        if (currentPlayerArmy == null || currentEnemyArmy == null)
+        {
+            Debug.LogError("BattleManager: Could not prepare armies.");
+            return;
+        }
 
-        // Calculate win probability (simplified example)
-        float playerPower = simulator.CalculateArmyPower(playerArmy, enemyArmy, terrain, weather);
-        float enemyPower = simulator.CalculateArmyPower(enemyArmy, playerArmy, terrain, weather);
-        float winProbability = playerPower / (playerPower + enemyPower) * 100;
+        float playerPower = simulator.CalculateArmyPower(currentPlayerArmy, currentEnemyArmy, terrainType, weatherType);
+        float enemyPower = simulator.CalculateArmyPower(currentEnemyArmy, currentPlayerArmy, terrainType, weatherType);
 
-        // Update the UI with pre-battle information
-        terrainText.text = $"Terrain: {terrain}";
-        weatherText.text = $"Weather: {weather}";
-        playerArmyInfoText.text = $"Player Army: {playerArmy.GetTotalUnits()} units";
-        enemyArmyInfoText.text = $"Enemy Army: {enemyArmy.GetTotalUnits()} units";
-        winProbabilityText.text = $"Win Probability: {winProbability:F2}%";
+        int playerUnitCount = Mathf.Max(1, currentPlayerArmy.GetTotalUnits());
+        int armyNumberDifference = Mathf.Abs(playerUnitCount - currentEnemyArmy.GetTotalUnits());
+        float differencePercentage = (100f * armyNumberDifference) / playerUnitCount;
+
+        if (differencePercentage > 70)
+            playerPower += 1000;
+        else if (differencePercentage > 50)
+            playerPower += 600;
+        else if (differencePercentage > 35)
+            playerPower += 450;
+        else if (differencePercentage > 20)
+            playerPower += 350;
+
+        float winProbability = (playerPower + enemyPower) > 0f
+            ? (playerPower / (playerPower + enemyPower)) * 100f
+            : 0f;
+
+        if (terrainText != null) terrainText.text = $"Terrain: {terrainType}";
+        if (weatherText != null) weatherText.text = $"Weather: {weatherType}";
+        if (playerArmyInfoText != null) playerArmyInfoText.text = $"Player Army: {currentPlayerArmy.GetTotalUnits()} units";
+        if (enemyArmyInfoText != null) enemyArmyInfoText.text = $"Enemy Army: {currentEnemyArmy.GetTotalUnits()} units";
+        if (winProbabilityText != null) winProbabilityText.text = $"Win Probability: {winProbability:F2}%";
     }
-
-    private TerrainType terrainType;
-    private WeatherType weatherType;
 
     public void SetTerrainType(int terrainTypeIndex)
     {
@@ -105,217 +144,219 @@ public class BattleManager : MonoBehaviour
         return weatherType;
     }
 
-    /// <summary>
-    /// Starts the battle when called from the UI.
-    /// </summary>
     public void StartBattle()
     {
-        // Get the player's army from PlayerStatHandler
-        Army playerArmy = PlayerStatHandler.Instance.pd.PlayerArmy;
+        currentPlayerArmy = GetPlayerArmy();
 
-        // Generate a random enemy army
-        Army enemyArmy = simulator.GenerateRandomEnemyArmy(enemyTotalUnits);
+        if (currentEnemyArmy == null || currentEnemyArmy.GetTotalUnits() <= 0)
+        {
+            currentEnemyArmy = simulator.GenerateRandomEnemyArmy(enemyTotalUnits);
+        }
 
-        // Start the battle simulation
-        battleCoroutine = StartCoroutine(simulator.SimulateBattleInStages(playerArmy, enemyArmy, UpdateBattleUI, CompleteBattle));
+        if (currentPlayerArmy == null || currentEnemyArmy == null)
+        {
+            Debug.LogError("BattleManager: armies are null, cannot start battle.");
+            return;
+        }
+
+        if (battleCoroutine != null)
+        {
+            StopCoroutine(battleCoroutine);
+        }
+
+        battleCoroutine = StartCoroutine(
+            simulator.SimulateBattleInStages(
+                currentPlayerArmy,
+                currentEnemyArmy,
+                UpdateBattleUI,
+                CompleteBattle,
+                terrainType,
+                weatherType
+            )
+        );
     }
 
-    /// <summary>
-    /// Continues the battle when called from the UI.
-    /// </summary>
     public void ContinueBattle()
     {
-        // Resume the battle simulation...
+        if (battleCoroutine == null)
+        {
+            StartBattle();
+        }
     }
 
-    /// <summary>
-    /// Updates the battle UI after each stage.
-    /// </summary>
-    /// <param name="result">The current result of the battle.</param>
     private void UpdateBattleUI(BattleResult result)
     {
-        // Update the UI with the current battle result...
-        battleResultText.text = result.ResultMessage + "\n";
+        if (result == null) return;
 
-        // Display total units remaining
-        string totalUnitsMessage = $"Total Units - Player: {result.TotalUnitsArmy1}, Enemy: {result.TotalUnitsArmy2}\n";
-        battleResultText.text += totalUnitsMessage;
-
-        // Display casualties
-        string playerCasualtiesMessage = "Player Casualties:\n";
-        string enemyCasualtiesMessage = "Enemy Casualties:\n";
-        foreach (var casualty in result.WinnerCasualties)
+        if (battleResultText != null)
         {
-            playerCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
-        }
-        foreach (var casualty in result.LoserCasualties)
-        {
-            enemyCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
+            battleResultText.text = result.ResultMessage + "\n";
+            battleResultText.text += $"Total Units - Player: {result.TotalUnitsArmy1}, Enemy: {result.TotalUnitsArmy2}\n";
         }
 
-        PlayerbattleCasualtiesText.text = playerCasualtiesMessage;
-        EnemybattleCasualtiesText.text = enemyCasualtiesMessage;
-
-        // Display battle events
-        foreach (Transform child in battleEventsContainer)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (var battleEvent in result.BattleEvents)
-        {
-            GameObject eventEntry = Instantiate(battleEventPrefab, battleEventsContainer);
-            eventEntry.GetComponent<TMP_Text>().text = battleEvent;
-        }
+        UpdateCasualtyTexts(result);
+        DrawBattleEvents(result);
     }
 
     private void CompleteBattle(BattleResult result)
     {
-        // Update the UI with the final battle result...
-        battleResultText.text = result.ResultMessage + "\n";
+        if (result == null) return;
 
-        // Display total units remaining
-        string totalUnitsMessage = $"Total Units - Player: {result.TotalUnitsArmy1}, Enemy: {result.TotalUnitsArmy2}\n";
-        battleResultText.text += totalUnitsMessage;
+        if (battleResultText != null)
+        {
+            battleResultText.text = result.ResultMessage + "\n";
+            battleResultText.text += $"Total Units - Player: {result.TotalUnitsArmy1}, Enemy: {result.TotalUnitsArmy2}\n";
+        }
 
-        // Display casualties
-        // Display casualties
+        UpdateCasualtyTexts(result);
+        DrawBattleEvents(result);
+
+        battleCoroutine = null;
+
+        if (PlayerUISystem.Instance != null)
+        {
+            PlayerUISystem.Instance.UpdateUIObjects();
+        }
+    }
+
+    private void UpdateCasualtyTexts(BattleResult result)
+    {
+        if (result == null) return;
+
         string playerCasualtiesMessage = "Player Casualties:\n";
         string enemyCasualtiesMessage = "Enemy Casualties:\n";
+
         foreach (var casualty in result.WinnerCasualties)
         {
             playerCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
         }
+
         foreach (var casualty in result.LoserCasualties)
         {
             enemyCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
         }
 
-        PlayerbattleCasualtiesText.text = playerCasualtiesMessage;
-        EnemybattleCasualtiesText.text = enemyCasualtiesMessage;
+        if (PlayerbattleCasualtiesText != null)
+            PlayerbattleCasualtiesText.text = playerCasualtiesMessage;
 
-        // Display battle events
+        if (EnemybattleCasualtiesText != null)
+            EnemybattleCasualtiesText.text = enemyCasualtiesMessage;
+    }
+
+    private void DrawBattleEvents(BattleResult result)
+    {
+        if (battleEventsContainer == null || battleEventPrefab == null || result == null)
+            return;
+
         foreach (Transform child in battleEventsContainer)
         {
             Destroy(child.gameObject);
         }
+
         foreach (var battleEvent in result.BattleEvents)
         {
             GameObject eventEntry = Instantiate(battleEventPrefab, battleEventsContainer);
-            eventEntry.GetComponent<TMP_Text>().text = battleEvent;
+            TMP_Text txt = eventEntry.GetComponent<TMP_Text>();
+            if (txt != null)
+            {
+                txt.text = battleEvent;
+            }
         }
     }
 
-    /// <summary>
-    /// Allows the player to retreat from the battle.
-    /// </summary>
     public void Retreat()
     {
         if (battleCoroutine != null)
         {
             StopCoroutine(battleCoroutine);
-
-            // Get the player's army from PlayerStatHandler
-            Army playerArmy = PlayerStatHandler.Instance.pd.PlayerArmy;
-
-            // Handle retreat and get casualties
-            Dictionary<UnitType, int> retreatCasualties = simulator.HandleRetreat(playerArmy);
-
-            // Update the UI with retreat information
-            string retreatMessage = "Retreat successful! Casualties:\n";
-            foreach (var casualty in retreatCasualties)
-            {
-                retreatMessage += $"{casualty.Key}: {casualty.Value}\n";
-            }
-            battleResultText.text = retreatMessage;
+            battleCoroutine = null;
         }
+
+        Army playerArmy = GetPlayerArmy();
+        if (playerArmy == null) return;
+
+        Dictionary<UnitType, int> retreatCasualties = simulator.HandleRetreat(playerArmy);
+
+        string retreatMessage = "Retreat successful! Casualties:\n";
+        foreach (var casualty in retreatCasualties)
+        {
+            retreatMessage += $"{casualty.Key}: {casualty.Value}\n";
+        }
+
+        if (battleResultText != null)
+            battleResultText.text = retreatMessage;
+
+        if (PlayerUISystem.Instance != null)
+            PlayerUISystem.Instance.UpdateUIObjects();
     }
 
-    /// <summary>
-    /// Allows the player to negotiate before the battle.
-    /// </summary>
     public void Negotiate()
     {
-        // Calculate negotiation success based on a stat (e.g., charisma)
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+            return;
+
         float diplomacy = PlayerStatHandler.Instance.pd.Charisma;
-        float successChance = diplomacy / 100.0f; // Simplified example
+        float successChance = diplomacy / 100.0f;
 
         if (Random.value <= successChance)
         {
-            // Negotiation successful
-            battleResultText.text = "Negotiation successful! The battle is avoided.";
+            if (battleResultText != null)
+                battleResultText.text = "Negotiation successful! The battle is avoided.";
         }
         else
         {
-            // Negotiation failed
-            battleResultText.text = "Negotiation failed! Prepare for battle.";
+            if (battleResultText != null)
+                battleResultText.text = "Negotiation failed! Prepare for battle.";
         }
     }
 
-    /// <summary>
-    /// Allows the player to retreat before the battle.
-    /// </summary>
     public void PreBattleRetreat()
     {
-        // Calculate retreat success based on a stat (e.g., dexterity)
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+            return;
+
         float agility = PlayerStatHandler.Instance.pd.Dexterity;
-        float successChance = agility / 100.0f; // Simplified example
+        float successChance = agility / 100.0f;
 
         if (Random.value <= successChance)
         {
-            // Retreat successful
-            battleResultText.text = "Retreat successful! You avoided the battle.";
+            if (battleResultText != null)
+                battleResultText.text = "Retreat successful! You avoided the battle.";
         }
         else
         {
-            // Retreat failed, apply random casualties
-            Army playerArmy = PlayerStatHandler.Instance.pd.PlayerArmy;
+            Army playerArmy = GetPlayerArmy();
+            if (playerArmy == null) return;
+
             Dictionary<UnitType, int> retreatCasualties = simulator.HandleRetreat(playerArmy);
 
-            // Update the UI with retreat information
             string retreatMessage = "Retreat failed! Casualties:\n";
             foreach (var casualty in retreatCasualties)
             {
                 retreatMessage += $"{casualty.Key}: {casualty.Value}\n";
             }
-            battleResultText.text = retreatMessage;
+
+            if (battleResultText != null)
+                battleResultText.text = retreatMessage;
         }
+
+        if (PlayerUISystem.Instance != null)
+            PlayerUISystem.Instance.UpdateUIObjects();
     }
 
-    /// <summary>
-    /// Displays the battle result in the UI.
-    /// </summary>
-    /// <param name="result">The result of the battle.</param>
-    private void DisplayBattleResult(BattleResult result)
+    private Army GetPlayerArmy()
     {
-        battleResultText.text = result.ResultMessage;
-
-        // Display casualties
-        // Display casualties
-        string playerCasualtiesMessage = "Player Casualties:\n";
-        string enemyCasualtiesMessage = "Enemy Casualties:\n";
-        foreach (var casualty in result.WinnerCasualties)
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
         {
-            playerCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
-        }
-        foreach (var casualty in result.LoserCasualties)
-        {
-            enemyCasualtiesMessage += $"{casualty.Key}: {casualty.Value}\n";
+            Debug.LogError("BattleManager: PlayerStatHandler or PlayerData is null.");
+            return null;
         }
 
-        PlayerbattleCasualtiesText.text = playerCasualtiesMessage;
-        EnemybattleCasualtiesText.text = enemyCasualtiesMessage;
+        if (PlayerStatHandler.Instance.pd.PlayerArmy == null)
+        {
+            PlayerStatHandler.Instance.pd.PlayerArmy = new Army();
+        }
 
-        // Display battle events
-        foreach (Transform child in battleEventsContainer)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (var battleEvent in result.BattleEvents)
-        {
-            GameObject eventEntry = Instantiate(battleEventPrefab, battleEventsContainer);
-            eventEntry.GetComponent<TMP_Text>().text = battleEvent;
-        }
+        return PlayerStatHandler.Instance.pd.PlayerArmy;
     }
-
-
 }

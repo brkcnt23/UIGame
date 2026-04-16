@@ -1,71 +1,120 @@
 {
     "homeSettlement": {
-        "Name": "CANNO",
+        "Name": "dfdd",
         "ID": 0,
         "isUnlocked": true,
         "levelToUnlock": 0,
-        "Population": 14,
+        "Population": 10,
         "Wealth": {
-            "Gold": 103,
-            "Silver": 21
+            "Gold": 100,
+            "Silver": 0
         },
-        "Quality": 0,
+        "Quality": 1,
         "Shops": [
             {
-                "Name": "Muhittin's Shop",
-                "level": 0,
+                "Name": "Muhittin's Blacksmith",
+                "level": 1,
                 "maxLevel": 0,
                 "cost": 0,
                 "income": 0,
                 "Resources": [],
                 "upgradeHour": 0,
-                "ShopType": 7,
+                "ShopType": 0,
                 "Items": [
                     {
-                        "ID": 2515,
-                        "Name": "defaultShop Item 1",
+                        "ID": 3767,
+                        "Name": "Blacksmith Item 1",
                         "Value": {
-                            "Gold": 0,
-                            "Silver": 56
+                            "Gold": 6,
+                            "Silver": 45
                         },
-                        "Category": 7,
-                        "Quantity": 3,
-                        "Modifiers": [],
+                        "Category": 0,
+                        "Quantity": 1,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 3
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 4
+                            }
+                        ],
                         "ItemImage": {
                             "instanceID": 0
                         },
-                        "Quality": 0
+                        "Quality": 1
                     },
                     {
-                        "ID": 5766,
-                        "Name": "defaultShop Item 2",
+                        "ID": 8598,
+                        "Name": "Blacksmith Item 2",
                         "Value": {
-                            "Gold": 0,
-                            "Silver": 11
+                            "Gold": 5,
+                            "Silver": 71
                         },
-                        "Category": 7,
+                        "Category": 0,
                         "Quantity": 3,
-                        "Modifiers": [],
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 2
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 2
+                            }
+                        ],
                         "ItemImage": {
                             "instanceID": 0
                         },
-                        "Quality": 0
+                        "Quality": 1
                     },
                     {
-                        "ID": 5637,
-                        "Name": "defaultShop Item 3",
+                        "ID": 4815,
+                        "Name": "Blacksmith Item 3",
                         "Value": {
-                            "Gold": 0,
+                            "Gold": 7,
                             "Silver": 68
                         },
-                        "Category": 7,
-                        "Quantity": 2,
-                        "Modifiers": [],
+                        "Category": 0,
+                        "Quantity": 1,
+                        "Weight": 1.0,
+                        "Stackable": false,
+                        "MaxStack": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 2
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 4
+                            }
+                        ],
                         "ItemImage": {
                             "instanceID": 0
                         },
-                        "Quality": 0
+                        "Quality": 1
                     }
+                ],
+                "ItemEntries": [],
+                "Cash": {
+                    "Gold": 0,
+                    "Silver": 0
+                },
+                "BuyMultiplier": 0.6000000238418579,
+                "SellMultiplier": 1.0,
+                "MaxAffordableItemQuality": 10,
+                "AcceptedCategories": [
+                    6,
+                    5,
+                    7
                 ]
             }
         ],
@@ -81,7 +130,7 @@
             "Companions": []
         },
         "TownHall": {
-            "Name": "CANNO's Hall",
+            "Name": "dfdd's Hall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,
@@ -91,7 +140,7 @@
             "Jobs": []
         },
         "Walls": {
-            "Name": "CANNO's Wall",
+            "Name": "dfdd's Wall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,

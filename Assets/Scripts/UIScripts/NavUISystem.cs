@@ -1,24 +1,26 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class NavUISystem : MonoBehaviour
 {
-    #region Panels
     [Header("Panels")]
-    
     public GameObject profilePanel;
-    public GameObject jobsPanel;
+
+    [FormerlySerializedAs("jobsPanel")]
+    public GameObject activitiesPanel;
+
     public GameObject townPanel;
-    //home button
     public GameObject shopPanel;
     public GameObject battlePanel;
+
     public Button ProfileButton;
-    public Button JobsButton;
+    [FormerlySerializedAs("JobsButton")]
+    public Button ActivitiesButton;
     public Button TownButton;
     public Button ShopButton;
     public Button BattleButton;
-    #endregion
 
     [Header("Profile UI Elements")]
     public TMP_Text levelText;
@@ -27,104 +29,159 @@ public class NavUISystem : MonoBehaviour
     public TMP_Text dexterityText;
     public TMP_Text constitutionText;
     public TMP_Text charismaText;
+
     public TMP_Text smitherSkillLevelText;
     public TMP_Text tannerSkillLevelText;
     public TMP_Text carpenterSkillLevelText;
     public TMP_Text masonSkillLevelText;
     public TMP_Text alchemistSkillLevelText;
+
     public TMP_Text totalBattlesFoughtText;
     public TMP_Text totalBattlesWonText;
     public TMP_Text totalBattlesLostText;
     public TMP_Text companionsText;
+
+    public TMP_Text weightText;
+    public TMP_Text moneyText;
+
     private void Start()
     {
-        ProfileButton.onClick.AddListener(() => OnProfileButtonClick());
-        JobsButton.onClick.AddListener(() => OnJobButtonClick());
-        TownButton.onClick.AddListener(() => OnHomeButtonClick());
-        ShopButton.onClick.AddListener(() => OnShopButtonClick());
-        BattleButton.onClick.AddListener(() => OnBattleButtonClick());
+        if (ProfileButton != null)
+        {
+            ProfileButton.onClick.RemoveAllListeners();
+            ProfileButton.onClick.AddListener(OnProfileButtonClick);
+        }
+
+        if (ActivitiesButton != null)
+        {
+            ActivitiesButton.onClick.RemoveAllListeners();
+            ActivitiesButton.onClick.AddListener(OnActivitiesButtonClick);
+        }
+
+        if (TownButton != null)
+        {
+            TownButton.onClick.RemoveAllListeners();
+            TownButton.onClick.AddListener(OnHomeButtonClick);
+        }
+
+        if (ShopButton != null)
+        {
+            ShopButton.onClick.RemoveAllListeners();
+            ShopButton.onClick.AddListener(OnShopButtonClick);
+        }
+
+        if (BattleButton != null)
+        {
+            BattleButton.onClick.RemoveAllListeners();
+            BattleButton.onClick.AddListener(OnBattleButtonClick);
+        }
     }
-    /// <summary>
-    /// Handles the Profile Button click event.
-    /// </summary>
+
     public void OnProfileButtonClick()
     {
         UpdateProfileData();
-        //OpenUpPanel(profilePanel);
+        OpenUpPanel(profilePanel);
     }
 
-    /// <summary>
-    /// Handles the Smithing Button click event.
-    /// </summary>
-    public void OnJobButtonClick()
+    public void OnActivitiesButtonClick()
     {
-        //OpenUpPanel(jobsPanel);
+        OpenUpPanel(activitiesPanel);
     }
 
-    /// <summary>
-    /// Handles the Home Button click event.
-    /// </summary>
     public void OnHomeButtonClick()
     {
-        //OpenUpPanel(townPanel);
-    }
-    /// <summary>
-    /// Handles the Shop Button click event.
-    /// </summary>
-    public void OnShopButtonClick()
-    {
-        //OpenUpPanel(shopPanel);
-    }
+        DisableAllNavPanels();
 
-    /// <summary>
-    /// Handles the War Button click event.
-    /// </summary>
-    public void OnBattleButtonClick()
-    {
-        //OpenUpPanel(battlePanel);
-    }
-
-    /// <summary>
-    /// Updates the Profile Panel UI with the player's stats.
-    /// </summary>
-    private void UpdateProfileData()
-    {
-        PlayerData pd = PlayerStatHandler.Instance.pd;
-
-        levelText.text = $"Level: {pd.Level}";
-        experienceText.text = $"Experience: {pd.Experience} / {pd.MaxExperience}";
-        strengthText.text = $"Strength: {pd.Strength}";
-        dexterityText.text = $"Dexterity: {pd.Dexterity}";
-        constitutionText.text = $"Constitution: {pd.Constitution}";
-        charismaText.text = $"Charisma: {pd.Charisma}";
-
-        smitherSkillLevelText.text = $"Smither Skill Level: {pd.SmitherSkillLevel}";
-        tannerSkillLevelText.text = $"Tanner Skill Level: {pd.TannerSkillLevel}";
-        carpenterSkillLevelText.text = $"Carpenter Skill Level: {pd.CarpenterSkillLevel}";
-        masonSkillLevelText.text = $"Mason Skill Level: {pd.MasonSkillLevel}";
-        alchemistSkillLevelText.text = $"Alchemist Skill Level: {pd.AlchemistSkillLevel}";
-
-        totalBattlesFoughtText.text = $"Total Battles Fought: {pd.TotalBattlesFought}";
-        totalBattlesWonText.text = $"Total Battles Won: {pd.TotalBattlesWon}";
-        totalBattlesLostText.text = $"Total Battles Lost: {pd.TotalBattlesLost}";
-
-        companionsText.text = "Companions:\n";
-        foreach (var companion in pd.Companions)
+        if (SettlementHandler.Instance != null && SettlementHandler.Instance.settlement != null)
         {
-            companionsText.text += $"{companion.Name} (Level {companion.Level})\n";
+            UIHandler.Instance.UpdateSettlementInfo(SettlementHandler.Instance.settlement);
         }
     }
-    public void OpenUpPanel(GameObject PanelWhichWillOpen)
+
+    public void OnShopButtonClick()
     {
-        DisableAllNavPanels();
-        PanelWhichWillOpen.SetActive(true);
+        OpenUpPanel(shopPanel);
     }
+
+    public void OnBattleButtonClick()
+    {
+        OpenUpPanel(battlePanel);
+    }
+
+    private void UpdateProfileData()
+    {
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        {
+            Debug.LogError("NavUISystem: PlayerStatHandler.Instance or pd is null! Cannot update profile data.");
+            return;
+        }
+
+        PlayerData pd = PlayerStatHandler.Instance.pd;
+        Currency money = pd.GetMoney();
+
+        if (levelText != null) levelText.text = $"Level: {pd.Level}";
+        if (experienceText != null) experienceText.text = $"Experience: {pd.Experience} / {pd.MaxExperience}";
+        if (strengthText != null) strengthText.text = $"Strength: {pd.Strength}";
+        if (dexterityText != null) dexterityText.text = $"Dexterity: {pd.Dexterity}";
+        if (constitutionText != null) constitutionText.text = $"Constitution: {pd.Constitution}";
+        if (charismaText != null) charismaText.text = $"Charisma: {pd.Charisma}";
+
+        if (smitherSkillLevelText != null) smitherSkillLevelText.text = $"Smither Skill Level: {pd.SmitherSkillLevel}";
+        if (tannerSkillLevelText != null) tannerSkillLevelText.text = $"Tanner Skill Level: {pd.TannerSkillLevel}";
+        if (carpenterSkillLevelText != null) carpenterSkillLevelText.text = $"Carpenter Skill Level: {pd.CarpenterSkillLevel}";
+        if (masonSkillLevelText != null) masonSkillLevelText.text = $"Mason Skill Level: {pd.MasonSkillLevel}";
+        if (alchemistSkillLevelText != null) alchemistSkillLevelText.text = $"Alchemist Skill Level: {pd.AlchemistSkillLevel}";
+
+        if (totalBattlesFoughtText != null) totalBattlesFoughtText.text = $"Total Battles Fought: {pd.TotalBattlesFought}";
+        if (totalBattlesWonText != null) totalBattlesWonText.text = $"Total Battles Won: {pd.TotalBattlesWon}";
+        if (totalBattlesLostText != null) totalBattlesLostText.text = $"Total Battles Lost: {pd.TotalBattlesLost}";
+
+        if (moneyText != null) moneyText.text = $"Money: {money.Gold}g {money.Silver}s";
+
+        if (weightText != null)
+        {
+            float currentWeight = pd.GetCurrentInventoryWeight();
+            float carryCapacity = pd.GetCarryCapacity();
+            weightText.text = $"Load: {currentWeight:0.0} / {carryCapacity:0.0}";
+        }
+
+        if (companionsText != null)
+        {
+            companionsText.text = "Companions:\n";
+
+            if (pd.Companions != null && pd.Companions.Count > 0)
+            {
+                foreach (var companion in pd.Companions)
+                {
+                    companionsText.text += $"{companion.Name} (Level {companion.Level})\n";
+                }
+            }
+            else
+            {
+                companionsText.text += "None";
+            }
+        }
+    }
+
+    public void OpenUpPanel(GameObject panelWhichWillOpen)
+    {
+        if (UIHandler.Instance != null)
+        {
+            UIHandler.Instance.HideHomeUI();
+        }
+
+        DisableAllNavPanels();
+
+        if (panelWhichWillOpen != null)
+            panelWhichWillOpen.SetActive(true);
+    }
+
     public void DisableAllNavPanels()
     {
-        profilePanel.SetActive(false);
-        jobsPanel.SetActive(false);
-        townPanel.SetActive(false);
-        shopPanel.SetActive(false);
-        battlePanel.SetActive(false);
+        if (profilePanel != null) profilePanel.SetActive(false);
+        if (activitiesPanel != null) activitiesPanel.SetActive(false);
+        if (townPanel != null) townPanel.SetActive(false);
+        if (shopPanel != null) shopPanel.SetActive(false);
+        if (battlePanel != null) battlePanel.SetActive(false);
     }
 }

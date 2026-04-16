@@ -58,7 +58,7 @@ public class BattleManagerOLD : MonoBehaviour
 
         playerData.TotalBattlesFought += 1;
 
-        if (result.Winner == playerData.PlayerArmy)
+        if (result.Player == playerData.PlayerArmy)
         {
             playerData.TotalBattlesWon += 1;
             playerData.Experience += 50;

@@ -6,6 +6,7 @@ public enum QuestType
     defaultQuest,
     Location
 }
+
 [System.Serializable]
 public class Quest_SO_Constructor : SO_Base
 {
@@ -31,9 +32,15 @@ public class Quest_SO_Constructor : SO_Base
     }
 
     public int hoursToComplete;
+
     public List<Item> requiredItems = new List<Item>();
     public List<Item> rewardItems = new List<Item>();
     public List<Item> questItems = new List<Item>();
+
+    public List<ItemStackData> requiredItemStacks = new List<ItemStackData>();
+    public List<ItemStackData> rewardItemStacks = new List<ItemStackData>();
+    public List<ItemStackData> questItemStacks = new List<ItemStackData>();
+
     public int settlementID;
     public bool isTaken;
     public bool isCompleted;
@@ -43,30 +50,24 @@ public class Quest_SO_Constructor : SO_Base
 
     public void QuestComplete(PlayerData playerData)
     {
-        if(isCompleted == false)
+        if (!isCompleted)
         {
             Debug.Log("Quest is not completed.");
             return;
         }
-        foreach (Item item in requiredItems)
-        {
-            playerData.Items.Remove(item);
-        }
 
-        foreach (Item item in questItems)
-        {
-            playerData.Items.Remove(item);
-        }
-
+        RemoveRequiredAndQuestItems(playerData);
         Reward(playerData);
-
     }
 
     public void Reward(PlayerData playerData)
     {
-        if (rewardItems.Count > 0)
+        if (rewardItemStacks != null && rewardItemStacks.Count > 0)
         {
-
+            ItemRewardHelper.GiveItems(rewardItemStacks);
+        }
+        else if (rewardItems != null && rewardItems.Count > 0)
+        {
             foreach (Item item in rewardItems)
             {
                 playerData.Items.Add(item);
@@ -74,38 +75,25 @@ public class Quest_SO_Constructor : SO_Base
         }
 
         playerData.Quests.Remove(this);
-        playerData.Silver += Silver;
-        playerData.CheckIfSilverToGold();
+        playerData.AddMoney(0, Silver);
         playerData.Experience += Experience;
-        
+
         PlayerStatHandler.Instance.AddStatXP(TargetStat, Random.Range(StatRewardMin, StatRewardMax));
-        
         ExperienceSystem.UpdateCharacterLevel(playerData);
     }
 
     public void QuestFail(PlayerData playerData)
     {
-        // Remove required and quest items from player
-        foreach (Item item in requiredItems)
-        {
-            playerData.Items.Remove(item);
-        }
+        RemoveRequiredAndQuestItems(playerData);
 
-        foreach (Item item in questItems)
-        {
-            playerData.Items.Remove(item);
-        }
-
-        // Remove quest from player's quest list
         playerData.Quests.Remove(this);
-
         isTaken = false;
 
         Debug.Log("Quest failed.");
 
-        if(questType == QuestType.Location)
+        if (questType == QuestType.Location)
         {
-            if(TravelSystem.Instance.inTravel)
+            if (TravelSystem.Instance != null && TravelSystem.Instance.inTravel)
             {
                 TravelSystem.Instance.CancelTravelAndReturn(settlementID);
             }
@@ -114,11 +102,16 @@ public class Quest_SO_Constructor : SO_Base
 
     public void QuestStart(PlayerData playerData)
     {
-        // Add quest and quest items to player's quest list
-
-        foreach (Item item in questItems)
+        if (questItemStacks != null && questItemStacks.Count > 0)
         {
-            playerData.Items.Add(item);
+            ItemRewardHelper.GiveItems(questItemStacks);
+        }
+        else if (questItems != null && questItems.Count > 0)
+        {
+            foreach (Item item in questItems)
+            {
+                playerData.Items.Add(item);
+            }
         }
 
         playerData.Quests.Add(this);
@@ -126,20 +119,23 @@ public class Quest_SO_Constructor : SO_Base
         Debug.Log($"Quest started: {Name} You have {hoursToComplete} hours to complete this quest.");
 
         isTaken = true;
-
     }
 
     public void QuestCancel(PlayerData playerData)
     {
-        // Remove quest items from player
-        foreach (Item item in questItems)
+        if (questItemStacks != null && questItemStacks.Count > 0)
         {
-            playerData.Items.Remove(item);
+            ItemRewardHelper.RemoveItems(questItemStacks);
+        }
+        else if (questItems != null && questItems.Count > 0)
+        {
+            foreach (Item item in questItems)
+            {
+                playerData.Items.Remove(item);
+            }
         }
 
-        // Remove quest from player's quest list
         playerData.Quests.Remove(this);
-
         isTaken = false;
 
         Debug.Log("Quest cancelled.");
@@ -147,48 +143,91 @@ public class Quest_SO_Constructor : SO_Base
 
     public void QuestCheck(PlayerData playerData)
     {
-        // Check if player has required items
-
-        if(hoursToComplete <= 0)
+        if (hoursToComplete <= 0)
         {
             Debug.Log($"Quest {Name} has expired.");
             QuestFail(playerData);
             return;
         }
 
-        List<Item> requiredItems = new List<Item>();
-
-        foreach (Item item in this.requiredItems)
+        if (requiredItemStacks != null && requiredItemStacks.Count > 0)
         {
-            if (playerData.Items.Contains(item))
-            {
-                requiredItems.Add(item);
-            }
-            else
+            if (!ItemRewardHelper.HasItems(requiredItemStacks))
             {
                 return;
             }
         }
+        else
+        {
+            if (!HasAllRequiredItems(playerData))
+            {
+                Debug.Log("Player does not have all required items.");
+                return;
+            }
+        }
 
-        // If player has all required items, complete quest
-        if (settlementID != SettlementHandler.Instance.settlement.ID && settlementID != 0)
+        if (settlementID != 0 &&
+            SettlementHandler.Instance != null &&
+            SettlementHandler.Instance.settlement != null &&
+            settlementID != SettlementHandler.Instance.settlement.ID)
         {
             Debug.Log("Player is not in the correct settlement.");
             return;
         }
-        if (requiredItems == this.requiredItems)
-        {
-            isCompleted = true;
-        }
-        else
-        {
-            Debug.Log("Player does not have all required items.");
-        }
+
+        isCompleted = true;
     }
 
     public void TryToTake()
     {
         QuestStart(PlayerStatHandler.Instance.pd);
         QuestCheck(PlayerStatHandler.Instance.pd);
+    }
+
+    // -----------------------------
+    // HELPERS
+    // -----------------------------
+
+    private void RemoveRequiredAndQuestItems(PlayerData playerData)
+    {
+        if (requiredItemStacks != null && requiredItemStacks.Count > 0)
+        {
+            ItemRewardHelper.RemoveItems(requiredItemStacks);
+        }
+        else if (requiredItems != null && requiredItems.Count > 0)
+        {
+            foreach (Item item in requiredItems)
+            {
+                playerData.Items.Remove(item);
+            }
+        }
+
+        if (questItemStacks != null && questItemStacks.Count > 0)
+        {
+            ItemRewardHelper.RemoveItems(questItemStacks);
+        }
+        else if (questItems != null && questItems.Count > 0)
+        {
+            foreach (Item item in questItems)
+            {
+                playerData.Items.Remove(item);
+            }
+        }
+    }
+
+    private bool HasAllRequiredItems(PlayerData playerData)
+    {
+        if (requiredItems == null || requiredItems.Count == 0)
+            return true;
+
+        foreach (Item item in requiredItems)
+        {
+            if (!playerData.Items.Contains(item))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -1,18 +1,20 @@
 {
-    "inTravel": false,
+    "inTravel": true,
     "currentSettlementID": 0,
-    "destinationID": 13,
-    "remainingTime": 39,
-    "remainingTimeMinutes": 53,
+    "destinationID": 0,
+    "remainingTime": 9,
+    "remainingTimeMinutes": 27,
     "minEvents": 0,
-    "eventTimes": [],
-    "isEventActive": false,
+    "eventTimes": [
+        7
+    ],
+    "isEventActive": true,
     "PlayerWantsToHandleEventorEnterSettlement": false,
-    "currentEventID": 0,
-    "elapsedTravelTime": 0,
-    "eventIndex": 0,
+    "currentEventID": 1002,
+    "elapsedTravelTime": 7,
+    "eventIndex": 1,
     "playerPosition": [
-        -160,
-        1397
+        -102,
+        116
     ]
 }

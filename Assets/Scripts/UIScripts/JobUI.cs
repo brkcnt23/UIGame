@@ -13,112 +13,144 @@ public class JobUI : MonoBehaviour
     [SerializeField] private Button laboringMinesButton;
 
     [Header("Settlement Specialization Jobs")]
-    [SerializeField] private GameObject jobPanel; // Panel for specialization jobs
-    [SerializeField] private Transform jobContainer; // Parent object for job entries
-    [SerializeField] private GameObject jobPrefab; // Prefab for specialization job entry
+    [SerializeField] private GameObject jobPanel;
+    [SerializeField] private Transform jobContainer;
+    [SerializeField] private GameObject jobPrefab;
 
-    private List<Job_SO_Constructor> specializationJobs;
-
+    private List<Job_SO_Constructor> specializationJobs = new List<Job_SO_Constructor>();
 
     private void Start()
     {
-        // Assign button listeners for stable jobs
-        helpMerchantsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpMerchants());
-        helpScoutsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpScouts());
-        gatherHerbsButton.onClick.AddListener(() => JobSystem.Instance.StartGatherHerbs());
-        cuttingWoodsButton.onClick.AddListener(() => JobSystem.Instance.StartCuttingWoods());
-        laboringMinesButton.onClick.AddListener(() => JobSystem.Instance.StartLaboringMines());
+        if (helpMerchantsButton != null)
+        {
+            helpMerchantsButton.onClick.RemoveAllListeners();
+            helpMerchantsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpMerchants());
+        }
 
-        // Hide specialization job panel by default
-        jobPanel.SetActive(false);
+        if (helpScoutsButton != null)
+        {
+            helpScoutsButton.onClick.RemoveAllListeners();
+            helpScoutsButton.onClick.AddListener(() => JobSystem.Instance.StartHelpScouts());
+        }
 
-        // Get available specialization jobs
-        specializationJobs = JobSystem.Instance.GetAvailableJobs();
+        if (gatherHerbsButton != null)
+        {
+            gatherHerbsButton.onClick.RemoveAllListeners();
+            gatherHerbsButton.onClick.AddListener(() => JobSystem.Instance.StartGatherHerbs());
+        }
+
+        if (cuttingWoodsButton != null)
+        {
+            cuttingWoodsButton.onClick.RemoveAllListeners();
+            cuttingWoodsButton.onClick.AddListener(() => JobSystem.Instance.StartCuttingWoods());
+        }
+
+        if (laboringMinesButton != null)
+        {
+            laboringMinesButton.onClick.RemoveAllListeners();
+            laboringMinesButton.onClick.AddListener(() => JobSystem.Instance.StartLaboringMines());
+        }
+
+        if (jobPanel != null)
+            jobPanel.SetActive(false);
+
+        if (JobSystem.Instance != null)
+        {
+            specializationJobs = JobSystem.Instance.GetAvailableJobs();
+        }
+        else
+        {
+            Debug.LogWarning("JobUI: JobSystem.Instance is null.");
+        }
     }
-
-
-
 
     public void ToggleSpecializationJobUI()
     {
+        if (jobPanel == null)
+        {
+            Debug.LogWarning("JobUI: jobPanel is null.");
+            return;
+        }
+
         jobPanel.SetActive(!jobPanel.activeSelf);
+
         if (jobPanel.activeSelf)
         {
             UpdateSpecializationJobUI();
         }
     }
 
-
-
     private void UpdateSpecializationJobUI()
     {
-        // Clear previous entries
+        if (jobContainer == null || jobPrefab == null)
+        {
+            Debug.LogWarning("JobUI: jobContainer or jobPrefab is null.");
+            return;
+        }
+
         foreach (Transform child in jobContainer)
         {
             Destroy(child.gameObject);
         }
 
-        // Populate specialization job entries using the prefab
-        foreach (Job_SO_Constructor job in specializationJobs)
+        if (specializationJobs == null || specializationJobs.Count == 0)
         {
-            GameObject newJob = Instantiate(jobPrefab, jobContainer);
-
-            // Set the title and description
-            TMP_Text titleText = newJob.transform.Find("Title").GetComponent<TMP_Text>();
-            TMP_Text descText = newJob.transform.Find("Description").GetComponent<TMP_Text>();
-            Button startButton = newJob.transform.Find("StartButton").GetComponent<Button>();
-
-            titleText.text = job.Name;
-            descText.text = job.Description;
-
-            startButton.onClick.AddListener(() =>
-            {
-                JobSystem.Instance.StartJob(job);
-                ToggleSpecializationJobUI();
-            });
-        }
-    }
-
-    private void UpdateJobUI()
-    {
-        // Clear previous entries
-        foreach (Transform child in jobContainer)
-        {
-            Destroy(child.gameObject);
+            Debug.Log("JobUI: No specialization jobs available.");
+            return;
         }
 
-        // Populate job entries
         foreach (Job_SO_Constructor job in specializationJobs)
         {
+            if (job == null) continue;
+
             GameObject newJob = Instantiate(jobPrefab, jobContainer);
-            TMP_Text jobText = newJob.GetComponentInChildren<TMP_Text>();
-            string rewardInfo = GetRewardInfo(job);
 
-            jobText.text = $"{job.Name}\n{rewardInfo}";
+            TMP_Text titleText = newJob.transform.Find("Title")?.GetComponent<TMP_Text>();
+            TMP_Text descText = newJob.transform.Find("Description")?.GetComponent<TMP_Text>();
+            Button startButton = newJob.transform.Find("StartButton")?.GetComponent<Button>();
 
-            Button jobButton = newJob.GetComponentInChildren<Button>();
-            jobButton.onClick.AddListener(() =>
+            if (titleText != null)
+                titleText.text = job.Name;
+
+            if (descText != null)
+                descText.text = $"{job.Description}\n{GetRewardInfo(job)}";
+
+            if (startButton != null)
             {
-                JobSystem.Instance.StartJob(job);
-                ToggleSpecializationJobUI();
-            });
+                startButton.onClick.RemoveAllListeners();
+                startButton.onClick.AddListener(() =>
+                {
+                    if (JobSystem.Instance != null)
+                    {
+                        JobSystem.Instance.StartJob(job);
+                    }
+
+                    ToggleSpecializationJobUI();
+                });
+            }
         }
     }
 
     private string GetRewardInfo(Job_SO_Constructor job)
     {
+        if (job == null) return "Reward: Unknown";
+
         switch (job.Name)
         {
             case "Help the Merchants":
                 return "Reward: Silver & Charisma XP";
+
             case "Help the Scouts":
                 return "Reward: Silver & Dexterity XP";
+
             case "Cutting Woods":
                 return "Reward: Wood & Strength XP";
+
             case "Laboring Mines":
-                return "Reward: Stone, Chance of Iron Ingot & Gold Nugget, Constitution XP";
+                return "Reward: Stone, chance of Iron Ingot / Gold Nugget, Constitution XP";
+
             default:
-                return $"Reward: {job.StatRewardMin}-{job.StatRewardMax} {job.TargetStat}";
+                return $"Reward: {job.Silver} Silver, {job.StatRewardMin}-{job.StatRewardMax} {job.TargetStat} XP";
         }
     }
 }

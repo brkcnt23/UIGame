@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FoodSystem : MonoBehaviour
 {
-    //instance
-    public static FoodSystem Instance;
+    public static FoodSystem Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -13,18 +13,43 @@ public class FoodSystem : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
+
     public void DailyRationConsumption()
     {
+        if (PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("FoodSystem: PlayerStatHandler.Instance is null! Cannot consume daily rations.");
+            return;
+        }
+
         PlayerStatHandler.Instance.ConsumeDailyRations();
-        PlayerUISystem.Instance.UpdateRationText();
+
+        if (PlayerUISystem.Instance != null)
+        {
+            PlayerUISystem.Instance.UpdateRationText();
+            PlayerUISystem.Instance.UpdateExhaustionText();
+            PlayerUISystem.Instance.UpdateUIObjects();
+        }
+
+        if (InventoryUI.Instance != null)
+        {
+            InventoryUI.Instance.UpdateInventoryUI();
+        }
+
         Debug.Log("Günlük rasyon tüketimi tamamlandı.");
     }
 
     public int GetRationPacks()
     {
-        return PlayerStatHandler.Instance.pd.Rations;
-    }
+        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
+        {
+            return PlayerStatHandler.Instance.pd.Rations;
+        }
 
+        Debug.LogWarning("FoodSystem: PlayerStatHandler.Instance or pd is null! Returning 0.");
+        return 0;
+    }
 }

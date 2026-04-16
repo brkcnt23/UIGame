@@ -3,16 +3,16 @@
         "ID": 0,
         "Name": "furq",
         "VillageName": "tarr",
-        "Hour": 18,
-        "Minute": 0,
-        "Day": 1,
+        "Hour": 22,
+        "Minute": 40,
+        "Day": 3,
         "Level": 1,
         "Health": 100,
         "MaxHealth": 100,
         "Experience": 0,
         "MaxExperience": 149,
         "Gold": 5,
-        "Silver": 0,
+        "Silver": 118,
         "Currency": {
             "Gold": 0,
             "Silver": 0
@@ -24,11 +24,11 @@
         "DexterityXP": 149,
         "Constitution": 1,
         "ConstitutionXP": 149,
-        "Charisma": 1,
-        "CharismaXP": 149,
+        "Charisma": 2,
+        "CharismaXP": 81,
         "Rations": 10,
         "MaxExhaustionLevel": 10,
-        "CurrentExhaustionLevel": 0,
+        "CurrentExhaustionLevel": 1,
         "SmitherSkillLevel": 1,
         "SmitherSkillXP": 149,
         "TannerSkillLevel": 1,
@@ -42,11 +42,11 @@
         "TotalBattlesFought": 0,
         "TotalBattlesWon": 0,
         "TotalBattlesLost": 0,
-        "LastSleepDay": 1,
-        "LastSleepHour": 6,
+        "LastSleepDay": 2,
+        "LastSleepHour": 24,
         "LastSleepMinute": 0,
-        "LastMealDay": 1,
-        "LastMealHour": 6,
+        "LastMealDay": 2,
+        "LastMealHour": 24,
         "LastMealMinute": 0,
         "Companions": [],
         "Items": [
@@ -59,9 +59,15 @@
                 },
                 "Category": 4,
                 "Quantity": 10,
-                "Modifiers": []
+                "Modifiers": [],
+                "ItemImage": {
+                    "instanceID": 0
+                },
+                "Quality": 0
             }
         ],
+        "ItemStacks": [],
+        "Units": [],
         "Quests": [],
         "LastSettlementName": "tarr",
         "HasDied": false

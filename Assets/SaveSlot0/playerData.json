@@ -1,34 +1,34 @@
 {
     "pd": {
         "ID": 0,
-        "Name": "Can",
-        "VillageName": "CANNO",
-        "Hour": 2,
-        "Minute": 50,
-        "Day": 254,
-        "Level": 30,
+        "Name": "dfgsdf",
+        "VillageName": "dfdd",
+        "Hour": 19,
+        "Minute": 10,
+        "Day": 3,
+        "Level": 1,
         "Health": 100,
         "MaxHealth": 100,
-        "Experience": 47550,
-        "MaxExperience": 54715,
-        "Gold": 300,
-        "Silver": 75,
-        "Currency": {
-            "Gold": 0,
-            "Silver": 0
+        "Experience": -150,
+        "MaxExperience": 149,
+        "Gold": 6,
+        "Silver": 88,
+        "Money": {
+            "Gold": 6,
+            "Silver": 88
         },
-        "Alignment": -33,
-        "Strength": 3,
-        "StrengthXP": 49,
+        "Alignment": 0,
+        "Strength": 1,
+        "StrengthXP": 149,
         "Dexterity": 1,
         "DexterityXP": 149,
-        "Constitution": 3,
-        "ConstitutionXP": 36,
-        "Charisma": 1,
-        "CharismaXP": 149,
-        "Rations": 7,
+        "Constitution": 1,
+        "ConstitutionXP": 149,
+        "Charisma": 3,
+        "CharismaXP": 19,
+        "Rations": 10,
         "MaxExhaustionLevel": 10,
-        "CurrentExhaustionLevel": 0,
+        "CurrentExhaustionLevel": 1,
         "SmitherSkillLevel": 1,
         "SmitherSkillXP": 149,
         "TannerSkillLevel": 1,
@@ -42,84 +42,18 @@
         "TotalBattlesFought": 0,
         "TotalBattlesWon": 0,
         "TotalBattlesLost": 0,
-        "LastSleepDay": 254,
+        "LastSleepDay": 2,
         "LastSleepHour": 24,
         "LastSleepMinute": 0,
-        "LastMealDay": 254,
+        "LastMealDay": 2,
         "LastMealHour": 24,
         "LastMealMinute": 0,
         "Companions": [],
-        "Items": [
-            {
-                "ID": 8,
-                "Name": "Stone",
-                "Value": {
-                    "Gold": 0,
-                    "Silver": 10
-                },
-                "Category": 5,
-                "Quantity": 15,
-                "Modifiers": [],
-                "ItemImage": {
-                    "instanceID": 0
-                },
-                "Quality": 0
-            },
-            {
-                "ID": 5,
-                "Name": "Iron Ingot",
-                "Value": {
-                    "Gold": 1,
-                    "Silver": 0
-                },
-                "Category": 4,
-                "Quantity": 2,
-                "Modifiers": [],
-                "ItemImage": {
-                    "instanceID": 0
-                },
-                "Quality": 0
-            },
-            {
-                "ID": 9,
-                "Name": "Wood",
-                "Value": {
-                    "Gold": 0,
-                    "Silver": 10
-                },
-                "Category": 5,
-                "Quantity": 4,
-                "Modifiers": [],
-                "ItemImage": {
-                    "instanceID": 0
-                },
-                "Quality": 0
-            }
-        ],
-        "Units": [
-            {
-                "Type": 0,
-                "Count": 20
-            },
-            {
-                "Type": 1,
-                "Count": 15
-            },
-            {
-                "Type": 2,
-                "Count": 14
-            },
-            {
-                "Type": 3,
-                "Count": 10
-            },
-            {
-                "Type": 4,
-                "Count": 9
-            }
-        ],
+        "Items": [],
+        "ItemStacks": [],
+        "Units": [],
         "Quests": [],
-        "LastSettlementName": "Tarus",
+        "LastSettlementName": "dfdd",
         "HasDied": false
     }
 }

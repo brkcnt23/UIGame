@@ -37,25 +37,27 @@ public static class ExperienceSystem
     {
         int currentLevel = playerData.Level;
         int totalXP = playerData.Experience;
-        int maxExperience = GetTotalCharacterXPForLevel(currentLevel);
         int newLevel = currentLevel;
 
-        while (totalXP >= maxExperience && newLevel < 100)
+        // Seviye artışı kontrolü
+        while (totalXP >= GetTotalCharacterXPForLevel(newLevel + 1) && newLevel < 99)
         {
             newLevel++;
-            maxExperience = GetTotalCharacterXPForLevel(newLevel);
             Debug.Log($"Seviyeniz {newLevel} oldu!");
         }
+        
+        // Seviye azalışı kontrolü
+        while (newLevel > 1 && totalXP < GetTotalCharacterXPForLevel(newLevel))
+        {
+            newLevel--;
+            Debug.Log($"Seviyeniz {newLevel}'e düştü!");
+        }
+        
+        int maxExperience = GetTotalCharacterXPForLevel(newLevel + 1);
 
         playerData.Level = newLevel;
         playerData.Experience = totalXP;
         playerData.MaxExperience = maxExperience;
-
-        //if player loses XP can go down a level
-        if (totalXP < GetTotalCharacterXPForLevel(newLevel - 1))
-        {
-            DecreaseLevel(playerData, newLevel, totalXP, maxExperience);
-        }
 
         Debug.Log($"Toplam XP: {totalXP} / {maxExperience}");
 
@@ -71,17 +73,6 @@ public static class ExperienceSystem
         if (totalXP < -100)
         {
             OnExperienceNegative?.Invoke();
-        }
-    }
-    private static void DecreaseLevel(PlayerData playerData, int newLevel, int totalXP, int maxExperience)
-    {
-        if(newLevel > 1)
-        {
-            newLevel--;
-            maxExperience = GetTotalCharacterXPForLevel(newLevel);
-            playerData.Level = newLevel;
-            playerData.Experience = totalXP;
-            playerData.MaxExperience = maxExperience;
         }
     }
 

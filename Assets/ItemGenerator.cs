@@ -66,8 +66,9 @@ public static class ItemGenerator
                         gold,
                         silver,
                         Random.Range(10, 50), // Health recovery
-                        Random.Range(5, 20),
-                        itemSprite, // Exhaustion reduction
+                        Random.Range(5, 20),   // Exhaustion reduction
+                        itemSprite,
+                        quality,
                         quantity
                     );
                     break;

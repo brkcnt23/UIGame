@@ -2,22 +2,21 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using System.Collections.Generic;
+
 public class TimeSystem : MonoBehaviour
 {
-    public int Hour { get; private set; }    // Saat (0-23)
-    public int Minute { get; private set; }  // Dakika (0-59)
-    public int Day { get; private set; }     // Gün (1 ve üstü)
+    public int Hour { get; private set; }
+    public int Minute { get; private set; }
+    public int Day { get; private set; }
 
     public bool isTimeLapsing = false;
     private PlayerData playerData;
 
-    // Singleton Instance
     public static TimeSystem Instance { get; private set; }
 
     [Header("UI")]
-    public TMP_Text clockText; // Reference to the clock text
-    public TMP_Text dayText; // Reference to the clock text
+    public TMP_Text clockText;
+    public TMP_Text dayText;
 
     private void Awake()
     {
@@ -28,106 +27,120 @@ public class TimeSystem : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
+
     public void InitializeLastActionTimes()
     {
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        {
+            Debug.LogWarning("TimeSystem: Player data not ready.");
+            return;
+        }
+
         playerData = PlayerStatHandler.Instance.pd;
+
         Day = playerData.Day;
         Hour = playerData.Hour;
         Minute = playerData.Minute;
-
     }
 
-    /// <summary>
-    /// Zamanı ilerletir ve gerekli kontrolleri yapar.
-    /// </summary>
-    /// <param name="minutes">İlerletilecek dakika miktarı.</param>
+    // -----------------------------
+    // ADVANCE TIME
+    // -----------------------------
+
     public void AdvanceTime(int minutes)
     {
+        EnsurePlayerData();
+        if (playerData == null) return;
+
         Minute += minutes;
         NormalizeTime();
-
         CheckExhaustion();
 
-        PlayerUISystem.Instance.UpdateClockText();
-
+        if (PlayerUISystem.Instance != null)
+            PlayerUISystem.Instance.UpdateClockText();
     }
 
     public void AdvanceTime(int days, int hours, int minutes)
     {
-        if (isTimeLapsing == true) return;
+        if (isTimeLapsing) return;
+
         int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
         AdvanceTime(totalMinutes);
     }
 
-    //we will advance time but with a IEnumerator so we can see the time passing
     public IEnumerator AdvanceTimeCoroutine(int days, int hours, int minutes)
     {
-        isTimeLapsing = true;
-        int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
-        int increment; // Adjust the increment (e.g., 10 minutes)
+        EnsurePlayerData();
+        if (playerData == null) yield break;
 
-        // Determine the increment based on the total time to advance
+        isTimeLapsing = true;
+
+        int totalMinutes = days * 24 * 60 + hours * 60 + minutes;
+        int increment;
+
         if (days > 0)
-        {
-            increment = 60; // 1 hour
-        }
+            increment = 60;
         else if (hours > 0)
-        {
-            increment = 10; // 10 minutes
-        }
+            increment = 10;
         else
-        {
-            increment = 1; // 1 minute
-        }
+            increment = 1;
 
         int minutesPassed = 0;
+
         while (minutesPassed < totalMinutes)
         {
-            // Determine how much time to advance in this step
             int step = Mathf.Min(increment, totalMinutes - minutesPassed);
 
-            // Advance time
             AdvanceTime(step);
 
-            // Update the UI
-            PlayerUISystem.Instance.UpdateClockText();
+            if (PlayerUISystem.Instance != null)
+                PlayerUISystem.Instance.UpdateClockText();
 
             minutesPassed += step;
 
-            // Smooth the speed of time progression
-            float progress = (float)minutesPassed / totalMinutes;
+            float progress = totalMinutes > 0 ? (float)minutesPassed / totalMinutes : 1f;
             float waitTime = Mathf.Lerp(0.1f, 0.05f, progress);
 
-            MapAvatarHandler.Instance.StopAllCoroutines();
-            MapAvatarHandler.Instance.StartCoroutine(MapAvatarHandler.Instance.MovePlayerIconToNextSegment(progress));
+            if (MapAvatarHandler.Instance != null)
+            {
+                MapAvatarHandler.Instance.StopAllCoroutines();
+                MapAvatarHandler.Instance.StartCoroutine(MapAvatarHandler.Instance.MovePlayerIconToNextSegment(progress));
+            }
 
             yield return new WaitForSecondsRealtime(waitTime);
         }
-        Debug.Log("AdvenceTimeCoroutine");
+
         isTimeLapsing = false;
-        // Update player data
+
         playerData.Day = Day;
         playerData.Hour = Hour;
         playerData.Minute = Minute;
+
+        if (PlayerUISystem.Instance != null)
+            PlayerUISystem.Instance.UpdateUIObjects();
     }
+
     public void AnimateTimeChange(int day, int hour, int minute, float time)
     {
-        if (isTimeLapsing == true) return;
+        EnsurePlayerData();
+        if (playerData == null) return;
+        if (isTimeLapsing) return;
+
         isTimeLapsing = true;
+
         int targetDay = Day + day;
         int targetHour = Hour + hour;
         int targetMinute = Minute + minute;
 
-        // Handle minute overflow before the tween
         if (targetMinute >= 60)
         {
             targetHour += targetMinute / 60;
             targetMinute %= 60;
         }
 
-        // Handle hour overflow before the tween
         if (targetHour >= 24)
         {
             targetDay += targetHour / 24;
@@ -136,85 +149,105 @@ public class TimeSystem : MonoBehaviour
 
         Sequence timeSequence = DOTween.Sequence();
 
-        timeSequence.Append(DOTween.To(() => Minute, x => Minute = x, targetMinute, time)
-        .OnUpdate(UpdateClockText));
+        timeSequence.Append(
+            DOTween.To(() => Minute, x => Minute = x, targetMinute, time)
+            .OnUpdate(UpdateClockTextInternal));
 
-        // Animate hour change
-        timeSequence.Append(DOTween.To(() => Hour, x => Hour = x, targetHour, time)
-            .OnUpdate(UpdateClockText));
+        timeSequence.Append(
+            DOTween.To(() => Hour, x => Hour = x, targetHour, time)
+            .OnUpdate(UpdateClockTextInternal));
 
-        // Animate day change
-        timeSequence.Append(DOTween.To(() => Day, x => Day = x, targetDay, 0.1f)
-            .OnUpdate(UpdateClockText));
+        timeSequence.Append(
+            DOTween.To(() => Day, x => Day = x, targetDay, 0.1f)
+            .OnUpdate(UpdateClockTextInternal));
 
         timeSequence.Play().OnComplete(() =>
         {
+            Day = targetDay;
+            Hour = targetHour;
+            Minute = targetMinute;
+
             playerData.Day = targetDay;
             playerData.Hour = targetHour;
             playerData.Minute = targetMinute;
+
+            CheckExhaustion();
             isTimeLapsing = false;
+
+            if (PlayerUISystem.Instance != null)
+                PlayerUISystem.Instance.UpdateUIObjects();
+
             Debug.Log("Time advancement completed with tween.");
         });
-
-
     }
-    private void UpdateClockText()
-    {
-        clockText.text = $"{Hour:D2}:{Minute:D2}";
-        dayText.text = $"Day: {Day}";
-    }
+
+    // -----------------------------
+    // INTERNAL TIME RULES
+    // -----------------------------
+
     private void NormalizeTime()
     {
         Hour += Minute / 60;
 
         if (Minute >= 60)
         {
-            foreach (var quest in playerData.Quests)
+            if (playerData.Quests != null)
             {
-                if (quest.hoursToComplete > 0)
+                foreach (var quest in playerData.Quests)
                 {
-                    quest.hoursToComplete -= Hour;
-                    if (quest.hoursToComplete < 0) quest.hoursToComplete = 0;
+                    if (quest.hoursToComplete > 0)
+                    {
+                        quest.hoursToComplete -= Hour;
+                        if (quest.hoursToComplete < 0)
+                            quest.hoursToComplete = 0;
+                    }
                 }
             }
         }
-        Minute %= 60;
 
+        Minute %= 60;
         Day += Hour / 24;
 
         if (Hour >= 24)
         {
-            foreach (var e in EventHandler.Instance.events)
+            if (EventHandler.Instance != null && EventHandler.Instance.events != null)
             {
-                if (e.encounterCooldown > 0)
+                foreach (var e in EventHandler.Instance.events)
                 {
-                    e.encounterCooldown -= 1;
-                    if (e.encounterCooldown < 0) e.encounterCooldown = 0;
+                    if (e.encounterCooldown > 0)
+                    {
+                        e.encounterCooldown -= 1;
+                        if (e.encounterCooldown < 0)
+                            e.encounterCooldown = 0;
+                    }
                 }
             }
 
-            // Handle travel-related logic once for the day overflow
-            if (TravelSystem.Instance.inTravel)
+            if (TravelSystem.Instance != null && TravelSystem.Instance.inTravel)
             {
                 SleepAndEatWhileTraveling();
-                print("Traveling");
+                Debug.Log("Traveling day tick applied.");
             }
         }
 
         Hour %= 24;
-
     }
 
-    /// <summary>
-    /// Uyuma işlemini gerçekleştirir ve rasyon tüketimini uygular.
-    /// </summary>
+    // -----------------------------
+    // SLEEP / FOOD / EXHAUSTION
+    // -----------------------------
+
     public void Sleep()
     {
-        int baseSleepDuration = 6 * 60; // Temel uyku süresi: 6 saat
-        int additionalSleepPerExhaustion = 2 * 60; // Her yorgunluk seviyesi için ek süre: 2 saat
+        EnsurePlayerData();
+        if (playerData == null) return;
+
+        int baseSleepDuration = 6 * 60;
+        int additionalSleepPerExhaustion = 2 * 60;
         int totalSleepDuration = baseSleepDuration + (playerData.CurrentExhaustionLevel * additionalSleepPerExhaustion);
 
-        FoodSystem.Instance.DailyRationConsumption(); // Yemek tüketimini burada çağırıyoruz
+        if (FoodSystem.Instance != null)
+            FoodSystem.Instance.DailyRationConsumption();
 
         if (playerData.Rations >= 0)
         {
@@ -227,16 +260,21 @@ public class TimeSystem : MonoBehaviour
             Debug.Log("Yemek yok! Uyudunuz ama yorgunluk seviyeniz arttı.");
         }
 
-        //AdvanceTimeCoroutine(0, 0, totalSleepDuration);
         AnimateTimeChange(0, 0, totalSleepDuration, 1f);
         UpdateLastSleepTime();
         UpdateLastMealTime();
     }
+
     public void SleepTavern()
     {
-        int baseSleepDuration = 6 * 60; // Temel uyku süresi: 6 saat
-        int additionalSleepPerExhaustion = 2 * 60; // Her yorgunluk seviyesi için ek süre: 2 saat
+        EnsurePlayerData();
+        if (playerData == null) return;
+
+        int baseSleepDuration = 6 * 60;
+        int additionalSleepPerExhaustion = 2 * 60;
         int totalSleepDuration = baseSleepDuration + (playerData.CurrentExhaustionLevel * additionalSleepPerExhaustion);
+
+        playerData.CurrentExhaustionLevel = 0;
 
         AnimateTimeChange(0, 0, totalSleepDuration, 1f);
         UpdateLastSleepTime();
@@ -245,13 +283,16 @@ public class TimeSystem : MonoBehaviour
 
     public void SleepAndEatWhileTraveling()
     {
-        if (TravelSystem.Instance.isSleeping)
+        EnsurePlayerData();
+        if (playerData == null) return;
+        if (TravelSystem.Instance == null) return;
+
+        bool isSleepingTravel = TravelSystem.Instance.isSleeping;
+        bool isHunting = TravelSystem.Instance.isHuntingForRations;
+
+        if (isSleepingTravel)
         {
-            if (TravelSystem.Instance.isHuntingForRations)
-            {
-                playerData.CurrentExhaustionLevel = 0;
-            }
-            else if (playerData.Rations >= 0)
+            if (isHunting || playerData.Rations >= 0)
             {
                 playerData.CurrentExhaustionLevel = 0;
             }
@@ -262,13 +303,7 @@ public class TimeSystem : MonoBehaviour
         }
         else
         {
-            if (TravelSystem.Instance.isHuntingForRations)
-            {
-            }
-            else if (playerData.Rations >= 0)
-            {
-            }
-            else
+            if (!isHunting && playerData.Rations < 0)
             {
                 PlayerStatHandler.Instance.IncreaseExhaustion();
             }
@@ -276,29 +311,30 @@ public class TimeSystem : MonoBehaviour
             PlayerStatHandler.Instance.IncreaseExhaustion();
         }
 
+        // Weight kaynaklı ekstra yorgunluk
+        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.IsOverweight())
+        {
+            PlayerStatHandler.Instance.IncreaseExhaustion();
+
+            if (PlayerStatHandler.Instance.GetWeightRatio() >= 1.5f)
+            {
+                PlayerStatHandler.Instance.IncreaseExhaustion();
+            }
+        }
+
         UpdateLastMealTime();
         UpdateLastSleepTime();
     }
 
-    /// <summary>
-    /// Yorgunluk seviyesini kontrol eder.
-    /// </summary>
     private void CheckExhaustion()
     {
+        EnsurePlayerData();
         if (playerData == null)
         {
-            // Attempt to reinitialize if possible
-            if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
-            {
-                playerData = PlayerStatHandler.Instance.pd;
-            }
-
-            if (playerData == null)
-            {
-                Debug.LogWarning("TimeSystem: playerData is null, cannot check exhaustion.");
-                return;
-            }
+            Debug.LogWarning("TimeSystem: playerData is null, cannot check exhaustion.");
+            return;
         }
+
         int timeSinceLastMeal = GetTimeDifferenceInMinutes(
             playerData.LastMealDay,
             playerData.LastMealHour,
@@ -315,12 +351,13 @@ public class TimeSystem : MonoBehaviour
             Hour,
             Minute);
 
-        if (timeSinceLastSleep > 1440) // 24 saatten fazla uyumamışsa
+        if (timeSinceLastSleep > 1440)
         {
             PlayerStatHandler.Instance.IncreaseExhaustion();
             Debug.Log("24 saatten fazla uyumadınız! Yorgunluk seviyeniz arttı.");
             UpdateLastSleepTime();
         }
+
         if (timeSinceLastMeal > 1440)
         {
             PlayerStatHandler.Instance.IncreaseExhaustion();
@@ -329,10 +366,6 @@ public class TimeSystem : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// İki zaman noktası arasındaki farkı dakika cinsinden hesaplar.
-    /// </summary>
     private int GetTimeDifferenceInMinutes(int startDay, int startHour, int startMinute, int endDay, int endHour, int endMinute)
     {
         int totalStartMinutes = (startDay * 24 * 60) + (startHour * 60) + startMinute;
@@ -340,11 +373,11 @@ public class TimeSystem : MonoBehaviour
         return totalEndMinutes - totalStartMinutes;
     }
 
-    /// <summary>
-    /// Son uyuma zamanını günceller.
-    /// </summary>
     public void UpdateLastSleepTime()
     {
+        EnsurePlayerData();
+        if (playerData == null) return;
+
         playerData.LastSleepDay = Day;
         playerData.LastSleepHour = Hour;
         playerData.LastSleepMinute = Minute;
@@ -352,17 +385,41 @@ public class TimeSystem : MonoBehaviour
 
     public void UpdateLastMealTime()
     {
+        EnsurePlayerData();
+        if (playerData == null) return;
+
         playerData.LastMealDay = Day;
         playerData.LastMealHour = Hour;
         playerData.LastMealMinute = Minute;
     }
 
-    /// <summary>
-    /// Mevcut zamanı string formatında döndürür.
-    /// </summary>
-    /// <returns>Zaman string'i.</returns>
+    // -----------------------------
+    // UI
+    // -----------------------------
+
+    private void UpdateClockTextInternal()
+    {
+        if (clockText != null)
+            clockText.text = $"{Hour:D2}:{Minute:D2}";
+
+        if (dayText != null)
+            dayText.text = $"Day: {Day}";
+    }
+
     public string GetTimeString()
     {
         return $"Gün {Day}, Saat {Hour:D2}:{Minute:D2}";
+    }
+
+    // -----------------------------
+    // SAFETY
+    // -----------------------------
+
+    private void EnsurePlayerData()
+    {
+        if (playerData == null && PlayerStatHandler.Instance != null)
+        {
+            playerData = PlayerStatHandler.Instance.pd;
+        }
     }
 }

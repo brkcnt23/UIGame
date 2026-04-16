@@ -1,8 +1,7 @@
-using Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
+
 public class UIHandler : MonoBehaviour
 {
     public static UIHandler Instance { get; private set; }
@@ -33,56 +32,91 @@ public class UIHandler : MonoBehaviour
     public Button[] GoBackButtons;
     public Button FightButton;
 
-
-    public void Awake()
+    private void Awake()
     {
-        // Check if instance already exists
         if (Instance == null)
         {
-            // If not, set instance to this
             Instance = this;
         }
         else
         {
-            // If instance already exists, destroy this
             Destroy(gameObject);
+            return;
         }
     }
 
     public void UpdateSettlementInfo(Settlement settlement)
     {
-        SettlementName.text = settlement.Name;
-        SettlementDescription.text = $"Population: {settlement.Population}\nQuality:{settlement.Quality}\nWealth:{settlement.Wealth}";
-
-        SettlementInfoPanel.SetActive(true);
-        if(OnHome(settlement))
+        if (settlement == null)
         {
-            HomePanelBG.SetActive(true);
-            QuestPanelBG.SetActive(false);
-            SettlementPanelBG.SetActive(false);
+            Debug.LogWarning("UIHandler: settlement is null.");
+            return;
         }
-        else if(OnQuest(settlement))
+
+        if (SettlementName != null)
+            SettlementName.text = settlement.Name;
+
+        if (SettlementDescription != null)
+            SettlementDescription.text =
+                $"Population: {settlement.Population}\n" +
+                $"Quality: {settlement.Quality}\n" +
+                $"Wealth: {settlement.Wealth}";
+
+        if (SettlementInfoPanel != null)
+            SettlementInfoPanel.SetActive(true);
+
+        if (OnHome(settlement))
         {
-            QuestPanelBG.SetActive(true);
-            HomePanelBG.SetActive(false);
-            SettlementPanelBG.SetActive(false);
-            SettlementDescription.text = "";
+            if (HomePanelBG != null) HomePanelBG.SetActive(true);
+            if (QuestPanelBG != null) QuestPanelBG.SetActive(false);
+            if (SettlementPanelBG != null) SettlementPanelBG.SetActive(false);
+        }
+        else if (OnQuest(settlement))
+        {
+            if (QuestPanelBG != null) QuestPanelBG.SetActive(true);
+            if (HomePanelBG != null) HomePanelBG.SetActive(false);
+            if (SettlementPanelBG != null) SettlementPanelBG.SetActive(false);
+
+            if (SettlementDescription != null)
+                SettlementDescription.text = "";
         }
         else
         {
-            HomePanelBG.SetActive(false);
-            QuestPanelBG.SetActive(false);
-            SettlementPanelBG.SetActive(true);
+            if (HomePanelBG != null) HomePanelBG.SetActive(false);
+            if (QuestPanelBG != null) QuestPanelBG.SetActive(false);
+            if (SettlementPanelBG != null) SettlementPanelBG.SetActive(true);
         }
     }
 
     public bool OnHome(Settlement settlement)
     {
-        return settlement == HomeSettlementHandler.Instance.homeSettlement;
+        return HomeSettlementHandler.Instance != null &&
+               settlement == HomeSettlementHandler.Instance.homeSettlement;
     }
 
     public bool OnQuest(Settlement settlement)
     {
-        return settlement.Type == SettlementType.Quest;
+        return settlement != null && settlement.Type == SettlementType.Quest;
+    }
+
+    public void HideHomeUI()
+    {
+        if (SettlementInfoPanel != null) SettlementInfoPanel.SetActive(false);
+
+        if (SettlementPanelBG != null) SettlementPanelBG.SetActive(false);
+        if (HomePanelBG != null) HomePanelBG.SetActive(false);
+        if (QuestPanelBG != null) QuestPanelBG.SetActive(false);
+
+        if (TownHallPanel != null) TownHallPanel.SetActive(false);
+        if (TavernPanel != null) TavernPanel.SetActive(false);
+        if (ShopsPanel != null) ShopsPanel.SetActive(false);
+        if (WallsPanel != null) WallsPanel.SetActive(false);
+
+        if (HomeTownHallPanel != null) HomeTownHallPanel.SetActive(false);
+        if (HomeTavernPanel != null) HomeTavernPanel.SetActive(false);
+        if (HomeShopsPanel != null) HomeShopsPanel.SetActive(false);
+        if (HomeWallsPanel != null) HomeWallsPanel.SetActive(false);
+
+        if (ResultsPanel != null) ResultsPanel.SetActive(false);
     }
 }

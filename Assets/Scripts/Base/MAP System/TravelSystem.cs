@@ -17,6 +17,7 @@ public class TravelSystem : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
@@ -28,6 +29,13 @@ public class TravelSystem : MonoBehaviour
     [Header("Travel Multipliers")]
     public int distanceMultiplier = 1;
 
+    [Header("Weight System")]
+    [Tooltip("Her kapasite aşım oranı için travel süresine eklenecek yüzde.")]
+    public float overweightTravelPenaltyPerRatio = 0.25f;
+
+    [Tooltip("Kapasite aşımı ciddi boyuttaysa ek exhaustion uygulanır.")]
+    public float heavyOverweightThreshold = 1.5f;
+
     [Header("Travel Variables")]
     int remainingTime;
     int remainingTimeMinutes;
@@ -36,14 +44,12 @@ public class TravelSystem : MonoBehaviour
     List<int> eventTimes = new List<int>();
 
     [Header("TravelDecider Panel")]
-
     public GameObject TravelingDeciderPanel;
     public bool isHuntingForRations = false;
     public bool isSleeping = false;
 
     public TMP_Text travelInfoText;
     public TMP_Text travelTimeText;
-
 
     public GameObject eventPanel;
 
@@ -55,29 +61,39 @@ public class TravelSystem : MonoBehaviour
 
     public TravelWrapper travelData = new TravelWrapper();
 
+    // -----------------------------
+    // SAVE / LOAD
+    // -----------------------------
+
     public void SaveTravelData()
     {
         travelData.inTravel = inTravel;
+
         if (inTravel)
         {
-            if (MapAvatarHandler.Instance.playerIcon != null)
+            if (MapAvatarHandler.Instance != null && MapAvatarHandler.Instance.playerIcon != null)
             {
                 Vector2 playerPosition = MapAvatarHandler.Instance.GetPlayerPosition();
                 travelData.playerPosition = new int[2] { (int)playerPosition.x, (int)playerPosition.y };
             }
-            currentSettlement = MapHandler.Instance.GetLastVisitedSettlement();
-            destination = MapHandler.Instance.GetDestinationSettlement();
-            currentEvent = EventHandler.Instance.currentEvent;
+
+            currentSettlement = MapHandler.Instance != null ? MapHandler.Instance.GetLastVisitedSettlement() : null;
+            destination = MapHandler.Instance != null ? MapHandler.Instance.GetDestinationSettlement() : null;
+            currentEvent = EventHandler.Instance != null ? EventHandler.Instance.currentEvent : null;
+
             travelData.currentSettlementID = currentSettlement != null ? currentSettlement.settlement.ID : 0;
             travelData.destinationID = destination != null ? destination.settlement.ID : 0;
+
             if (isEventActive)
             {
                 travelData.isEventActive = isEventActive;
-                if (currentEvent != null || currentEvent.ID != 0)
+
+                if (currentEvent != null && currentEvent.ID != 0)
                 {
                     travelData.currentEventID = currentEvent.ID;
                 }
             }
+
             travelData.remainingTime = remainingTime;
             travelData.remainingTimeMinutes = remainingTimeMinutes;
             travelData.minEvents = minEvents;
@@ -87,14 +103,14 @@ public class TravelSystem : MonoBehaviour
             travelData.eventIndex = eventIndex;
         }
 
-        JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
-        jSONDataHandler.SaveData(travelData, "travel.json");
+        JSONDataHandler jsonDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        jsonDataHandler.SaveData(travelData, "travel.json");
     }
 
     public void LoadTravelData()
     {
-        JSONDataHandler jSONDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
-        TravelWrapper wrapper = jSONDataHandler.LoadData<TravelWrapper>("travel.json");
+        JSONDataHandler jsonDataHandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
+        TravelWrapper wrapper = jsonDataHandler.LoadData<TravelWrapper>("travel.json");
 
         travelData = wrapper != null ? wrapper : new TravelWrapper();
 
@@ -105,10 +121,10 @@ public class TravelSystem : MonoBehaviour
                 Debug.LogError("Required instances are not initialized. Cannot load travel data.");
                 return;
             }
+
             GameManager.Instance.DisableAllPanels();
             GameManager.Instance.navPanel.SetActive(true);
             GameManager.Instance.infoPanel.SetActive(true);
-
 
             MapHandler.Instance.map.transform.parent.gameObject.SetActive(true);
             MapHandler.Instance.PopulateMap();
@@ -125,6 +141,7 @@ public class TravelSystem : MonoBehaviour
             PlayerWantsToHandleEventorEnterSettlement = travelData.PlayerWantsToHandleEventorEnterSettlement;
             elapsedTravelTime = travelData.elapsedTravelTime;
             eventIndex = travelData.eventIndex;
+
             if (travelData.playerPosition != null && travelData.playerPosition.Length == 2)
             {
                 Vector2 playerPosition = new Vector2(travelData.playerPosition[0], travelData.playerPosition[1]);
@@ -151,19 +168,24 @@ public class TravelSystem : MonoBehaviour
 
     public void LoadTravelDataFromSourceData()
     {
-        JSONDataHandler jSONDataHandler = new JSONDataHandler("SourceData");
-        TravelWrapper wrapper = jSONDataHandler.LoadData<TravelWrapper>("trav   el.json");
-
+        JSONDataHandler jsonDataHandler = new JSONDataHandler("SourceData");
+        TravelWrapper wrapper = jsonDataHandler.LoadData<TravelWrapper>("travel.json");
         travelData = wrapper != null ? wrapper : new TravelWrapper();
     }
 
+    // -----------------------------
+    // HELPERS
+    // -----------------------------
+
     public SettlementButtonPointer GetSettlementButtonPointerByID(int id)
     {
+        if (MapHandler.Instance == null) return null;
+
         foreach (GameObject child in MapHandler.Instance.children)
         {
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
-            if (settlementButtonPointer.settlement.ID == id)
+            if (settlementButtonPointer != null && settlementButtonPointer.settlement.ID == id)
             {
                 return settlementButtonPointer;
             }
@@ -174,6 +196,8 @@ public class TravelSystem : MonoBehaviour
 
     public Event_SO_Constructor GetEventByID(int id)
     {
+        if (EventHandler.Instance == null) return null;
+
         foreach (Event_SO_Constructor e in EventHandler.Instance.events)
         {
             if (e.ID == id)
@@ -184,20 +208,53 @@ public class TravelSystem : MonoBehaviour
 
         return null;
     }
+
+    private float GetWeightPenaltyMultiplier()
+    {
+        if (PlayerStatHandler.Instance == null)
+            return 1f;
+
+        float ratio = PlayerStatHandler.Instance.GetWeightRatio();
+
+        if (ratio <= 1f)
+            return 1f;
+
+        float excessRatio = ratio - 1f;
+        return 1f + (excessRatio * overweightTravelPenaltyPerRatio);
+    }
+
+    private bool IsHeavilyOverweight()
+    {
+        if (PlayerStatHandler.Instance == null)
+            return false;
+
+        return PlayerStatHandler.Instance.GetWeightRatio() >= heavyOverweightThreshold;
+    }
+
+    // -----------------------------
+    // TRAVEL CORE
+    // -----------------------------
+
     public void TravelToSettlement(Vector2 _currentPos = new Vector2())
     {
         remainingTime = 0;
+
         int minutes = CalculateDistance(_currentPos);
 
         int hours = minutes / 60;
         minutes = minutes % 60;
+
         remainingTime = hours;
         remainingTimeMinutes = minutes;
 
         int days = hours / 24;
         hours = hours % 24;
-        print("Started Travel");
-        if (!inTravel) SettlementHandler.Instance.OnSettlementExited();
+
+        Debug.Log("Started Travel");
+
+        if (!inTravel && SettlementHandler.Instance != null)
+            SettlementHandler.Instance.OnSettlementExited();
+
         ContinueTravel();
     }
 
@@ -212,6 +269,7 @@ public class TravelSystem : MonoBehaviour
             _currentPos = MapAvatarHandler.Instance.GetPlayerPosition();
             MapAvatarHandler.Instance.currentPosition = MapAvatarHandler.Instance.playerIcon.transform;
         }
+
         Vector2 destinationPos = destination.transform.localPosition;
 
         float distance = Vector2.Distance(_currentPos, destinationPos) * distanceMultiplier;
@@ -221,32 +279,32 @@ public class TravelSystem : MonoBehaviour
 
         if (isHuntingForRations)
         {
-            distance += 60 * days; //add 60 minutes for each day of hunting
+            distance += 60 * days;
         }
 
         if (isSleeping)
         {
-            distance += 360 * days; //add 360 minutes for each day of sleeping
+            distance += 360 * days;
 
-            if (PlayerStatHandler.Instance.GetExhaustionLevel() > 0)
+            if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.GetExhaustionLevel() > 0)
             {
-                distance += 120; // add if the player is exhausted before starting the travel
+                distance += 120;
             }
         }
 
-        return (int)distance;
+        // Weight penalty
+        distance *= GetWeightPenaltyMultiplier();
+
+        return Mathf.Max(1, Mathf.RoundToInt(distance));
     }
 
     public void ContinueTravel()
     {
         StopAllCoroutines();
 
-        //if (!TravelingPanel.activeSelf)
-        //{
-        //TravelingPanel.SetActive(true);
-        //}
         MapAvatarHandler.Instance.CreatePlayerIcon();
         MapAvatarHandler.Instance.endPosition = destination.transform;
+
         if (!inTravel)
         {
             MapAvatarHandler.Instance.startPosition = currentSettlement.transform;
@@ -257,6 +315,7 @@ public class TravelSystem : MonoBehaviour
         {
             MapAvatarHandler.Instance.startPosition = MapAvatarHandler.Instance.currentPosition;
         }
+
         inTravel = true;
 
         if (currentEvent != null)
@@ -269,15 +328,12 @@ public class TravelSystem : MonoBehaviour
             {
                 StartCoroutine(TravelUntilEvent());
             }
-
         }
         else
         {
             StartCoroutine(TravelUntilEvent());
         }
-
     }
-
 
     private int elapsedTravelTime = 0;
     public int eventIndex = 0;
@@ -285,36 +341,37 @@ public class TravelSystem : MonoBehaviour
     public IEnumerator TravelUntilEvent()
     {
         int totalTravelTime = remainingTime + elapsedTravelTime;
-        // If eventTimes is null or empty, generate them
+
         if (eventTimes == null || eventTimes.Count == 0)
         {
-            // Determine the number of events
             int minEvents = this.minEvents;
             int maxEvents = Mathf.Max(1, totalTravelTime / 20);
             int numberOfEvents = Random.Range(minEvents, maxEvents + 1);
 
-            // Generate event times
             eventTimes = new List<int>();
+
             for (int i = 0; i < numberOfEvents; i++)
             {
                 int eventTime = Random.Range(3, totalTravelTime - 3);
                 eventTimes.Add(eventTime);
             }
-            eventTimes.Sort();
 
+            eventTimes.Sort();
             travelData.eventTimes = eventTimes;
         }
 
-        print($"Started Travel in {totalTravelTime}");
+        Debug.Log($"Started Travel in {totalTravelTime}");
+
         List<int> eventT = new List<int>(eventTimes);
         for (int i = 0; i < eventT.Count; i++)
         {
             if (eventT[i] <= elapsedTravelTime)
             {
                 eventT.RemoveAt(i);
+                i--;
             }
-
         }
+
         MapAvatarHandler.Instance.SetSegments(eventT, eventIndex);
 
         while (remainingTime > 0)
@@ -329,7 +386,6 @@ public class TravelSystem : MonoBehaviour
 
             int travelSegment = Mathf.Min(timeUntilNextEvent, remainingTime);
 
-            // Advance time smoothly
             yield return StartCoroutine(TimeSystem.Instance.AdvanceTimeCoroutine(0, travelSegment, 0));
 
             remainingTime -= travelSegment;
@@ -341,14 +397,20 @@ public class TravelSystem : MonoBehaviour
                 eventIndex++;
                 isEventActive = true;
 
-                print("Event at " + elapsedTravelTime + " hours");
+                Debug.Log("Event at " + elapsedTravelTime + " hours");
 
-                // Wait until the event is resolved
                 yield return new WaitUntil(() => !isEventActive);
                 isEventActive = false;
-                currentEvent.ID = 0;
 
-                MapAvatarHandler.Instance.segments.RemoveAt(0);
+                if (currentEvent != null)
+                {
+                    currentEvent.ID = 0;
+                }
+
+                if (MapAvatarHandler.Instance.segments.Count > 0)
+                {
+                    MapAvatarHandler.Instance.segments.RemoveAt(0);
+                }
             }
         }
 
@@ -361,7 +423,7 @@ public class TravelSystem : MonoBehaviour
     public void TravelDone()
     {
         EnterSettlement();
-        print("Travel Done");
+        Debug.Log("Travel Done");
         inTravel = false;
         travelData.inTravel = false;
         ResetTravelData();
@@ -371,19 +433,27 @@ public class TravelSystem : MonoBehaviour
     {
         currentSettlement = destination;
 
-        MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+        if (MapHandler.Instance != null)
+            MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
 
-        MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
+        if (MapHandler.Instance != null)
+            MapHandler.Instance.MovePlayerToLastVisitedSettlement(currentSettlement.settlement);
 
         TimeSystem.Instance.AdvanceTimeCoroutine(0, 0, remainingTimeMinutes);
-        GameManager.Instance.ShowSettlementPanel();
-        UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.ShowSettlementPanel();
+
+        if (UIHandler.Instance != null)
+            UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
     }
 
     public void HandleEvent()
     {
-        TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
-        print("Handle Event");
+        if (TravelingPanel != null)
+            TravelingPanel.transform.GetChild(0).gameObject.SetActive(true);
+
+        Debug.Log("Handle Event");
         ShowEventPanel();
     }
 
@@ -415,15 +485,16 @@ public class TravelSystem : MonoBehaviour
 
         if (currentEvent.ID == 0)
         {
-            // If ID == 0, attempt to generate a new event
             Event_SO_Constructor randomEvent = EventHandler.Instance.GenerateEvent();
             currentEvent = randomEvent;
+
             if (currentEvent == null)
             {
                 Debug.LogError("No events available to generate. Cannot show event panel.");
                 return;
             }
         }
+
         eventPanel.SetActive(true);
         ep.ShowEvent(currentEvent, remainingTime);
     }
@@ -443,7 +514,12 @@ public class TravelSystem : MonoBehaviour
     public void ResetTravelData()
     {
         destination = null;
-        currentEvent.ID = 0;
+
+        if (currentEvent != null)
+        {
+            currentEvent.ID = 0;
+        }
+
         remainingTime = 0;
         remainingTimeMinutes = 0;
         minEvents = 0;
@@ -461,7 +537,14 @@ public class TravelSystem : MonoBehaviour
         minutes = minutes % 60;
         int days = hours / 24;
         hours = hours % 24;
-        travelTimeText.text = $"Travel time: {days} days, {hours} hours, {minutes} minutes";
+
+        string weightInfo = "";
+        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.IsOverweight())
+        {
+            weightInfo = "\nHeavy load is slowing you down.";
+        }
+
+        travelTimeText.text = $"Travel time: {days} days, {hours} hours, {minutes} minutes{weightInfo}";
     }
 
     public void PlayerWantsToHunt()
@@ -483,7 +566,14 @@ public class TravelSystem : MonoBehaviour
         TravelingDeciderPanel.SetActive(false);
         ResetTravelData();
         destination = MapHandler.Instance.selectedSettlement.GetComponent<SettlementButtonPointer>();
-        print("Accepted travel");
+
+        Debug.Log("Accepted travel");
+
+        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.IsOverweight())
+        {
+            Debug.Log("Player is overweight. Travel will be slower.");
+        }
+
         if (!inTravel)
         {
             TravelToSettlement();
@@ -500,9 +590,16 @@ public class TravelSystem : MonoBehaviour
         if (!inTravel)
         {
             TravelingDeciderPanel.SetActive(false);
-            MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
-            GameManager.Instance.ShowSettlementPanel();
-            UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
+
+            if (MapHandler.Instance != null)
+                MapHandler.Instance.map.transform.parent.gameObject.SetActive(false);
+
+            if (GameManager.Instance != null)
+                GameManager.Instance.ShowSettlementPanel();
+
+            if (UIHandler.Instance != null && currentSettlement != null)
+                UIHandler.Instance.UpdateSettlementInfo(currentSettlement.settlement);
+
             destination = null;
         }
         else
@@ -518,7 +615,9 @@ public class TravelSystem : MonoBehaviour
     public void PlayerMiniGameClosed()
     {
         PlayerWantsToHandleEventorEnterSettlement = true;
-        TravelingPanel.SetActive(false);
+
+        if (TravelingPanel != null)
+            TravelingPanel.SetActive(false);
     }
 }
 
