@@ -3,180 +3,187 @@ using UnityEngine;
 
 public static class ExperienceSystem
 {
-    // Karakter seviyeleri için temel XP
-    private const int BaseCharacterXP = 1000;
-
-    // Zanaatkarlık seviyeleri için temel XP
-    private const int BaseCraftXP = 500;
-
     public static Action OnLevelUp;
     public static Action OnlevelDown;
     public static Action OnExperienceNegative;
 
-    // Karakter için toplam gerekli XP'yi hesaplar
-    public static int GetTotalCharacterXPForLevel(int level)
+    public static int CalculateCharacterLevelByExperience(int experience)
     {
-        return Mathf.RoundToInt(BaseCharacterXP * (Mathf.Pow(2f, (level - 1) / 5f) - 1));
+        if (experience < 0) return 1;
+        return Mathf.Max(1, Mathf.FloorToInt(experience / 100f) + 1);
     }
 
-    // Zanaatkarlık için toplam gerekli XP'yi hesaplar
-    public static int GetTotalCraftXPForLevel(int level)
+    public static int CalculateTotalCharacterExperienceForLevel(int level)
     {
-
-        return Mathf.RoundToInt(BaseCraftXP * (Mathf.Pow(2f, (level - 1) / 5f) - 1));
+        level = Mathf.Max(1, level);
+        return (level - 1) * 100;
     }
 
-    public static void AddExperience(PlayerData playerData, int experience)
+    public static int CalculateTotalCraftExperienceForLevel(int level)
     {
-        playerData.Experience += experience;
-        UpdateCharacterLevel(playerData);
+        level = Mathf.Max(1, level);
+        return (level - 1) * 100;
     }
 
-    // Karakterin seviyesini günceller
-    public static void UpdateCharacterLevel(PlayerData playerData)
+    public static void AddExperience(PlayerData playerData, int amount)
     {
-        int currentLevel = playerData.Level;
-        int totalXP = playerData.Experience;
-        int newLevel = currentLevel;
+        if (playerData == null) return;
 
-        // Seviye artışı kontrolü
-        while (totalXP >= GetTotalCharacterXPForLevel(newLevel + 1) && newLevel < 99)
-        {
-            newLevel++;
-            Debug.Log($"Seviyeniz {newLevel} oldu!");
-        }
-        
-        // Seviye azalışı kontrolü
-        while (newLevel > 1 && totalXP < GetTotalCharacterXPForLevel(newLevel))
-        {
-            newLevel--;
-            Debug.Log($"Seviyeniz {newLevel}'e düştü!");
-        }
-        
-        int maxExperience = GetTotalCharacterXPForLevel(newLevel + 1);
+        playerData.Experience += amount;
 
-        playerData.Level = newLevel;
-        playerData.Experience = totalXP;
-        playerData.MaxExperience = maxExperience;
-
-        Debug.Log($"Toplam XP: {totalXP} / {maxExperience}");
-
-        if (newLevel > currentLevel)
+        if (playerData.Experience < 0)
         {
-            OnLevelUp?.Invoke();
-        }
-        else if (newLevel < currentLevel)
-        {
-            OnlevelDown?.Invoke();
-        }
-
-        if (totalXP < -100)
-        {
+            playerData.Experience = 0;
             OnExperienceNegative?.Invoke();
         }
     }
 
-    // Zanaatkarlık seviyesini günceller
-    public static void UpdateCraftLevel(PlayerData playerData, CraftType craftType, int gainedXP)
+    public static void UpdateCharacterLevel(PlayerData playerData)
     {
-        int currentLevel = GetCraftLevel(playerData, craftType);
-        int totalXP = GetTotalCraftXP(playerData, craftType) + gainedXP;
+        if (playerData == null) return;
 
-        int newLevel = currentLevel;
+        int oldLevel = playerData.Level;
+        int newLevel = CalculateCharacterLevelByExperience(playerData.Experience);
 
-        while (totalXP >= GetTotalCraftXPForLevel(newLevel + 1) && newLevel < 20)
+        if (newLevel > oldLevel)
         {
-            newLevel++;
-            Debug.Log($"{craftType} beceri seviyeniz {newLevel} oldu!");
+            playerData.Level = newLevel;
+            OnLevelUp?.Invoke();
+            Debug.Log($"Seviyeniz {newLevel} oldu.");
         }
+        else if (newLevel < oldLevel)
+        {
+            playerData.Level = newLevel;
+            OnlevelDown?.Invoke();
+            Debug.Log($"Seviyeniz {newLevel} seviyesine düştü.");
+        }
+        else
+        {
+            playerData.Level = newLevel;
+        }
+    }
+
+    public static void UpdateCraftLevel(PlayerData playerData, CraftDiscipline craftType, int gainedXp)
+    {
+        if (playerData == null) return;
+
+        int currentXp = GetCraftXP(playerData, craftType);
+        currentXp += gainedXp;
+
+        if (currentXp < 0)
+            currentXp = 0;
+
+        int newLevel = Mathf.Max(1, (currentXp / 100) + 1);
+        int remainderXp = currentXp % 100;
 
         SetCraftLevel(playerData, craftType, newLevel);
-        SetTotalCraftXP(playerData, craftType, totalXP);
+        SetCraftXP(playerData, craftType, remainderXp);
+
+        Debug.Log($"{craftType} beceri seviyeniz {newLevel} oldu.");
     }
 
-    // Oyuncunun zanaatkarlık seviyesini alır
-    private static int GetCraftLevel(PlayerData playerData, CraftType craftType)
+    public static int GetCraftLevel(PlayerData playerData, CraftDiscipline craftType)
     {
+        if (playerData == null) return 1;
+
         switch (craftType)
         {
-            case CraftType.Smither:
-                return playerData.SmitherSkillLevel;
-            case CraftType.Tanner:
-                return playerData.TannerSkillLevel;
-            case CraftType.Carpenter:
-                return playerData.CarpenterSkillLevel;
-            case CraftType.Mason:
-                return playerData.MasonSkillLevel;
-            case CraftType.Alchemist:
-                return playerData.AlchemistSkillLevel;
-            default:
-                return 1;
+            case CraftDiscipline.Smither: return playerData.SmitherSkillLevel;
+            case CraftDiscipline.Tanner: return playerData.TannerSkillLevel;
+            case CraftDiscipline.Carpenter: return playerData.CarpenterSkillLevel;
+            case CraftDiscipline.Mason: return playerData.MasonSkillLevel;
+            case CraftDiscipline.Alchemist: return playerData.AlchemistSkillLevel;
+            default: return 1;
         }
     }
 
-    // Oyuncunun zanaatkarlık seviyesini ayarlar
-    private static void SetCraftLevel(PlayerData playerData, CraftType craftType, int level)
+    public static void SetCraftLevel(PlayerData playerData, CraftDiscipline craftType, int level)
     {
+        if (playerData == null) return;
+
+        level = Mathf.Max(1, level);
+
         switch (craftType)
         {
-            case CraftType.Smither:
+            case CraftDiscipline.Smither:
                 playerData.SmitherSkillLevel = level;
                 break;
-            case CraftType.Tanner:
+            case CraftDiscipline.Tanner:
                 playerData.TannerSkillLevel = level;
                 break;
-            case CraftType.Carpenter:
+            case CraftDiscipline.Carpenter:
                 playerData.CarpenterSkillLevel = level;
                 break;
-            case CraftType.Mason:
+            case CraftDiscipline.Mason:
                 playerData.MasonSkillLevel = level;
                 break;
-            case CraftType.Alchemist:
+            case CraftDiscipline.Alchemist:
                 playerData.AlchemistSkillLevel = level;
                 break;
         }
     }
 
-    // Oyuncunun toplam zanaatkarlık XP'sini alır
-    private static int GetTotalCraftXP(PlayerData playerData, CraftType craftType)
+    public static int GetCraftXP(PlayerData playerData, CraftDiscipline craftType)
     {
+        if (playerData == null) return 0;
+
         switch (craftType)
         {
-            case CraftType.Smither:
-                return playerData.SmitherSkillXP;
-            case CraftType.Tanner:
-                return playerData.TannerSkillXP;
-            case CraftType.Carpenter:
-                return playerData.CarpenterSkillXP;
-            case CraftType.Mason:
-                return playerData.MasonSkillXP;
-            case CraftType.Alchemist:
-                return playerData.AlchemistSkillXP;
-            default:
-                return 0;
+            case CraftDiscipline.Smither: return playerData.SmitherSkillXP;
+            case CraftDiscipline.Tanner: return playerData.TannerSkillXP;
+            case CraftDiscipline.Carpenter: return playerData.CarpenterSkillXP;
+            case CraftDiscipline.Mason: return playerData.MasonSkillXP;
+            case CraftDiscipline.Alchemist: return playerData.AlchemistSkillXP;
+            default: return 0;
         }
     }
 
-    // Oyuncunun toplam zanaatkarlık XP'sini ayarlar
-    private static void SetTotalCraftXP(PlayerData playerData, CraftType craftType, int totalXP)
+    public static void SetCraftXP(PlayerData playerData, CraftDiscipline craftType, int xp)
     {
+        if (playerData == null) return;
+
+        xp = Mathf.Max(0, xp);
+
         switch (craftType)
         {
-            case CraftType.Smither:
-                playerData.SmitherSkillXP = totalXP;
+            case CraftDiscipline.Smither:
+                playerData.SmitherSkillXP = xp;
                 break;
-            case CraftType.Tanner:
-                playerData.TannerSkillXP = totalXP;
+            case CraftDiscipline.Tanner:
+                playerData.TannerSkillXP = xp;
                 break;
-            case CraftType.Carpenter:
-                playerData.CarpenterSkillXP = totalXP;
+            case CraftDiscipline.Carpenter:
+                playerData.CarpenterSkillXP = xp;
                 break;
-            case CraftType.Mason:
-                playerData.MasonSkillXP = totalXP;
+            case CraftDiscipline.Mason:
+                playerData.MasonSkillXP = xp;
                 break;
-            case CraftType.Alchemist:
-                playerData.AlchemistSkillXP = totalXP;
+            case CraftDiscipline.Alchemist:
+                playerData.AlchemistSkillXP = xp;
                 break;
         }
+    }
+
+    public static int GetTotalCraftExperience(PlayerData playerData, CraftDiscipline craftType)
+    {
+        if (playerData == null) return 0;
+
+        int level = GetCraftLevel(playerData, craftType);
+        int xp = GetCraftXP(playerData, craftType);
+
+        return CalculateTotalCraftExperienceForLevel(level) + xp;
+    }
+
+    public static void SetTotalCraftExperience(PlayerData playerData, CraftDiscipline craftType, int totalXp)
+    {
+        if (playerData == null) return;
+
+        totalXp = Mathf.Max(0, totalXp);
+
+        int level = Mathf.Max(1, (totalXp / 100) + 1);
+        int xp = totalXp % 100;
+
+        SetCraftLevel(playerData, craftType, level);
+        SetCraftXP(playerData, craftType, xp);
     }
 }

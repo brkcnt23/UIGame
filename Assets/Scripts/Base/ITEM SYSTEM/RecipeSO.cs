@@ -3,13 +3,18 @@ using UnityEngine;
 
 public enum CraftDiscipline
 {
-    Blacksmithing,
-    Tanning,
-    Carpentry,
-    Masonry,
-    Alchemy,
-    Cooking,
-    Misc
+    Blacksmithing = 0,
+    Smither = 0,
+    Tanning = 1,
+    Tanner = 1,
+    Carpentry = 2,
+    Carpenter = 2,
+    Masonry = 3,
+    Mason = 3,
+    Alchemy = 4,
+    Alchemist = 4,
+    Cooking = 5,
+    Misc = 6
 }
 
 [System.Serializable]

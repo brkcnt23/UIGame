@@ -1,15 +1,7 @@
+// cspell:disable
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
-
-public enum CraftWorkType
-{
-    Smither,
-    Tanner,
-    Carpenter,
-    Mason,
-    Alchemist
-}
 
 public class CraftWorkSystem : MonoBehaviour
 {
@@ -52,7 +44,7 @@ public class CraftWorkSystem : MonoBehaviour
     {
         if (!ValidateSystems("blacksmith")) return;
 
-        int levelDifference = GetCraftLevel(CraftWorkType.Smither) - jobLevel;
+        int levelDifference = GetCraftLevel(CraftDiscipline.Smither) - jobLevel;
         if (levelDifference < -5)
         {
             Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
@@ -91,7 +83,7 @@ public class CraftWorkSystem : MonoBehaviour
         InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
 
         ProduceBlacksmithItem(itemType, successChance);
-        CalculateAndApplyRewards(CraftWorkType.Smither, jobLevel, successMultiplier, statMultiplier, randomValue);
+        CalculateAndApplyRewards(CraftDiscipline.Smither, jobLevel, successMultiplier, statMultiplier, randomValue);
 
         AdvanceCraftTime(jobLevel);
         RefreshUI();
@@ -101,7 +93,7 @@ public class CraftWorkSystem : MonoBehaviour
     {
         if (!ValidateSystems("tanner")) return;
 
-        int levelDifference = GetCraftLevel(CraftWorkType.Tanner) - jobLevel;
+        int levelDifference = GetCraftLevel(CraftDiscipline.Tanner) - jobLevel;
         if (levelDifference < -5)
         {
             Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
@@ -134,7 +126,7 @@ public class CraftWorkSystem : MonoBehaviour
         InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
 
         ProduceTanningItem(successChance);
-        CalculateAndApplyRewards(CraftWorkType.Tanner, jobLevel, successMultiplier, statMultiplier, randomValue);
+        CalculateAndApplyRewards(CraftDiscipline.Tanner, jobLevel, successMultiplier, statMultiplier, randomValue);
 
         AdvanceCraftTime(jobLevel);
         RefreshUI();
@@ -144,7 +136,7 @@ public class CraftWorkSystem : MonoBehaviour
     {
         if (!ValidateSystems("alchemist")) return;
 
-        int levelDifference = GetCraftLevel(CraftWorkType.Alchemist) - jobLevel;
+        int levelDifference = GetCraftLevel(CraftDiscipline.Alchemist) - jobLevel;
         if (levelDifference < -5)
         {
             Debug.Log("Beceri seviyeniz bu işi yapmak için çok düşük.");
@@ -177,13 +169,13 @@ public class CraftWorkSystem : MonoBehaviour
         InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
 
         ProduceAlchemyItem(successChance);
-        CalculateAndApplyRewards(CraftWorkType.Alchemist, jobLevel, successMultiplier, statMultiplier, randomValue);
+        CalculateAndApplyRewards(CraftDiscipline.Alchemist, jobLevel, successMultiplier, statMultiplier, randomValue);
 
         AdvanceCraftTime(jobLevel);
         RefreshUI();
     }
 
-    private void CalculateAndApplyRewards(CraftWorkType craftType, int jobLevel, float successMultiplier, float statMultiplier, float randomValue)
+    private void CalculateAndApplyRewards(CraftDiscipline craftType, int jobLevel, float successMultiplier, float statMultiplier, float randomValue)
     {
         if (playerData == null)
         {
@@ -212,7 +204,7 @@ public class CraftWorkSystem : MonoBehaviour
 
         switch (craftType)
         {
-            case CraftWorkType.Smither:
+            case CraftDiscipline.Smither:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                     PlayerStatHandler.Instance.AddStatXP(StatType.Strength, 50);
 
@@ -220,12 +212,12 @@ public class CraftWorkSystem : MonoBehaviour
                     PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, 50);
                 break;
 
-            case CraftWorkType.Tanner:
+            case CraftDiscipline.Tanner:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                     PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, 50);
                 break;
 
-            case CraftWorkType.Alchemist:
+            case CraftDiscipline.Alchemist:
                 if (UnityEngine.Random.Range(0, 100) < 50)
                     PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, 50);
 
@@ -449,18 +441,18 @@ public class CraftWorkSystem : MonoBehaviour
         return 1;
     }
 
-    private int GetCraftLevel(CraftWorkType craftType)
+    private int GetCraftLevel(CraftDiscipline craftType)
     {
         if (playerData == null)
             return 1;
 
         switch (craftType)
         {
-            case CraftWorkType.Smither: return playerData.SmitherSkillLevel;
-            case CraftWorkType.Tanner: return playerData.TannerSkillLevel;
-            case CraftWorkType.Carpenter: return playerData.CarpenterSkillLevel;
-            case CraftWorkType.Mason: return playerData.MasonSkillLevel;
-            case CraftWorkType.Alchemist: return playerData.AlchemistSkillLevel;
+            case CraftDiscipline.Smither: return playerData.SmitherSkillLevel;
+            case CraftDiscipline.Tanner: return playerData.TannerSkillLevel;
+            case CraftDiscipline.Carpenter: return playerData.CarpenterSkillLevel;
+            case CraftDiscipline.Mason: return playerData.MasonSkillLevel;
+            case CraftDiscipline.Alchemist: return playerData.AlchemistSkillLevel;
             default: return 1;
         }
     }
@@ -483,23 +475,23 @@ public class CraftWorkSystem : MonoBehaviour
         }
     }
 
-    private void GrantWorkSkillXP(CraftWorkType craftType, int amount)
+    private void GrantWorkSkillXP(CraftDiscipline craftType, int amount)
     {
         switch (craftType)
         {
-            case CraftWorkType.Smither:
+            case CraftDiscipline.Smither:
                 AddSkillXP(ref playerData.SmitherSkillXP, ref playerData.SmitherSkillLevel, amount);
                 break;
-            case CraftWorkType.Tanner:
+            case CraftDiscipline.Tanner:
                 AddSkillXP(ref playerData.TannerSkillXP, ref playerData.TannerSkillLevel, amount);
                 break;
-            case CraftWorkType.Carpenter:
+            case CraftDiscipline.Carpenter:
                 AddSkillXP(ref playerData.CarpenterSkillXP, ref playerData.CarpenterSkillLevel, amount);
                 break;
-            case CraftWorkType.Mason:
+            case CraftDiscipline.Mason:
                 AddSkillXP(ref playerData.MasonSkillXP, ref playerData.MasonSkillLevel, amount);
                 break;
-            case CraftWorkType.Alchemist:
+            case CraftDiscipline.Alchemist:
                 AddSkillXP(ref playerData.AlchemistSkillXP, ref playerData.AlchemistSkillLevel, amount);
                 break;
         }

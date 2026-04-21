@@ -1,4 +1,5 @@
 {
+    "cSpell.enabled": false,
     "files.exclude": {
         "**/.DS_Store": true,
         "**/.git": true,
@@ -7,9 +8,6 @@
         "**/*.pidb": true,
         "**/*.suo": true,
         "**/*.user": true,
-        "**/*.userprefs": true,
-        "**/*.unityproj": true,
-        "**/*.dll": true,
         "**/*.exe": true,
         "**/*.pdf": true,
         "**/*.mid": true,

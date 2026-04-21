@@ -1,10 +1,8 @@
+// cspell:disable
 using System;
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
-
-public enum StatType { Strength, Constitution, Charisma, Dexterity }
-
 public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
@@ -315,357 +313,358 @@ public class PlayerStatHandler : MonoBehaviour
         RefreshPlayerUI();
     }
 
-    // -----------------------------
-    // SETTLEMENT / LAST LOCATION
-    // -----------------------------
 
-    public Settlement LastVisitedSettlement()
+// -----------------------------
+// SETTLEMENT / LAST LOCATION
+// -----------------------------
+
+public Settlement LastVisitedSettlement()
+{
+    if (SettlementHandler.Instance == null || SettlementHandler.Instance.settlements == null)
+        return HomeSettlementHandler.Instance != null ? HomeSettlementHandler.Instance.homeSettlement : null;
+
+    Settlement lastVisited =
+        !string.IsNullOrEmpty(pd.LastSettlementName)
+            ? SettlementHandler.Instance.settlements.Find(s => s.Name == pd.LastSettlementName)
+            : (HomeSettlementHandler.Instance != null ? HomeSettlementHandler.Instance.homeSettlement : null);
+
+    return lastVisited;
+}
+
+// -----------------------------
+// EQUIPMENT
+// -----------------------------
+
+public void UnequipItem(ItemCategory category)
+{
+    Item itemToUnequip = null;
+
+    switch (category)
     {
-        if (SettlementHandler.Instance == null || SettlementHandler.Instance.settlements == null)
-            return HomeSettlementHandler.Instance != null ? HomeSettlementHandler.Instance.homeSettlement : null;
+        case ItemCategory.Weapon:
+            itemToUnequip = EquippedSword;
+            EquippedSword = null;
+            break;
 
-        Settlement lastVisited =
-            !string.IsNullOrEmpty(pd.LastSettlementName)
-                ? SettlementHandler.Instance.settlements.Find(s => s.Name == pd.LastSettlementName)
-                : (HomeSettlementHandler.Instance != null ? HomeSettlementHandler.Instance.homeSettlement : null);
+        case ItemCategory.Armor:
+            itemToUnequip = EquippedArmor;
+            EquippedArmor = null;
+            break;
 
-        return lastVisited;
+        case ItemCategory.Leggings:
+            itemToUnequip = EquippedLeggings;
+            EquippedLeggings = null;
+            break;
+
+        case ItemCategory.Boots:
+            itemToUnequip = EquippedBoots;
+            EquippedBoots = null;
+            break;
+
+        case ItemCategory.Potion:
+            itemToUnequip = EquippedPotion;
+            EquippedPotion = null;
+            break;
+
+        case ItemCategory.Misc:
+            itemToUnequip = EquippedMisc;
+            EquippedMisc = null;
+            break;
     }
 
-    // -----------------------------
-    // EQUIPMENT
-    // -----------------------------
-
-    public void UnequipItem(ItemCategory category)
+    if (itemToUnequip != null)
     {
-        Item itemToUnequip = null;
+        RemoveModifiers(itemToUnequip);
+    }
+}
 
-        switch (category)
-        {
-            case ItemCategory.Weapon:
-                itemToUnequip = EquippedSword;
-                EquippedSword = null;
-                break;
+public void ApplyModifiers(Item item)
+{
+    if (item == null || item.Modifiers == null) return;
 
-            case ItemCategory.Armor:
-                itemToUnequip = EquippedArmor;
-                EquippedArmor = null;
-                break;
+    foreach (var modifier in item.Modifiers)
+    {
+        AddStats(modifier.Type, modifier.Value);
+    }
+}
 
-            case ItemCategory.Leggings:
-                itemToUnequip = EquippedLeggings;
-                EquippedLeggings = null;
-                break;
+public void RemoveModifiers(Item item)
+{
+    if (item == null || item.Modifiers == null) return;
 
-            case ItemCategory.Boots:
-                itemToUnequip = EquippedBoots;
-                EquippedBoots = null;
-                break;
+    foreach (var modifier in item.Modifiers)
+    {
+        AddStats(modifier.Type, -modifier.Value);
+    }
+}
 
-            case ItemCategory.Potion:
-                itemToUnequip = EquippedPotion;
-                EquippedPotion = null;
-                break;
+public void EquipItem(Item item)
+{
+    if (item == null) return;
 
-            case ItemCategory.Misc:
-                itemToUnequip = EquippedMisc;
-                EquippedMisc = null;
-                break;
-        }
+    UnequipItem(item.Category);
+    ApplyModifiers(item);
 
-        if (itemToUnequip != null)
-        {
-            RemoveModifiers(itemToUnequip);
-        }
+    switch (item.Category)
+    {
+        case ItemCategory.Weapon:
+            EquippedSword = item;
+            break;
+
+        case ItemCategory.Armor:
+            EquippedArmor = item;
+            break;
+
+        case ItemCategory.Leggings:
+            EquippedLeggings = item;
+            break;
+
+        case ItemCategory.Boots:
+            EquippedBoots = item;
+            break;
+
+        case ItemCategory.Potion:
+            EquippedPotion = item;
+            break;
+
+        case ItemCategory.Misc:
+            EquippedMisc = item;
+            break;
     }
 
-    public void ApplyModifiers(Item item)
-    {
-        if (item == null || item.Modifiers == null) return;
+    RefreshPlayerUI();
+}
 
-        foreach (var modifier in item.Modifiers)
-        {
-            AddStats(modifier.Type, modifier.Value);
-        }
+// -----------------------------
+// RATIONS / EXHAUSTION / CARRY
+// -----------------------------
+
+public void ConsumeDailyRations()
+{
+    if (pd == null)
+    {
+        Debug.LogError("Player data is null!");
+        return;
     }
 
-    public void RemoveModifiers(Item item)
-    {
-        if (item == null || item.Modifiers == null) return;
+    if (pd.Companions == null)
+        pd.Companions = new List<Companion>();
 
-        foreach (var modifier in item.Modifiers)
-        {
-            AddStats(modifier.Type, -modifier.Value);
-        }
+    int totalConsumption;
+
+    if (pd.PlayerArmy == null && (pd.Companions == null || pd.Companions.Count == 0))
+    {
+        totalConsumption = 1;
+    }
+    else if (pd.PlayerArmy == null)
+    {
+        totalConsumption = pd.Companions.Count + 1;
+    }
+    else
+    {
+        int armyUnits = pd.PlayerArmy.GetTotalUnits();
+        totalConsumption = armyUnits + pd.Companions.Count + 1;
     }
 
-    public void EquipItem(Item item)
+    if (pd.Rations >= totalConsumption)
     {
-        if (item == null) return;
-
-        UnequipItem(item.Category);
-        ApplyModifiers(item);
-
-        switch (item.Category)
-        {
-            case ItemCategory.Weapon:
-                EquippedSword = item;
-                break;
-
-            case ItemCategory.Armor:
-                EquippedArmor = item;
-                break;
-
-            case ItemCategory.Leggings:
-                EquippedLeggings = item;
-                break;
-
-            case ItemCategory.Boots:
-                EquippedBoots = item;
-                break;
-
-            case ItemCategory.Potion:
-                EquippedPotion = item;
-                break;
-
-            case ItemCategory.Misc:
-                EquippedMisc = item;
-                break;
-        }
-
-        RefreshPlayerUI();
+        DecreaseRations(totalConsumption);
+        Debug.Log($"Consumed {totalConsumption} rations (Player + Army + Companions).");
     }
-
-    // -----------------------------
-    // RATIONS / EXHAUSTION / CARRY
-    // -----------------------------
-
-    public void ConsumeDailyRations()
+    else
     {
-        if (pd == null)
-        {
-            Debug.LogError("Player data is null!");
-            return;
-        }
+        int missingRations = totalConsumption - pd.Rations;
+        DecreaseRations(pd.Rations);
+        IncreaseExhaustion();
 
-        if (pd.Companions == null)
-            pd.Companions = new List<Companion>();
+        int lostHungryUnits = 0;
+        int lostUnits = 0;
 
-        int totalConsumption;
+        for (int i = 0; i < missingRations; i++)
+        {
+            if (pd.PlayerArmy == null || pd.PlayerArmy.GetTotalUnits() <= 0)
+                break;
 
-        if (pd.PlayerArmy == null && (pd.Companions == null || pd.Companions.Count == 0))
-        {
-            totalConsumption = 1;
-        }
-        else if (pd.PlayerArmy == null)
-        {
-            totalConsumption = pd.Companions.Count + 1;
-        }
-        else
-        {
-            int armyUnits = pd.PlayerArmy.GetTotalUnits();
-            totalConsumption = armyUnits + pd.Companions.Count + 1;
-        }
-
-        if (pd.Rations >= totalConsumption)
-        {
-            DecreaseRations(totalConsumption);
-            Debug.Log($"Consumed {totalConsumption} rations (Player + Army + Companions).");
-        }
-        else
-        {
-            int missingRations = totalConsumption - pd.Rations;
-            DecreaseRations(pd.Rations);
-            IncreaseExhaustion();
-
-            int lostHungryUnits = 0;
-            int lostUnits = 0;
-
-            for (int i = 0; i < missingRations; i++)
+            if (Dice.Roll(0, 2) == 0)
             {
-                if (pd.PlayerArmy == null || pd.PlayerArmy.GetTotalUnits() <= 0)
-                    break;
+                pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
+                lostHungryUnits++;
 
-                if (Dice.Roll(0, 2) == 0)
+                if (Dice.Roll(0, 10) == 0)
                 {
                     pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
-                    lostHungryUnits++;
+                    lostUnits++;
 
-                    if (Dice.Roll(0, 10) == 0)
+                    if (pd.PlayerArmy.GetTotalUnits() <= 0)
                     {
-                        pd.PlayerArmy.RemoveUnit((UnitType)Dice.Roll(0, 5), 1);
-                        lostUnits++;
-
-                        if (pd.PlayerArmy.GetTotalUnits() <= 0)
-                        {
-                            Debug.LogWarning("All units have been removed from the army.");
-                            break;
-                        }
+                        Debug.LogWarning("All units have been removed from the army.");
+                        break;
                     }
                 }
             }
-
-            Debug.Log($"Ordudan {lostHungryUnits} asker rasyon yetersizliğinden dolayı ayrıldı. {lostUnits} asker de ordunu doyuramadığın için yanında gitti.");
         }
 
-        RefreshPlayerUI();
+        Debug.Log($"Ordudan {lostHungryUnits} asker rasyon yetersizliğinden dolayı ayrıldı. {lostUnits} asker de ordunu doyuramadığın için yanında gitti.");
     }
 
-    public void UpdateArmyCapacity()
+    RefreshPlayerUI();
+}
+
+public void UpdateArmyCapacity()
+{
+    if (pd.PlayerArmy == null)
+        return;
+
+    int maxUnits = pd.Charisma * 10;
+    int currentUnits = pd.PlayerArmy.GetTotalUnits();
+
+    if (currentUnits > maxUnits)
     {
-        if (pd.PlayerArmy == null)
-            return;
+        Debug.LogWarning($"Army exceeds max capacity ({maxUnits}). Excess units will not count.");
 
-        int maxUnits = pd.Charisma * 10;
-        int currentUnits = pd.PlayerArmy.GetTotalUnits();
-
-        if (currentUnits > maxUnits)
+        foreach (var unit in pd.PlayerArmy.Units)
         {
-            Debug.LogWarning($"Army exceeds max capacity ({maxUnits}). Excess units will not count.");
+            if (maxUnits <= 0)
+                break;
 
-            foreach (var unit in pd.PlayerArmy.Units)
-            {
-                if (maxUnits <= 0)
-                    break;
-
-                int allowedUnits = Mathf.Min(unit.Count, maxUnits);
-                maxUnits -= allowedUnits;
-                unit.Count = allowedUnits;
-            }
-        }
-
-        Debug.Log($"Army capacity updated: {pd.PlayerArmy.GetTotalUnits()}/{pd.Charisma * 10}");
-    }
-
-    public void DecreaseRations(int value)
-    {
-        pd.Rations = Mathf.Max(0, pd.Rations - value);
-        Debug.Log($"Rations decreased by {value}. Remaining: {pd.Rations}");
-        RefreshPlayerUI();
-    }
-
-    public void IncreaseRations(int value)
-    {
-        pd.Rations += value;
-        Debug.Log($"Rations increased by {value}. Total: {pd.Rations}");
-        RefreshPlayerUI();
-    }
-
-    public void IncreaseExhaustion()
-    {
-        pd.CurrentExhaustionLevel += 1;
-        Debug.Log($"Increased exhaustion. Current level: {pd.CurrentExhaustionLevel}");
-        CheckExhaustionMaxed();
-        RefreshPlayerUI();
-    }
-
-    public void CheckExhaustionMaxed()
-    {
-        if (pd.CurrentExhaustionLevel == pd.MaxExhaustionLevel)
-        {
-            Debug.LogError("You have succumbed to exhaustion!");
-        }
-        else if (pd.CurrentExhaustionLevel > pd.MaxExhaustionLevel)
-        {
-            if (GameManager.Instance != null)
-                GameManager.Instance.Death();
+            int allowedUnits = Mathf.Min(unit.Count, maxUnits);
+            maxUnits -= allowedUnits;
+            unit.Count = allowedUnits;
         }
     }
 
-    public int GetExhaustionLevel()
+    Debug.Log($"Army capacity updated: {pd.PlayerArmy.GetTotalUnits()}/{pd.Charisma * 10}");
+}
+
+public void DecreaseRations(int value)
+{
+    pd.Rations = Mathf.Max(0, pd.Rations - value);
+    Debug.Log($"Rations decreased by {value}. Remaining: {pd.Rations}");
+    RefreshPlayerUI();
+}
+
+public void IncreaseRations(int value)
+{
+    pd.Rations += value;
+    Debug.Log($"Rations increased by {value}. Total: {pd.Rations}");
+    RefreshPlayerUI();
+}
+
+public void IncreaseExhaustion()
+{
+    pd.CurrentExhaustionLevel += 1;
+    Debug.Log($"Increased exhaustion. Current level: {pd.CurrentExhaustionLevel}");
+    CheckExhaustionMaxed();
+    RefreshPlayerUI();
+}
+
+public void CheckExhaustionMaxed()
+{
+    if (pd.CurrentExhaustionLevel == pd.MaxExhaustionLevel)
     {
-        return pd.CurrentExhaustionLevel;
+        Debug.LogError("You have succumbed to exhaustion!");
+    }
+    else if (pd.CurrentExhaustionLevel > pd.MaxExhaustionLevel)
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.Death();
+    }
+}
+
+public int GetExhaustionLevel()
+{
+    return pd.CurrentExhaustionLevel;
+}
+
+public int GetRations()
+{
+    return pd.Rations;
+}
+
+public void SetExhaustionLevel(int nextValue)
+{
+    pd.CurrentExhaustionLevel = nextValue;
+    Print($"Exhaustion level set to: {GetExhaustionLevel()}");
+    RefreshPlayerUI();
+}
+
+public void ConsumeArmyRations()
+{
+    if (pd.PlayerArmy == null)
+        return;
+
+    int totalUnits = pd.PlayerArmy.GetTotalUnits();
+
+    if (pd.Rations >= totalUnits)
+    {
+        DecreaseRations(totalUnits);
+        Debug.Log($"Army consumed {totalUnits} rations.");
+    }
+    else
+    {
+        int missingRations = totalUnits - pd.Rations;
+        DecreaseRations(pd.Rations);
+        IncreaseExhaustion();
+        Debug.Log($"Not enough rations! Missing: {missingRations}. Increased exhaustion level.");
+    }
+}
+
+public bool ConsumeMoney(int gold, int silver)
+{
+    if (!pd.HasEnoughMoney(gold, silver))
+    {
+        Debug.Log("Not enough money!");
+        return false;
     }
 
-    public int GetRations()
+    pd.TrySpendMoney(gold, silver);
+    Debug.Log($"Transaction successful! Remaining Money: {pd.GetMoney()}");
+    RefreshPlayerUI();
+    return true;
+}
+
+// Weight / Carry helpers
+public float GetCurrentWeight()
+{
+    return pd.GetCurrentInventoryWeight();
+}
+
+public float GetCarryCapacity()
+{
+    return pd.GetCarryCapacity();
+}
+
+public bool IsOverweight()
+{
+    return pd.IsOverweight();
+}
+
+public float GetWeightRatio()
+{
+    return pd.GetWeightRatio();
+}
+
+// -----------------------------
+// UI HELPERS
+// -----------------------------
+
+private void RefreshPlayerUI()
+{
+    if (PlayerUISystem.Instance != null)
     {
-        return pd.Rations;
+        PlayerUISystem.Instance.UpdateUIObjects();
     }
 
-    public void SetExhaustionLevel(int nextValue)
+    if (InventoryUI.Instance != null)
     {
-        pd.CurrentExhaustionLevel = nextValue;
-        Print($"Exhaustion level set to: {GetExhaustionLevel()}");
-        RefreshPlayerUI();
+        InventoryUI.Instance.UpdateInventoryUI();
     }
+}
 
-    public void ConsumeArmyRations()
-    {
-        if (pd.PlayerArmy == null)
-            return;
-
-        int totalUnits = pd.PlayerArmy.GetTotalUnits();
-
-        if (pd.Rations >= totalUnits)
-        {
-            DecreaseRations(totalUnits);
-            Debug.Log($"Army consumed {totalUnits} rations.");
-        }
-        else
-        {
-            int missingRations = totalUnits - pd.Rations;
-            DecreaseRations(pd.Rations);
-            IncreaseExhaustion();
-            Debug.Log($"Not enough rations! Missing: {missingRations}. Increased exhaustion level.");
-        }
-    }
-
-    public bool ConsumeMoney(int gold, int silver)
-    {
-        if (!pd.HasEnoughMoney(gold, silver))
-        {
-            Debug.Log("Not enough money!");
-            return false;
-        }
-
-        pd.TrySpendMoney(gold, silver);
-        Debug.Log($"Transaction successful! Remaining Money: {pd.GetMoney()}");
-        RefreshPlayerUI();
-        return true;
-    }
-
-    // Weight / Carry helpers
-    public float GetCurrentWeight()
-    {
-        return pd.GetCurrentInventoryWeight();
-    }
-
-    public float GetCarryCapacity()
-    {
-        return pd.GetCarryCapacity();
-    }
-
-    public bool IsOverweight()
-    {
-        return pd.IsOverweight();
-    }
-
-    public float GetWeightRatio()
-    {
-        return pd.GetWeightRatio();
-    }
-
-    // -----------------------------
-    // UI HELPERS
-    // -----------------------------
-
-    private void RefreshPlayerUI()
-    {
-        if (PlayerUISystem.Instance != null)
-        {
-            PlayerUISystem.Instance.UpdateUIObjects();
-        }
-
-        if (InventoryUI.Instance != null)
-        {
-            InventoryUI.Instance.UpdateInventoryUI();
-        }
-    }
-
-    private void Print(string message)
-    {
-        Debug.Log($"{message}\nSender:\"{GetType().Name}\" class in \"{gameObject.name}\" object");
-    }
+private void Print(string message)
+{
+    Debug.Log($"{message}\nSender:\"{GetType().Name}\" class in \"{gameObject.name}\" object");
+}
 }
 
 [System.Serializable]

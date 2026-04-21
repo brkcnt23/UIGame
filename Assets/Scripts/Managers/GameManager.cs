@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
         if (startGamePanel != null) startGamePanel.SetActive(true);
 
         // NAV içindeki alt panelleri kapat
-        NavUISystem navUi = FindObjectOfType<NavUISystem>(true);
+        NavUISystem navUi = FindObjectOfType<NavUISystem>();
         if (navUi != null)
         {
             navUi.DisableAllNavPanels();

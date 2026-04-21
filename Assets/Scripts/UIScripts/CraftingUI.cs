@@ -122,48 +122,48 @@ public class CraftingUI : MonoBehaviour
             PlayerAlchemistLevelText.text = $"Player Alchemist Level: {PlayerStatHandler.Instance.pd.AlchemistSkillLevel}";
 
         if (StartSmithingButton != null)
-            StartSmithingButton.interactable = SettlementBlacksmithLevel > 0 && CraftingSystem.Instance != null;
+            StartSmithingButton.interactable = SettlementBlacksmithLevel > 0 && CraftWorkSystem.Instance != null;
 
         if (StartTanningButton != null)
-            StartTanningButton.interactable = SettlementTannerLevel > 0 && CraftingSystem.Instance != null;
+            StartTanningButton.interactable = SettlementTannerLevel > 0 && CraftWorkSystem.Instance != null;
 
         if (StartAlchemyButton != null)
-            StartAlchemyButton.interactable = SettlementAlchemistLevel > 0 && CraftingSystem.Instance != null;
+            StartAlchemyButton.interactable = SettlementAlchemistLevel > 0 && CraftWorkSystem.Instance != null;
     }
 
     public void StartSmithing()
     {
-        if (CraftingSystem.Instance == null)
+        if (CraftWorkSystem.Instance == null)
         {
-            Debug.LogWarning("CraftingUI: CraftingSystem.Instance is null.");
+            Debug.LogWarning("CraftingUI: CraftWorkSystem.Instance is null.");
             return;
         }
 
-        CraftingSystem.Instance.WorkAsBlacksmith(SettlementBlacksmithLevel, "weapon");
+        CraftWorkSystem.Instance.WorkAsBlacksmith(SettlementBlacksmithLevel, "weapon");
         RefreshUI();
     }
 
     public void StartTanning()
     {
-        if (CraftingSystem.Instance == null)
+        if (CraftWorkSystem.Instance == null)
         {
-            Debug.LogWarning("CraftingUI: CraftingSystem.Instance is null.");
+            Debug.LogWarning("CraftingUI: CraftWorkSystem.Instance is null.");
             return;
         }
 
-        CraftingSystem.Instance.WorkAsTanner(SettlementTannerLevel);
+        CraftWorkSystem.Instance.WorkAsTanner(SettlementTannerLevel);
         RefreshUI();
     }
 
     public void StartAlchemy()
     {
-        if (CraftingSystem.Instance == null)
+        if (CraftWorkSystem.Instance == null)
         {
-            Debug.LogWarning("CraftingUI: CraftingSystem.Instance is null.");
+            Debug.LogWarning("CraftingUI: CraftWorkSystem.Instance is null.");
             return;
         }
 
-        CraftingSystem.Instance.WorkAsAlchemist(SettlementAlchemistLevel);
+        CraftWorkSystem.Instance.WorkAsAlchemist(SettlementAlchemistLevel);
         RefreshUI();
     }
 }

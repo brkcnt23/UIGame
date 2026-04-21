@@ -83,6 +83,53 @@ public class Shops : Residentials
         return AcceptedCategories.Contains(category);
     }
 
+    public bool AcceptsItem(Item item)
+    {
+        return item != null && CanAcceptCategory(item.Category);
+    }
+
+    public Currency GetSellPrice(Item item)
+    {
+        if (item == null)
+            return new Currency(0, 0);
+
+        return CalculatePrice(item.GetSingleValue(), SellMultiplier);
+    }
+
+    public Currency GetBuyPrice(Item item)
+    {
+        if (item == null)
+            return new Currency(0, 0);
+
+        return CalculatePrice(item.GetSingleValue(), BuyMultiplier);
+    }
+
+    public bool CanAfford(Currency amount)
+    {
+        return Cash.HasEnough(amount.Gold, amount.Silver);
+    }
+
+    public void AddCash(int gold, int silver)
+    {
+        Cash.Add(gold, silver);
+    }
+
+    public bool TrySpendCash(int gold, int silver)
+    {
+        if (!CanAfford(new Currency(gold, silver)))
+            return false;
+
+        Cash.Subtract(gold, silver);
+        return true;
+    }
+
+    private Currency CalculatePrice(Currency baseValue, float multiplier)
+    {
+        int totalSilver = baseValue.Gold * 100 + baseValue.Silver;
+        int finalSilver = Mathf.RoundToInt(totalSilver * multiplier);
+        return new Currency(finalSilver / 100, finalSilver % 100);
+    }
+
     public override void LevelUpResidential(ref PlayerData player)
     {
         base.LevelUpResidential(ref player);
