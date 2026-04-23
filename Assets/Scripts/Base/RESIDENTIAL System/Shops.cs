@@ -16,10 +16,10 @@ public enum ShopTypes
 [System.Serializable]
 public class Shops : Residentials
 {
-    public string ShopId;                  // Unique per-settlement shop id
-    public string StockProfileId;          // SO profile lookup key
-    public string OwnerNpcId;              // NPC binding
-    public List<string> ShopTags = new();  // rare_stock, noble_clientele, frontier, etc.
+    public string ShopId;
+    public string StockProfileId;
+    public string OwnerNpcId;
+    public List<string> ShopTags = new List<string>();
 
     public ShopTypes ShopType;
 
@@ -32,7 +32,7 @@ public class Shops : Residentials
     public float BuyMultiplier = 0.6f;
     public float SellMultiplier = 1.0f;
     public int MaxAffordableItemQuality = 10;
-    public List<ItemCategory> AcceptedCategories = new();
+    public List<ItemCategory> AcceptedCategories = new List<ItemCategory>();
 
     public Shops()
     {
@@ -72,7 +72,10 @@ public class Shops : Residentials
 
     public void ClearRuntimeItems()
     {
-        Items.Clear();
+        if (Items == null)
+            Items = new List<Item>();
+        else
+            Items.Clear();
     }
 
     public bool CanAcceptCategory(ItemCategory category)
@@ -81,6 +84,16 @@ public class Shops : Residentials
             return true;
 
         return AcceptedCategories.Contains(category);
+    }
+
+    public void DisplayInventory()
+    {
+        Debug.Log($"Shop: {Name} (Type: {ShopType}) Inventory:");
+        foreach (var item in Items)
+        {
+            if (item == null) continue;
+            Debug.Log($"- {item.Name} (Category: {item.Category}, Value: {item.Value}, Quantity: {item.Quantity})");
+        }
     }
 
     public bool AcceptsItem(Item item)

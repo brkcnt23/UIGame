@@ -152,7 +152,7 @@ public class JobSystem : MonoBehaviour
         int randHerbs = GetRand(5, 10);
         int randXP = GetRand(15, 30);
 
-        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randHerbs, 0.2f, true, 99));
+        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randHerbs, true, 99, 0.2f));
         PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randXP);
 
         Debug.Log($"Reward: {randHerbs} Herbs & {randXP} Dexterity XP");
@@ -170,7 +170,7 @@ public class JobSystem : MonoBehaviour
         int randWood = GetRand(3, 6);
         int randxp = GetRand(20, 40);
 
-        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randWood, 1.5f, true, 99));
+        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randWood, true, 99, 1.5f));
         PlayerStatHandler.Instance.AddStatXP(StatType.Strength, randxp);
 
         Debug.Log($"Reward: Wood x{randWood} & Strength XP");
@@ -188,17 +188,17 @@ public class JobSystem : MonoBehaviour
         int randxp = GetRand(20, 40);
         int randStone = GetRand(3, 6);
 
-        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, randStone, 2.0f, true, 99));
+        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, randStone, true, 99, 2.0f));
 
         if (Dice.Roll(100) <= 20)
         {
-            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1, 1.0f, true, 99));
+            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1, true, 99, 1.0f));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
 
         if (Dice.Roll(100) <= 5)
         {
-            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1, 0.3f, true, 99));
+            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1, true, 99, 0.3f));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
 

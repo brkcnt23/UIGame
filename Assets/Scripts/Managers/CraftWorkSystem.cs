@@ -1,4 +1,3 @@
-// cspell:disable
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
@@ -191,8 +190,7 @@ public class CraftWorkSystem : MonoBehaviour
         float rewardGold = ((difficultyIndex * successMultiplier * goldModifier) * randomValue + statMultiplier) * baseMultiplier;
         int silverReward = Mathf.RoundToInt(rewardGold);
 
-        playerData.Silver += silverReward;
-        playerData.CheckIfSilverToGold();
+        playerData.AddMoney(0, silverReward);
 
         float rewardExp = ((difficultyIndex * successMultiplier * expModifier) * randomValue + statMultiplier) * baseMultiplier;
         int craftExp = Mathf.RoundToInt(rewardExp);

@@ -1,8 +1,8 @@
-// cspell:disable
 using System;
 using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
+
 public class PlayerStatHandler : MonoBehaviour
 {
     public static PlayerStatHandler Instance { get; private set; }
@@ -231,87 +231,87 @@ public class PlayerStatHandler : MonoBehaviour
     // -----------------------------
 
     public void AddStats(StatType statType, int amount)
+{
+    switch (statType)
     {
-        switch (statType)
-        {
-            case StatType.Strength:
-                pd.Strength += amount;
-                Debug.Log($"STR changed by {amount}. Total: {pd.Strength}");
-                break;
+        case StatType.Strength:
+            pd.Strength += amount;
+            Debug.Log($"STR changed by {amount}. Total: {pd.Strength}");
+            break;
 
-            case StatType.Constitution:
-                pd.Constitution += amount;
-                Debug.Log($"CONST changed by {amount}. Total: {pd.Constitution}");
-                break;
+        case StatType.Constitution:
+            pd.Constitution += amount;
+            Debug.Log($"CONST changed by {amount}. Total: {pd.Constitution}");
+            break;
 
-            case StatType.Charisma:
-                pd.Charisma += amount;
-                Debug.Log($"CHA changed by {amount}. Total: {pd.Charisma}");
-                UpdateArmyCapacity();
-                break;
+        case StatType.Charisma:
+            pd.Charisma += amount;
+            Debug.Log($"CHA changed by {amount}. Total: {pd.Charisma}");
+            UpdateArmyCapacity();
+            break;
 
-            case StatType.Dexterity:
-                pd.Dexterity += amount;
-                Debug.Log($"DEX changed by {amount}. Total: {pd.Dexterity}");
-                break;
+        case StatType.Dexterity:
+            pd.Dexterity += amount;
+            Debug.Log($"DEX changed by {amount}. Total: {pd.Dexterity}");
+            break;
 
-            default:
-                Debug.LogWarning("Unknown stat type.");
-                break;
-        }
+        default:
+            Debug.LogWarning("Unknown stat type.");
+            break;
     }
+    RefreshPlayerUI();
+}
 
-    public void AddStatXP(StatType statType, int xpAmount)
+public void AddStatXP(StatType statType, int xpAmount)
+{
+    switch (statType)
     {
-        switch (statType)
-        {
-            case StatType.Strength:
-                pd.StrengthXP += xpAmount;
-                while (pd.StrengthXP >= 100)
-                {
-                    AddStats(StatType.Strength, 1);
-                    pd.StrengthXP -= 100;
-                    Debug.Log($"Strength leveled up! New Strength: {pd.Strength}");
-                }
-                break;
+        case StatType.Strength:
+            pd.StrengthXP += xpAmount;
+            while (pd.StrengthXP >= 100)
+            {
+                AddStats(StatType.Strength, 1);
+                pd.StrengthXP -= 100;
+                Debug.Log($"Strength leveled up! New Strength: {pd.Strength}");
+            }
+            break;
 
-            case StatType.Dexterity:
-                pd.DexterityXP += xpAmount;
-                while (pd.DexterityXP >= 100)
-                {
-                    AddStats(StatType.Dexterity, 1);
-                    pd.DexterityXP -= 100;
-                    Debug.Log($"Dexterity leveled up! New Dexterity: {pd.Dexterity}");
-                }
-                break;
+        case StatType.Dexterity:
+            pd.DexterityXP += xpAmount;
+            while (pd.DexterityXP >= 100)
+            {
+                AddStats(StatType.Dexterity, 1);
+                pd.DexterityXP -= 100;
+                Debug.Log($"Dexterity leveled up! New Dexterity: {pd.Dexterity}");
+            }
+            break;
 
-            case StatType.Constitution:
-                pd.ConstitutionXP += xpAmount;
-                while (pd.ConstitutionXP >= 100)
-                {
-                    AddStats(StatType.Constitution, 1);
-                    pd.ConstitutionXP -= 100;
-                    Debug.Log($"Constitution leveled up! New Constitution: {pd.Constitution}");
-                }
-                break;
+        case StatType.Constitution:
+            pd.ConstitutionXP += xpAmount;
+            while (pd.ConstitutionXP >= 100)
+            {
+                AddStats(StatType.Constitution, 1);
+                pd.ConstitutionXP -= 100;
+                Debug.Log($"Constitution leveled up! New Constitution: {pd.Constitution}");
+            }
+            break;
 
-            case StatType.Charisma:
-                pd.CharismaXP += xpAmount;
-                while (pd.CharismaXP >= 100)
-                {
-                    AddStats(StatType.Charisma, 1);
-                    pd.CharismaXP -= 100;
-                    Debug.Log($"Charisma leveled up! New Charisma: {pd.Charisma}");
-                }
-                break;
+        case StatType.Charisma:
+            pd.CharismaXP += xpAmount;
+            while (pd.CharismaXP >= 100)
+            {
+                AddStats(StatType.Charisma, 1);
+                pd.CharismaXP -= 100;
+                Debug.Log($"Charisma leveled up! New Charisma: {pd.Charisma}");
+            }
+            break;
 
-            default:
-                Debug.LogWarning("Unknown stat type.");
-                break;
-        }
-
-        RefreshPlayerUI();
+        default:
+            Debug.LogWarning("Unknown stat type.");
+            break;
     }
+    RefreshPlayerUI();
+}
 
 
 // -----------------------------

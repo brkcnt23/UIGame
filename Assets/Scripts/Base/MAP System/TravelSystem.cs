@@ -145,10 +145,16 @@ public class TravelSystem : MonoBehaviour
             if (travelData.playerPosition != null && travelData.playerPosition.Length == 2)
             {
                 Vector2 playerPosition = new Vector2(travelData.playerPosition[0], travelData.playerPosition[1]);
-                MapAvatarHandler.Instance.CreatePlayerIcon();
-                MapAvatarHandler.Instance.UpdatePlayerPosition(playerPosition);
-                MapAvatarHandler.Instance.currentPosition = MapAvatarHandler.Instance.playerIcon.transform;
-                MapAvatarHandler.Instance.startPosition = MapHandler.Instance.GetLastVisitedSettlement().transform;
+                if (MapAvatarHandler.Instance != null)
+                {
+                    MapAvatarHandler.Instance.CreatePlayerIcon();
+                    MapAvatarHandler.Instance.UpdatePlayerPosition(playerPosition);
+                    MapAvatarHandler.Instance.currentPosition = MapAvatarHandler.Instance.playerIcon.transform;
+                    if (MapHandler.Instance != null)
+                    {
+                        MapAvatarHandler.Instance.startPosition = MapHandler.Instance.GetLastVisitedSettlement().transform;
+                    }
+                }
             }
 
             inTravel = travelData.inTravel;

@@ -64,9 +64,9 @@ public class ItemSO : ScriptableObject
                 icon,
                 quality,
                 finalQuantity,
-                weight,
                 stackable,
-                maxStack
+                maxStack,
+                weight
             );
         }
 
@@ -85,9 +85,9 @@ public class ItemSO : ScriptableObject
                 icon,
                 quality,
                 finalQuantity,
-                weight,
                 stackable,
-                maxStack
+                maxStack,
+                weight
             );
         }
 
@@ -99,9 +99,9 @@ public class ItemSO : ScriptableObject
             silverValue,
             category,
             finalQuantity,
-            weight,
             stackable,
-            maxStack
+            maxStack,
+            weight
         );
     }
 }

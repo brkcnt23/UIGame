@@ -198,6 +198,9 @@ public class GameManager : MonoBehaviour
         if (settingsPanel != null) settingsPanel.SetActive(false);
         if (InputPanel != null) InputPanel.SetActive(false);
         if (saveSlotsPanel != null) saveSlotsPanel.SetActive(false);
+        if (homeSettlementPanel != null) homeSettlementPanel.SetActive(false);
+        if (navPanel != null) navPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
     }
 
     public void ShowSettlementPanel()
@@ -206,10 +209,9 @@ public class GameManager : MonoBehaviour
 
         if (navPanel != null) navPanel.SetActive(true);
         if (infoPanel != null) infoPanel.SetActive(true);
-        if (startGamePanel != null) startGamePanel.SetActive(true);
+        if (homeSettlementPanel != null) homeSettlementPanel.SetActive(true);
 
-        // NAV içindeki alt panelleri kapat
-        NavUISystem navUi = FindObjectOfType<NavUISystem>();
+        NavUISystem navUi = FindFirstObjectByType<NavUISystem>();
         if (navUi != null)
         {
             navUi.DisableAllNavPanels();
@@ -391,9 +393,9 @@ public class GameManager : MonoBehaviour
             armorSprite,
             1,
             1,
-            8f,
             false,
-            1
+            1,
+            8f
         );
 
         blacksmithShop.Items.Add(customArmor);

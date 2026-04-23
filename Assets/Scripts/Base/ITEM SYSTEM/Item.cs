@@ -5,35 +5,36 @@ using UnityEngine;
 [Serializable]
 public class Item
 {
-    public int ID;                 // Unique identifier for the item
-    public string Name;            // Name of the item
-    public Currency Value;         // Single item value
-    public ItemCategory Category;  // Category of the item
-    public int Quantity;           // Quantity for stackable items like resources
+    public int ID;
+    public string Name;
+    public Currency Value;
+    public ItemCategory Category;
+    public int Quantity;
 
-    // New logistics fields
-    public float Weight;           // Single item weight
-    public bool Stackable;         // Can this item stack?
-    public int MaxStack;           // Maximum stack size
-
-    // Stat modifiers for weapons and armor
     public List<StatModifier> Modifiers;
     public Sprite ItemImage;
     public int Quality;
+
+    public bool Stackable;
+    public int MaxStack;
+
+    // Tekil ağırlık
+    public float UnitWeight;
+
+    // Alias for backward compatibility
+    public float Weight { get => UnitWeight; set => UnitWeight = value; }
+
+    // Toplam ağırlık
+    public float TotalWeight => UnitWeight * Mathf.Max(1, Quantity);
+
+    // Total value
+    public Currency TotalValue => Value * Quantity;
 
     // Potion-specific effects
     public int HealthRecovery { get; set; }
     public int ExhaustionReduction { get; set; }
 
-    // Computed helpers
-    public float TotalWeight => Weight * Quantity;
-    public Currency TotalValue => Value * Quantity;
-
-    // -----------------------------
-    // CONSTRUCTORS
-    // -----------------------------
-
-    // Constructor for equippable items (weapon, armor, boots, leggings, misc with modifiers, etc.)
+    // Full constructor (weapon / armor / misc with modifiers) - backward compatible
     public Item(
         int id,
         string name,
@@ -43,12 +44,27 @@ public class Item
         List<StatModifier> modifiers,
         Sprite itemImage,
         int quality,
-        int quantity = 1,
-        float weight = 1f,
-        bool stackable = false,
-        int maxStack = 1)
+        int quantity = 1)
+        : this(id, name, gold, silver, category, modifiers, itemImage, quality, quantity, true, 99, 1f)
     {
-        if (string.IsNullOrEmpty(name))
+    }
+
+    // Full constructor with weight/stack support
+    public Item(
+        int id,
+        string name,
+        int gold,
+        int silver,
+        ItemCategory category,
+        List<StatModifier> modifiers,
+        Sprite itemImage,
+        int quality,
+        int quantity,
+        bool stackable,
+        int maxStack,
+        float unitWeight)
+    {
+        if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Name cannot be null or empty.", nameof(name));
 
         ID = id;
@@ -60,12 +76,12 @@ public class Item
         Quality = quality;
         Quantity = Mathf.Max(1, quantity);
 
-        Weight = Mathf.Max(0f, weight);
         Stackable = stackable;
         MaxStack = Mathf.Max(1, maxStack);
+        UnitWeight = Mathf.Max(0f, unitWeight);
     }
 
-    // Constructor for potions
+    // Potion constructor - backward compatible
     public Item(
         int id,
         string name,
@@ -75,12 +91,27 @@ public class Item
         int exhaustionReduction,
         Sprite itemImage,
         int quality,
-        int quantity = 1,
-        float weight = 0.5f,
-        bool stackable = true,
-        int maxStack = 10)
+        int quantity = 1)
+        : this(id, name, gold, silver, healthRecovery, exhaustionReduction, itemImage, quality, quantity, true, 99, 0.5f)
     {
-        if (string.IsNullOrEmpty(name))
+    }
+
+    // Potion constructor with weight/stack support
+    public Item(
+        int id,
+        string name,
+        int gold,
+        int silver,
+        int healthRecovery,
+        int exhaustionReduction,
+        Sprite itemImage,
+        int quality,
+        int quantity,
+        bool stackable,
+        int maxStack,
+        float unitWeight)
+    {
+        if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Name cannot be null or empty.", nameof(name));
 
         ID = id;
@@ -93,26 +124,31 @@ public class Item
         Quality = quality;
         Quantity = Mathf.Max(1, quantity);
 
-        Weight = Mathf.Max(0f, weight);
+        Modifiers = new List<StatModifier>();
         Stackable = stackable;
         MaxStack = Mathf.Max(1, maxStack);
-
-        Modifiers = new List<StatModifier>();
+        UnitWeight = Mathf.Max(0f, unitWeight);
     }
 
-    // Constructor for resources / crafting materials / simple stackables
+    // Simple constructor (resource / crafting material) - backward compatible
+    public Item(int id, string name, int gold, int silver, ItemCategory category, int quantity = 1)
+        : this(id, name, gold, silver, category, quantity, true, 99, 1f)
+    {
+    }
+
+    // Simple constructor with weight/stack support
     public Item(
         int id,
         string name,
         int gold,
         int silver,
         ItemCategory category,
-        int quantity = 1,
-        float weight = 1f,
-        bool stackable = true,
-        int maxStack = 99)
+        int quantity,
+        bool stackable,
+        int maxStack,
+        float unitWeight)
     {
-        if (string.IsNullOrEmpty(name))
+        if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Name cannot be null or empty.", nameof(name));
 
         ID = id;
@@ -121,66 +157,18 @@ public class Item
         Category = category;
         Quantity = Mathf.Max(1, quantity);
 
-        Weight = Mathf.Max(0f, weight);
+        Modifiers = new List<StatModifier>();
+        ItemImage = null;
+        Quality = 1;
+
         Stackable = stackable;
         MaxStack = Mathf.Max(1, maxStack);
-
-        Modifiers = new List<StatModifier>();
-        Quality = 1;
+        UnitWeight = Mathf.Max(0f, unitWeight);
     }
-
-    // -----------------------------
-    // HELPERS
-    // -----------------------------
 
     public bool CheckRequiredAmount(int requiredAmount)
     {
         return Quantity >= requiredAmount;
-    }
-
-    public bool IsEquippable()
-    {
-        return Category == ItemCategory.Weapon ||
-               Category == ItemCategory.Armor ||
-               Category == ItemCategory.Boots ||
-               Category == ItemCategory.Leggings ||
-               Category == ItemCategory.Misc;
-    }
-
-    public bool IsConsumable()
-    {
-        return Category == ItemCategory.Potion;
-    }
-
-    public bool IsStackableItem()
-    {
-        return Stackable;
-    }
-
-    public bool CanStackWith(Item other)
-    {
-        if (other == null) return false;
-
-        return Stackable &&
-               other.Stackable &&
-               ID == other.ID &&
-               Category == other.Category &&
-               Quality == other.Quality;
-    }
-
-    public int GetRemainingStackSpace()
-    {
-        return MaxStack - Quantity;
-    }
-
-    public Currency GetSingleValue()
-    {
-        return Value;
-    }
-
-    public Currency GetTotalValue()
-    {
-        return TotalValue;
     }
 
     public Item Clone(int quantityOverride = -1)
@@ -199,9 +187,9 @@ public class Item
                 ItemImage,
                 Quality,
                 finalQuantity,
-                Weight,
                 Stackable,
-                MaxStack
+                MaxStack,
+                UnitWeight
             );
         }
 
@@ -217,9 +205,9 @@ public class Item
                 ItemImage,
                 Quality,
                 finalQuantity,
-                Weight,
                 Stackable,
-                MaxStack
+                MaxStack,
+                UnitWeight
             );
         }
 
@@ -230,15 +218,36 @@ public class Item
             Value.Silver,
             Category,
             finalQuantity,
-            Weight,
             Stackable,
-            MaxStack
+            MaxStack,
+            UnitWeight
         );
+    }
+
+    public bool CanStackWith(Item other)
+    {
+        if (other == null) return false;
+
+        return Stackable &&
+               other.Stackable &&
+               ID == other.ID &&
+               Category == other.Category &&
+               Quality == other.Quality;
+    }
+
+    public Currency GetSingleValue()
+    {
+        return Value;
+    }
+
+    public Currency GetTotalValue()
+    {
+        return TotalValue;
     }
 
     public override string ToString()
     {
-        return $"{Name} (ID: {ID}, Category: {Category}, Value: {Value}, Quantity: {Quantity}, Weight: {Weight}, TotalWeight: {TotalWeight})";
+        return $"{Name} (ID: {ID}, Category: {Category}, Value: {Value}, Quantity: {Quantity}, UnitWeight: {UnitWeight}, TotalWeight: {TotalWeight})";
     }
 }
 
@@ -247,7 +256,7 @@ public class StatModifier
 {
     public StatType Type;
     public int Value;
-    public string Source { get; set; } // Optional, e.g., "Blacksmith Item"
+    public string Source { get; set; }
 
     public StatModifier(StatType type, int value)
     {

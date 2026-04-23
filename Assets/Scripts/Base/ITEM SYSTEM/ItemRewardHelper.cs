@@ -77,9 +77,9 @@ public static class ItemRewardHelper
                 0,
                 ItemCategory.Misc,
                 stack.Quantity,
-                1f,
                 true,
-                99
+                99,
+                1f
             );
 
             InventorySystem.Instance.AddItem(fallback);
