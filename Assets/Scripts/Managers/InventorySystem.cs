@@ -1,321 +1,187 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System;
 
-public class InventorySystem : MonoBehaviour
+/// <summary>
+/// Refactored InventorySystem - example of how to convert old systems.
+///
+/// OLD: Awake() { Resources.Load("ItemDatabase") }
+/// NEW: Initialize() { Use GameBootstrapper.Resources }
+///
+/// OLD: Direct setter on inventory
+/// NEW: UpdateState() triggers all subscribers
+/// </summary>
+public sealed partial class InventorySystem : GameSystem
 {
-    public static InventorySystem Instance { get; private set; }
+    private ItemDatabase _itemDatabase;
 
-    [SerializeField] private ItemDatabase itemDatabase;
-
-    public List<Item> inventory
+    public override void Initialize(EventDispatcher eventDispatcher, StateManager stateManager)
     {
-        get
-        {
-            if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
-            {
-                if (PlayerStatHandler.Instance.pd.Items == null)
-                    PlayerStatHandler.Instance.pd.Items = new List<Item>();
+        base.Initialize(eventDispatcher, stateManager);
 
-                return PlayerStatHandler.Instance.pd.Items;
+        // Load resources from provider (one-time, shared)
+        _itemDatabase = Resources.GetItemDatabase();
+        if (_itemDatabase == null)
+        {
+            Debug.LogError("[InventorySystem] ItemDatabase not found!");
+            return;
+        }
+
+        // Subscribe to events that affect inventory
+        EventDispatcher.Subscribe<AddItemEvent>(OnAddItem);
+        EventDispatcher.Subscribe<RemoveItemEvent>(OnRemoveItem);
+
+        // Subscribe to state changes (for UI refresh)
+        StateManager.Subscribe(new InventoryUIUpdater());
+    }
+
+    private void OnAddItem(AddItemEvent evt)
+    {
+        StateManager.UpdateState(state =>
+        {
+            var newState = state.Clone();
+
+            var itemDef = _itemDatabase.GetByID(evt.ItemId);
+            if (itemDef == null)
+            {
+                Debug.LogWarning($"[InventorySystem] Item not found: {evt.ItemId}");
+                return state; // No change
             }
 
-            Debug.LogWarning("InventorySystem: PlayerStatHandler.Instance or pd is null! Returning empty list.");
-            return new List<Item>();
-        }
-    }
-
-    public List<Item> ResourceItems { get; private set; }
-    public List<Item> SpecialItems { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            InitializeInventory();
-
-            if (itemDatabase == null)
+            // Find existing stack or add new
+            var existingItem = newState.Inventory.Items.Find(i => i.ItemId == evt.ItemId);
+            if (existingItem != null)
             {
-                itemDatabase = Resources.Load<ItemDatabase>("ItemDatabase");
-                if (itemDatabase == null)
-                {
-                    Debug.LogWarning("InventorySystem: ItemDatabase not found in Resources.");
-                }
-            }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        TryInitializeFromPlayerData();
-        RebuildCategoryCaches();
-        SyncWithPlayerData();
-    }
-
-    private void InitializeInventory()
-    {
-        ResourceItems = new List<Item>();
-        SpecialItems = new List<Item>();
-    }
-
-    private void TryInitializeFromPlayerData()
-    {
-        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
-            return;
-
-        if (PlayerStatHandler.Instance.pd.Items == null)
-            PlayerStatHandler.Instance.pd.Items = new List<Item>();
-
-        if (PlayerStatHandler.Instance.pd.ItemStacks == null)
-            PlayerStatHandler.Instance.pd.ItemStacks = new List<ItemStackData>();
-
-        // Save'de ItemStacks var ama Items boşsa rebuild et
-        if (PlayerStatHandler.Instance.pd.Items.Count == 0 &&
-            PlayerStatHandler.Instance.pd.ItemStacks.Count > 0)
-        {
-            foreach (var stack in PlayerStatHandler.Instance.pd.ItemStacks)
-            {
-                if (stack == null || stack.Quantity <= 0) continue;
-
-                Item item = null;
-
-                if (itemDatabase != null)
-                {
-                    var so = itemDatabase.GetByID(stack.ItemId);
-                    if (so != null)
-                    {
-                        item = so.ToItem(stack.Quantity);
-                    }
-                }
-
-                if (item == null)
-                {
-                    item = new Item(stack.ItemId, "Unknown Item", 0, 0, ItemCategory.Misc, stack.Quantity);
-                }
-
-                PlayerStatHandler.Instance.pd.Items.Add(item);
-            }
-        }
-    }
-
-    // -----------------------------
-    // ADD / REMOVE
-    // -----------------------------
-
-    public void AddItem(Item item)
-    {
-        if (item == null)
-        {
-            Debug.LogWarning("InventorySystem.AddItem: item is null.");
-            return;
-        }
-
-        AutoFillFromDatabase(item);
-
-        var existingItem = FindStackableMatch(item);
-        if (existingItem != null)
-        {
-            existingItem.Quantity += item.Quantity;
-        }
-        else
-        {
-            inventory.Add(item);
-        }
-
-        RebuildCategoryCaches();
-        SyncWithPlayerData();
-    }
-
-    public void AddItem(ItemSO itemSo, int quantity = 1)
-    {
-        if (itemSo == null)
-        {
-            Debug.LogWarning("InventorySystem.AddItem(ItemSO): itemSo is null.");
-            return;
-        }
-
-        AddItem(itemSo.ToItem(quantity));
-    }
-
-    public void RemoveItem(Item item, int quantity = 1)
-    {
-        if (item == null)
-        {
-            Debug.LogWarning("InventorySystem.RemoveItem: item is null.");
-            return;
-        }
-
-        RemoveItemById(item.ID, quantity);
-    }
-
-    public void RemoveItemById(int itemId, int quantity = 1)
-    {
-        if (quantity <= 0) return;
-
-        var existingItem = inventory.Find(x => x.ID == itemId);
-        if (existingItem == null) return;
-
-        existingItem.Quantity -= quantity;
-
-        if (existingItem.Quantity <= 0)
-        {
-            inventory.Remove(existingItem);
-        }
-
-        RebuildCategoryCaches();
-        SyncWithPlayerData();
-    }
-
-    public bool HasItem(int itemId, int quantity)
-    {
-        var item = inventory.Find(i => i.ID == itemId);
-        return item != null && item.Quantity >= quantity;
-    }
-
-    public bool HasItem(ItemSO itemSo, int quantity)
-    {
-        if (itemSo == null) return false;
-        return HasItem(itemSo.ID, quantity);
-    }
-
-    // -----------------------------
-    // QUERIES
-    // -----------------------------
-
-    public List<Item> GetInventory()
-    {
-        return new List<Item>(inventory);
-    }
-
-    public List<Item> GetItemsByCategory(ItemCategory category)
-    {
-        return inventory.Where(i => i != null && i.Category == category).ToList();
-    }
-
-    public Item GetItemById(int itemId)
-    {
-        return inventory.Find(i => i.ID == itemId);
-    }
-
-    public int GetItemQuantity(int itemId)
-    {
-        var item = GetItemById(itemId);
-        return item != null ? item.Quantity : 0;
-    }
-
-    public float GetCurrentWeight()
-    {
-        float total = 0f;
-
-        foreach (var item in inventory)
-        {
-            if (item == null) continue;
-            total += item.TotalWeight;
-        }
-
-        return total;
-    }
-
-    public Currency GetTotalInventoryValue()
-    {
-        Currency total = new Currency(0, 0);
-
-        foreach (var item in inventory)
-        {
-            if (item == null) continue;
-            total.Add(item.TotalValue.Gold, item.TotalValue.Silver);
-        }
-
-        return total;
-    }
-
-    // -----------------------------
-    // INTERNAL HELPERS
-    // -----------------------------
-
-    private void AutoFillFromDatabase(Item item)
-    {
-        if (item == null || itemDatabase == null) return;
-
-        var so = itemDatabase.GetByID(item.ID);
-        if (so == null) return;
-
-        if (string.IsNullOrEmpty(item.Name))
-            item.Name = so.itemName;
-
-        if (item.ItemImage == null)
-            item.ItemImage = so.icon;
-
-        if (item.Quality <= 0)
-            item.Quality = so.quality;
-
-        if (item.Weight <= 0f)
-            item.Weight = so.weight;
-
-        if (item.MaxStack <= 0)
-            item.MaxStack = so.maxStack;
-
-        item.Stackable = so.stackable;
-    }
-
-    private Item FindStackableMatch(Item item)
-    {
-        if (item == null || !item.Stackable) return null;
-
-        return inventory.Find(x =>
-            x != null &&
-            x.CanStackWith(item));
-    }
-
-    private void RebuildCategoryCaches()
-    {
-        ResourceItems.Clear();
-        SpecialItems.Clear();
-
-        foreach (var item in inventory)
-        {
-            if (item == null) continue;
-
-            if (item.Category == ItemCategory.Resource || item.Category == ItemCategory.CraftingMaterial)
-            {
-                ResourceItems.Add(item);
+                existingItem.Quantity += evt.Quantity;
             }
             else
             {
-                SpecialItems.Add(item);
+                if (newState.Inventory.FreeSlots <= 0)
+                {
+                    Debug.LogWarning("[InventorySystem] Inventory full!");
+                    EventDispatcher.Dispatch(new InventoryFullEvent());
+                    return state;
+                }
+
+                newState.Inventory.Items.Add(new ItemInstance
+                {
+                    ItemId = evt.ItemId,
+                    Quantity = evt.Quantity
+                });
             }
-        }
+
+            EventDispatcher.Dispatch(new ItemAddedEvent(evt.ItemId, evt.Quantity));
+            return newState;
+        });
     }
 
-    private void SyncWithPlayerData()
+    private void OnRemoveItem(RemoveItemEvent evt)
     {
-        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        StateManager.UpdateState(state =>
         {
-            Debug.LogWarning("InventorySystem: Cannot sync, PlayerStatHandler or pd is null.");
-            return;
-        }
+            var newState = state.Clone();
 
-        PlayerStatHandler.Instance.pd.Items = new List<Item>(inventory);
-
-        if (PlayerStatHandler.Instance.pd.ItemStacks == null)
-            PlayerStatHandler.Instance.pd.ItemStacks = new List<ItemStackData>();
-
-        PlayerStatHandler.Instance.pd.ItemStacks.Clear();
-
-        foreach (var item in inventory)
-        {
-            if (item == null) continue;
-
-            PlayerStatHandler.Instance.pd.ItemStacks.Add(new ItemStackData
+            var item = newState.Inventory.Items.Find(i => i.ItemId == evt.ItemId);
+            if (item == null)
             {
-                ItemId = item.ID,
-                Quantity = item.Quantity
-            });
-        }
+                Debug.LogWarning($"[InventorySystem] Item not in inventory: {evt.ItemId}");
+                return state;
+            }
+
+            item.Quantity -= evt.Quantity;
+            if (item.Quantity <= 0)
+                newState.Inventory.Items.Remove(item);
+
+            EventDispatcher.Dispatch(new ItemRemovedEvent(evt.ItemId, evt.Quantity));
+            return newState;
+        });
+    }
+
+    /// <summary>
+    /// Public API for query-only (no mutation)
+    /// </summary>
+    public ItemInstance GetItem(int itemId)
+    {
+        return StateManager.GetValue(state =>
+            state.Inventory.Items.Find(i => i.ItemId == itemId)
+        );
+    }
+
+    public int GetItemCount(int itemId)
+    {
+        return StateManager.GetValue(state =>
+        {
+            var item = state.Inventory.Items.Find(i => i.ItemId == itemId);
+            return item?.Quantity ?? 0;
+        });
     }
 }
+
+/// <summary>
+/// UI component that listens to state changes and updates display
+/// </summary>
+public sealed class InventoryUIUpdater : IStateListener
+{
+    public void OnStateChanged(GameState oldState, GameState newState)
+    {
+        // Only react if inventory actually changed (not just reference difference)
+        if (oldState?.Inventory?.Items.Count == newState?.Inventory?.Items.Count)
+            return;
+
+        Debug.Log($"[InventoryUI] Inventory changed: {newState.Inventory.Items.Count} items, {newState.Inventory.FreeSlots} slots free");
+        // TODO: Actually update InventoryUI panel here
+    }
+}
+
+/// <summary>
+/// Events
+/// </summary>
+
+public sealed class AddItemEvent : GameEvent
+{
+    public int ItemId { get; }
+    public int Quantity { get; }
+
+    public AddItemEvent(int itemId, int quantity)
+    {
+        ItemId = itemId;
+        Quantity = quantity;
+    }
+}
+
+public sealed class RemoveItemEvent : GameEvent
+{
+    public int ItemId { get; }
+    public int Quantity { get; }
+
+    public RemoveItemEvent(int itemId, int quantity)
+    {
+        ItemId = itemId;
+        Quantity = quantity;
+    }
+}
+
+public sealed class ItemAddedEvent : GameEvent
+{
+    public int ItemId { get; }
+    public int Quantity { get; }
+
+    public ItemAddedEvent(int itemId, int quantity)
+    {
+        ItemId = itemId;
+        Quantity = quantity;
+    }
+}
+
+public sealed class ItemRemovedEvent : GameEvent
+{
+    public int ItemId { get; }
+    public int Quantity { get; }
+
+    public ItemRemovedEvent(int itemId, int quantity)
+    {
+        ItemId = itemId;
+        Quantity = quantity;
+    }
+}
+
+public sealed class InventoryFullEvent : GameEvent { }

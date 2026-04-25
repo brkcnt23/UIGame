@@ -9,7 +9,7 @@ public class ActivitiesUI : MonoBehaviour
     public GameObject tavernPanel;
     public GameObject townHallMainPanel;
     public GameObject craftingMainPanel;
-
+    public GameObject jobsLogPanel;
     private GameObject currentPanel;
 
     private void OnEnable()
@@ -43,7 +43,7 @@ public class ActivitiesUI : MonoBehaviour
         if (tavernPanel != null) tavernPanel.SetActive(false);
         if (townHallMainPanel != null) townHallMainPanel.SetActive(true);
         if (craftingMainPanel != null) craftingMainPanel.SetActive(false);
-
+        if (jobsLogPanel != null) jobsLogPanel.SetActive(true);
         currentPanel = townHallMainPanel;
     }
 

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4687ca7e0cc102429a31a3f341efe70, type: 3}
+  m_Name: GoldOre
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  ID: 1
+  itemName: Gold Ore
+  description: Sell for money, craft Gold Ingot or use it for crafting an object.
+  icon: {fileID: 6576229029077448791, guid: 42ee827db7134b54f8d753ab4bb1b715, type: 3}
+  quality: 1
+  spritesByQuality: []
+  qualityMultipliers: 6400000096000000c8000000
+  goldValue: 100
+  silverValue: 0
+  weight: 50
+  stackable: 1
+  maxStack: 10
+  category: 5
+  modifiers: []
+  healthRecovery: 0
+  exhaustionReduction: 0

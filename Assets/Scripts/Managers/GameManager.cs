@@ -207,14 +207,27 @@ public class GameManager : MonoBehaviour
     {
         DisableAllPanels();
 
+        // Show main game panel (MainGamePanel)
+        if (startGamePanel != null) startGamePanel.SetActive(true);
+
+        // Also show navigation and info UI
         if (navPanel != null) navPanel.SetActive(true);
         if (infoPanel != null) infoPanel.SetActive(true);
-        if (homeSettlementPanel != null) homeSettlementPanel.SetActive(true);
 
         NavUISystem navUi = FindFirstObjectByType<NavUISystem>();
         if (navUi != null)
         {
             navUi.DisableAllNavPanels();
+        }
+
+        // Show settlement info by default (like Home button pressed)
+        if (SettlementHandler.Instance != null && SettlementHandler.Instance.settlement != null)
+        {
+            UIHandler uiHandler = FindFirstObjectByType<UIHandler>();
+            if (uiHandler != null)
+            {
+                uiHandler.UpdateSettlementInfo(SettlementHandler.Instance.settlement);
+            }
         }
 
         isEnteredSettlement = true;
@@ -234,6 +247,7 @@ public class GameManager : MonoBehaviour
         DisableAllPanels();
         LoadPlayerData();
         PopulateButtonsAndTexts();
+        startGamePanel.SetActive(true);
 
         if (saveSlotsPanel != null) saveSlotsPanel.SetActive(true);
     }

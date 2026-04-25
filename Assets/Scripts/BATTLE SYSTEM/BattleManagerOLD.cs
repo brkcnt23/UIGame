@@ -62,7 +62,7 @@ public class BattleManagerOLD : MonoBehaviour
         {
             playerData.TotalBattlesWon += 1;
             playerData.Experience += 50;
-            playerData.Gold += 100;
+            playerData.AddMoney(100, 0);
             Debug.Log("Battle Won! Experience and Gold increased.");
 
             // Bonus: Sağlık artırımı veya diğer avantajlar ekleyebilirsiniz

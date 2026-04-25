@@ -64,8 +64,9 @@ public class Settlement
     public delegate void WallEntered(Walls wall);
     public event WallEntered OnWallEntered;
 
-    public delegate void SettlementUpgraded();
-    public event SettlementUpgraded OnSettlementUpgraded;
+    // TODO: Remove if not used
+    // public delegate void SettlementUpgraded();
+    // public event SettlementUpgraded OnSettlementUpgraded;
 
     public Settlement()
     {

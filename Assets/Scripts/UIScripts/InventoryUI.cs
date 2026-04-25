@@ -3,10 +3,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+/// <summary>
+/// New pattern: Subscribe to StateManager instead of using InventorySystem.Instance
+/// </summary>
+public partial class InventoryUI : MonoBehaviour, IStateListener
 {
-    public static InventoryUI Instance { get; private set; }
-
     [Header("UI Panels")]
     [SerializeField] private GameObject inventoryPanel;
 
@@ -31,21 +32,20 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GridLayoutGroup inventoryGrid;
     [SerializeField] private GameObject inventoryItemPrefab;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
+    private StateManager _stateManager;
 
     private void Start()
     {
+        // Subscribe to state changes (new pattern)
+        _stateManager = GameBootstrapper.State;
+        if (_stateManager == null)
+        {
+            Debug.LogError("[InventoryUI] GameBootstrapper not initialized. Make sure GameBootstrapper GameObject is in scene with GameBootstrapper component.");
+            return;
+        }
+
+        _stateManager.Subscribe(this);
+
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
 
@@ -57,6 +57,16 @@ public class InventoryUI : MonoBehaviour
                 inventoryGrid.cellSize = new Vector2(150, 150);
                 inventoryGrid.spacing = new Vector2(10, 10);
             }
+        }
+    }
+
+    // New pattern: State changes trigger UI updates
+    public void OnStateChanged(GameState oldState, GameState newState)
+    {
+        // Only update if inventory changed
+        if (oldState?.Inventory != newState?.Inventory)
+        {
+            UpdateInventoryUI();
         }
     }
 
@@ -78,9 +88,16 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        if (_stateManager == null)
         {
-            Debug.LogError("InventoryUI: required systems are null, cannot update inventory UI.");
+            Debug.LogError("InventoryUI: StateManager not initialized");
+            return;
+        }
+
+        var state = _stateManager.CurrentState;
+        if (state?.Inventory == null)
+        {
+            Debug.LogError("InventoryUI: Inventory state is null");
             return;
         }
 
@@ -90,168 +107,75 @@ public class InventoryUI : MonoBehaviour
         if (specialItemContainer != null)
             ClearUI(specialItemContainer);
 
-        foreach (var resource in InventorySystem.Instance.ResourceItems)
+        // Display inventory items
+        foreach (var itemInstance in state.Inventory.Items)
         {
-            AddResourceUI(resource);
-        }
-
-        foreach (var specialItem in InventorySystem.Instance.SpecialItems)
-        {
-            AddSpecialItemUI(specialItem);
+            AddItemUI(itemInstance);
         }
 
         UpdateCurrencyTexts();
-        UpdateWeightText();
         PopulateInventoryGrid();
-        UpdateEquippedItemsUI();
+    }
+
+    private void AddItemUI(ItemInstance itemInstance)
+    {
+        if (resourceContainer == null) return;
+        if (resourcePrefab == null) return;
+
+        GameObject newItem = Instantiate(resourcePrefab, resourceContainer);
+        TMP_Text txt = newItem.GetComponentInChildren<TMP_Text>();
+        if (txt != null)
+        {
+            txt.text = $"Item {itemInstance.ItemId} x{itemInstance.Quantity}";
+        }
     }
 
     private void UpdateCurrencyTexts()
     {
-        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        var state = _stateManager?.CurrentState;
+        if (state?.Player == null)
             return;
-
-        Currency money = PlayerStatHandler.Instance.pd.GetMoney();
 
         if (totalSilverText != null)
-            totalSilverText.text = $"Silver: {money.Silver}";
+            totalSilverText.text = $"Silver: {state.Player.Silver}";
 
         if (totalGoldText != null)
-            totalGoldText.text = $"Gold: {money.Gold}";
-    }
-
-    private void UpdateWeightText()
-    {
-        if (totalWeightText == null || PlayerStatHandler.Instance == null)
-            return;
-
-        float currentWeight = PlayerStatHandler.Instance.GetCurrentWeight();
-        float carryCapacity = PlayerStatHandler.Instance.GetCarryCapacity();
-
-        totalWeightText.text = $"Load: {currentWeight:0.0} / {carryCapacity:0.0}";
+            totalGoldText.text = $"Gold: {state.Player.Gold}";
     }
 
     private void PopulateInventoryGrid()
     {
         if (inventoryGridGO == null)
-        {
-            Debug.LogError("InventoryUI: inventoryGridGO is null!");
             return;
-        }
 
         ClearUI(inventoryGridGO.transform);
 
-        if (InventorySystem.Instance == null)
-        {
-            Debug.LogError("InventoryUI: InventorySystem.Instance is null!");
+        var state = _stateManager?.CurrentState;
+        if (state?.Inventory == null)
             return;
-        }
 
-        List<Item> items = InventorySystem.Instance.GetInventory();
-
-        foreach (Item item in items)
+        foreach (var itemInstance in state.Inventory.Items)
         {
+            if (inventoryItemPrefab == null)
+                continue;
+
             GameObject newItem = Instantiate(inventoryItemPrefab, inventoryGridGO.transform);
 
             TMP_Text itemText = newItem.GetComponentInChildren<TMP_Text>();
             if (itemText != null)
             {
-                itemText.text = $"{item.Name}\n x{item.Quantity}";
+                itemText.text = $"ID: {itemInstance.ItemId}\n x{itemInstance.Quantity}";
             }
 
             Button itemButton = newItem.GetComponentInChildren<Button>();
             if (itemButton != null)
             {
+                var itemId = itemInstance.ItemId; // Capture for closure
                 itemButton.onClick.RemoveAllListeners();
                 itemButton.onClick.AddListener(() =>
                 {
-                    Debug.Log($"Selected item: {item.Name}");
+                    GameBootstrapper.Events?.Dispatch(new RemoveItemEvent(itemId, 1));
                 });
-            }
-
-            Image itemImage = newItem.GetComponentInChildren<Image>();
-            if (itemImage != null && item.ItemImage != null)
-            {
-                itemImage.sprite = item.ItemImage;
-            }
-        }
-    }
-
-    private void AddResourceUI(Item resource)
-    {
-        if (resourceContainer == null || resourcePrefab == null || resource == null)
-            return;
-
-        GameObject newResource = Instantiate(resourcePrefab, resourceContainer);
-
-        TMP_Text txt = newResource.GetComponentInChildren<TMP_Text>();
-        if (txt != null)
-        {
-            txt.text = $"{resource.Name} x{resource.Quantity}";
-        }
-
-        Button btn = newResource.GetComponentInChildren<Button>();
-        if (btn != null)
-        {
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() =>
-            {
-                InventorySystem.Instance.RemoveItem(resource, 1);
-                PlayerStatHandler.Instance.AddSilverToPlayer(resource.Value.Silver);
-                UpdateInventoryUI();
-            });
-        }
-    }
-
-    private void AddSpecialItemUI(Item specialItem)
-    {
-        if (specialItemContainer == null || specialItemPrefab == null || specialItem == null)
-            return;
-
-        GameObject newSpecialItem = Instantiate(specialItemPrefab, specialItemContainer);
-
-        TMP_Text txt = newSpecialItem.GetComponentInChildren<TMP_Text>();
-        if (txt != null)
-        {
-            txt.text = $"{specialItem.Name}";
-        }
-
-        Button btn = newSpecialItem.GetComponentInChildren<Button>();
-        if (btn != null)
-        {
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() =>
-            {
-                Debug.Log($"Selected: {specialItem.Name}");
-            });
-        }
-    }
-
-    private void UpdateEquippedItemsUI()
-    {
-        if (equippedItemsContainer == null || specialItemPrefab == null || PlayerStatHandler.Instance == null)
-            return;
-
-        ClearUI(equippedItemsContainer);
-
-        var equippedItems = new Dictionary<string, Item>
-        {
-            { "Weapon", PlayerStatHandler.Instance.EquippedSword },
-            { "Armor", PlayerStatHandler.Instance.EquippedArmor },
-            { "Leggings", PlayerStatHandler.Instance.EquippedLeggings },
-            { "Boots", PlayerStatHandler.Instance.EquippedBoots },
-            { "Potion", PlayerStatHandler.Instance.EquippedPotion },
-            { "Misc", PlayerStatHandler.Instance.EquippedMisc }
-        };
-
-        foreach (var slot in equippedItems)
-        {
-            GameObject newItemSlot = Instantiate(specialItemPrefab, equippedItemsContainer);
-
-            TMP_Text nameText = newItemSlot.GetComponentInChildren<TMP_Text>();
-            if (nameText != null)
-            {
-                nameText.text = slot.Value != null ? $"{slot.Key}: {slot.Value.Name}" : $"{slot.Key}: Empty";
             }
         }
     }

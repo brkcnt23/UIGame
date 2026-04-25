@@ -37,18 +37,14 @@ public static class RecipeService
         if (outputSo == null)
             return false;
 
-        if (InventorySystem.Instance == null)
+        var eventBus = GameBootstrapper.Events;
+        if (eventBus == null)
             return false;
 
-        InventorySystem.Instance.AddItem(outputSo, recipe.OutputQuantity);
+        // Dispatch add item event (StateManager listeners handle UI updates)
+        eventBus.Dispatch(new AddItemEvent(outputSo.ID, recipe.OutputQuantity));
 
         GrantCraftDisciplineXP(recipe, context != null ? context.Player : null);
-
-        if (InventoryUI.Instance != null)
-            InventoryUI.Instance.UpdateInventoryUI();
-
-        if (PlayerUISystem.Instance != null)
-            PlayerUISystem.Instance.UpdateUIObjects();
 
         return true;
     }

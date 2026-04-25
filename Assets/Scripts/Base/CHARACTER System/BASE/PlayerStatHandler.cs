@@ -655,9 +655,8 @@ private void RefreshPlayerUI()
         PlayerUISystem.Instance.UpdateUIObjects();
     }
 
-    if (InventoryUI.Instance != null)
+        // UI updates handled by StateManager listeners
     {
-        InventoryUI.Instance.UpdateInventoryUI();
     }
 }
 

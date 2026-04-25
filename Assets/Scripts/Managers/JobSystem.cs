@@ -120,6 +120,17 @@ public class JobSystem : MonoBehaviour
         PlayerStatHandler.Instance.AddStatXP(StatType.Charisma, randxp);
 
         Debug.Log($"Reward: {randMoney} Silver & {randxp} Charisma XP");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete("Help the Merchants", randMoney, randxp, "Charisma");
+            if (PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
+            {
+                JobLogger.Instance.LogExhaustionWarning(PlayerStatHandler.Instance.pd.CurrentExhaustionLevel, PlayerStatHandler.Instance.pd.MaxExhaustionLevel);
+            }
+        }
+
         RefreshUI();
     }
 
@@ -133,17 +144,35 @@ public class JobSystem : MonoBehaviour
 
         int randxp = GetRand(20, 40);
         int randMoney = GetRand(120, 150);
+        bool damageOccurred = false;
+        int damageAmount = 0;
 
         PlayerStatHandler.Instance.pd.AddMoney(0, randMoney);
         PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randxp);
 
+        // 50% chance of taking damage from scout work (skirmish/pursuit)
+        if (Random.value > 0.5f)
+        {
+            damageAmount = GetRand(5, 10);
+            PlayerStatHandler.Instance.pd.Health = Mathf.Max(0, PlayerStatHandler.Instance.pd.Health - damageAmount);
+            damageOccurred = true;
+            Debug.Log($"Yaralandın! -{damageAmount} Health. Şu anki Can: {PlayerStatHandler.Instance.pd.Health}");
+        }
+
         Debug.Log($"Reward: {randMoney} Silver & {randxp} Dexterity XP");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete("Help the Scouts", randMoney, randxp, "Dexterity", damageOccurred, damageAmount);
+        }
+
         RefreshUI();
     }
 
     private void GrantGatherHerbsReward()
     {
-        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        if (PlayerStatHandler.Instance == null)
         {
             Debug.LogError("JobSystem: required systems are null! Cannot grant gather herbs reward.");
             return;
@@ -152,16 +181,27 @@ public class JobSystem : MonoBehaviour
         int randHerbs = GetRand(5, 10);
         int randXP = GetRand(15, 30);
 
-        InventorySystem.Instance.AddItem(new Item(7, "Herb", 0, 10, ItemCategory.CraftingMaterial, randHerbs, true, 99, 0.2f));
+        GameBootstrapper.Events?.Dispatch(new AddItemEvent(7, randHerbs));
         PlayerStatHandler.Instance.AddStatXP(StatType.Dexterity, randXP);
 
         Debug.Log($"Reward: {randHerbs} Herbs & {randXP} Dexterity XP");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete("Gathering Herbs", randHerbs, randXP, "Dexterity");
+            if (PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
+            {
+                JobLogger.Instance.LogExhaustionWarning(PlayerStatHandler.Instance.pd.CurrentExhaustionLevel, PlayerStatHandler.Instance.pd.MaxExhaustionLevel);
+            }
+        }
+
         RefreshUI();
     }
 
     private void GrantCuttingWoodsReward()
     {
-        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        if (PlayerStatHandler.Instance == null)
         {
             Debug.LogError("JobSystem: required systems are null! Cannot grant cutting woods reward.");
             return;
@@ -170,16 +210,27 @@ public class JobSystem : MonoBehaviour
         int randWood = GetRand(3, 6);
         int randxp = GetRand(20, 40);
 
-        InventorySystem.Instance.AddItem(new Item(9, "Wood", 0, 10, ItemCategory.Resource, randWood, true, 99, 1.5f));
+        GameBootstrapper.Events?.Dispatch(new AddItemEvent(9, randWood));
         PlayerStatHandler.Instance.AddStatXP(StatType.Strength, randxp);
 
         Debug.Log($"Reward: Wood x{randWood} & Strength XP");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete("Cutting Woods", randWood, randxp, "Strength");
+            if (PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
+            {
+                JobLogger.Instance.LogExhaustionWarning(PlayerStatHandler.Instance.pd.CurrentExhaustionLevel, PlayerStatHandler.Instance.pd.MaxExhaustionLevel);
+            }
+        }
+
         RefreshUI();
     }
 
     private void GrantLaboringMinesReward()
     {
-        if (InventorySystem.Instance == null || PlayerStatHandler.Instance == null)
+        if (PlayerStatHandler.Instance == null)
         {
             Debug.LogError("JobSystem: required systems are null! Cannot grant laboring mines reward.");
             return;
@@ -188,23 +239,34 @@ public class JobSystem : MonoBehaviour
         int randxp = GetRand(20, 40);
         int randStone = GetRand(3, 6);
 
-        InventorySystem.Instance.AddItem(new Item(8, "Stone", 0, 10, ItemCategory.Resource, randStone, true, 99, 2.0f));
+        GameBootstrapper.Events?.Dispatch(new AddItemEvent(8, randStone));
 
         if (Dice.Roll(100) <= 20)
         {
-            InventorySystem.Instance.AddItem(new Item(5, "Iron Ingot", 1, 0, ItemCategory.CraftingMaterial, 1, true, 99, 1.0f));
+            GameBootstrapper.Events?.Dispatch(new AddItemEvent(5, 1));
             Debug.Log("Bonus Reward: Iron Ingot");
         }
 
         if (Dice.Roll(100) <= 5)
         {
-            InventorySystem.Instance.AddItem(new Item(10, "Gold Nugget", 5, 0, ItemCategory.Misc, 1, true, 99, 0.3f));
+            GameBootstrapper.Events?.Dispatch(new AddItemEvent(10, 1));
             Debug.Log("Bonus Reward: Gold Nugget");
         }
 
         PlayerStatHandler.Instance.AddStatXP(StatType.Constitution, randxp);
 
         Debug.Log($"Reward: Stone x{randStone} & {randxp} Constitution XP");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete("Laboring Mines", randStone, randxp, "Constitution");
+            if (PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
+            {
+                JobLogger.Instance.LogExhaustionWarning(PlayerStatHandler.Instance.pd.CurrentExhaustionLevel, PlayerStatHandler.Instance.pd.MaxExhaustionLevel);
+            }
+        }
+
         RefreshUI();
     }
 
@@ -226,6 +288,17 @@ public class JobSystem : MonoBehaviour
         PlayerStatHandler.Instance.AddStatXP(job.TargetStat, statXp);
 
         Debug.Log($"Gained {job.Silver} Silver and {statXp} {job.TargetStat} XP.");
+
+        // Log to JobLogs panel
+        if (JobLogger.Instance != null)
+        {
+            JobLogger.Instance.LogJobComplete(job.Name, job.Silver, statXp, job.TargetStat.ToString());
+            if (PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
+            {
+                JobLogger.Instance.LogExhaustionWarning(PlayerStatHandler.Instance.pd.CurrentExhaustionLevel, PlayerStatHandler.Instance.pd.MaxExhaustionLevel);
+            }
+        }
+
         RefreshUI();
     }
 
@@ -241,9 +314,8 @@ public class JobSystem : MonoBehaviour
             PlayerUISystem.Instance.UpdateUIObjects();
         }
 
-        if (InventoryUI.Instance != null)
+        // UI updates handled by StateManager listeners
         {
-            InventoryUI.Instance.UpdateInventoryUI();
         }
     }
 }

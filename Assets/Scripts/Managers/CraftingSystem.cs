@@ -129,10 +129,10 @@ public class CraftingSystem : MonoBehaviour
         ItemRewardHelper.RemoveItems(recipe.ToItemStacks());
 
         var outputSo = recipe.GetOutput(itemDatabase);
-        if (outputSo == null || InventorySystem.Instance == null)
+        if (outputSo == null)
             return false;
 
-        InventorySystem.Instance.AddItem(outputSo, recipe.OutputQuantity);
+        GameBootstrapper.Events?.Dispatch(new AddItemEvent(outputSo.ID, recipe.OutputQuantity));
 
         GrantCraftDisciplineXP(recipe);
         AdvanceCraftTime(recipe.baseCraftTimeMinutes);
@@ -339,7 +339,6 @@ public class CraftingSystem : MonoBehaviour
         if (PlayerUISystem.Instance != null)
             PlayerUISystem.Instance.UpdateUIObjects();
 
-        if (InventoryUI.Instance != null)
-            InventoryUI.Instance.UpdateInventoryUI();
+        // UI updates handled by StateManager listeners
     }
 }

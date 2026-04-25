@@ -59,7 +59,16 @@ public class CraftWorkSystem : MonoBehaviour
             return;
         }
 
-        if (!InventorySystem.Instance.HasItem(requiredMaterialId, requiredQuantity))
+        var stateManager = GameBootstrapper.State;
+        if (stateManager == null) return;
+
+        bool hasItem = stateManager.GetValue(state =>
+        {
+            var item = state.Inventory.Items.Find(i => i.ItemId == requiredMaterialId);
+            return item != null && item.Quantity >= requiredQuantity;
+        });
+
+        if (!hasItem)
         {
             Debug.Log($"Yeterli malzeme yok. Gerekli miktar: {requiredQuantity}");
             return;
@@ -79,7 +88,7 @@ public class CraftWorkSystem : MonoBehaviour
             return;
         }
 
-        InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
+        GameBootstrapper.Events?.Dispatch(new RemoveItemEvent(requiredMaterialId, requiredQuantity));
 
         ProduceBlacksmithItem(itemType, successChance);
         CalculateAndApplyRewards(CraftDiscipline.Smither, jobLevel, successMultiplier, statMultiplier, randomValue);
@@ -102,7 +111,16 @@ public class CraftWorkSystem : MonoBehaviour
         int requiredMaterialId = 7; // Leather
         int requiredQuantity = 1;
 
-        if (!InventorySystem.Instance.HasItem(requiredMaterialId, requiredQuantity))
+        var stateManager = GameBootstrapper.State;
+        if (stateManager == null) return;
+
+        bool hasItem = stateManager.GetValue(state =>
+        {
+            var item = state.Inventory.Items.Find(i => i.ItemId == requiredMaterialId);
+            return item != null && item.Quantity >= requiredQuantity;
+        });
+
+        if (!hasItem)
         {
             Debug.Log($"Yeterli malzeme yok. Gerekli miktar: {requiredQuantity}");
             return;
@@ -122,7 +140,7 @@ public class CraftWorkSystem : MonoBehaviour
             return;
         }
 
-        InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
+        GameBootstrapper.Events?.Dispatch(new RemoveItemEvent(requiredMaterialId, requiredQuantity));
 
         ProduceTanningItem(successChance);
         CalculateAndApplyRewards(CraftDiscipline.Tanner, jobLevel, successMultiplier, statMultiplier, randomValue);
@@ -145,7 +163,16 @@ public class CraftWorkSystem : MonoBehaviour
         int requiredMaterialId = 8; // Herbs
         int requiredQuantity = 5;
 
-        if (!InventorySystem.Instance.HasItem(requiredMaterialId, requiredQuantity))
+        var stateManager = GameBootstrapper.State;
+        if (stateManager == null) return;
+
+        bool hasItem = stateManager.GetValue(state =>
+        {
+            var item = state.Inventory.Items.Find(i => i.ItemId == requiredMaterialId);
+            return item != null && item.Quantity >= requiredQuantity;
+        });
+
+        if (!hasItem)
         {
             Debug.Log($"Yeterli malzeme yok. Gerekli miktar: {requiredQuantity}");
             return;
@@ -165,7 +192,7 @@ public class CraftWorkSystem : MonoBehaviour
             return;
         }
 
-        InventorySystem.Instance.RemoveItemById(requiredMaterialId, requiredQuantity);
+        GameBootstrapper.Events?.Dispatch(new RemoveItemEvent(requiredMaterialId, requiredQuantity));
 
         ProduceAlchemyItem(successChance);
         CalculateAndApplyRewards(CraftDiscipline.Alchemist, jobLevel, successMultiplier, statMultiplier, randomValue);
@@ -468,7 +495,7 @@ public class CraftWorkSystem : MonoBehaviour
 
         if (InventorySystem.Instance != null)
         {
-            InventorySystem.Instance.AddItem(itemToAdd);
+            GameBootstrapper.Events?.Dispatch(new AddItemEvent(itemToAdd.ID, 1));
             Debug.Log($"Crafted {itemToAdd.Name} and added to inventory.");
         }
     }
@@ -511,7 +538,6 @@ public class CraftWorkSystem : MonoBehaviour
         if (PlayerUISystem.Instance != null)
             PlayerUISystem.Instance.UpdateUIObjects();
 
-        if (InventoryUI.Instance != null)
-            InventoryUI.Instance.UpdateInventoryUI();
+        // UI updates handled by StateManager listeners
     }
 }

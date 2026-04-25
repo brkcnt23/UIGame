@@ -64,7 +64,7 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnPopulationChanged += HandlePopulationChanged;
         settlement.OnWealthChanged += HandleWealthChanged;
         settlement.OnQualityChanged += HandleQualityChanged;
-        settlement.OnSettlementUpgraded += HandleSettlementUpgraded;
+        // settlement.OnSettlementUpgraded += HandleSettlementUpgraded; // Event not defined
         settlement.OnTavernEntered += HandleTavernEntered;
         settlement.OnTownHallEntered += HandleTownHallEntered;
         settlement.OnWallEntered += HandleWallEntered;
@@ -81,7 +81,7 @@ public class SettlementHandler : MonoBehaviour
         settlement.OnPopulationChanged -= HandlePopulationChanged;
         settlement.OnWealthChanged -= HandleWealthChanged;
         settlement.OnQualityChanged -= HandleQualityChanged;
-        settlement.OnSettlementUpgraded -= HandleSettlementUpgraded;
+        // settlement.OnSettlementUpgraded -= HandleSettlementUpgraded; // Event not defined
         settlement.OnTavernEntered -= HandleTavernEntered;
         settlement.OnTownHallEntered -= HandleTownHallEntered;
         settlement.OnWallEntered -= HandleWallEntered;

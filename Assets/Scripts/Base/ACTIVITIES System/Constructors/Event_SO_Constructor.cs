@@ -239,8 +239,16 @@ public class Choice
 
         if (RequireItemId > 0)
         {
-            if (InventorySystem.Instance == null) return false;
-            if (!InventorySystem.Instance.HasItem(RequireItemId, RequireItemQuantity)) return false;
+            var stateManager = GameBootstrapper.State;
+            if (stateManager == null) return false;
+
+            var hasItem = stateManager.GetValue(state =>
+            {
+                var item = state.Inventory.Items.Find(i => i.ItemId == RequireItemId);
+                return item != null && item.Quantity >= RequireItemQuantity;
+            });
+
+            if (!hasItem) return false;
         }
         else if (!string.IsNullOrEmpty(RequireItemName))
         {

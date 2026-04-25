@@ -52,6 +52,40 @@ public class ShopSystem : MonoBehaviour
             shopListPanel.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        if (SettlementHandler.Instance != null && SettlementHandler.Instance.settlement != null)
+        {
+            SettlementHandler.Instance.settlement.OnShopEntered += HandleShopEntered;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (SettlementHandler.Instance != null && SettlementHandler.Instance.settlement != null)
+        {
+            SettlementHandler.Instance.settlement.OnShopEntered -= HandleShopEntered;
+        }
+    }
+
+    private void HandleShopEntered(Shops shop)
+    {
+        if (shop != null)
+        {
+            OpenShop(shop);
+        }
+    }
+
+    private void OpenShop(Shops shop)
+    {
+        currentShop = shop;
+        if (shopPanel != null)
+            shopPanel.SetActive(true);
+        if (shopListPanel != null)
+            shopListPanel.SetActive(false);
+        DisplayShopItems(shop);
+    }
+
     // -----------------------------
     // PANEL CONTROL
     // -----------------------------
@@ -148,88 +182,60 @@ public class ShopSystem : MonoBehaviour
             return;
         }
 
-        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
-        {
-            Debug.LogError("ShopSystem: PlayerStatHandler.Instance or pd is null! Cannot buy item.");
-            return;
-        }
-
-        if (InventorySystem.Instance == null)
-        {
-            Debug.LogError("ShopSystem: InventorySystem.Instance is null! Cannot buy item.");
-            return;
-        }
-
         if (currentShop == null)
         {
             Debug.LogWarning("ShopSystem: No current shop selected.");
             return;
         }
 
+        var stateManager = GameBootstrapper.State;
+        var eventBus = GameBootstrapper.Events;
+
+        if (stateManager == null || eventBus == null)
+        {
+            Debug.LogError("ShopSystem: GameBootstrapper systems not initialized");
+            return;
+        }
+
         Currency itemCost = currentShop.GetSellPrice(item);
 
-        if (!PlayerStatHandler.Instance.pd.HasEnoughMoney(itemCost))
+        // Check player money via state
+        bool hasEnoughMoney = stateManager.GetValue(state =>
+            (state.Player.Gold * 100 + state.Player.Silver) >= (itemCost.Gold * 100 + itemCost.Silver)
+        );
+
+        if (!hasEnoughMoney)
         {
             Debug.Log("Not enough money to buy this item.");
             return;
         }
 
-        bool spendSuccess = PlayerStatHandler.Instance.pd.TrySpendMoney(itemCost);
-        if (!spendSuccess)
+        // Deduct money from player
+        stateManager.UpdateState(state =>
         {
-            Debug.Log("Buy failed: player money transaction failed.");
-            return;
-        }
+            var newState = state.Clone();
+            long totalSilver = newState.Player.Gold * 100 + newState.Player.Silver;
+            long costSilver = itemCost.Gold * 100 + itemCost.Silver;
+            totalSilver -= costSilver;
 
+            newState.Player.Gold = (long)(totalSilver / 100);
+            newState.Player.Silver = (long)(totalSilver % 100);
+            return newState;
+        });
+
+        // Add item to inventory
+        eventBus.Dispatch(new AddItemEvent(item.ID, 1));
+
+        // Update shop inventory
         currentShop.AddCash(itemCost.Gold, itemCost.Silver);
-
-        if (currentShop.ItemEntries != null &&
-            currentEntryLookup.TryGetValue(item.ID, out var entry))
+        if (currentShop.ItemEntries != null && currentEntryLookup.TryGetValue(item.ID, out var entry))
         {
-            if (entry.Quantity <= 0)
-            {
-                Debug.LogWarning("ShopSystem: Item out of stock.");
-                return;
-            }
-
-            if (itemDatabase != null)
-            {
-                var so = itemDatabase.GetByID(entry.ItemId);
-                if (so != null)
-                {
-                    InventorySystem.Instance.AddItem(so, 1);
-                }
-                else
-                {
-                    InventorySystem.Instance.AddItem(item.Clone(1));
-                }
-            }
-            else
-            {
-                InventorySystem.Instance.AddItem(item.Clone(1));
-            }
-
             entry.Quantity -= 1;
             if (entry.Quantity <= 0)
-            {
                 currentShop.ItemEntries.Remove(entry);
-            }
-        }
-        else
-        {
-            InventorySystem.Instance.AddItem(item.Clone(1));
-
-            Item existingItem = currentShop.Items.Find(x => x.ID == item.ID);
-            if (existingItem != null)
-            {
-                existingItem.Quantity -= 1;
-                if (existingItem.Quantity <= 0)
-                    currentShop.Items.Remove(existingItem);
-            }
         }
 
         Debug.Log($"Purchased {item.Name} for {itemCost}");
-        RefreshAllUI();
         DisplayShopItems(currentShop);
     }
 
@@ -284,10 +290,33 @@ public class ShopSystem : MonoBehaviour
             return;
         }
 
-        PlayerStatHandler.Instance.pd.AddMoney(buyPrice);
+        var stateManager = GameBootstrapper.State;
+        var eventBus = GameBootstrapper.Events;
 
-        InventorySystem.Instance.RemoveItem(item, 1);
+        if (stateManager == null || eventBus == null)
+        {
+            Debug.LogError("ShopSystem: GameBootstrapper systems not initialized");
+            return;
+        }
 
+        // Add money to player
+        stateManager.UpdateState(state =>
+        {
+            var newState = state.Clone();
+            newState.Player.Gold += buyPrice.Gold;
+            newState.Player.Silver += buyPrice.Silver;
+            if (newState.Player.Silver >= 100)
+            {
+                newState.Player.Gold += newState.Player.Silver / 100;
+                newState.Player.Silver %= 100;
+            }
+            return newState;
+        });
+
+        // Remove item from inventory
+        eventBus.Dispatch(new RemoveItemEvent(item.ID, 1));
+
+        // Add item to shop
         Item shopExistingItem = currentShop.Items.Find(x => x.ID == item.ID);
         if (shopExistingItem != null && shopExistingItem.Stackable)
         {
@@ -299,7 +328,6 @@ public class ShopSystem : MonoBehaviour
         }
 
         Debug.Log($"Sold {item.Name} to {currentShop.Name} for {buyPrice}");
-        RefreshAllUI();
         DisplayShopItems(currentShop);
     }
 
@@ -508,7 +536,6 @@ public class ShopSystem : MonoBehaviour
         if (PlayerUISystem.Instance != null)
             PlayerUISystem.Instance.UpdateUIObjects();
 
-        if (InventoryUI.Instance != null)
-            InventoryUI.Instance.UpdateInventoryUI();
+        // UI updates handled by StateManager listeners
     }
 }

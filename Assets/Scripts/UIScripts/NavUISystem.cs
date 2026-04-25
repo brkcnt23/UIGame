@@ -147,19 +147,8 @@ public class NavUISystem : MonoBehaviour
 
         if (companionsText != null)
         {
-            companionsText.text = "Companions:\n";
-
-            if (pd.Companions != null && pd.Companions.Count > 0)
-            {
-                foreach (var companion in pd.Companions)
-                {
-                    companionsText.text += $"{companion.Name} (Level {companion.Level})\n";
-                }
-            }
-            else
-            {
-                companionsText.text += "None";
-            }
+            int companionCount = pd.Companions != null ? pd.Companions.Count : 0;
+            companionsText.text = $"Companions: {companionCount}";
         }
     }
 

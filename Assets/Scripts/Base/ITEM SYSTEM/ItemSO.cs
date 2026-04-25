@@ -11,7 +11,11 @@ public class ItemSO : ScriptableObject
 
     [Header("Appearance")]
     public Sprite icon;
-    [Range(1, 10)] public int quality = 1;
+
+    [Header("Quality Tiers")]
+    [Range(0, 2)] public int quality = 0; // 0=Common, 1=Rare, 2=Epic
+    public List<Sprite> spritesByQuality = new(); // [0]=Common, [1]=Rare, [2]=Epic
+    public List<int> qualityMultipliers = new() { 100, 150, 200 }; // stat/value multipliers %
 
     [Header("Economy")]
     public int goldValue;
@@ -47,10 +51,25 @@ public class ItemSO : ScriptableObject
         return new Currency(goldValue, silverValue);
     }
 
+    public Sprite GetSpriteForQuality(int quality)
+    {
+        if (spritesByQuality.Count == 0) return icon;
+        quality = Mathf.Clamp(quality, 0, spritesByQuality.Count - 1);
+        return spritesByQuality[quality];
+    }
+
+    public int GetMultiplier(int quality)
+    {
+        if (qualityMultipliers.Count == 0) return 100;
+        quality = Mathf.Clamp(quality, 0, qualityMultipliers.Count - 1);
+        return qualityMultipliers[quality];
+    }
+
     // Create a runtime Item instance from this ScriptableObject
     public Item ToItem(int quantity = 1)
     {
         int finalQuantity = Mathf.Max(1, quantity);
+        Sprite spriteForQuality = GetSpriteForQuality(quality);
 
         if (category == ItemCategory.Potion)
         {
@@ -61,7 +80,7 @@ public class ItemSO : ScriptableObject
                 silverValue,
                 healthRecovery,
                 exhaustionReduction,
-                icon,
+                spriteForQuality,
                 quality,
                 finalQuantity,
                 stackable,
@@ -82,7 +101,7 @@ public class ItemSO : ScriptableObject
                 silverValue,
                 category,
                 modsCopy,
-                icon,
+                spriteForQuality,
                 quality,
                 finalQuantity,
                 stackable,

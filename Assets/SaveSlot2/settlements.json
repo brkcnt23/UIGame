@@ -20,6 +20,10 @@
                     "income": 5000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -30,11 +34,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -44,6 +44,10 @@
                     "income": 6000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [],
                     "ItemEntries": [],
@@ -54,11 +58,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -68,6 +68,10 @@
                     "income": 2500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -79,14 +83,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -97,14 +101,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -115,11 +119,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -129,6 +129,10 @@
                     "income": 2500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -140,14 +144,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -158,14 +162,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -176,14 +180,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -194,11 +198,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -209,6 +209,9 @@
                 "income": 7500,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -220,6 +223,10 @@
                 "income": 10000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -231,6 +238,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 2
         },
         {
@@ -253,6 +263,10 @@
                     "income": 4000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -263,11 +277,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -277,6 +287,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -288,14 +302,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -306,14 +320,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -324,14 +338,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -342,11 +356,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -356,6 +366,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -367,14 +381,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -385,14 +399,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -403,11 +417,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -417,6 +427,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -428,14 +442,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -446,14 +460,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -464,14 +478,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -482,11 +496,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -497,6 +507,9 @@
                 "income": 6000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -508,6 +521,10 @@
                 "income": 8000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -519,6 +536,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 2
         },
         {
@@ -541,6 +561,10 @@
                     "income": 4500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 3,
                     "Items": [],
                     "ItemEntries": [],
@@ -551,11 +575,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -565,6 +585,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -576,14 +600,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -594,14 +618,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -612,14 +636,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -630,11 +654,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -644,6 +664,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -655,14 +679,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -673,14 +697,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -691,11 +715,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -705,6 +725,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -716,14 +740,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -734,14 +758,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -752,14 +776,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -770,11 +794,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -785,6 +805,9 @@
                 "income": 6000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -796,6 +819,10 @@
                 "income": 8000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -807,6 +834,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 2
         },
         {
@@ -829,6 +859,10 @@
                     "income": 3500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [],
                     "ItemEntries": [],
@@ -839,11 +873,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -853,6 +883,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -864,14 +898,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -882,14 +916,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -900,14 +934,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -918,11 +952,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -932,6 +962,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -943,14 +977,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -961,14 +995,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -979,11 +1013,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -993,6 +1023,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -1004,14 +1038,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -1022,14 +1056,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -1040,14 +1074,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1058,11 +1092,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -1073,6 +1103,9 @@
                 "income": 4500,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -1084,6 +1117,10 @@
                 "income": 6000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -1095,6 +1132,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 2
         },
         {
@@ -1117,6 +1157,10 @@
                     "income": 5000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 2,
                     "Items": [],
                     "ItemEntries": [],
@@ -1127,11 +1171,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -1141,6 +1181,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -1152,14 +1196,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -1170,14 +1214,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -1188,14 +1232,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1206,11 +1250,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -1220,6 +1260,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -1231,14 +1275,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -1249,14 +1293,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1267,11 +1311,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -1281,6 +1321,10 @@
                     "income": 2000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -1292,14 +1336,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -1310,14 +1354,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -1328,14 +1372,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1346,11 +1390,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -1361,6 +1401,9 @@
                 "income": 7000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -1372,6 +1415,10 @@
                 "income": 9000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -1383,12 +1430,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 2
         },
         {
             "Name": "Cryssborn",
             "ID": 6,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 15,
             "Population": 800,
             "Wealth": {
@@ -1405,6 +1455,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -1415,11 +1469,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -1429,6 +1479,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -1440,14 +1494,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -1458,14 +1512,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -1476,14 +1530,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1494,11 +1548,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -1508,6 +1558,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -1519,14 +1573,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -1537,14 +1591,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1555,11 +1609,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -1569,6 +1619,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -1580,14 +1634,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -1598,14 +1652,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -1616,14 +1670,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1634,11 +1688,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -1649,6 +1699,9 @@
                 "income": 800,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -1660,6 +1713,10 @@
                 "income": 1000,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -1671,12 +1728,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Woodholmers",
             "ID": 7,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 10,
             "Population": 1000,
             "Wealth": {
@@ -1693,6 +1753,10 @@
                     "income": 600,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -1703,11 +1767,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -1717,6 +1777,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -1728,14 +1792,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -1746,14 +1810,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -1764,14 +1828,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1782,11 +1846,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -1796,6 +1856,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -1807,14 +1871,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -1825,14 +1889,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1843,11 +1907,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -1857,6 +1917,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -1868,14 +1932,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -1886,14 +1950,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -1904,14 +1968,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -1922,11 +1986,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -1937,6 +1997,9 @@
                 "income": 900,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -1948,6 +2011,10 @@
                 "income": 1100,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -1959,12 +2026,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Mineholmers",
             "ID": 8,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 7,
             "Population": 1000,
             "Wealth": {
@@ -1981,6 +2051,10 @@
                     "income": 600,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -1991,11 +2065,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -2005,6 +2075,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -2016,14 +2090,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -2034,14 +2108,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -2052,14 +2126,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2070,11 +2144,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -2084,6 +2154,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -2095,14 +2169,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -2113,14 +2187,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2131,11 +2205,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -2145,6 +2215,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -2156,14 +2230,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -2174,14 +2248,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -2192,14 +2266,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2210,11 +2284,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -2225,6 +2295,9 @@
                 "income": 900,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -2236,6 +2309,10 @@
                 "income": 1100,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -2247,12 +2324,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 400,
             "Wealth": {
@@ -2269,6 +2349,10 @@
                     "income": 300,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -2279,11 +2363,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -2293,6 +2373,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -2304,14 +2388,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -2322,14 +2406,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -2340,14 +2424,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2358,11 +2442,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -2372,6 +2452,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -2383,14 +2467,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -2401,14 +2485,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2419,11 +2503,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -2433,6 +2513,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -2444,14 +2528,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -2462,14 +2546,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -2480,14 +2564,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2498,11 +2582,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -2513,6 +2593,9 @@
                 "income": 500,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -2524,6 +2607,10 @@
                 "income": 600,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -2535,12 +2622,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": {
@@ -2557,6 +2647,10 @@
                     "income": 800,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -2567,11 +2661,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -2581,6 +2671,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -2592,14 +2686,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -2610,14 +2704,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -2628,14 +2722,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2646,11 +2740,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -2660,6 +2750,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -2671,14 +2765,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -2689,14 +2783,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2707,11 +2801,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -2721,6 +2811,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -2732,14 +2826,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -2750,14 +2844,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -2768,14 +2862,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2786,11 +2880,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -2801,6 +2891,9 @@
                 "income": 1200,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -2812,6 +2905,10 @@
                 "income": 1400,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -2823,12 +2920,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": {
@@ -2845,6 +2945,10 @@
                     "income": 700,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -2855,11 +2959,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -2869,6 +2969,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -2880,14 +2984,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -2898,14 +3002,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -2916,14 +3020,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2934,11 +3038,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -2948,6 +3048,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -2959,14 +3063,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -2977,14 +3081,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -2995,11 +3099,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -3009,6 +3109,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -3020,14 +3124,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -3038,14 +3142,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -3056,14 +3160,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3074,11 +3178,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -3089,6 +3189,9 @@
                 "income": 1100,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -3100,6 +3203,10 @@
                 "income": 1300,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -3111,12 +3218,15 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": {
@@ -3133,6 +3243,10 @@
                     "income": 1000,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -3143,11 +3257,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -3157,6 +3267,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -3168,14 +3282,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -3186,14 +3300,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -3204,14 +3318,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3222,11 +3336,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -3236,6 +3346,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -3247,14 +3361,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -3265,14 +3379,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3283,11 +3397,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -3297,6 +3407,10 @@
                     "income": 1500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -3308,14 +3422,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -3326,14 +3440,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -3344,14 +3458,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3362,11 +3476,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -3377,6 +3487,9 @@
                 "income": 1500,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -3388,6 +3501,10 @@
                 "income": 1700,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -3399,6 +3516,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         },
         {
@@ -3421,6 +3541,10 @@
                     "income": 200,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 5,
                     "Items": [],
                     "ItemEntries": [],
@@ -3431,11 +3555,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Blacksmith",
@@ -3445,6 +3565,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 1,
                     "Items": [
                         {
@@ -3456,14 +3580,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 3,
@@ -3474,14 +3598,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 6,
@@ -3492,14 +3616,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3510,11 +3634,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Tanner",
@@ -3524,6 +3644,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 6,
                     "Items": [
                         {
@@ -3535,14 +3659,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 7,
@@ -3553,14 +3677,14 @@
                             },
                             "Category": 0,
                             "Quantity": 5,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3571,11 +3695,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 },
                 {
                     "Name": "Alchemist",
@@ -3585,6 +3705,10 @@
                     "income": 500,
                     "Resources": [],
                     "upgradeHour": 0,
+                    "ShopId": "",
+                    "StockProfileId": "",
+                    "OwnerNpcId": "",
+                    "ShopTags": [],
                     "ShopType": 4,
                     "Items": [
                         {
@@ -3596,14 +3720,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 5,
@@ -3614,14 +3738,14 @@
                             },
                             "Category": 0,
                             "Quantity": 1,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         },
                         {
                             "ID": 8,
@@ -3632,14 +3756,14 @@
                             },
                             "Category": 0,
                             "Quantity": 10,
-                            "Weight": 0.0,
-                            "Stackable": false,
-                            "MaxStack": 0,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0
+                            "Quality": 0,
+                            "Stackable": false,
+                            "MaxStack": 0,
+                            "UnitWeight": 0.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3650,11 +3774,7 @@
                     "BuyMultiplier": 0.6000000238418579,
                     "SellMultiplier": 1.0,
                     "MaxAffordableItemQuality": 10,
-                    "AcceptedCategories": [
-                        6,
-                        5,
-                        7
-                    ]
+                    "AcceptedCategories": []
                 }
             ],
             "Tavern": {
@@ -3665,6 +3785,9 @@
                 "income": 300,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TavernId": "",
+                "OwnerNpcId": "",
+                "TavernTags": [],
                 "Quests": [],
                 "Companions": []
             },
@@ -3676,6 +3799,10 @@
                 "income": 400,
                 "Resources": [],
                 "upgradeHour": 0,
+                "TownHallId": "",
+                "RulerNpcId": "",
+                "StewardNpcId": "",
+                "TownHallTags": [],
                 "Jobs": []
             },
             "Walls": {
@@ -3687,6 +3814,9 @@
                 "Resources": [],
                 "upgradeHour": 0
             },
+            "RulerNpcId": "",
+            "SettlementTags": [],
+            "CultureTags": [],
             "Type": 0
         }
     ]

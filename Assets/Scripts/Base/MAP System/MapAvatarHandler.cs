@@ -35,6 +35,12 @@ public class MapAvatarHandler : MonoBehaviour
     {
         if (playerIcon == null)
         {
+            if (playerIconPrefab == null || playerIconParent == null)
+            {
+                Debug.LogError("[MapAvatarHandler] playerIconPrefab or playerIconParent is null!");
+                return;
+            }
+
             playerIcon = Instantiate(playerIconPrefab);
             playerIcon.transform.SetParent(playerIconParent.transform);
             MovePlayerIconToLastVisitedSettlement();
@@ -43,7 +49,41 @@ public class MapAvatarHandler : MonoBehaviour
 
     public void MovePlayerIconToLastVisitedSettlement()
     {
-        playerIcon.transform.localPosition = MapHandler.Instance.GetLastVisitedSettlement().transform.localPosition;
+        if (playerIcon == null)
+        {
+            Debug.LogError("[MapAvatarHandler] playerIcon is null!");
+            return;
+        }
+
+        if (PlayerStatHandler.Instance == null)
+        {
+            Debug.LogError("[MapAvatarHandler] PlayerStatHandler.Instance is null!");
+            return;
+        }
+
+        if (MapHandler.Instance == null)
+        {
+            Debug.LogError("[MapAvatarHandler] MapHandler.Instance is null!");
+            return;
+        }
+
+        // Get settlement data (validates that a settlement exists, falls back to home)
+        var settlement = PlayerStatHandler.Instance.LastVisitedSettlement();
+        if (settlement == null)
+        {
+            Debug.LogError("[MapAvatarHandler] LastVisitedSettlement() returned null!");
+            return;
+        }
+
+        // Find the SettlementButtonPointer UI element on map for this settlement
+        var settlementButtonPointer = MapHandler.Instance.GetLastVisitedSettlement();
+        if (settlementButtonPointer == null)
+        {
+            Debug.LogError("[MapAvatarHandler] SettlementButtonPointer not found on map for settlement: " + settlement.Name);
+            return;
+        }
+
+        playerIcon.transform.localPosition = settlementButtonPointer.transform.localPosition;
     }
 
     public void DestroyPlayerIcon()

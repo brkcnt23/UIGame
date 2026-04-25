@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4687ca7e0cc102429a31a3f341efe70, type: 3}
+  m_Name: MithrilIngot
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  ID: 3
+  itemName: Mithril Ingot
+  description: "mitril k\xFCl\xE7esi"
+  icon: {fileID: -5552176148375906979, guid: fc3cad1ac6166754b88a256023e8c081, type: 3}
+  quality: 1
+  spritesByQuality: []
+  qualityMultipliers: 6400000096000000c8000000
+  goldValue: 350
+  silverValue: 0
+  weight: 95
+  stackable: 1
+  maxStack: 4
+  category: 5
+  modifiers: []
+  healthRecovery: 0
+  exhaustionReduction: 0

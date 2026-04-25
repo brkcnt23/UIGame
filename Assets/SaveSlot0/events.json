@@ -2,7 +2,7 @@
     "events": [
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 1001,
             "Name": "Bandit Ambush",
             "Description": "You are ambushed by a group of bandits on the road. How will you respond?",
             "DC": 12,
@@ -19,7 +19,7 @@
             "StatRewardMin": 1,
             "StatRewardMax": 3,
             "isHaveWar": false,
-            "encounterCooldown": 2,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Fight the bandits head-on.",

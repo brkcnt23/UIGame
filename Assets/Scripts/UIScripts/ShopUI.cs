@@ -79,8 +79,8 @@ public class ShopUI : MonoBehaviour
         {
             if (currentShop != null)
             {
-                Currency buyPrice = currentShop.GetSellPrice(item);
-                Currency sellPrice = currentShop.GetBuyPrice(item);
+                Currency buyPrice = currentShop.GetBuyPrice(item);
+                Currency sellPrice = currentShop.GetSellPrice(item);
 
                 itemValueText.text = $"Buy: {buyPrice.Gold}g {buyPrice.Silver}s\nSell: {sellPrice.Gold}g {sellPrice.Silver}s";
             }

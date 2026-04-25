@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4687ca7e0cc102429a31a3f341efe70, type: 3}
+  m_Name: HealthPotion
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  ID: 21
+  itemName: Helath Potion
+  description: 
+  icon: {fileID: -1115708042917282823, guid: 6e95728226e607b41a4fcacac1bc8a8c, type: 3}
+  quality: 0
+  spritesByQuality: []
+  qualityMultipliers: 6400000096000000c8000000
+  goldValue: 2
+  silverValue: 60
+  weight: 5
+  stackable: 1
+  maxStack: 30
+  category: 4
+  modifiers: []
+  healthRecovery: 0
+  exhaustionReduction: 0

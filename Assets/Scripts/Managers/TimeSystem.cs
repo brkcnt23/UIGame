@@ -123,7 +123,7 @@ public class TimeSystem : MonoBehaviour
             PlayerUISystem.Instance.UpdateUIObjects();
     }
 
-    public void AnimateTimeChange(int day, int hour, int minute, float time)
+    public void AnimateTimeChange(int day, int hour, int minute, float time, System.Action onComplete = null)
     {
         EnsurePlayerData();
         if (playerData == null) return;
@@ -178,6 +178,9 @@ public class TimeSystem : MonoBehaviour
                 PlayerUISystem.Instance.UpdateUIObjects();
 
             Debug.Log("Time advancement completed with tween.");
+
+            // Call job completion callback if provided
+            onComplete?.Invoke();
         });
     }
 
