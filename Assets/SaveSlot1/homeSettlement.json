@@ -1,6 +1,6 @@
 {
     "homeSettlement": {
-        "Name": "2",
+        "Name": "r2",
         "ID": 0,
         "isUnlocked": true,
         "levelToUnlock": 0,
@@ -26,45 +26,18 @@
                 "ShopType": 0,
                 "Items": [
                     {
-                        "ID": 5151,
+                        "ID": 3131,
                         "Name": "Blacksmith Item 1",
                         "Value": {
                             "Gold": 7,
-                            "Silver": 69
+                            "Silver": 81
                         },
                         "Category": 0,
-                        "Quantity": 4,
+                        "Quantity": 2,
                         "Modifiers": [
                             {
                                 "Type": 0,
-                                "Value": 2
-                            },
-                            {
-                                "Type": 1,
-                                "Value": 2
-                            }
-                        ],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 4159,
-                        "Name": "Blacksmith Item 2",
-                        "Value": {
-                            "Gold": 1,
-                            "Silver": 32
-                        },
-                        "Category": 0,
-                        "Quantity": 1,
-                        "Modifiers": [
-                            {
-                                "Type": 0,
-                                "Value": 2
+                                "Value": 4
                             },
                             {
                                 "Type": 1,
@@ -80,22 +53,22 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 1123,
-                        "Name": "Blacksmith Item 3",
+                        "ID": 2833,
+                        "Name": "Blacksmith Item 2",
                         "Value": {
-                            "Gold": 5,
-                            "Silver": 50
+                            "Gold": 3,
+                            "Silver": 31
                         },
                         "Category": 0,
                         "Quantity": 3,
                         "Modifiers": [
                             {
                                 "Type": 0,
-                                "Value": 3
+                                "Value": 2
                             },
                             {
                                 "Type": 1,
-                                "Value": 2
+                                "Value": 3
                             }
                         ],
                         "ItemImage": {
@@ -107,11 +80,38 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 5683,
+                        "ID": 6279,
+                        "Name": "Blacksmith Item 3",
+                        "Value": {
+                            "Gold": 2,
+                            "Silver": 17
+                        },
+                        "Category": 0,
+                        "Quantity": 4,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 4
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 1
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 2001,
                         "Name": "Blacksmith Item 4",
                         "Value": {
-                            "Gold": 1,
-                            "Silver": 53
+                            "Gold": 5,
+                            "Silver": 33
                         },
                         "Category": 0,
                         "Quantity": 4,
@@ -134,11 +134,11 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 7315,
+                        "ID": 7896,
                         "Name": "Blacksmith Item 5",
                         "Value": {
-                            "Gold": 1,
-                            "Silver": 68
+                            "Gold": 6,
+                            "Silver": 54
                         },
                         "Category": 0,
                         "Quantity": 3,
@@ -149,7 +149,7 @@
                             },
                             {
                                 "Type": 1,
-                                "Value": 4
+                                "Value": 3
                             }
                         ],
                         "ItemImage": {
@@ -159,33 +159,6 @@
                         "Stackable": true,
                         "MaxStack": 99,
                         "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 1500,
-                        "Name": "Armor",
-                        "Value": {
-                            "Gold": 54,
-                            "Silver": 80
-                        },
-                        "Category": 1,
-                        "Quantity": 1,
-                        "Modifiers": [
-                            {
-                                "Type": 0,
-                                "Value": 10
-                            },
-                            {
-                                "Type": 1,
-                                "Value": 5
-                            }
-                        ],
-                        "ItemImage": {
-                            "instanceID": 53684
-                        },
-                        "Quality": 1,
-                        "Stackable": false,
-                        "MaxStack": 1,
-                        "UnitWeight": 8.0
                     }
                 ],
                 "ItemEntries": [],
@@ -213,11 +186,11 @@
                 "ShopType": 5,
                 "Items": [
                     {
-                        "ID": 4197,
+                        "ID": 9607,
                         "Name": "GeneralStore Item 1",
                         "Value": {
-                            "Gold": 4,
-                            "Silver": 22
+                            "Gold": 9,
+                            "Silver": 93
                         },
                         "Category": 5,
                         "Quantity": 2,
@@ -231,11 +204,11 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 9160,
+                        "ID": 7398,
                         "Name": "GeneralStore Item 2",
                         "Value": {
-                            "Gold": 7,
-                            "Silver": 40
+                            "Gold": 3,
+                            "Silver": 17
                         },
                         "Category": 5,
                         "Quantity": 4,
@@ -249,14 +222,14 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 6581,
+                        "ID": 6233,
                         "Name": "GeneralStore Item 3",
                         "Value": {
-                            "Gold": 3,
-                            "Silver": 83
+                            "Gold": 4,
+                            "Silver": 69
                         },
                         "Category": 5,
-                        "Quantity": 2,
+                        "Quantity": 3,
                         "Modifiers": [],
                         "ItemImage": {
                             "instanceID": 0
@@ -267,29 +240,11 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 8883,
+                        "ID": 7995,
                         "Name": "GeneralStore Item 4",
                         "Value": {
-                            "Gold": 8,
-                            "Silver": 23
-                        },
-                        "Category": 5,
-                        "Quantity": 4,
-                        "Modifiers": [],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 7422,
-                        "Name": "GeneralStore Item 5",
-                        "Value": {
-                            "Gold": 8,
-                            "Silver": 44
+                            "Gold": 1,
+                            "Silver": 82
                         },
                         "Category": 5,
                         "Quantity": 4,
@@ -329,7 +284,7 @@
             "Companions": []
         },
         "TownHall": {
-            "Name": "2's Hall",
+            "Name": "r2's Hall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,
@@ -343,7 +298,7 @@
             "Jobs": []
         },
         "Walls": {
-            "Name": "2's Wall",
+            "Name": "r2's Wall",
             "level": 0,
             "maxLevel": 0,
             "cost": 0,

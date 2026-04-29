@@ -2332,7 +2332,7 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 400,
             "Wealth": {
@@ -2630,7 +2630,7 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": {
@@ -2928,7 +2928,7 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": {
@@ -3226,7 +3226,7 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": {
@@ -3524,7 +3524,7 @@
         {
             "Name": "Mege",
             "ID": 13,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 1,
             "Population": 200,
             "Wealth": {

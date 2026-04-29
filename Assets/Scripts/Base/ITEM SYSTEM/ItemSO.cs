@@ -31,6 +31,11 @@ public class ItemSO : ScriptableObject
     [Header("Classification")]
     public ItemCategory category = ItemCategory.Misc;
 
+    [Header("Magical Properties")]
+    public bool isMagical = false;
+    [Tooltip("Magical items count toward attunement limit (max 3)")]
+    public string magicalEffect = ""; // Optional: describe magical effect
+
     [Header("Modifiers / Stats")]
     public List<StatModifier> modifiers = new List<StatModifier>();
 
@@ -71,9 +76,11 @@ public class ItemSO : ScriptableObject
         int finalQuantity = Mathf.Max(1, quantity);
         Sprite spriteForQuality = GetSpriteForQuality(quality);
 
+        Item createdItem = null;
+
         if (category == ItemCategory.Potion)
         {
-            return new Item(
+            createdItem = new Item(
                 ID,
                 itemName,
                 goldValue,
@@ -88,13 +95,12 @@ public class ItemSO : ScriptableObject
                 weight
             );
         }
-
         // Equippable / modifier-based items
-        if (modifiers != null && modifiers.Count > 0)
+        else if (modifiers != null && modifiers.Count > 0)
         {
             List<StatModifier> modsCopy = new List<StatModifier>(modifiers);
 
-            return new Item(
+            createdItem = new Item(
                 ID,
                 itemName,
                 goldValue,
@@ -109,18 +115,28 @@ public class ItemSO : ScriptableObject
                 weight
             );
         }
-
         // Resources / crafting materials / simple items
-        return new Item(
-            ID,
-            itemName,
-            goldValue,
-            silverValue,
-            category,
-            finalQuantity,
-            stackable,
-            maxStack,
-            weight
-        );
+        else
+        {
+            createdItem = new Item(
+                ID,
+                itemName,
+                goldValue,
+                silverValue,
+                category,
+                finalQuantity,
+                stackable,
+                maxStack,
+                weight
+            );
+        }
+
+        // Set magical property
+        if (createdItem != null)
+        {
+            createdItem.IsMagical = isMagical;
+        }
+
+        return createdItem;
     }
 }

@@ -5,7 +5,9 @@
     "remainingTime": 0,
     "remainingTimeMinutes": 0,
     "minEvents": 0,
-    "eventTimes": [],
+    "eventTimes": [
+        10
+    ],
     "isEventActive": false,
     "PlayerWantsToHandleEventorEnterSettlement": false,
     "currentEventID": 0,

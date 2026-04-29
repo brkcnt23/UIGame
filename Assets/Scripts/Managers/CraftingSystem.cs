@@ -288,7 +288,7 @@ public class CraftingSystem : MonoBehaviour
     {
         if (playerData == null) return;
 
-        int xp = Mathf.Max(5, recipe.requiredDisciplineLevel * 10);
+        int xp = CalculateExponentialCraftXP(recipe.requiredDisciplineLevel);
 
         switch (recipe.discipline)
         {
@@ -332,6 +332,20 @@ public class CraftingSystem : MonoBehaviour
         int hours = totalMinutes / 60;
         int minutes = totalMinutes % 60;
         StartCoroutine(timeSystem.AdvanceTimeCoroutine(0, hours, minutes));
+    }
+
+    private int CalculateExponentialCraftXP(int recipeLevel)
+    {
+        if (recipeLevel <= 0) return 5; // minimum
+
+        if (recipeLevel <= 3)
+            return recipeLevel * 5;      // Level 1-3: 5, 10, 15 XP
+
+        else if (recipeLevel <= 6)
+            return recipeLevel * 15;     // Level 4-6: 60, 75, 90 XP
+
+        else
+            return recipeLevel * 25;     // Level 7+: 175, 200, 225... XP
     }
 
     private void RefreshUI()

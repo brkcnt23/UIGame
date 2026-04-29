@@ -34,6 +34,9 @@ public class Item
     public int HealthRecovery { get; set; }
     public int ExhaustionReduction { get; set; }
 
+    // Magical properties
+    public bool IsMagical { get; set; } = false;
+
     // Full constructor (weapon / armor / misc with modifiers) - backward compatible
     public Item(
         int id,
