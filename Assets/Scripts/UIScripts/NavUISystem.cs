@@ -120,7 +120,10 @@ public class NavUISystem : MonoBehaviour
         Currency money = pd.GetMoney();
 
         if (levelText != null) levelText.text = $"Level: {pd.Level}";
-        if (experienceText != null) experienceText.text = $"Experience: {pd.Experience} / {pd.MaxExperience}";
+        // Experience is lifetime total; the bar shows progress inside the
+        // current level (e.g. "240 / 600"), not the raw total.
+        if (experienceText != null)
+            experienceText.text = $"Experience: {ExperienceSystem.GetXpIntoCurrentLevel(pd)} / {ExperienceSystem.CostForNextLevel(pd.Level)}";
         if (strengthText != null) strengthText.text = $"Strength: {pd.Strength}";
         if (dexterityText != null) dexterityText.text = $"Dexterity: {pd.Dexterity}";
         if (constitutionText != null) constitutionText.text = $"Constitution: {pd.Constitution}";

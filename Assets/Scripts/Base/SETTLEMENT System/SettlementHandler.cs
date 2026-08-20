@@ -32,22 +32,9 @@ public class SettlementHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
-        settlements = wrapper != null && wrapper.settlements != null
-            ? wrapper.settlements
-            : new List<Settlement>();
+        settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
 
-        settlements.RemoveAll(x => x == null);
-
-        Settlement home = HomeSettlementHandler.Instance != null
-            ? HomeSettlementHandler.Instance.homeSettlement
-            : null;
-
-        if (home != null && !settlements.Contains(home))
-        {
-            // The home settlement is stored in its own file, so it is always put back in front.
-            settlements.RemoveAll(x => x.Name == home.Name);
-            settlements.Insert(0, home);
-        }
+        settlements.Insert(0, HomeSettlementHandler.Instance.homeSettlement);
     }
     public Settlement GetCurrentSettlement()
     {
@@ -57,34 +44,22 @@ public class SettlementHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler("SourceData");
         SettlementListWrapper wrapper = JSONhandler.LoadData<SettlementListWrapper>("settlements.json");
-        settlements = wrapper != null && wrapper.settlements != null
-            ? wrapper.settlements
-            : new List<Settlement>();
-
-        settlements.RemoveAll(x => x == null);
-
-        if (settlements.Count == 0)
-            Debug.LogWarning("SettlementHandler: No settlements found in SourceData/settlements.json.");
+        settlements = wrapper != null ? wrapper.settlements : new List<Settlement>();
     }
     public void SaveSettlements()
     {
-        if (settlements == null)
-            settlements = new List<Settlement>();
-
-        if (HomeSettlementHandler.Instance != null && HomeSettlementHandler.Instance.homeSettlement != null)
-            settlements.Remove(HomeSettlementHandler.Instance.homeSettlement);
-
-        // Quest settlements are temporary, they are rebuilt from the player's quests on load.
-        settlements.RemoveAll(x => x == null || x.Type == SettlementType.Quest);
-
+        settlements.Remove(HomeSettlementHandler.Instance.homeSettlement);
+        settlements.Remove(settlements.Find(x => x.Type == SettlementType.Quest));
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         JSONhandler.SaveData(new SettlementListWrapper { settlements = settlements }, "settlements.json");
     }
 
+    // `settlement` is null whenever the player is not inside one — OnSettlementExited
+    // clears it. Enabling or disabling this component in that state used to throw.
     void OnEnable()
     {
         if (settlement == null)
-            settlement = new Settlement();
+            return;
 
         settlement.OnSettlementEntered += OnSettlementEntered;
         settlement.OnSettlementExited += OnSettlementExited;
@@ -124,15 +99,7 @@ public class SettlementHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler("SourceData");
         QuestListWrapper wrapper = JSONhandler.LoadData<QuestListWrapper>("quests.json");
-        List<Quest_SO_Constructor> quests = wrapper != null && wrapper.quests != null
-            ? wrapper.quests
-            : new List<Quest_SO_Constructor>();
-
-        if (quests.Count == 0)
-        {
-            Debug.LogWarning("SettlementHandler: No quests found in SourceData/quests.json.");
-            return null;
-        }
+        List<Quest_SO_Constructor> quests = wrapper != null ? wrapper.quests : new List<Quest_SO_Constructor>();
 
         return quests[UnityEngine.Random.Range(0, quests.Count)];
     }
@@ -141,15 +108,7 @@ public class SettlementHandler : MonoBehaviour
     {
         JSONhandler = new JSONDataHandler("SourceData");
         JobListWrapper wrapper = JSONhandler.LoadData<JobListWrapper>("jobs.json");
-        List<Job_SO_Constructor> jobs = wrapper != null && wrapper.jobs != null
-            ? wrapper.jobs
-            : new List<Job_SO_Constructor>();
-
-        if (jobs.Count == 0)
-        {
-            Debug.LogWarning("SettlementHandler: No jobs found in SourceData/jobs.json.");
-            return null;
-        }
+        List<Job_SO_Constructor> jobs = wrapper != null ? wrapper.jobs : new List<Job_SO_Constructor>();
 
         return jobs[UnityEngine.Random.Range(0, jobs.Count)];
     }
@@ -165,23 +124,8 @@ public class SettlementHandler : MonoBehaviour
     }
     public void OnSettlementEntered(Settlement _settlement)
     {
-        if (_settlement == null)
-        {
-            Debug.LogWarning("SettlementHandler: Tried to enter a null settlement.");
-            return;
-        }
-
-        settlement = settlements != null ? settlements.Find(x => x != null && x.Name == _settlement.Name) : null;
-
-        if (settlement == null)
-        {
-            // The settlement is not in the list yet (new game / quest location), use the given one.
-            settlement = _settlement;
-        }
-
-        if (HomeSettlementHandler.Instance != null)
-            HomeSettlementHandler.Instance.GenerateRandomHappenings();
-
+        settlement = settlements.Find(x => x.Name == _settlement.Name);
+        HomeSettlementHandler.Instance.GenerateRandomHappenings();
         if (settlement.Type == SettlementType.Quest)
         {
             UIHandler.Instance.UpdateSettlementInfo(settlement);
@@ -190,20 +134,13 @@ public class SettlementHandler : MonoBehaviour
             return;
         }
 
-        Settlement lastVisited = PlayerStatHandler.Instance != null
-            ? PlayerStatHandler.Instance.LastVisitedSettlement()
-            : null;
-
-        if (lastVisited == null || lastVisited.Name != settlement.Name)
+        if (PlayerStatHandler.Instance.LastVisitedSettlement().Name != settlement.Name)
         {
             if (settlement.Tavern != null)
             {
                 for (int i = 0; i < GenerateRandomSettlementTavernQuestCount(); i++)
                 {
-                    Quest_SO_Constructor quest = PickRandomQuestFromJSON();
-
-                    if (quest != null)
-                        settlement.Tavern.Quests.Add(quest);
+                    settlement.Tavern.Quests.Add(PickRandomQuestFromJSON());
                 }
             }
 
@@ -211,20 +148,17 @@ public class SettlementHandler : MonoBehaviour
             {
                 for (int i = 0; i < GenerateRandomSettlementJobCount(); i++)
                 {
-                    Job_SO_Constructor job = PickRandomJobFromJSON();
-
-                    if (job != null)
-                        settlement.TownHall.Jobs.Add(job);
+                    settlement.TownHall.Jobs.Add(PickRandomJobFromJSON());
                 }
             }
         }
 
-        if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd != null)
-            PlayerStatHandler.Instance.pd.LastSettlementName = settlement.Name;
+        PlayerStatHandler.Instance.pd.LastSettlementName = settlement.Name;
 
-        if (HomeSettlementHandler.Instance != null && settlement == HomeSettlementHandler.Instance.homeSettlement)
+        if (settlement == HomeSettlementHandler.Instance.homeSettlement)
         {
             HomeSettlementHandler.Instance.OnSettlmentEntered();
+
         }
 
         // Add shop inventory refresh logic here
@@ -238,25 +172,14 @@ public class SettlementHandler : MonoBehaviour
             }
         }
 
-        if (MapHandler.Instance != null)
-        {
-            MapHandler.Instance.lastVisitedSettlement = null;
-            MapHandler.Instance.destinationSettlement = null;
-        }
+        MapHandler.Instance.lastVisitedSettlement = null; // Remove this line
+        MapHandler.Instance.destinationSettlement = null; // Remove this line
 
-        if (UIHandler.Instance != null)
-            UIHandler.Instance.UpdateSettlementInfo(settlement);
+        UIHandler.Instance.UpdateSettlementInfo(settlement);
     }
 
     public void HandleQuestSettlementEntered()
     {
-        if (settlement == null || settlement.Tavern == null ||
-            settlement.Tavern.Quests == null || settlement.Tavern.Quests.Count == 0)
-        {
-            Debug.LogWarning("SettlementHandler: Quest settlement has no quest attached to it.");
-            return;
-        }
-
         foreach (Button button in UIHandler.Instance.GoBackButtons)
         {
             button.onClick.RemoveAllListeners();
@@ -281,11 +204,6 @@ public class SettlementHandler : MonoBehaviour
 
     public void OnSettlementExited()
     {
-        if (settlement == null)
-        {
-            return;
-        }
-
         if (settlement.Tavern != null && settlement.Tavern.Quests.Count > 0)
         {
             settlement.Tavern.Quests.Clear();

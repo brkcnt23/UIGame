@@ -26,8 +26,30 @@ public class Settlement
     public Walls Walls;
 
     public string RulerNpcId;
+
+    /// <summary>
+    /// What this place is good at: mining, forestry, pastoral, quarry,
+    /// farming, trade_hub, remote. Pricing reads these — a mining town sells
+    /// ore cheap and pays badly for more of it, which is what makes a trade
+    /// route worth walking.
+    /// </summary>
     public List<string> SettlementTags = new();
+
     public List<string> CultureTags = new();
+
+    /// <summary>
+    /// Production buildings. A crafter's level is the ceiling on what can be
+    /// made here, so a level 2 forge cannot produce steel no matter how good
+    /// the player's own smithing is.
+    /// </summary>
+    public List<CraftStation> Crafters = new();
+
+    /// <summary>
+    /// Map position. Lives in data rather than in the scene so a settlement
+    /// can be added by editing JSON instead of by placing a GameObject.
+    /// </summary>
+    public float MapX;
+    public float MapY;
 
     public SettlementType Type;
 

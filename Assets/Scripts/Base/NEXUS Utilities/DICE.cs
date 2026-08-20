@@ -12,6 +12,27 @@ namespace NEXUS.Utilities
         {
             return Random.Range(min, max);
         }
+
+        /// <summary>
+        /// A random list index in the range 0..count-1, or -1 when the list is empty.
+        ///
+        /// Use this instead of Roll(list.Count). Roll is a die: it returns 1..N and
+        /// never 0, so using it as an index is off by one and throws on the last
+        /// element — or on any single-item list.
+        /// </summary>
+        public static int Index(int count)
+        {
+            return count <= 0 ? -1 : Random.Range(0, count);
+        }
+
+        /// <summary>Random element from a list, or default when empty.</summary>
+        public static T Pick<T>(System.Collections.Generic.IList<T> list)
+        {
+            if (list == null || list.Count == 0)
+                return default;
+
+            return list[Random.Range(0, list.Count)];
+        }
         public static int RollD100()
         {
             return Roll(100);

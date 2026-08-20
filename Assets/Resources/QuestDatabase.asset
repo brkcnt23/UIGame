@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25d726f62aa23e46a4ebd9b221f196e, type: 3}
+  m_Name: QuestDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::QuestDatabaseSO
+  quests:
+  - {fileID: 11400000, guid: 4261f8727f0ed2b4c98ea6a16f9443fe, type: 2}
+  - {fileID: 11400000, guid: 4097da25c09c56a42b538410d9a9c58f, type: 2}
+  - {fileID: 11400000, guid: af08233e347c123488691fcb0c29e1b9, type: 2}
+  - {fileID: 11400000, guid: dd1f98f1f2a5b1943a26c2403dff61ef, type: 2}
+  - {fileID: 11400000, guid: f011c47f1641f684fbde563ab17c0d2c, type: 2}
+  - {fileID: 11400000, guid: 0fbc26062fff19443b3eb495a45c9e7f, type: 2}
+  - {fileID: 11400000, guid: d9122bbad9c325b4d9d2570b80cadb16, type: 2}
+  - {fileID: 11400000, guid: 859221754dde59449830e4a3494349a2, type: 2}
+  - {fileID: 11400000, guid: 42443f7c7efb7e94ea58ca4e418b1db4, type: 2}
+  - {fileID: 11400000, guid: c73c961f5d566c54fa65da8fb32418b8, type: 2}
+  - {fileID: 11400000, guid: 3c11d197c905ce14ba7c594f07da0377, type: 2}
+  - {fileID: 11400000, guid: 0655cbdd014f07748889a5b0018bcd98, type: 2}
+  - {fileID: 11400000, guid: c52060b67524c1d49b3a6ae862591f78, type: 2}
+  - {fileID: 11400000, guid: d7a73c89fb60af34cb1f0bb5454561f6, type: 2}
+  - {fileID: 11400000, guid: ee3e8c44f42e8f6428f4fa76ee5d7521, type: 2}
+  - {fileID: 11400000, guid: 8677cfc6d6ee9d04dbd95275cb966236, type: 2}
+  - {fileID: 11400000, guid: db2f61bc75055a945a38fede821183ca, type: 2}
+  - {fileID: 11400000, guid: 773e08414f68e574aa692f983aabd116, type: 2}
+  - {fileID: 11400000, guid: e134d5a73144bbf458fd305b0312c8a3, type: 2}
+  - {fileID: 11400000, guid: 6f0feac6ebd3e81429dd605f17549704, type: 2}
+  - {fileID: 11400000, guid: c7c9964db776a9945b0077eccc16647f, type: 2}
+  - {fileID: 11400000, guid: 5ff518a4bd64e1e4197d103d1ac9c61b, type: 2}
+  - {fileID: 11400000, guid: a982d34e761bca04e99bfb3938a0561f, type: 2}
+  - {fileID: 11400000, guid: 1fe3999bbbceb2845858c4cac0637821, type: 2}
+  - {fileID: 11400000, guid: 3fae5a3794093b74fbc221c2cb51e602, type: 2}
+  - {fileID: 11400000, guid: 831b59388f5d6204db8447583c282009, type: 2}
+  - {fileID: 11400000, guid: 30092f698803f9b4bbf0919a57930632, type: 2}
+  - {fileID: 11400000, guid: 37a1e238c40be78439903bd949a14876, type: 2}
+  - {fileID: 11400000, guid: 99deb6a498e873b4692bd0f92e08bcb5, type: 2}
+  - {fileID: 11400000, guid: 43f5bd09c1842414cad9c90efa4730c6, type: 2}
+  - {fileID: 11400000, guid: e14585d8705dd964e83488c87c09e2e5, type: 2}
+  - {fileID: 11400000, guid: c80702eb3cc1cb74b9af6f36b9e2398e, type: 2}
+  - {fileID: 11400000, guid: eb50076b137f74843a9f38ef64e457b3, type: 2}
+  - {fileID: 11400000, guid: 1b790d0605dccf24384743edf33a4b7e, type: 2}
+  - {fileID: 11400000, guid: 34393db4417579f4d8566c6d2a63913e, type: 2}
+  - {fileID: 11400000, guid: e5889257f61e4e4419a41c3bfa890492, type: 2}
+  - {fileID: 11400000, guid: 919ea119e3ca3724b8f92cebedf2cba3, type: 2}
+  - {fileID: 11400000, guid: ea797d1cb1d9e1f43a9aaafcbfc58af0, type: 2}
+  - {fileID: 11400000, guid: 4a94f9b0256978444b44c0ccc192405f, type: 2}
+  - {fileID: 11400000, guid: c9286875e328a7941bb912e27dac7f5b, type: 2}
+  - {fileID: 11400000, guid: f9976be0fc8199b4e9078d46cb3213ff, type: 2}
+  - {fileID: 11400000, guid: 6c52a53166686624a84e2261d133cb66, type: 2}
+  - {fileID: 11400000, guid: 90645a44eca19d043ad110e716d7036b, type: 2}
+  - {fileID: 11400000, guid: ce3286ce39a230d479ded39f6b3439cf, type: 2}
+  - {fileID: 11400000, guid: f7f438077c3088f488d818b43e074810, type: 2}
+  - {fileID: 11400000, guid: 4f86a085cd917eb429bff9d3c6157db8, type: 2}
+  - {fileID: 11400000, guid: 05c57dd591304814888b06eb8de1c03c, type: 2}
+  - {fileID: 11400000, guid: 36a910ffdaec5e344896d8da4cb8112d, type: 2}
+  - {fileID: 11400000, guid: 64a579f5e594f3f4bb8b70aa67c098b4, type: 2}
+  errandPapers:
+  - {fileID: -4811367523886615432, guid: db6c228bbc3047b48adc308e55794bf0, type: 3}
+  - {fileID: -2042517717487320661, guid: 61f31cd90acafac41b747f8fe132703d, type: 3}
+  contractPapers:
+  - {fileID: -4811367523886615432, guid: db6c228bbc3047b48adc308e55794bf0, type: 3}
+  - {fileID: -2042517717487320661, guid: 61f31cd90acafac41b747f8fe132703d, type: 3}
+  commissionPapers:
+  - {fileID: -4811367523886615432, guid: db6c228bbc3047b48adc308e55794bf0, type: 3}
+  - {fileID: -2042517717487320661, guid: 61f31cd90acafac41b747f8fe132703d, type: 3}
+  charterPapers:
+  - {fileID: -4811367523886615432, guid: db6c228bbc3047b48adc308e55794bf0, type: 3}
+  - {fileID: -2042517717487320661, guid: 61f31cd90acafac41b747f8fe132703d, type: 3}
+  goldCoin: {fileID: 0}
+  silverCoin: {fileID: 0}
+  waxSeal: {fileID: 0}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: Clear the Road
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3020
+  questName: Clear the Road
+  description: The pass has been closed nine days. Reopen it. The Guild is losing
+    money.
+  tier: 1
+  realm: 1
+  minPlayerLevel: 6
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 3
+  rewardSilver: 0
+  rewardExperience: 95
+  targetStat: 0
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 28
+  hoursBeforeExpiry: 84
+  difficultyClass: 15
+  requiredItems: []
+  rewardItems: []

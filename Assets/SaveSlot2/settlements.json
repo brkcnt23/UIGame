@@ -5,10 +5,10 @@
             "ID": 1,
             "isUnlocked": true,
             "levelToUnlock": 30,
-            "Population": 8000,
+            "Population": 8006,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 74
             },
             "Quality": 900,
             "Shops": [
@@ -248,10 +248,10 @@
             "ID": 2,
             "isUnlocked": false,
             "levelToUnlock": 25,
-            "Population": 6500,
+            "Population": 6502,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 68
             },
             "Quality": 850,
             "Shops": [
@@ -546,10 +546,10 @@
             "ID": 3,
             "isUnlocked": false,
             "levelToUnlock": 25,
-            "Population": 6500,
+            "Population": 6501,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": -10
             },
             "Quality": 850,
             "Shops": [
@@ -844,10 +844,10 @@
             "ID": 4,
             "isUnlocked": false,
             "levelToUnlock": 20,
-            "Population": 5500,
+            "Population": 5499,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 88
             },
             "Quality": 800,
             "Shops": [
@@ -1142,10 +1142,10 @@
             "ID": 5,
             "isUnlocked": false,
             "levelToUnlock": 20,
-            "Population": 7000,
+            "Population": 7002,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 45
             },
             "Quality": 870,
             "Shops": [
@@ -1438,12 +1438,12 @@
         {
             "Name": "Cryssborn",
             "ID": 6,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 15,
-            "Population": 800,
+            "Population": 798,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 96
             },
             "Quality": 300,
             "Shops": [
@@ -1736,12 +1736,12 @@
         {
             "Name": "Woodholmers",
             "ID": 7,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 10,
-            "Population": 1000,
+            "Population": 1005,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 35
             },
             "Quality": 350,
             "Shops": [
@@ -2034,12 +2034,12 @@
         {
             "Name": "Mineholmers",
             "ID": 8,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 7,
-            "Population": 1000,
+            "Population": 1001,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 93
             },
             "Quality": 350,
             "Shops": [
@@ -2332,12 +2332,12 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 5,
-            "Population": 400,
+            "Population": 401,
             "Wealth": {
-                "Gold": 0,
-                "Silver": 0
+                "Gold": 1,
+                "Silver": 11
             },
             "Quality": 200,
             "Shops": [
@@ -2630,12 +2630,12 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 38
             },
             "Quality": 400,
             "Shops": [
@@ -2928,12 +2928,12 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 3,
-            "Population": 1400,
+            "Population": 1404,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 4
             },
             "Quality": 380,
             "Shops": [
@@ -3226,12 +3226,12 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": true,
+            "isUnlocked": false,
             "levelToUnlock": 3,
-            "Population": 2000,
+            "Population": 2004,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 28
             },
             "Quality": 450,
             "Shops": [
@@ -3526,10 +3526,10 @@
             "ID": 13,
             "isUnlocked": true,
             "levelToUnlock": 1,
-            "Population": 200,
+            "Population": 203,
             "Wealth": {
                 "Gold": 0,
-                "Silver": 0
+                "Silver": 19
             },
             "Quality": 150,
             "Shops": [

@@ -44,6 +44,9 @@ public class TimeSystem : MonoBehaviour
         Day = playerData.Day;
         Hour = playerData.Hour;
         Minute = playerData.Minute;
+
+        // Loading a save at day 185 must not replay 185 days of ticks.
+        TimeTickDispatcher.Instance?.Reprime(Day, Hour);
     }
 
     // -----------------------------
@@ -58,6 +61,10 @@ public class TimeSystem : MonoBehaviour
         Minute += minutes;
         NormalizeTime();
         CheckExhaustion();
+
+        // Hand the new clock position to the tick dispatcher, which turns it
+        // into HourTickEvent / DayTickEvent for every system that listens.
+        TimeTickDispatcher.Instance?.SyncTo(Day, Hour);
 
         if (PlayerUISystem.Instance != null)
             PlayerUISystem.Instance.UpdateClockText();
@@ -188,49 +195,25 @@ public class TimeSystem : MonoBehaviour
     // INTERNAL TIME RULES
     // -----------------------------
 
+    /// <summary>
+    /// Carries minutes into hours and hours into days. Nothing else.
+    ///
+    /// Quest countdowns moved to QuestTimerSystem and event cooldowns to
+    /// EventCooldownSystem — both listen to the tick events raised in
+    /// AdvanceTime. TimeSystem no longer needs to know those systems exist.
+    /// </summary>
     private void NormalizeTime()
     {
         Hour += Minute / 60;
-
-        if (Minute >= 60)
-        {
-            if (playerData.Quests != null)
-            {
-                foreach (var quest in playerData.Quests)
-                {
-                    if (quest.hoursToComplete > 0)
-                    {
-                        quest.hoursToComplete -= Hour;
-                        if (quest.hoursToComplete < 0)
-                            quest.hoursToComplete = 0;
-                    }
-                }
-            }
-        }
-
         Minute %= 60;
+
         Day += Hour / 24;
 
-        if (Hour >= 24)
+        if (Hour >= 24 && TravelSystem.Instance != null && TravelSystem.Instance.inTravel)
         {
-            if (EventHandler.Instance != null && EventHandler.Instance.events != null)
-            {
-                foreach (var e in EventHandler.Instance.events)
-                {
-                    if (e.encounterCooldown > 0)
-                    {
-                        e.encounterCooldown -= 1;
-                        if (e.encounterCooldown < 0)
-                            e.encounterCooldown = 0;
-                    }
-                }
-            }
-
-            if (TravelSystem.Instance != null && TravelSystem.Instance.inTravel)
-            {
-                SleepAndEatWhileTraveling();
-                Debug.Log("Traveling day tick applied.");
-            }
+            // Still here because sleeping and eating on the road is bound to
+            // travel state, not to the clock. Moves to TravelSystem next.
+            SleepAndEatWhileTraveling();
         }
 
         Hour %= 24;

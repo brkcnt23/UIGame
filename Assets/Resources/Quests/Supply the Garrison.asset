@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: Supply the Garrison
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3034
+  questName: Supply the Garrison
+  description: Full provision for eighty men, delivered inside a fortnight. Shortfall
+    will be noted.
+  tier: 2
+  realm: 1
+  minPlayerLevel: 11
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 7
+  rewardSilver: 0
+  rewardExperience: 220
+  targetStat: 2
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 60
+  hoursBeforeExpiry: 180
+  difficultyClass: 17
+  requiredItems: []
+  rewardItems: []

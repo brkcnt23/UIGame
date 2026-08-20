@@ -648,7 +648,9 @@ public float GetWeightRatio()
 // UI HELPERS
 // -----------------------------
 
-private void RefreshPlayerUI()
+// Public so binders and the creation system can force a redraw after they
+// change the character outside the normal stat-change paths.
+public void RefreshPlayerUI()
 {
     if (PlayerUISystem.Instance != null)
     {

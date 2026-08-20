@@ -36,37 +36,53 @@ public class JobSystem : MonoBehaviour
     // STABLE JOBS
     // -----------------------------
 
+    /// <summary>
+    /// Weekly cap gate. Returns false and logs when the job is spent for the
+    /// week; the button handler simply does nothing further.
+    /// </summary>
+    private bool TryUseJob(string jobId, string displayName)
+    {
+        if (JobLimitSystem.Instance != null && !JobLimitSystem.Instance.TryConsumeUse(jobId))
+        {
+            Debug.Log($"{displayName}: weekly limit reached. Come back next week.");
+            return false;
+        }
+
+        Debug.Log($"Starting job: {displayName}");
+        return true;
+    }
+
     public void StartHelpMerchants()
     {
-        Debug.Log("Starting job: Help the Merchants");
+        if (!TryUseJob("help_merchants", "Help the Merchants")) return;
         StartJobWithDuration();
         GrantMerchantsReward();
     }
 
     public void StartHelpScouts()
     {
-        Debug.Log("Starting job: Help the Scouts");
+        if (!TryUseJob("help_scouts", "Help the Scouts")) return;
         StartJobWithDuration();
         GrantScoutsReward();
     }
 
     public void StartGatherHerbs()
     {
-        Debug.Log("Starting job: Gathering Herbs");
+        if (!TryUseJob("gather_herbs", "Gathering Herbs")) return;
         StartJobWithDuration();
         GrantGatherHerbsReward();
     }
 
     public void StartCuttingWoods()
     {
-        Debug.Log("Starting job: Cutting Woods");
+        if (!TryUseJob("cutting_woods", "Cutting Woods")) return;
         StartJobWithDuration();
         GrantCuttingWoodsReward();
     }
 
     public void StartLaboringMines()
     {
-        Debug.Log("Starting job: Laboring Mines");
+        if (!TryUseJob("laboring_mines", "Laboring Mines")) return;
         StartJobWithDuration();
         GrantLaboringMinesReward();
     }
@@ -91,7 +107,7 @@ public class JobSystem : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Starting job: {job.Name}");
+        if (!TryUseJob($"job_{job.ID}", job.Name)) return;
         StartJobWithDuration();
         GrantJobRewards(job);
     }

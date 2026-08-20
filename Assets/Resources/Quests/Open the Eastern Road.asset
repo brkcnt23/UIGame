@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: Open the Eastern Road
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3044
+  questName: Open the Eastern Road
+  description: A route from Qasran to the coast, surveyed, cleared and held. The
+    Crown will fund what is necessary.
+  tier: 3
+  realm: 3
+  minPlayerLevel: 18
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 20
+  rewardSilver: 0
+  rewardExperience: 540
+  targetStat: 1
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 120
+  hoursBeforeExpiry: 360
+  difficultyClass: 26
+  requiredItems: []
+  rewardItems: []

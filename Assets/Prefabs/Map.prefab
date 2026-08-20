@@ -544,9 +544,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -554,21 +558,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -576,6 +606,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &1999266432201700134
@@ -715,9 +750,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -725,21 +764,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -747,6 +812,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &5183257009840548998
@@ -1172,9 +1242,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -1182,21 +1256,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -1204,6 +1304,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &2291060215678076034
@@ -1342,9 +1447,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -1352,21 +1461,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -1374,6 +1509,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &2298155408505927965
@@ -1589,9 +1729,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -1599,21 +1743,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -1621,6 +1791,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &6849419577752198653
@@ -1775,9 +1950,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -1785,21 +1964,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -1807,6 +2012,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &2205411458639252893
@@ -2504,9 +2714,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -2514,21 +2728,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -2536,6 +2776,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &3345073263279124970
@@ -2674,9 +2919,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -2684,21 +2933,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -2706,6 +2981,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &4015815160725782046
@@ -2980,9 +3260,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -2990,21 +3274,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -3012,6 +3322,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &4287099304604696020
@@ -3150,9 +3465,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -3160,21 +3479,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -3182,6 +3527,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &5235001473501135839
@@ -3321,9 +3671,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -3331,21 +3685,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -3353,6 +3733,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &2456918551538848001
@@ -3643,9 +4028,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -3653,21 +4042,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -3675,6 +4090,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &5542654773850868282
@@ -4237,9 +4657,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -4247,21 +4671,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -4269,6 +4719,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &281920141920619672
@@ -4423,9 +4878,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -4433,21 +4892,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -4455,6 +4940,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &8943812425144672996
@@ -4554,7 +5044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 990024559, guid: c7f8b3ac804997647811b771141fb6a0, type: 3}
+  m_Sprite: {fileID: 6435985156598177244, guid: 1676b00ffd3584649bd2243df8549ab2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4731,9 +5221,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -4741,21 +5235,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -4763,6 +5283,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!114 &2411643421856603792
@@ -4916,9 +5441,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settlement:
     Name: Settlement
+    ID: 0
     isUnlocked: 0
+    levelToUnlock: 0
     Population: 0
-    Wealth: 0
+    Wealth:
+      Gold: 0
+      Silver: 0
     Quality: 0
     Shops:
     - Name: Shop
@@ -4926,21 +5455,47 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      ShopId: 
+      StockProfileId: 
+      OwnerNpcId: 
+      ShopTags: []
       ShopType: 5
       Items: []
+      ItemEntries: []
+      Cash:
+        Gold: 0
+        Silver: 0
+      BuyMultiplier: 0.6
+      SellMultiplier: 1
+      MaxAffordableItemQuality: 10
+      AcceptedCategories: 
     Tavern:
       Name: Tavern
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TavernId: 
+      OwnerNpcId: 
+      TavernTags: []
       Quests: []
+      Companions: []
     TownHall:
       Name: Town Hall
       level: 0
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+      TownHallId: 
+      RulerNpcId: 
+      StewardNpcId: 
+      TownHallTags: []
       Jobs: []
     Walls:
       Name: Wall
@@ -4948,6 +5503,11 @@ MonoBehaviour:
       maxLevel: 0
       cost: 0
       income: 0
+      Resources: []
+      upgradeHour: 0
+    RulerNpcId: 
+    SettlementTags: []
+    CultureTags: []
     Type: 3
   button: {fileID: 0}
 --- !u!1 &8474432086445092502

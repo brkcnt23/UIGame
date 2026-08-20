@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: Check the Border Stones
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3023
+  questName: Check the Border Stones
+  description: Someone has been moving them. Walk the line and report what you find.
+  tier: 1
+  realm: 1
+  minPlayerLevel: 6
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 2
+  rewardSilver: 60
+  rewardExperience: 85
+  targetStat: 1
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 30
+  hoursBeforeExpiry: 90
+  difficultyClass: 11
+  requiredItems: []
+  rewardItems: []

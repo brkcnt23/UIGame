@@ -37,6 +37,35 @@ public class Item
     // Magical properties
     public bool IsMagical { get; set; } = false;
 
+    /// <summary>Worn or wielded right now. Derived stats only count equipped items.</summary>
+    public bool IsEquipped;
+
+    /// <summary>Which slot this occupies while equipped.</summary>
+    public EquipSlot EquippedSlot = EquipSlot.None;
+
+    /// <summary>Armour points this contributes. 0 for anything that is not armour.</summary>
+    public int ArmorValue;
+
+    /// <summary>Governs how much dexterity still counts toward defence.</summary>
+    public ArmorWeight ArmorClass = ArmorWeight.None;
+
+    /// <summary>
+    /// The two rolled properties a crafted or upgraded piece carries.
+    ///
+    /// Every item made at a forge comes out slightly different: the smith
+    /// cannot promise which way it will go, only that a better smith is more
+    /// often right. These are what make one shortsword worth keeping and the
+    /// next worth selling.
+    ///
+    /// Shop stock and starting gear have none — mass-produced work is
+    /// unremarkable by definition.
+    /// </summary>
+    public List<GameplayEffect> HiddenEffects = new List<GameplayEffect>();
+
+    public bool HasHiddenEffects => HiddenEffects != null && HiddenEffects.Count > 0;
+
+    public int GetArmorValue() => IsEquipped ? ArmorValue : 0;
+
     // Full constructor (weapon / armor / misc with modifiers) - backward compatible
     public Item(
         int id,
@@ -275,14 +304,30 @@ public class StatModifier
     }
 }
 
+/// <summary>
+/// What an item IS. Where it goes is EquipSlot — a two-handed sword is one
+/// category but occupies two slots, and a shield and an off-hand dagger share
+/// a slot while being different categories.
+///
+/// Existing members keep their original order so saved data and Inspector
+/// references stay valid; new members are appended.
+/// </summary>
 public enum ItemCategory
 {
     Weapon,
-    Armor,
+    Armor,              // chest / body armour
     Boots,
     Leggings,
     Potion,
-    CraftingMaterial,
-    Resource,
-    Misc
+    CraftingMaterial,   // processed: ingots, tanned leather, planks
+    Resource,           // raw: ore, hide, timber, herbs
+    Misc,
+
+    Shield,
+    Helmet,
+    Gloves,
+    Trinket,            // amulet, ring, cloak, lantern — never craftable
+    Consumable,         // food, bandages; Potion stays for existing data
+    TradeGood,          // no use, sells high
+    QuestItem           // cannot be sold or dropped
 }

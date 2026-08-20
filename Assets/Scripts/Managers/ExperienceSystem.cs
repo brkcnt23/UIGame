@@ -1,30 +1,137 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Experience economy.
+///
+/// Curve — rising, not flat:
+///   cost of level L -> L+1 = 100 + (L-1) * 50
+///   L1->2: 100, L2->3: 150, L3->4: 200 ... L19->20: 1000
+///   Total to reach L20 ≈ 10,450.
+/// The old curve was a flat 100 per level, which is how one generous travel
+/// event chain jumped a fresh character to level 27.
+///
+/// Reward scaling — work is worth less to a veteran:
+///   factor = clamp(1 - 0.03 * (playerLevel - contentLevel), 0.40, 1.25)
+///   "Help the Scouts" (content level 1, base 50 XP):
+///     level 1 -> 50 · level 10 -> ~37 · level 20 -> ~21
+/// Content above your level pays a small bonus (up to +25%).
+///
+/// Losing on purpose is not an exploit here: failure XP passes through the
+/// same scaling, the dice decide outcomes, and exhaustion/hunger cap how many
+/// attempts a day even allows.
+///
+/// PlayerData.Experience remains TOTAL lifetime XP. Level is derived from it.
+/// MaxExperience is kept in sync for the UI bar.
+/// </summary>
 public static class ExperienceSystem
 {
     public static Action OnLevelUp;
     public static Action OnlevelDown;
     public static Action OnExperienceNegative;
 
-    public static int CalculateCharacterLevelByExperience(int experience)
+    // -----------------------------------------------------------------
+    // Curve
+    // -----------------------------------------------------------------
+
+    private const int BaseCost = 100;
+    private const int CostStep = 50;
+
+    /// <summary>XP needed to go from `level` to `level + 1`.</summary>
+    public static int CostForNextLevel(int level)
     {
-        if (experience < 0) return 1;
-        return Mathf.Max(1, Mathf.FloorToInt(experience / 100f) + 1);
+        level = Mathf.Max(1, level);
+        return BaseCost + (level - 1) * CostStep;
     }
 
+    /// <summary>Total XP required to have reached `level`.</summary>
     public static int CalculateTotalCharacterExperienceForLevel(int level)
     {
         level = Mathf.Max(1, level);
-        return (level - 1) * 100;
+        int n = level - 1;
+        // Arithmetic series: n terms starting at BaseCost, step CostStep.
+        return n * BaseCost + (n * (n - 1) / 2) * CostStep;
     }
 
-    public static int CalculateTotalCraftExperienceForLevel(int level)
+    public static int CalculateCharacterLevelByExperience(int experience)
     {
-        level = Mathf.Max(1, level);
-        return (level - 1) * 100;
+        if (experience <= 0) return 1;
+
+        int level = 1;
+        int remaining = experience;
+
+        while (remaining >= CostForNextLevel(level))
+        {
+            remaining -= CostForNextLevel(level);
+            level++;
+
+            if (level >= 99)   // hard cap, keeps the loop finite
+                break;
+        }
+
+        return level;
     }
 
+    /// <summary>XP progressed inside the current level (for the UI bar).</summary>
+    public static int GetXpIntoCurrentLevel(PlayerData pd)
+    {
+        if (pd == null) return 0;
+        return pd.Experience - CalculateTotalCharacterExperienceForLevel(pd.Level);
+    }
+
+    // -----------------------------------------------------------------
+    // Reward scaling
+    // -----------------------------------------------------------------
+
+    private const float DecayPerLevel = 0.03f;
+    private const float MinFactor = 0.40f;
+    private const float MaxFactor = 1.25f;
+
+    /// <summary>
+    /// How much a reward authored for `contentLevel` is worth to a player of
+    /// `playerLevel`.
+    /// </summary>
+    public static float RewardFactor(int playerLevel, int contentLevel)
+    {
+        float factor = 1f - DecayPerLevel * (playerLevel - Mathf.Max(1, contentLevel));
+        return Mathf.Clamp(factor, MinFactor, MaxFactor);
+    }
+
+    public static int ScaleReward(int baseAmount, int playerLevel, int contentLevel = 1)
+    {
+        if (baseAmount == 0) return 0;
+
+        float scaled = baseAmount * RewardFactor(playerLevel, contentLevel);
+
+        // Penalties keep their sign and are never scaled below their base —
+        // getting stronger should not soften your failures.
+        if (baseAmount < 0)
+            return baseAmount;
+
+        return Mathf.Max(1, Mathf.RoundToInt(scaled));
+    }
+
+    // -----------------------------------------------------------------
+    // Single gateway
+    // -----------------------------------------------------------------
+
+    /// <summary>
+    /// The one place XP enters or leaves the character. Applies scaling,
+    /// clamps, recomputes level, fires level events, syncs MaxExperience.
+    ///
+    /// contentLevel: the level this content was authored for (job tier,
+    /// event tier). Defaults to 1 for early-game content.
+    /// </summary>
+    public static void GrantExperience(PlayerData playerData, int baseAmount, int contentLevel = 1)
+    {
+        if (playerData == null || baseAmount == 0) return;
+
+        int amount = ScaleReward(baseAmount, playerData.Level, contentLevel);
+        AddExperience(playerData, amount);
+        UpdateCharacterLevel(playerData);
+    }
+
+    /// <summary>Raw add — no scaling. Prefer GrantExperience.</summary>
     public static void AddExperience(PlayerData playerData, int amount)
     {
         if (playerData == null) return;
@@ -45,22 +152,30 @@ public static class ExperienceSystem
         int oldLevel = playerData.Level;
         int newLevel = CalculateCharacterLevelByExperience(playerData.Experience);
 
+        playerData.Level = newLevel;
+        playerData.MaxExperience = CostForNextLevel(newLevel);
+
         if (newLevel > oldLevel)
         {
-            playerData.Level = newLevel;
             OnLevelUp?.Invoke();
             Debug.Log($"Seviyeniz {newLevel} oldu.");
         }
         else if (newLevel < oldLevel)
         {
-            playerData.Level = newLevel;
             OnlevelDown?.Invoke();
             Debug.Log($"Seviyeniz {newLevel} seviyesine düştü.");
         }
-        else
-        {
-            playerData.Level = newLevel;
-        }
+    }
+
+    // -----------------------------------------------------------------
+    // Craft skills (unchanged flat curve for now — craft depth comes from
+    // recipes and quality, not from steep levels)
+    // -----------------------------------------------------------------
+
+    public static int CalculateTotalCraftExperienceForLevel(int level)
+    {
+        level = Mathf.Max(1, level);
+        return (level - 1) * 100;
     }
 
     public static void UpdateCraftLevel(PlayerData playerData, CraftDiscipline craftType, int gainedXp)

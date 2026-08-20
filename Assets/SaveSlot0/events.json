@@ -228,6 +228,29 @@
                     "ExperienceReward": 0,
                     "AlignmentChange": 0,
                     "RewardItemStacks": []
+                },
+                {
+                    "choiceText": "Leave the hideout untouched.",
+                    "choiceType": "Neutral",
+                    "outcome": "You mark the place in your memory and move on. Whatever is inside can wait for a better-armed day.",
+                    "followUpEventID": 0,
+                    "RequireStat": "",
+                    "RequireStatValue": 0,
+                    "RequireMoney": 0,
+                    "isFight": false,
+                    "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
+                    "RequireHealth": 0,
+                    "RequireRation": 0,
+                    "RequireArmySize": 0,
+                    "SilverReward": 0,
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 0,
+                    "TargetStat": 0,
+                    "ExperienceReward": 5,
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -952,7 +975,7 @@
         },
         {
             "Type": 2,
-            "ID": 2005,
+            "ID": 0,
             "Name": "Cursed Artifact",
             "Description": "A villager brings you a cursed artifact that is causing trouble in the village. They ask for your help in destroying it.",
             "DC": 12,
@@ -969,7 +992,7 @@
             "StatRewardMin": 2,
             "StatRewardMax": 5,
             "isHaveWar": false,
-            "encounterCooldown": 0,
+            "encounterCooldown": 1,
             "choices": [
                 {
                     "choiceText": "Destroy the artifact with brute force.",

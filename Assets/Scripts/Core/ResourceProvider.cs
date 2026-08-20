@@ -9,6 +9,8 @@ public sealed class ResourceProvider : MonoBehaviour
 {
     private ItemSpriteDatabase _itemSpriteDatabase;
     private ItemDatabase _itemDatabase;
+    private TraitDatabaseSO _traitDatabase;
+    private TitleDatabaseSO _titleDatabase;
 
     private readonly Dictionary<string, ScriptableObject> _cachedResources = new();
 
@@ -20,8 +22,41 @@ public sealed class ResourceProvider : MonoBehaviour
     {
         LoadItemDatabase();
         LoadItemSpriteDatabase();
+        LoadTraitDatabase();
+        LoadTitleDatabase();
         return true; // Continue even if optional resources fail
     }
+
+    private void LoadTraitDatabase()
+    {
+        _traitDatabase = Resources.Load<TraitDatabaseSO>("TraitDatabase");
+
+        if (_traitDatabase == null)
+        {
+            Debug.LogWarning("[ResourceProvider] TraitDatabase not found in Resources/TraitDatabase. " +
+                             "Run Tools > UIGame > Traits > Generate trait assets.");
+            return;
+        }
+
+        _traitDatabase.RebuildIndex();
+        Debug.Log($"[ResourceProvider] TraitDatabase loaded ({_traitDatabase.traits.Count} traits)");
+    }
+
+    private void LoadTitleDatabase()
+    {
+        _titleDatabase = Resources.Load<TitleDatabaseSO>("TitleDatabase");
+
+        if (_titleDatabase == null)
+        {
+            Debug.LogWarning("[ResourceProvider] TitleDatabase not found in Resources/TitleDatabase (optional)");
+            return;
+        }
+
+        Debug.Log($"[ResourceProvider] TitleDatabase loaded ({_titleDatabase.titles.Count} titles)");
+    }
+
+    public TraitDatabaseSO GetTraitDatabase() => _traitDatabase;
+    public TitleDatabaseSO GetTitleDatabase() => _titleDatabase;
 
     private void LoadItemDatabase()
     {
