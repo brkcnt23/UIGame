@@ -29,6 +29,22 @@ namespace NEXUS.Utilities
 
         public JSONDataHandler(int slot) : this("SaveSlot" + slot) { }
 
+        /// <summary>
+        /// Every folder a save slot can live in, newest location first.
+        /// Deleting a slot has to clear all of them, otherwise a legacy save in
+        /// Assets keeps coming back through tier 2.
+        /// </summary>
+        public static string[] GetSlotDirectories(int slot)
+        {
+            string folder = "SaveSlot" + slot;
+
+            return new[]
+            {
+                Path.Combine(Application.persistentDataPath, folder),
+                Path.Combine(Application.dataPath, folder)
+            };
+        }
+
         public JSONDataHandler(string directory)
         {
             directoryName = directory;

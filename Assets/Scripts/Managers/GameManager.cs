@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public TMP_InputField PlayerNameInput;
     public TMP_InputField VillageNameInput;
 
+    [Tooltip("Optional. Says why a new game could not be started (empty name etc.).")]
+    public TMP_Text newGameWarningText;
+
     [Header("Save Slot Container")]
     public GameObject saveSlotContainer;
     private Button[] saveSlotButtons = new Button[3];
@@ -94,7 +97,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        saveSlotButtons = saveSlotContainer.GetComponentsInChildren<Button>();
+        saveSlotButtons = CollectSaveSlotButtons();
 
         if (saveSlotButtons == null || saveSlotButtons.Length == 0)
         {
@@ -102,41 +105,94 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        foreach (Button button in saveSlotButtons)
+        for (int index = 0; index < saveSlotButtons.Length; index++)
         {
-            int index = button.gameObject.transform.GetSiblingIndex();
+            Button button = saveSlotButtons[index];
+
+            if (button == null)
+                continue;
+
+            if (index >= playerData.Count)
+            {
+                // More buttons than save slots: leave the extra ones alone rather
+                // than indexing past the end of the list.
+                Debug.LogWarning($"GameManager: Save slot button {index} has no matching save slot ({playerData.Count} slots).");
+                continue;
+            }
+
+            int slot = index;
             button.onClick.RemoveAllListeners();
 
-            PlayerData pd = playerData[index];
+            PlayerData pd = playerData[slot];
+            TextMeshProUGUI label = button.GetComponentInChildren<TextMeshProUGUI>(true);
 
-            if (string.IsNullOrEmpty(pd.Name))
+            if (pd == null || string.IsNullOrEmpty(pd.Name))
             {
-                button.GetComponentInChildren<TextMeshProUGUI>().text = $"Empty Slot {index + 1}\nClick to Start New Game";
-                button.onClick.AddListener(() =>
-                {
-                    PlayerPrefs.SetInt("Slot", index);
-                    DisableAllPanels();
-                    if (InputPanel != null) InputPanel.SetActive(true);
-                });
+                if (label != null)
+                    label.text = $"Empty Slot {slot + 1}\nClick to Start New Game";
 
-                if (deleteSlotButtons != null && index < deleteSlotButtons.Length && deleteSlotButtons[index] != null)
-                    deleteSlotButtons[index].gameObject.SetActive(false);
+                button.onClick.AddListener(() => ShowNewGameInputPanel(slot));
+
+                if (deleteSlotButtons != null && slot < deleteSlotButtons.Length && deleteSlotButtons[slot] != null)
+                    deleteSlotButtons[slot].gameObject.SetActive(false);
             }
             else
             {
-                button.GetComponentInChildren<TextMeshProUGUI>().text =
-                    $"{pd.Name} of {pd.VillageName}\nDay: {pd.Day}\nMoney: {pd.Money.Gold}g {pd.Money.Silver}s";
+                if (label != null)
+                    label.text =
+                        $"{pd.Name} of {pd.VillageName}\nDay: {pd.Day}\nMoney: {pd.Money.Gold}g {pd.Money.Silver}s";
 
-                button.onClick.AddListener(() => LoadGame(index));
+                button.onClick.AddListener(() => LoadGame(slot));
 
-                if (deleteSlotButtons != null && index < deleteSlotButtons.Length && deleteSlotButtons[index] != null)
+                if (deleteSlotButtons != null && slot < deleteSlotButtons.Length && deleteSlotButtons[slot] != null)
                 {
-                    deleteSlotButtons[index].gameObject.SetActive(true);
-                    deleteSlotButtons[index].onClick.RemoveAllListeners();
-                    deleteSlotButtons[index].onClick.AddListener(() => DeleteSaveSlot(index));
+                    deleteSlotButtons[slot].gameObject.SetActive(true);
+                    deleteSlotButtons[slot].onClick.RemoveAllListeners();
+                    deleteSlotButtons[slot].onClick.AddListener(() => DeleteSaveSlot(slot));
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Only the buttons that are direct children of the container are save slots.
+    /// Buttons nested inside them (the delete button, icons) are skipped — they
+    /// have their own sibling index and used to be treated as slots.
+    /// </summary>
+    private Button[] CollectSaveSlotButtons()
+    {
+        List<Button> buttons = new List<Button>();
+
+        foreach (Transform child in saveSlotContainer.transform)
+        {
+            Button button = child.GetComponent<Button>();
+
+            if (button != null)
+                buttons.Add(button);
+        }
+
+        if (buttons.Count == 0)
+        {
+            // Fallback for layouts where the slots sit deeper in the hierarchy.
+            buttons.AddRange(saveSlotContainer.GetComponentsInChildren<Button>(true));
+        }
+
+        return buttons.ToArray();
+    }
+
+    public void ShowNewGameInputPanel(int slot)
+    {
+        PlayerPrefs.SetInt("Slot", slot);
+        PlayerPrefs.Save();
+
+        DisableAllPanels();
+
+        if (PlayerNameInput != null) PlayerNameInput.text = "";
+        if (VillageNameInput != null) VillageNameInput.text = "";
+
+        ShowNewGameWarning("");
+
+        if (InputPanel != null) InputPanel.SetActive(true);
     }
 
     public void LoadGame(int slot)
@@ -169,17 +225,36 @@ public class GameManager : MonoBehaviour
 
     public void DeleteSaveSlot(int slotIndex)
     {
-        string slotFolderPath = Path.Combine(Application.dataPath, $"SaveSlot{slotIndex}");
+        if (slotIndex < 0 || slotIndex >= playerData.Count)
+        {
+            Debug.LogError($"GameManager: Invalid slot index {slotIndex}");
+            return;
+        }
 
-        if (Directory.Exists(slotFolderPath))
+        bool deletedAnything = false;
+
+        // Saves are written to persistentDataPath; older ones may still sit in
+        // Assets/SaveSlotX, which is where this used to delete from (and only
+        // there, so deleting a slot never removed the real save).
+        foreach (string slotFolderPath in JSONDataHandler.GetSlotDirectories(slotIndex))
         {
-            Directory.Delete(slotFolderPath, true);
-            Debug.Log($"Deleted SaveSlot{slotIndex}");
+            if (!Directory.Exists(slotFolderPath))
+                continue;
+
+            try
+            {
+                Directory.Delete(slotFolderPath, true);
+                deletedAnything = true;
+                Debug.Log($"Deleted save slot folder {slotFolderPath}");
+            }
+            catch (IOException e)
+            {
+                Debug.LogError($"GameManager: Could not delete '{slotFolderPath}': {e.Message}");
+            }
         }
-        else
-        {
+
+        if (!deletedAnything)
             Debug.LogWarning($"SaveSlot{slotIndex} does not exist.");
-        }
 
         playerData[slotIndex] = new PlayerData();
         PopulateButtonsAndTexts();
@@ -247,7 +322,8 @@ public class GameManager : MonoBehaviour
         DisableAllPanels();
         LoadPlayerData();
         PopulateButtonsAndTexts();
-        startGamePanel.SetActive(true);
+
+        if (startGamePanel != null) startGamePanel.SetActive(true);
 
         if (saveSlotsPanel != null) saveSlotsPanel.SetActive(true);
     }
@@ -283,47 +359,71 @@ public class GameManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        SetPlayerData();
+        if (!SetPlayerData())
+        {
+            // Nothing was created, stay on the input screen instead of dropping
+            // the player back on the slot list with no explanation.
+            return;
+        }
+
         LoadPlayerData();
         LoadGame(PlayerPrefs.GetInt("Slot"));
     }
 
-    public void SetPlayerData()
+    private void ShowNewGameWarning(string message)
+    {
+        if (newGameWarningText != null)
+            newGameWarningText.text = message;
+
+        if (!string.IsNullOrEmpty(message))
+            Debug.LogWarning($"GameManager: {message}");
+    }
+
+    /// <summary>
+    /// Builds a brand new save in the selected slot.
+    /// Returns false when the player name or village name is missing.
+    /// </summary>
+    public bool SetPlayerData()
     {
         string name = PlayerNameInput != null ? PlayerNameInput.text.Trim() : "";
         string villageName = VillageNameInput != null ? VillageNameInput.text.Trim() : "";
 
         if (name.Length == 0 || villageName.Length == 0)
-            return;
+        {
+            ShowNewGameWarning("Please enter both a player name and a village name.");
+            return false;
+        }
+
+        ShowNewGameWarning("");
 
         PlayerData pd = new PlayerData
         {
             Name = name,
             VillageName = villageName,
-            Day = 1,
-            Hour = 6,
-            Minute = 0,
+            Day = NewGameDefaults.Day,
+            Hour = NewGameDefaults.Hour,
+            Minute = NewGameDefaults.Minute,
 
-            Level = 1,
-            Health = 100,
-            MaxHealth = 100,
+            Level = NewGameDefaults.Level,
+            Health = NewGameDefaults.Health,
+            MaxHealth = NewGameDefaults.Health,
             Experience = 0,
-            MaxExperience = 149,
+            MaxExperience = NewGameDefaults.MaxExperience,
 
             Alignment = 0,
 
             // 10 = an average adult (D&D convention our combat formulas assume).
             // Starting at 1 made every event requirement (5-15) unreachable and
-            // gave -5 combat modifiers. Character-creation answers will nudge
-            // these up or down once the intro questions are wired in.
-            Strength = 8,
-            StrengthXP = 0,
-            Dexterity = 8,
-            DexterityXP = 0,
-            Constitution = 8,
-            ConstitutionXP = 0,
-            Charisma = 8,
-            CharismaXP = 0,
+            // gave -5 combat modifiers. Character creation nudges these up or
+            // down from here.
+            Strength = NewGameDefaults.StatValue,
+            StrengthXP = NewGameDefaults.StatXP,
+            Dexterity = NewGameDefaults.StatValue,
+            DexterityXP = NewGameDefaults.StatXP,
+            Constitution = NewGameDefaults.StatValue,
+            ConstitutionXP = NewGameDefaults.StatXP,
+            Charisma = NewGameDefaults.StatValue,
+            CharismaXP = NewGameDefaults.StatXP,
 
             SmitherSkillLevel = 1,
             SmitherSkillXP = 149,
@@ -340,10 +440,10 @@ public class GameManager : MonoBehaviour
             TotalBattlesWon = 0,
             TotalBattlesLost = 0,
 
-            MaxExhaustionLevel = 10,
+            MaxExhaustionLevel = NewGameDefaults.MaxExhaustionLevel,
             CurrentExhaustionLevel = 0,
 
-            Rations = 10,
+            Rations = NewGameDefaults.Rations,
             PlayerArmy = new Army(),
 
             LastSleepDay = 1,
@@ -364,7 +464,7 @@ public class GameManager : MonoBehaviour
         };
 
         // Yeni para sistemi
-        pd.SetMoney(5, 0);
+        pd.SetMoney(NewGameDefaults.Gold, NewGameDefaults.Silver);
 
         // Home settlement
         Settlement homeSettlement = new Settlement
@@ -373,9 +473,9 @@ public class GameManager : MonoBehaviour
             Name = villageName,
             isUnlocked = true,
             Type = SettlementType.Village,
-            Quality = 1,
-            Population = 10,
-            Wealth = new Currency(100, 0),
+            Quality = NewGameDefaults.VillageQuality,
+            Population = NewGameDefaults.VillagePopulation,
+            Wealth = new Currency(NewGameDefaults.VillageWealthGold, NewGameDefaults.VillageWealthSilver),
             Tavern = new Taverns { Name = "Mükremin's Tavern" },
             Shops = new List<Shops>(),
             TownHall = new TownHalls { Name = $"{villageName}'s Hall" },
@@ -438,12 +538,13 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogError("GameManager: PlayerStatHandler.Instance is null during new game creation!");
-            return;
+            ShowNewGameWarning("The game could not be started, the player systems are not ready.");
+            return false;
         }
 
         if (HomeSettlementHandler.Instance != null)
         {
-            HomeSettlementHandler.Instance.homeSettlement = homeSettlement;
+            HomeSettlementHandler.Instance.SetHomeSettlement(homeSettlement);
         }
         else
         {
@@ -477,6 +578,13 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("GameManager: TravelSystem.Instance is null!");
         }
 
+        // The player starts at home.
+        pd.LastSettlementName = homeSettlement.Name;
+
+        if (SettlementHandler.Instance != null)
+            SettlementHandler.Instance.settlement = homeSettlement;
+
         PlayerStatHandler.Instance.SavePlayerData();
+        return true;
     }
 }

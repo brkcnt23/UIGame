@@ -27,19 +27,44 @@ public class HomeSettlementHandler : MonoBehaviour
 
     void OnEnable()
     {
+        if (homeSettlement == null)
+            homeSettlement = new Settlement();
+
         homeSettlement.OnTownHallEntered += HandleTownHallEntered;
     }
 
     void OnDisable()
     {
-        homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
+        if (homeSettlement != null)
+            homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
     }
 
     public void LoadHomeSettlement()
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         HomeSettlementWrapper wrapper = JSONhandler.LoadData<HomeSettlementWrapper>("homeSettlement.json");
-        homeSettlement = wrapper != null ? wrapper.homeSettlement : new Settlement();
+
+        SetHomeSettlement(wrapper != null && wrapper.homeSettlement != null
+            ? wrapper.homeSettlement
+            : new Settlement());
+    }
+
+    /// <summary>
+    /// Replaces the home settlement and moves the event subscriptions onto the new
+    /// instance. Loading builds a fresh Settlement object, so without this the
+    /// handler registered in OnEnable stays attached to the discarded one and the
+    /// town hall button goes dead after a load.
+    /// </summary>
+    public void SetHomeSettlement(Settlement newHomeSettlement)
+    {
+        if (newHomeSettlement == null)
+            return;
+
+        if (homeSettlement != null)
+            homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
+
+        homeSettlement = newHomeSettlement;
+        homeSettlement.OnTownHallEntered += HandleTownHallEntered;
     }
 
     //this will be the function that will save the home settlement data
@@ -89,11 +114,22 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void UpgradeShop()
     {
+        if (homeSettlement?.Shops == null || homeSettlement.Shops.Count == 0)
+        {
+            Debug.LogWarning("HomeSettlementHandler: There is no shop to upgrade.");
+            return;
+        }
+
         UpgradeResidental(homeSettlement.Shops[0]);
     }
 
     public void GenerateRandomHappenings()
     {
+        if (homeSettlement == null)
+        {
+            return;
+        }
+
         int dice = Dice.RollD100();
 
         if (dice <= 10)
