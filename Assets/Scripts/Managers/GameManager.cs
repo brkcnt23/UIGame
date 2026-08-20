@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("Optional. Shows why a new game could not be started (empty name etc.).")]
     public TMP_Text newGameWarningText;
 
+    [Header("Character Creation")]
+    [Tooltip("Optional. The eight scenario questions asked between the name input and the game start.")]
+    public PersonalityQuestionPanel personalityQuestions;
+    public GameObject personalityPanel;
+
     [Header("Save Slot Container")]
     public GameObject saveSlotContainer;
     private Button[] saveSlotButtons = new Button[3];
@@ -276,6 +281,7 @@ public class GameManager : MonoBehaviour
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(false);
         if (InputPanel != null) InputPanel.SetActive(false);
+        if (personalityPanel != null) personalityPanel.SetActive(false);
         if (saveSlotsPanel != null) saveSlotsPanel.SetActive(false);
         if (homeSettlementPanel != null) homeSettlementPanel.SetActive(false);
         if (navPanel != null) navPanel.SetActive(false);
@@ -362,14 +368,82 @@ public class GameManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        if (!SetPlayerData())
+        if (!HasValidNewGameInput())
         {
             // The input was not valid, stay on the input panel.
+            ShowNewGameWarning("Please enter both a player name and a village name.");
             return;
         }
 
+        ShowNewGameWarning("");
+
+        if (personalityQuestions != null)
+        {
+            // Name -> Village -> the eight scenarios -> the game starts.
+            DisableAllPanels();
+
+            if (personalityPanel != null) personalityPanel.SetActive(true);
+
+            personalityQuestions.Begin(OnPersonalityCompleted, OnPersonalityCancelled);
+            return;
+        }
+
+        CreateAndEnterNewGame(null);
+    }
+
+    private bool HasValidNewGameInput()
+    {
+        string name = PlayerNameInput != null ? PlayerNameInput.text.Trim() : "";
+        string villageName = VillageNameInput != null ? VillageNameInput.text.Trim() : "";
+
+        return name.Length > 0 && villageName.Length > 0;
+    }
+
+    private void OnPersonalityCompleted(PersonalityResult result)
+    {
+        if (personalityPanel != null) personalityPanel.SetActive(false);
+
+        CreateAndEnterNewGame(result);
+    }
+
+    private void OnPersonalityCancelled()
+    {
+        // The player backed out of the first scenario, return to the name input.
+        if (personalityPanel != null) personalityPanel.SetActive(false);
+
+        DisableAllPanels();
+
+        if (InputPanel != null) InputPanel.SetActive(true);
+    }
+
+    private void CreateAndEnterNewGame(PersonalityResult personality)
+    {
+        if (!SetPlayerData(personality))
+            return;
+
         LoadPlayerData();
         LoadGame(PlayerPrefs.GetInt("Slot"));
+    }
+
+    /// <summary>
+    /// Writes the result of the character creation scenarios onto the new save.
+    /// The trait id is also added to ActiveTraitTags so trait driven systems see it.
+    /// </summary>
+    private void ApplyPersonality(PlayerData pd, PersonalityResult personality)
+    {
+        if (pd == null || personality == null)
+            return;
+
+        pd.Personality = personality.Scores;
+        pd.PersonalityTrait = personality.TraitId;
+
+        if (pd.ActiveTraitTags == null)
+            pd.ActiveTraitTags = new List<string>();
+
+        if (!string.IsNullOrEmpty(personality.TraitId) && !pd.ActiveTraitTags.Contains(personality.TraitId))
+            pd.ActiveTraitTags.Add(personality.TraitId);
+
+        Debug.Log($"New character personality: {personality.TraitDisplayName} ({personality.Scores})");
     }
 
     private void ShowNewGameWarning(string message)
@@ -386,6 +460,15 @@ public class GameManager : MonoBehaviour
     /// Returns false when the player name / village name is missing.
     /// </summary>
     public bool SetPlayerData()
+    {
+        return SetPlayerData(null);
+    }
+
+    /// <summary>
+    /// Builds a brand new save for the selected slot, with the personality trait
+    /// that came out of the character creation scenarios (may be null).
+    /// </summary>
+    public bool SetPlayerData(PersonalityResult personality)
     {
         string name = PlayerNameInput != null ? PlayerNameInput.text.Trim() : "";
         string villageName = VillageNameInput != null ? VillageNameInput.text.Trim() : "";
@@ -463,6 +546,8 @@ public class GameManager : MonoBehaviour
 
         // Yeni para sistemi
         pd.SetMoney(NewGameDefaults.Gold, NewGameDefaults.Silver);
+
+        ApplyPersonality(pd, personality);
 
         // Home settlement
         Settlement homeSettlement = new Settlement

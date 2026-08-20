@@ -69,6 +69,10 @@ public class PlayerData
     public int LastMealDay;
     public int LastMealHour;
     public int LastMealMinute;
+    // Character creation personality (Big Five scenarios)
+    public string PersonalityTrait;
+    public BigFiveScores Personality;
+
     public List<string> HistoryTags = new List<string>();
     public List<string> ActiveTraitTags = new List<string>();
     public List<int> LearnedRecipeIds = new List<int>();
