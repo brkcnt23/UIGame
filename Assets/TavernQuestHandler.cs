@@ -25,14 +25,55 @@ public class TavernQuestHandler : MonoBehaviour
 
     void ClearQuests()
     {
+        if (questPanel == null)
+        {
+            return;
+        }
+
         foreach (Transform child in questPanel.transform)
         {
             Destroy(child.gameObject);
         }
     }
 
+    /// <summary>
+    /// The tavern panel can be enabled before a game is loaded (scene start), so
+    /// everything it needs is checked before any quest is built.
+    /// </summary>
+    bool IsReadyToGenerate()
+    {
+        if (questPanel == null || questPrefab == null || QuestInfoPanel == null ||
+            AcceptButton == null || DeclineButton == null || CancelButton == null || CompleteButton == null)
+        {
+            Debug.LogWarning("TavernQuestHandler: UI references are not assigned.");
+            return false;
+        }
+
+        if (SettlementHandler.Instance == null || SettlementHandler.Instance.settlement == null ||
+            SettlementHandler.Instance.settlement.Tavern == null ||
+            SettlementHandler.Instance.settlement.Tavern.Quests == null)
+        {
+            // No settlement entered yet, nothing to show.
+            return false;
+        }
+
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     void GenerateQuests()
     {
+        if (!IsReadyToGenerate())
+        {
+            return;
+        }
+
+        Settlement currentSettlement = SettlementHandler.Instance.settlement;
+
         QuestInfoPanel.SetActive(false);
 
         // Clear existing listeners
@@ -50,23 +91,34 @@ public class TavernQuestHandler : MonoBehaviour
         List<Quest_SO_Constructor> questsToDisplay = new List<Quest_SO_Constructor>();
 
         // Add quests from the settlement's Tavern
-        foreach (Quest_SO_Constructor quest in SettlementHandler.Instance.settlement.Tavern.Quests)
+        foreach (Quest_SO_Constructor quest in currentSettlement.Tavern.Quests)
         {
+            if (quest == null)
+                continue;
+
             questsToDisplay.Add(quest);
+        }
+
+        if (PlayerStatHandler.Instance.pd.Quests == null)
+        {
+            PlayerStatHandler.Instance.pd.Quests = new List<Quest_SO_Constructor>();
         }
 
         // Add player's active quests related to this settlement
         foreach (Quest_SO_Constructor playerQuest in PlayerStatHandler.Instance.pd.Quests)
         {
-            if (playerQuest.settlementID == SettlementHandler.Instance.settlement.ID)
+            if (playerQuest == null)
+                continue;
+
+            if (playerQuest.settlementID == currentSettlement.ID)
             {
                 if (questsToDisplay.Contains(playerQuest))
                 {
                     //change to quest in the list and tavern
                     questsToDisplay.Remove(playerQuest);
                     questsToDisplay.Add(playerQuest);
-                    SettlementHandler.Instance.settlement.Tavern.Quests.Remove(playerQuest);
-                    SettlementHandler.Instance.settlement.Tavern.Quests.Add(playerQuest);
+                    currentSettlement.Tavern.Quests.Remove(playerQuest);
+                    currentSettlement.Tavern.Quests.Add(playerQuest);
                 }
             }
         }
@@ -80,8 +132,12 @@ public class TavernQuestHandler : MonoBehaviour
             if (questButton != null)
             {
                 questButton.quest = quest;
-                questButton.questName.text = quest.Name;
-                questButton.HoursToComplete.text = $"{quest.hoursToComplete} hours";
+
+                if (questButton.questName != null)
+                    questButton.questName.text = quest.Name;
+
+                if (questButton.HoursToComplete != null)
+                    questButton.HoursToComplete.text = $"{quest.hoursToComplete} hours";
             }
 
             Quest_SO_Constructor currentQuest = quest; // Capture current quest
@@ -152,6 +208,11 @@ public class TavernQuestHandler : MonoBehaviour
 
     public void SetUpInfoPanel(Quest_SO_Constructor _quest)
     {
+        if (_quest == null)
+        {
+            return;
+        }
+
         if (_quest.isTaken)
         {
             questName.text = _quest.Name + " (Active)";
@@ -207,11 +268,10 @@ public class TavernQuestHandler : MonoBehaviour
             QuestInfoPanel.SetActive(false);
             RefreshQuests();
 
-            if (selectedQuest.questType == QuestType.Location)
+            if (selectedQuest.questType == QuestType.Location && MapHandler.Instance != null)
             {
                 Settlement questsSettlement = new Settlement(selectedQuest);
                 MapHandler.Instance.AddQuestSettlement(questsSettlement, ref selectedQuest.questLocationCoordinates);
-                
             }
         }
     }
@@ -231,13 +291,19 @@ public class TavernQuestHandler : MonoBehaviour
 
             QuestInfoPanel.SetActive(false);
             RefreshQuests();
-            if (selectedQuest.questType == QuestType.Location)
+            if (selectedQuest.questType == QuestType.Location && MapHandler.Instance != null)
             {
                 List<GameObject> childrenToRemove = new List<GameObject>();
 
                 foreach (GameObject child in MapHandler.Instance.children)
                 {
+                    if (child == null)
+                        continue;
+
                     SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
+
+                    if (settlementButtonPointer == null || settlementButtonPointer.settlement == null)
+                        continue;
 
                     if (settlementButtonPointer.settlement.Name == selectedQuest.questLocation)
                     {
@@ -248,7 +314,9 @@ public class TavernQuestHandler : MonoBehaviour
                 foreach (GameObject child in childrenToRemove)
                 {
                     SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
-                    MapHandler.Instance.RemoveQuestSettlement(settlementButtonPointer);
+
+                    if (settlementButtonPointer != null)
+                        MapHandler.Instance.RemoveQuestSettlement(settlementButtonPointer);
                 }
             }
         }

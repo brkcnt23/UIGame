@@ -18,7 +18,7 @@ public static class ItemGenerator
             int quantity = Random.Range(1, 5);
 
             ItemCategory category = shopType == ShopTypes.Blacksmith ? ItemCategory.Weapon : ItemCategory.Armor;
-            Sprite itemSprite = spriteDatabase.GetSprite(category, quality);
+            Sprite itemSprite = spriteDatabase != null ? spriteDatabase.GetSprite(category, quality) : null;
 
             Item item;
             switch (shopType)

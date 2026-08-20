@@ -34,8 +34,19 @@ public class MapHandler : MonoBehaviour
     {
         PopulateMap();
 
-        for (int i = 0; i < 14; i++)
+        if (_settlement == null)
         {
+            Debug.LogWarning("MapHandler: There is no settlement to move the player to.");
+            return;
+        }
+
+        for (int i = 0; i < children.Count; i++)
+        {
+            if (children[i] == null)
+            {
+                continue;
+            }
+
             SettlementButtonPointer settlementButtonPointer = children[i].GetComponent<SettlementButtonPointer>();
 
             if (settlementButtonPointer == null)
@@ -56,14 +67,27 @@ public class MapHandler : MonoBehaviour
                 selectedSettlement = children[i];
             }
         }
-        MapAvatarHandler.Instance.CreatePlayerIcon();
+
+        if (MapAvatarHandler.Instance != null)
+            MapAvatarHandler.Instance.CreatePlayerIcon();
 
         PopulateMap();
     }
 
     public void PopulateMap()
     {
-        settlements = SettlementHandler.Instance.settlements;
+        if (map == null)
+        {
+            Debug.LogError("MapHandler: map is not assigned.");
+            return;
+        }
+
+        settlements = SettlementHandler.Instance != null
+            ? SettlementHandler.Instance.settlements
+            : new List<Settlement>();
+
+        if (settlements == null)
+            settlements = new List<Settlement>();
 
         children.Clear();
 
@@ -72,24 +96,40 @@ public class MapHandler : MonoBehaviour
             children.Add(child.gameObject);
         }
 
-        foreach (Settlement settlement in settlements)
+        if (settlements.Count > children.Count)
         {
-            int index = settlements.IndexOf(settlement);
+            Debug.LogWarning($"MapHandler: There are {settlements.Count} settlements but only {children.Count} map slots. " +
+                             "The extra settlements will not be shown on the map.");
+        }
+
+        for (int index = 0; index < settlements.Count && index < children.Count; index++)
+        {
+            Settlement settlement = settlements[index];
+
+            if (settlement == null || children[index] == null)
+            {
+                continue;
+            }
+
             SettlementButtonPointer settlementButtonPointer = children[index].GetComponent<SettlementButtonPointer>();
 
-            if (settlementButtonPointer.settlement.Type == SettlementType.Quest)
+            if (settlementButtonPointer == null)
+            {
+                continue;
+            }
+
+            if (settlementButtonPointer.settlement != null &&
+                settlementButtonPointer.settlement.Type == SettlementType.Quest)
             {
                 continue;
             }
             settlementButtonPointer.SetSettlement(settlement);
 
-            if (settlement.isUnlocked)
+            Image settlementImage = settlementButtonPointer.GetComponent<Image>();
+
+            if (settlementImage != null)
             {
-                settlementButtonPointer.GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                settlementButtonPointer.GetComponent<Image>().color = Color.gray;
+                settlementImage.color = settlement.isUnlocked ? Color.white : Color.gray;
             }
         }
 
@@ -98,8 +138,16 @@ public class MapHandler : MonoBehaviour
 
     public void CheckPlayerLevelAndUnlockSettlements()
     {
+        if (settlements == null || PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
+        {
+            return;
+        }
+
         foreach (Settlement settlement in settlements)
         {
+            if (settlement == null)
+                continue;
+
             if (PlayerStatHandler.Instance.pd.Level >= settlement.levelToUnlock)
             {
                 settlement.isUnlocked = true;
@@ -111,6 +159,11 @@ public class MapHandler : MonoBehaviour
     {
         foreach (GameObject child in children)
         {
+            if (child == null)
+            {
+                continue;
+            }
+
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
             if (settlementButtonPointer == null)
@@ -131,6 +184,11 @@ public class MapHandler : MonoBehaviour
     {
         foreach (GameObject child in children)
         {
+            if (child == null)
+            {
+                continue;
+            }
+
             SettlementButtonPointer settlementButtonPointer = child.GetComponent<SettlementButtonPointer>();
 
             if (settlementButtonPointer == TravelSystem.Instance.destination)
@@ -151,8 +209,17 @@ public class MapHandler : MonoBehaviour
 
     public void LoadQuestSettlements()
     {
+        if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null ||
+            PlayerStatHandler.Instance.pd.Quests == null)
+        {
+            return;
+        }
+
         foreach (Quest_SO_Constructor quest in PlayerStatHandler.Instance.pd.Quests)
         {
+            if (quest == null)
+                continue;
+
             if (quest.questType == QuestType.Location)
             {
                 Settlement questsSettlement = new Settlement(quest);
@@ -163,10 +230,22 @@ public class MapHandler : MonoBehaviour
 
     public void AddQuestSettlement(Settlement _settlement, ref float[] _coordinates)
     {
+        if (QuestSettlementPrefab == null || map == null || _settlement == null)
+        {
+            Debug.LogWarning("MapHandler: Cannot add quest settlement, prefab or map is missing.");
+            return;
+        }
+
         SettlementButtonPointer settlementButtonPointer = Instantiate(QuestSettlementPrefab, map.transform).GetComponent<SettlementButtonPointer>();
 
+        if (settlementButtonPointer == null)
+        {
+            Debug.LogError("MapHandler: QuestSettlementPrefab has no SettlementButtonPointer component.");
+            return;
+        }
+
         Vector2 position;
-        if (_coordinates != null && _coordinates[0] != 0 && _coordinates[1] != 0)
+        if (_coordinates != null && _coordinates.Length >= 2 && _coordinates[0] != 0 && _coordinates[1] != 0)
         {
             position = new Vector2(_coordinates[0], _coordinates[1]);
         }

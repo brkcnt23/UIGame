@@ -27,19 +27,45 @@ public class HomeSettlementHandler : MonoBehaviour
 
     void OnEnable()
     {
+        if (homeSettlement == null)
+            homeSettlement = new Settlement();
+
         homeSettlement.OnTownHallEntered += HandleTownHallEntered;
     }
 
     void OnDisable()
     {
-        homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
+        if (homeSettlement != null)
+            homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
     }
 
     public void LoadHomeSettlement()
     {
         JSONhandler = new JSONDataHandler(PlayerPrefs.GetInt("Slot"));
         HomeSettlementWrapper wrapper = JSONhandler.LoadData<HomeSettlementWrapper>("homeSettlement.json");
-        homeSettlement = wrapper != null ? wrapper.homeSettlement : new Settlement();
+
+        Settlement loaded = wrapper != null && wrapper.homeSettlement != null
+            ? wrapper.homeSettlement
+            : new Settlement();
+
+        SetHomeSettlement(loaded);
+    }
+
+    /// <summary>
+    /// Replaces the home settlement and moves the event subscriptions over to the
+    /// new instance. Loading creates a brand new Settlement object, so without this
+    /// the handlers registered in OnEnable would stay attached to the old one.
+    /// </summary>
+    public void SetHomeSettlement(Settlement newHomeSettlement)
+    {
+        if (newHomeSettlement == null)
+            return;
+
+        if (homeSettlement != null)
+            homeSettlement.OnTownHallEntered -= HandleTownHallEntered;
+
+        homeSettlement = newHomeSettlement;
+        homeSettlement.OnTownHallEntered += HandleTownHallEntered;
     }
 
     //this will be the function that will save the home settlement data
@@ -89,11 +115,22 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void UpgradeShop()
     {
+        if (homeSettlement == null || homeSettlement.Shops == null || homeSettlement.Shops.Count == 0)
+        {
+            Debug.LogWarning("HomeSettlementHandler: There is no shop to upgrade.");
+            return;
+        }
+
         UpgradeResidental(homeSettlement.Shops[0]);
     }
 
     public void GenerateRandomHappenings()
     {
+        if (homeSettlement == null)
+        {
+            return;
+        }
+
         int dice = Dice.RollD100();
 
         if (dice <= 10)
@@ -184,6 +221,11 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void RandomShopEvent()
     {
+        if (homeSettlement == null || homeSettlement.Shops == null || homeSettlement.Shops.Count == 0)
+        {
+            return;
+        }
+
         Shops shop = homeSettlement.Shops[0];
         if (shop == null)
         {
@@ -195,12 +237,12 @@ public class HomeSettlementHandler : MonoBehaviour
             ? shop.GetItemsByCategory(ItemCategory.Resource)
             : shop.GetItemsByCategory(ItemCategory.CraftingMaterial);
 
-        if (items.Count == 0)
+        if (items == null || items.Count == 0)
         {
             return;
         }
 
-        int itemIndex = Dice.Roll(items.Count);
+        int itemIndex = Random.Range(0, items.Count);
         int quantity = Dice.Roll(-shop.level * 10, shop.level * 10);
 
         Item item = items[itemIndex];
@@ -223,7 +265,14 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void RandomTavernEvent()
     {
-        int selectedQuest = Dice.Roll(homeSettlement.Tavern.Quests.Count);
+        if (homeSettlement == null || homeSettlement.Tavern == null ||
+            homeSettlement.Tavern.Quests == null || homeSettlement.Tavern.Quests.Count == 0)
+        {
+            // Nothing is going on in the tavern yet (a brand new village has no quests).
+            return;
+        }
+
+        int selectedQuest = Random.Range(0, homeSettlement.Tavern.Quests.Count);
         Quest_SO_Constructor quest = homeSettlement.Tavern.Quests[selectedQuest];
         if (quest == null)
         {
