@@ -1,0 +1,74 @@
+{
+    "jobs": [
+        {
+            "Type": 0,
+            "ID": 1001,
+            "Name": "Guard",
+            "Description": "Protect the town from bandits and other threats.",
+            "DC": 10,
+            "CompletionDay": 0,
+            "CompletionHour": 6,
+            "CompletionMinute": 0,
+            "Gold": 500,
+            "TargetStat": "Strength",
+            "StatRewardMin": 1,
+            "StatRewardMax": 2
+        },
+        {
+            "Type": 0,
+            "ID": 1002,
+            "Name": "Blacksmith",
+            "Description": "Craft weapons and armor for the town's defenders.",
+            "DC": 15,
+            "CompletionDay": 0,
+            "CompletionHour": 8,
+            "CompletionMinute": 0,
+            "Gold": 1000,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 2,
+            "StatRewardMax": 3
+        },
+        {
+            "Type": 0,
+            "ID": 1003,
+            "Name": "Alchemist",
+            "Description": "Brew potions and poisons for the town's adventurers.",
+            "DC": 20,
+            "CompletionDay": 0,
+            "CompletionHour": 10,
+            "CompletionMinute": 0,
+            "Gold": 1500,
+            "TargetStat": "Dexterity",
+            "StatRewardMin": 0,
+            "StatRewardMax": 1
+        },
+        {
+            "Type": 0,
+            "ID": 1004,
+            "Name": "Bard",
+            "Description": "Entertain the town's residents with music and stories.",
+            "DC": 25,
+            "CompletionDay": 0,
+            "CompletionHour": 12,
+            "CompletionMinute": 0,
+            "Gold": 2000,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 2,
+            "StatRewardMax": 5
+        },
+        {
+            "Type": 0,
+            "ID": 1005,
+            "Name": "Merchant",
+            "Description": "Buy and sell goods to keep the town's economy thriving.",
+            "DC": 30,
+            "CompletionDay": 0,
+            "CompletionHour": 14,
+            "CompletionMinute": 0,
+            "Gold": 2500,
+            "TargetStat": "Charisma",
+            "StatRewardMin": 0,
+            "StatRewardMax": 1
+        }
+    ]
+}

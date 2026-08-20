@@ -15,8 +15,9 @@ public class ShopStockProfileSO : ScriptableObject
         public int GoldOverride = -1;
         public int SilverOverride = -1;
 
-        [Range(1, 10)] public int MinItemQuality = 1;
-        [Range(1, 10)] public int MaxItemQuality = 10;
+        [Tooltip("0=Crude 1=Common 2=Fine 3=Masterwork 4=Legendary")]
+        [Range(0, 4)] public int MinItemQuality = 0;
+        [Range(0, 4)] public int MaxItemQuality = 4;
 
         public List<string> RequiredSettlementTags = new();
         public List<string> RequiredOwnerTags = new();
@@ -53,9 +54,17 @@ public class ShopStockProfileSO : ScriptableObject
             var itemSo = db.GetByID(entry.ItemId);
             if (itemSo == null) continue;
 
-            if (itemSo.quality < entry.MinItemQuality) continue;
-            if (itemSo.quality > entry.MaxItemQuality) continue;
-            if (itemSo.quality > shopMaxAffordableItemQuality) continue;
+            // quality is now the ItemQuality enum (Crude..Legendary); the
+            // entry bounds stay plain ints so existing profile assets keep
+            // their values.
+            int itemQuality = (int)itemSo.quality;
+
+            if (itemQuality < entry.MinItemQuality) continue;
+            if (itemQuality > entry.MaxItemQuality) continue;
+            if (itemQuality > shopMaxAffordableItemQuality) continue;
+
+            // Uniques are placed by hand in the world, never stocked.
+            if (itemSo.isUnique) continue;
 
             int qty = Random.Range(entry.MinQuantity, entry.MaxQuantity + 1);
             if (qty <= 0) continue;

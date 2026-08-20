@@ -312,14 +312,18 @@ public class GameManager : MonoBehaviour
 
             Alignment = 0,
 
-            Strength = 1,
-            StrengthXP = 149,
-            Dexterity = 1,
-            DexterityXP = 149,
-            Constitution = 1,
-            ConstitutionXP = 149,
-            Charisma = 1,
-            CharismaXP = 149,
+            // 10 = an average adult (D&D convention our combat formulas assume).
+            // Starting at 1 made every event requirement (5-15) unreachable and
+            // gave -5 combat modifiers. Character-creation answers will nudge
+            // these up or down once the intro questions are wired in.
+            Strength = 8,
+            StrengthXP = 0,
+            Dexterity = 8,
+            DexterityXP = 0,
+            Constitution = 8,
+            ConstitutionXP = 0,
+            Charisma = 8,
+            CharismaXP = 0,
 
             SmitherSkillLevel = 1,
             SmitherSkillXP = 149,

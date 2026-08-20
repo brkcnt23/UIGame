@@ -184,6 +184,11 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void RandomShopEvent()
     {
+        if (homeSettlement?.Shops == null || homeSettlement.Shops.Count == 0)
+        {
+            return;
+        }
+
         Shops shop = homeSettlement.Shops[0];
         if (shop == null)
         {
@@ -195,15 +200,18 @@ public class HomeSettlementHandler : MonoBehaviour
             ? shop.GetItemsByCategory(ItemCategory.Resource)
             : shop.GetItemsByCategory(ItemCategory.CraftingMaterial);
 
-        if (items.Count == 0)
+        if (items == null || items.Count == 0)
         {
             return;
         }
 
-        int itemIndex = Dice.Roll(items.Count);
-        int quantity = Dice.Roll(-shop.level * 10, shop.level * 10);
+        Item item = Dice.Pick(items);
+        if (item == null)
+        {
+            return;
+        }
 
-        Item item = items[itemIndex];
+        int quantity = Dice.Roll(-shop.level * 10, shop.level * 10);
 
         Currency itemCost = new Currency(0, item.Value.Silver);
         Currency transactionAmount = itemCost * Mathf.Abs(quantity);
@@ -223,8 +231,12 @@ public class HomeSettlementHandler : MonoBehaviour
 
     public void RandomTavernEvent()
     {
-        int selectedQuest = Dice.Roll(homeSettlement.Tavern.Quests.Count);
-        Quest_SO_Constructor quest = homeSettlement.Tavern.Quests[selectedQuest];
+        if (homeSettlement?.Tavern?.Quests == null || homeSettlement.Tavern.Quests.Count == 0)
+        {
+            return;
+        }
+
+        Quest_SO_Constructor quest = Dice.Pick(homeSettlement.Tavern.Quests);
         if (quest == null)
         {
             return;

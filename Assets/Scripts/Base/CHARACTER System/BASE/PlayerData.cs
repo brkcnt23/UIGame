@@ -70,7 +70,11 @@ public class PlayerData
     public int LastMealHour;
     public int LastMealMinute;
     public List<string> HistoryTags = new List<string>();
+    /// <summary>Legacy flat tag list. Kept in sync by TraitSystem; recipes read it.</summary>
     public List<string> ActiveTraitTags = new List<string>();
+
+    /// <summary>Traits with their stacks and expiry. The real record.</summary>
+    public List<ActiveTrait> ActiveTraits = new List<ActiveTrait>();
     public List<int> LearnedRecipeIds = new List<int>();
     public List<string> LearnedStations = new List<string>();
     public List<string> LearnedTools = new List<string>();

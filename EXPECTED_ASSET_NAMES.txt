@@ -1,0 +1,271 @@
+### ITEM (ItemCatalog.cs) — beklenen sprite adi
+Club|club
+Hand Axe|handaxe
+Arming Sword|ArmingSword
+Mace|mace
+War Hammer|warhammer
+Falchion|Falchion
+Poleaxe|poleaxe
+Halberd|halberd
+Greatsword|greatsword
+Battle Axe|battleaxe
+Maul|maul
+Stiletto|Stiletto
+Dagger|dagger
+Shortsword|Shortsword
+Rapier|rapier
+Sling|Sling
+Hunting Bow|huntingbow
+Shortbow|yay
+Longbow|longbow
+Crossbow|crossbow
+Throwing Knife|ThrowingKnife
+Javelin|javelin
+Throwing Axe|ThrowingAxe
+Spear|spear
+Wooden Shield|WoodenShield
+Buckler|Buckler
+Round Shield|RoundShield
+Kite Shield|KiteShield
+Tower Shield|TowerShield
+Leather Cap|LeatherCap
+Padded Coif|PaddedCoif
+Kettle Hat|KettleHat
+Nasal Helm|NasalHelm
+Iron Helm|helmet
+Bascinet|Bascinet
+Great Helm|GreatHelm
+Peasant Tunic|PeasentTunic
+Gambeson|Gambeson
+Leather Cuirass|ChestArmor
+Studded Leather|StuddedLeather
+Chainmail Hauberk|ChainmailHauberk
+Scale Mail|ScaleMail
+Brigandine|Brigandine
+Half Plate|HalfPlate
+Full Plate|FullPlate
+Cloth Trousers|ClothTrousers
+Leather Leggings|PantsArmor
+Padded Chausses|PaddedChausses
+Mail Chausses|MailChausses
+Plate Greaves|PlateGreaves
+Worn Shoes|WornShoes
+Leather Boots|BootsArmor
+Riding Boots|RidingBoots
+Reinforced Boots|ReinforcedBoots
+Sabatons|Sabatons
+Cloth Wraps|Cloth Wraps
+Leather Gloves|Leather Gloves
+Work Gloves|WorkGloves
+Mail Mittens|Mail Mittens
+Gauntlets|Gauntlets
+Witch's Charm|Witch's Charm
+Saint's Medallion|Saint's Medallion
+Wolf-Tooth Necklace|Wolf-Tooth Necklace
+Signet Ring|Signet Ring
+Iron Band|Iron Band
+Widow's Ring|Widow's Ring
+Hooded Traveler's Cloak|Hooded Traveler's Cloak
+Oilskin Mantle|Oilskin Mantle
+Brass Lantern|Brass Lantern
+Carved Wooden Idol|Carved Wooden Idol
+Embroidered Handkerchief|Embroidered Handkerchief
+Field Surgeon's Kit|Field Surgeon's Kit
+Merchant's Ledger|Merchant's Ledger
+Minor Healing Draught|Minor Healing Draught
+Healing Draught|Healing Draught
+Strong Healing Draught|Strong Healing Draught
+Antidote|Antidote
+Fever Tonic|Fever Tonic
+Bread|Bread
+Dried Meat|Dried Meat
+Cheese Wheel|Cheese Wheel
+Salted Fish|Salted Fish
+Travel Ration|RationPack
+Ale|Ale
+Wine|Wine
+Bandage|Bandage
+Clean Linen|Clean Linen
+Herbal Poultice|Herbal Poultice
+Splint|Splint
+Iron Ore|Iron Ore
+Copper Ore|Copper Ore
+Tin Ore|Tin Ore
+Silver Ore|Silver Ore
+Coal|Coal
+Raw Hide|Raw Hide
+Pelt|Pelt
+Wool|Wool
+Bone|Bone
+Sinew|Sinew
+Horn|Horn
+Timber Log|Timber Log
+Ash Log|Ash Log
+Yew Branch|Yew Branch
+Rough Stone|Rough Stone
+Limestone|Limestone
+Clay|Clay
+Common Herbs|herb
+Bitterroot|Bitterroot
+Marshbloom|Marshbloom
+Fireleaf|Fireleaf
+Iron Ingot|IRON INGOT
+Steel Ingot|steel_ingot
+Copper Ingot|Copper Ingot
+Tin Ingot|Tin Ingot
+Bronze Ingot|Bronze Ingot
+Silver Ingot|Silver Ingot
+Rivets|Rivets
+Buckle|Buckle
+Tanned Leather|TannedLeather
+Cured Hide|Cured Hide
+Leather Strap|Leather Strap
+Thread|Thread
+Cloth Bolt|Cloth Bolt
+Plank|WOODEN PLANK
+Beam|Beam
+Bowstring|Bowstring
+Charcoal|Charcoal
+Pitch|Pitch
+Cut Stone|Cut Stone
+Mortar|Mortar
+Brick|STONE BRICK
+Distilled Spirit|Distilled Spirit
+Herbal Extract|Herbal Extract
+Glass Vial|Glass Vial
+Salt|Salt
+Spice Pouch|Spice Pouch
+Silk Bolt|Silk Bolt
+Dyed Cloth|Dyed Cloth
+Amber|Amber
+Fine Furs|Fine Furs
+Wine Cask|Wine Cask
+Honey Jar|Honey Jar
+Beeswax|Beeswax
+Ivory Comb|Ivory Comb
+Sealed Letter|Sealed Letter
+Lord's Signet|Lord's Signet
+Stolen Ledger|Stolen Ledger
+Family Heirloom|Family Heirloom
+Map Fragment|Map Fragment
+Bandit's Token|Bandit's Token
+Rope|Rope
+Torch|Torch
+Flint & Steel|FlintNSteel
+Cooking Pot|Cooking Pot
+Bedroll|Bedroll
+Waterskin|Waterskin
+Fishing Line|Fishing Line
+Lockpick|Lockpick
+Empty Sack|Empty Sack
+Whetstone|Whetstone
+
+### QUEST IKON AILESI (quests.json) — kac gorev kullaniyor
+crown|6
+cart|5
+tools|4
+missing|4
+predator|4
+parcel|3
+ledger|3
+pick|3
+shield|3
+bandit|3
+banner|3
+livestock|2
+vermin|2
+letter|1
+herbs|1
+timber|1
+harvest|1
+
+### TRAIT (TraitCatalog.cs) — beklenen ikon adi
+Farm Raised|FarmRaised
+Forge Raised|ForgeRaised
+Woodcutter Raised|WoodcutterRaised
+Mason Raised|MasonRaised
+Caravan Raised|CaravanRaised
+Street Raised|StreetRaised
+Chapel Raised|ChapelRaised
+Camp Raised|CampRaised
+Ambitious|Ambitious
+Calm Mind|CalmMind
+Proud|Proud
+Honest Nature|HonestNature
+Cold Pragmatist|ColdPragmatist
+Hidden Mercy|HiddenMercy
+Kind But Unyielding|KindButUnyielding
+Risk Seeker|RiskSeeker
+Patient Worker|PatientWorker
+Quick Study|QuickStudy
+Trade Sense|TradeSense
+Keen Eye For Value|KeenEyeForValue
+Common Folk Ease|CommonFolkEase
+Iron Routine|IronRoutine
+Camp Discipline|CampDiscipline
+Hunger Hardened|HungerHardened
+Scrapwise|Scrapwise
+Sure Hands|SureHands
+Lightfooted|Lightfooted
+Brooding Depth|BroodingDepth
+Forge Familiar|ForgeFamiliar
+Woodcraft Familiar|WoodcraftFamiliar
+Stonecraft Familiar|StonecraftFamiliar
+Well Rested|WellRested
+Well Fed|WellFed
+Nourished|Nourished
+Fresh Meal|Fresh Meal
+Warmed by Fire|Warmed by Fire
+Inspired|Inspired
+Inspired by Song|Inspired by Song
+Focused|Focused
+Energized|Energized
+Hopeful|Hopeful
+Lucky|Lucky
+Blessed|Blessed
+Regenerating|Regenerating
+Recovering|Recovering
+Adrenaline Rush|Adrenaline Rush
+Iron Will|Iron Will
+Bloodied But Standing|Bloodied But Standing
+Guarded Stance|Guarded Stance
+Duelist's Focus|Duelist’s Focus
+Fearless Charge|Fearless Charge
+Steady Under Fire|SteadyUnderFire
+Shielded|Shielded
+Bloodlust|Bloodlust
+Enraged|Enraged
+Vengeful|Vengeful
+Hungry|Hungry
+Starving|Starving
+Malnourished|Malnourished
+Dehydrated|Dehydrated
+Fatigued|Fatigued
+Exhausted|Exhausted
+Wounded|Wounded
+Bleeding|Bleeding
+Cracked Ribs|Cracked Ribs
+Broken Guard|Broken Guard
+Poisoned|Poisoned
+Diseased|Diseased
+Feverish|Feverish
+Burning|Burning
+Chilled|Chilled
+Frozen|Frozen
+Soaked|Soaked
+Burdened|Overburdened
+Overburdened|Overburdened
+Overloaded|Overburdened
+Stunned|Stunned
+Confused|Confused
+Shaken|Shaken
+Terrified|Terrified
+Despairing|Despairing
+Traumatized|Traumatized
+Haunted Dreams|Haunted Dreams
+Guilty Conscience|Guilty Conscience
+Unlucky|Unlucky
+Cursed|Cursed
+Marked for Death|Marked for Death
+Silenced|Silenced
+Rotten Meal|Rotten Meal

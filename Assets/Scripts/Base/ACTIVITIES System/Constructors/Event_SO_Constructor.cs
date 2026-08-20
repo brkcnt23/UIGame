@@ -124,8 +124,11 @@ public class Event_SO_Constructor : SO_Base
 
     private void AddExperience(PlayerStatHandler playerData, int experience)
     {
-        playerData.pd.Experience += experience;
-        ExperienceSystem.UpdateCharacterLevel(playerData.pd);
+        // Routed through the gateway: rewards shrink as the player outlevels
+        // the content, penalties pass through unscaled, level is recomputed
+        // on the rising curve. This is what stops one event chain from
+        // catapulting a fresh character twenty levels.
+        ExperienceSystem.GrantExperience(playerData.pd, experience);
     }
 
     private void HandleFollowUpChoiceInjection()
@@ -328,8 +331,11 @@ public class Choice
 
     private void AddExperience(PlayerStatHandler playerData, int experience)
     {
-        playerData.pd.Experience += experience;
-        ExperienceSystem.UpdateCharacterLevel(playerData.pd);
+        // Routed through the gateway: rewards shrink as the player outlevels
+        // the content, penalties pass through unscaled, level is recomputed
+        // on the rising curve. This is what stops one event chain from
+        // catapulting a fresh character twenty levels.
+        ExperienceSystem.GrantExperience(playerData.pd, experience);
     }
 
     private int GetPlayerStatValue(PlayerStatHandler player, string statName)

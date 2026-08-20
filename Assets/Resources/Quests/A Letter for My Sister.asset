@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: A Letter for My Sister
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3004
+  questName: A Letter for My Sister
+  description: She is in the next village and I cannot leave the mill. It is not
+    far.
+  tier: 0
+  realm: 0
+  minPlayerLevel: 1
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 0
+  rewardSilver: 75
+  rewardExperience: 30
+  targetStat: 2
+  statRewardMin: 1
+  statRewardMax: 2
+  hoursToComplete: 14
+  hoursBeforeExpiry: 42
+  difficultyClass: 6
+  requiredItems: []
+  rewardItems: []

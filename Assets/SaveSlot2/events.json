@@ -228,6 +228,29 @@
                     "ExperienceReward": 0,
                     "AlignmentChange": 0,
                     "RewardItemStacks": []
+                },
+                {
+                    "choiceText": "Leave the hideout untouched.",
+                    "choiceType": "Neutral",
+                    "outcome": "You mark the place in your memory and move on. Whatever is inside can wait for a better-armed day.",
+                    "followUpEventID": 0,
+                    "RequireStat": "",
+                    "RequireStatValue": 0,
+                    "RequireMoney": 0,
+                    "isFight": false,
+                    "RequireItemName": "",
+                    "RequireItemId": 0,
+                    "RequireItemQuantity": 1,
+                    "RequireHealth": 0,
+                    "RequireRation": 0,
+                    "RequireArmySize": 0,
+                    "SilverReward": 0,
+                    "StatRewardMin": 0,
+                    "StatRewardMax": 0,
+                    "TargetStat": 0,
+                    "ExperienceReward": 5,
+                    "AlignmentChange": 0,
+                    "RewardItemStacks": []
                 }
             ],
             "followUpEventID": 0,
@@ -396,7 +419,7 @@
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 3004,
             "Name": "Royal Gratitude",
             "Description": "The knight's family is grateful for your help and offers you a quest.",
             "DC": 12,
@@ -413,7 +436,7 @@
             "StatRewardMin": 3,
             "StatRewardMax": 6,
             "isHaveWar": false,
-            "encounterCooldown": 1,
+            "encounterCooldown": 0,
             "choices": [
                 {
                     "choiceText": "Accept the quest to prove your worth.",
@@ -813,7 +836,7 @@
         },
         {
             "Type": 2,
-            "ID": 0,
+            "ID": 2004,
             "Name": "Haunted Forest",
             "Description": "The villagers speak of a haunted forest where the dead walk at night. They ask for your help in putting the spirits to rest.",
             "DC": 10,

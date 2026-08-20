@@ -54,8 +54,13 @@ public class SettlementHandler : MonoBehaviour
         JSONhandler.SaveData(new SettlementListWrapper { settlements = settlements }, "settlements.json");
     }
 
+    // `settlement` is null whenever the player is not inside one — OnSettlementExited
+    // clears it. Enabling or disabling this component in that state used to throw.
     void OnEnable()
     {
+        if (settlement == null)
+            return;
+
         settlement.OnSettlementEntered += OnSettlementEntered;
         settlement.OnSettlementExited += OnSettlementExited;
 
@@ -73,6 +78,9 @@ public class SettlementHandler : MonoBehaviour
 
     void OnDisable()
     {
+        if (settlement == null)
+            return;
+
         settlement.OnSettlementEntered -= OnSettlementEntered;
         settlement.OnSettlementExited -= OnSettlementExited;
 

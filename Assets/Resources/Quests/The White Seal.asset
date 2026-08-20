@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: The White Seal
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3047
+  questName: The White Seal
+  description: Whitmarch has need of a hand that is not attached to a house. Discretion
+    is the whole of the payment, and the reward.
+  tier: 4
+  realm: 2
+  minPlayerLevel: 22
+  requiredTitleId: bailiff
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 40
+  rewardSilver: 0
+  rewardExperience: 1200
+  targetStat: 2
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 144
+  hoursBeforeExpiry: 432
+  difficultyClass: 32
+  requiredItems: []
+  rewardItems: []

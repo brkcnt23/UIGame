@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: Escort Needed
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3016
+  questName: Escort Needed
+  description: Caravan departs at dawn, two guards short. Payment on arrival, not
+    before.
+  tier: 1
+  realm: 0
+  minPlayerLevel: 4
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 2
+  rewardSilver: 0
+  rewardExperience: 70
+  targetStat: 0
+  statRewardMin: 1
+  statRewardMax: 3
+  hoursToComplete: 36
+  hoursBeforeExpiry: 108
+  difficultyClass: 12
+  requiredItems: []
+  rewardItems: []

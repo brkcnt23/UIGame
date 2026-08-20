@@ -2332,7 +2332,7 @@
         {
             "Name": "Mudfell",
             "ID": 9,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 400,
             "Wealth": {
@@ -2630,7 +2630,7 @@
         {
             "Name": "Perchmon",
             "ID": 10,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 5,
             "Population": 1600,
             "Wealth": {
@@ -2928,7 +2928,7 @@
         {
             "Name": "Rasu",
             "ID": 11,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 1400,
             "Wealth": {
@@ -3226,7 +3226,7 @@
         {
             "Name": "Flanel",
             "ID": 12,
-            "isUnlocked": false,
+            "isUnlocked": true,
             "levelToUnlock": 3,
             "Population": 2000,
             "Wealth": {
@@ -3546,7 +3546,98 @@
                     "OwnerNpcId": "",
                     "ShopTags": [],
                     "ShopType": 5,
-                    "Items": [],
+                    "Items": [
+                        {
+                            "ID": 5642,
+                            "Name": "GeneralStore Item 1",
+                            "Value": {
+                                "Gold": 9,
+                                "Silver": 73
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 4321,
+                            "Name": "GeneralStore Item 2",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 64
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 8876,
+                            "Name": "GeneralStore Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 83
+                            },
+                            "Category": 5,
+                            "Quantity": 1,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 8157,
+                            "Name": "GeneralStore Item 4",
+                            "Value": {
+                                "Gold": 7,
+                                "Silver": 22
+                            },
+                            "Category": 5,
+                            "Quantity": 2,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 2713,
+                            "Name": "GeneralStore Item 5",
+                            "Value": {
+                                "Gold": 4,
+                                "Silver": 32
+                            },
+                            "Category": 5,
+                            "Quantity": 4,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        }
+                    ],
                     "ItemEntries": [],
                     "Cash": {
                         "Gold": 0,
@@ -3572,58 +3663,112 @@
                     "ShopType": 1,
                     "Items": [
                         {
-                            "ID": 1,
-                            "Name": "Iron Sword",
+                            "ID": 4631,
+                            "Name": "Tanner Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 7,
+                                "Silver": 11
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 53968
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         },
                         {
-                            "ID": 3,
-                            "Name": "Enchanted Sword",
+                            "ID": 9785,
+                            "Name": "Tanner Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 81
                             },
-                            "Category": 0,
+                            "Category": 1,
                             "Quantity": 1,
-                            "Modifiers": [],
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 1
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 53968
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         },
                         {
-                            "ID": 6,
-                            "Name": "Iron Ingot",
+                            "ID": 1209,
+                            "Name": "Tanner Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 3,
+                                "Silver": 73
                             },
-                            "Category": 0,
-                            "Quantity": 1,
-                            "Modifiers": [],
+                            "Category": 1,
+                            "Quantity": 2,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
                             "ItemImage": {
-                                "instanceID": 0
+                                "instanceID": 53968
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 9955,
+                            "Name": "Tanner Item 4",
+                            "Value": {
+                                "Gold": 6,
+                                "Silver": 75
+                            },
+                            "Category": 1,
+                            "Quantity": 3,
+                            "Modifiers": [
+                                {
+                                    "Type": 3,
+                                    "Value": 2
+                                },
+                                {
+                                    "Type": 2,
+                                    "Value": 1
+                                }
+                            ],
+                            "ItemImage": {
+                                "instanceID": 53968
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3651,40 +3796,58 @@
                     "ShopType": 6,
                     "Items": [
                         {
-                            "ID": 2,
-                            "Name": "Leather Armor",
+                            "ID": 3534,
+                            "Name": "Mystic Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 56
                             },
-                            "Category": 0,
+                            "Category": 7,
                             "Quantity": 1,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         },
                         {
-                            "ID": 7,
-                            "Name": "Leather",
+                            "ID": 6028,
+                            "Name": "Mystic Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 7,
+                                "Silver": 91
                             },
-                            "Category": 0,
-                            "Quantity": 5,
+                            "Category": 7,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 2211,
+                            "Name": "Mystic Item 3",
+                            "Value": {
+                                "Gold": 8,
+                                "Silver": 68
+                            },
+                            "Category": 7,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3712,58 +3875,94 @@
                     "ShopType": 4,
                     "Items": [
                         {
-                            "ID": 4,
-                            "Name": "Health Potion",
+                            "ID": 2554,
+                            "Name": "Mason Item 1",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 8,
+                                "Silver": 58
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 3,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         },
                         {
-                            "ID": 5,
-                            "Name": "Energy Potion",
+                            "ID": 1085,
+                            "Name": "Mason Item 2",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 2,
+                                "Silver": 26
                             },
-                            "Category": 0,
-                            "Quantity": 1,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         },
                         {
-                            "ID": 8,
-                            "Name": "Herbs",
+                            "ID": 3495,
+                            "Name": "Mason Item 3",
                             "Value": {
-                                "Gold": 0,
-                                "Silver": 0
+                                "Gold": 4,
+                                "Silver": 40
                             },
-                            "Category": 0,
-                            "Quantity": 10,
+                            "Category": 5,
+                            "Quantity": 2,
                             "Modifiers": [],
                             "ItemImage": {
                                 "instanceID": 0
                             },
-                            "Quality": 0,
-                            "Stackable": false,
-                            "MaxStack": 0,
-                            "UnitWeight": 0.0
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 9992,
+                            "Name": "Mason Item 4",
+                            "Value": {
+                                "Gold": 2,
+                                "Silver": 66
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
+                        },
+                        {
+                            "ID": 8212,
+                            "Name": "Mason Item 5",
+                            "Value": {
+                                "Gold": 3,
+                                "Silver": 37
+                            },
+                            "Category": 5,
+                            "Quantity": 3,
+                            "Modifiers": [],
+                            "ItemImage": {
+                                "instanceID": 0
+                            },
+                            "Quality": 1,
+                            "Stackable": true,
+                            "MaxStack": 99,
+                            "UnitWeight": 1.0
                         }
                     ],
                     "ItemEntries": [],
@@ -3788,7 +3987,113 @@
                 "TavernId": "",
                 "OwnerNpcId": "",
                 "TavernTags": [],
-                "Quests": [],
+                "Quests": [
+                    {
+                        "Type": 1,
+                        "ID": 2004,
+                        "Name": "The Lost Pet",
+                        "Description": "A local family has lost their beloved pet and is offering a reward for its safe return.",
+                        "DC": 25,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 12,
+                        "CompletionMinute": 0,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 2,
+                        "StatRewardMax": 2,
+                        "hoursToComplete": 9999,
+                        "requiredItems": [],
+                        "rewardItems": [],
+                        "questItems": [],
+                        "requiredItemStacks": [],
+                        "rewardItemStacks": [],
+                        "questItemStacks": [],
+                        "settlementID": 0,
+                        "isTaken": false,
+                        "isCompleted": false,
+                        "questLocation": "",
+                        "questLocationCoordinates": [
+                            0.0,
+                            0.0
+                        ],
+                        "questType": 0
+                    },
+                    {
+                        "Type": 1,
+                        "ID": 2005,
+                        "Name": "The Mysterious Stranger",
+                        "Description": "A mysterious stranger has arrived in town and is looking for help with a secret mission.",
+                        "DC": 30,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 16,
+                        "CompletionMinute": 30,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 3,
+                        "StatRewardMax": 4,
+                        "hoursToComplete": 9999,
+                        "requiredItems": [],
+                        "rewardItems": [],
+                        "questItems": [],
+                        "requiredItemStacks": [],
+                        "rewardItemStacks": [],
+                        "questItemStacks": [],
+                        "settlementID": 0,
+                        "isTaken": false,
+                        "isCompleted": false,
+                        "questLocation": "",
+                        "questLocationCoordinates": [
+                            0.0,
+                            0.0
+                        ],
+                        "questType": 0
+                    },
+                    {
+                        "Type": 1,
+                        "ID": 2002,
+                        "Name": "Foul Play",
+                        "Description": "A local merchant has been accused of a crime they did not commit. They need help proving their innocence.",
+                        "DC": 15,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 5,
+                        "CompletionMinute": 0,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 2,
+                        "StatRewardMax": 3,
+                        "hoursToComplete": 9999,
+                        "requiredItems": [],
+                        "rewardItems": [],
+                        "questItems": [],
+                        "requiredItemStacks": [],
+                        "rewardItemStacks": [],
+                        "questItemStacks": [],
+                        "settlementID": 0,
+                        "isTaken": false,
+                        "isCompleted": false,
+                        "questLocation": "",
+                        "questLocationCoordinates": [
+                            0.0,
+                            0.0
+                        ],
+                        "questType": 0
+                    }
+                ],
                 "Companions": []
             },
             "TownHall": {
@@ -3803,7 +4108,27 @@
                 "RulerNpcId": "",
                 "StewardNpcId": "",
                 "TownHallTags": [],
-                "Jobs": []
+                "Jobs": [
+                    {
+                        "Type": 0,
+                        "ID": 1005,
+                        "Name": "Merchant",
+                        "Description": "Buy and sell goods to keep the town's economy thriving.",
+                        "DC": 30,
+                        "HealthRequirement": 0,
+                        "ArmyPowerRequirement": 0,
+                        "SilverRequirement": 0,
+                        "StatRequirement": 0,
+                        "CompletionDay": 0,
+                        "CompletionHour": 14,
+                        "CompletionMinute": 0,
+                        "Experience": 0,
+                        "Silver": 100,
+                        "TargetStat": 0,
+                        "StatRewardMin": 0,
+                        "StatRewardMax": 1
+                    }
+                ]
             },
             "Walls": {
                 "Name": "Simple Fence",

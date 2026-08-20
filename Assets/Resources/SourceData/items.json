@@ -1,0 +1,74 @@
+[
+    {
+        "ID": 1,
+        "Name": "Iron Sword",
+        "Value": 150,
+        "Category": "Weapon",
+        "Modifiers": [
+            { "Stat": "Strength", "Value": 5 }
+        ],
+        "Quantity": 1
+    },
+    {
+        "ID": 2,
+        "Name": "Leather Armor",
+        "Value": 200,
+        "Category": "Armor",
+        "Modifiers": [
+            { "Stat": "Constitution", "Value": 5 }
+        ],
+        "Quantity": 1
+    },
+    {
+        "ID": 3,
+        "Name": "Health Potion",
+        "Value": 50,
+        "Category": "Potion",
+        "Modifiers": [],
+        "HealthRecovery": 20,
+        "ExhaustionReduction": 0,
+        "Quantity": 1
+    },
+    {
+        "ID": 4,
+        "Name": "Energy Potion",
+        "Value": 75,
+        "Category": "Potion",
+        "Modifiers": [],
+        "HealthRecovery": 0,
+        "ExhaustionReduction": 10,
+        "Quantity": 1
+    },
+    {
+        "ID": 5,
+        "Name": "Iron Ingot",
+        "Value": 100,
+        "Category": "CraftingMaterial",
+        "Modifiers": [],
+        "Quantity": 1
+    },
+    {
+        "ID": 6,
+        "Name": "Leather",
+        "Value": 50,
+        "Category": "CraftingMaterial",
+        "Modifiers": [],
+        "Quantity": 5
+    },
+    {
+        "ID": 7,
+        "Name": "Stone",
+        "Value": 40,
+        "Category": "Resource",
+        "Modifiers": [],
+        "Quantity": 3
+    },
+    {
+        "ID": 8,
+        "Name": "Wood",
+        "Value": 30,
+        "Category": "Resource",
+        "Modifiers": [],
+        "Quantity": 4
+    }
+]

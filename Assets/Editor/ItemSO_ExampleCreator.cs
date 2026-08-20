@@ -76,7 +76,9 @@ public static class ItemSO_ExampleCreator
             so.itemName = name;
             so.description = name + " (example item created by editor script).";
             so.category = category;
-            so.quality = quality;
+            // quality is the ItemQuality enum now (Crude..Legendary); this
+            // script still passes plain ints.
+            so.quality = (ItemQuality)Mathf.Clamp(quality, 0, 4);
             so.goldValue = gold;
             so.silverValue = silver;
             so.stackable = false;

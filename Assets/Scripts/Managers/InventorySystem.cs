@@ -2,41 +2,56 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// Refactored InventorySystem - example of how to convert old systems.
+/// Reference implementation for migrating a system onto GameSystemBase.
 ///
 /// OLD: Awake() { Resources.Load("ItemDatabase") }
-/// NEW: Initialize() { Use GameBootstrapper.Resources }
+/// NEW: OnInitialize() { GameBootstrapper.Resources }
 ///
-/// OLD: Direct setter on inventory
-/// NEW: UpdateState() triggers all subscribers
+/// OLD: mutate the inventory directly
+/// NEW: State.UpdateState() — every subscriber is notified once
+///
+/// Note the symmetry: everything subscribed in OnInitialize is released in
+/// OnShutdown. Handlers that are never removed are the usual cause of
+/// "the event fires twice after a scene reload".
 /// </summary>
-public sealed partial class InventorySystem : GameSystem
+public sealed partial class InventorySystem : GameSystemBase
 {
+    public override int Priority => SystemPriority.Inventory;
+
     private ItemDatabase _itemDatabase;
+    private InventoryUIUpdater _uiUpdater;
 
-    public override void Initialize(EventDispatcher eventDispatcher, StateManager stateManager)
+    protected override void OnInitialize()
     {
-        base.Initialize(eventDispatcher, stateManager);
-
-        // Load resources from provider (one-time, shared)
-        _itemDatabase = Resources.GetItemDatabase();
+        _itemDatabase = Resources != null ? Resources.GetItemDatabase() : null;
         if (_itemDatabase == null)
         {
-            Debug.LogError("[InventorySystem] ItemDatabase not found!");
+            LogError("ItemDatabase not found. Inventory will not function.");
             return;
         }
 
-        // Subscribe to events that affect inventory
-        EventDispatcher.Subscribe<AddItemEvent>(OnAddItem);
-        EventDispatcher.Subscribe<RemoveItemEvent>(OnRemoveItem);
+        Events.Subscribe<AddItemEvent>(OnAddItem);
+        Events.Subscribe<RemoveItemEvent>(OnRemoveItem);
 
-        // Subscribe to state changes (for UI refresh)
-        StateManager.Subscribe(new InventoryUIUpdater());
+        _uiUpdater = new InventoryUIUpdater();
+        State.Subscribe(_uiUpdater);
+    }
+
+    protected override void OnShutdown()
+    {
+        Events.Unsubscribe<AddItemEvent>(OnAddItem);
+        Events.Unsubscribe<RemoveItemEvent>(OnRemoveItem);
+
+        if (_uiUpdater != null)
+        {
+            State.Unsubscribe(_uiUpdater);
+            _uiUpdater = null;
+        }
     }
 
     private void OnAddItem(AddItemEvent evt)
     {
-        StateManager.UpdateState(state =>
+        State.UpdateState(state =>
         {
             var newState = state.Clone();
 
@@ -58,7 +73,7 @@ public sealed partial class InventorySystem : GameSystem
                 if (newState.Inventory.FreeSlots <= 0)
                 {
                     Debug.LogWarning("[InventorySystem] Inventory full!");
-                    EventDispatcher.Dispatch(new InventoryFullEvent());
+                    Events.Dispatch(new InventoryFullEvent());
                     return state;
                 }
 
@@ -69,14 +84,14 @@ public sealed partial class InventorySystem : GameSystem
                 });
             }
 
-            EventDispatcher.Dispatch(new ItemAddedEvent(evt.ItemId, evt.Quantity));
+            Events.Dispatch(new ItemAddedEvent(evt.ItemId, evt.Quantity));
             return newState;
         });
     }
 
     private void OnRemoveItem(RemoveItemEvent evt)
     {
-        StateManager.UpdateState(state =>
+        State.UpdateState(state =>
         {
             var newState = state.Clone();
 
@@ -91,7 +106,7 @@ public sealed partial class InventorySystem : GameSystem
             if (item.Quantity <= 0)
                 newState.Inventory.Items.Remove(item);
 
-            EventDispatcher.Dispatch(new ItemRemovedEvent(evt.ItemId, evt.Quantity));
+            Events.Dispatch(new ItemRemovedEvent(evt.ItemId, evt.Quantity));
             return newState;
         });
     }
@@ -101,14 +116,14 @@ public sealed partial class InventorySystem : GameSystem
     /// </summary>
     public ItemInstance GetItem(int itemId)
     {
-        return StateManager.GetValue(state =>
+        return State.GetValue(state =>
             state.Inventory.Items.Find(i => i.ItemId == itemId)
         );
     }
 
     public int GetItemCount(int itemId)
     {
-        return StateManager.GetValue(state =>
+        return State.GetValue(state =>
         {
             var item = state.Inventory.Items.Find(i => i.ItemId == itemId);
             return item?.Quantity ?? 0;

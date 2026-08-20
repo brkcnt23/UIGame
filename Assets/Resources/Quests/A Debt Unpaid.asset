@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5312ae0a80f7e04db307c3aabd0f151, type: 3}
+  m_Name: A Debt Unpaid
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  questId: 3012
+  questName: A Debt Unpaid
+  description: He is not a bad man, only forgetful. Remind him. Gently.
+  tier: 0
+  realm: 3
+  minPlayerLevel: 2
+  requiredTitleId: 
+  sketch: {fileID: 0}
+  paperOverride: {fileID: 0}
+  rewardGold: 0
+  rewardSilver: 100
+  rewardExperience: 34
+  targetStat: 2
+  statRewardMin: 1
+  statRewardMax: 2
+  hoursToComplete: 8
+  hoursBeforeExpiry: 24
+  difficultyClass: 9
+  requiredItems: []
+  rewardItems: []

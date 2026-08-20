@@ -76,10 +76,11 @@ public class Quest_SO_Constructor : SO_Base
 
         playerData.Quests.Remove(this);
         playerData.AddMoney(0, Silver);
-        playerData.Experience += Experience;
+
+        // Level-scaled and curve-aware; also recomputes the character level.
+        ExperienceSystem.GrantExperience(playerData, Experience);
 
         PlayerStatHandler.Instance.AddStatXP(TargetStat, Random.Range(StatRewardMin, StatRewardMax));
-        ExperienceSystem.UpdateCharacterLevel(playerData);
     }
 
     public void QuestFail(PlayerData playerData)

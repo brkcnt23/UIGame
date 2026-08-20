@@ -12,7 +12,12 @@ public class JobLogger : MonoBehaviour
     [SerializeField] private Transform contentParent;
     [SerializeField] private int maxEntries = 50;
     [SerializeField] private float entryHeight = 120f;
-    [SerializeField] private float spacing = 20f;
+
+    // Assigned in the Inspector but never read — the layout group handles
+    // spacing now. Kept as a serialized value so existing scene data is not
+    // lost, marked so the compiler stops warning about it.
+    [SerializeField, HideInInspector] private float spacing = 20f;
+    public float Spacing => spacing;
 
     private Queue<LogEntry> logEntries = new Queue<LogEntry>();
     private LogEntry logEntryPrefab;

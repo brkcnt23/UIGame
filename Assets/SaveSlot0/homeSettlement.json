@@ -26,45 +26,72 @@
                 "ShopType": 0,
                 "Items": [
                     {
-                        "ID": 4229,
+                        "ID": 7710,
                         "Name": "Blacksmith Item 1",
                         "Value": {
-                            "Gold": 2,
-                            "Silver": 69
-                        },
-                        "Category": 0,
-                        "Quantity": 2,
-                        "Modifiers": [
-                            {
-                                "Type": 0,
-                                "Value": 4
-                            },
-                            {
-                                "Type": 1,
-                                "Value": 4
-                            }
-                        ],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 5451,
-                        "Name": "Blacksmith Item 2",
-                        "Value": {
-                            "Gold": 3,
-                            "Silver": 93
+                            "Gold": 6,
+                            "Silver": 40
                         },
                         "Category": 0,
                         "Quantity": 1,
                         "Modifiers": [
                             {
                                 "Type": 0,
-                                "Value": 3
+                                "Value": 1
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 1
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 6063,
+                        "Name": "Blacksmith Item 2",
+                        "Value": {
+                            "Gold": 1,
+                            "Silver": 81
+                        },
+                        "Category": 0,
+                        "Quantity": 3,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 2
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 1
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 6052,
+                        "Name": "Blacksmith Item 3",
+                        "Value": {
+                            "Gold": 5,
+                            "Silver": 40
+                        },
+                        "Category": 0,
+                        "Quantity": 2,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 2
                             },
                             {
                                 "Type": 1,
@@ -80,11 +107,11 @@
                         "UnitWeight": 1.0
                     },
                     {
-                        "ID": 5651,
-                        "Name": "Blacksmith Item 3",
+                        "ID": 5183,
+                        "Name": "Blacksmith Item 4",
                         "Value": {
-                            "Gold": 3,
-                            "Silver": 57
+                            "Gold": 8,
+                            "Silver": 20
                         },
                         "Category": 0,
                         "Quantity": 3,
@@ -92,6 +119,33 @@
                             {
                                 "Type": 0,
                                 "Value": 1
+                            },
+                            {
+                                "Type": 1,
+                                "Value": 4
+                            }
+                        ],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 6739,
+                        "Name": "Blacksmith Item 5",
+                        "Value": {
+                            "Gold": 8,
+                            "Silver": 58
+                        },
+                        "Category": 0,
+                        "Quantity": 1,
+                        "Modifiers": [
+                            {
+                                "Type": 0,
+                                "Value": 2
                             },
                             {
                                 "Type": 1,
@@ -132,68 +186,50 @@
                 "ShopType": 5,
                 "Items": [
                     {
-                        "ID": 5283,
+                        "ID": 6680,
                         "Name": "GeneralStore Item 1",
                         "Value": {
-                            "Gold": 6,
-                            "Silver": 93
-                        },
-                        "Category": 5,
-                        "Quantity": 3,
-                        "Modifiers": [],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 5795,
-                        "Name": "GeneralStore Item 2",
-                        "Value": {
-                            "Gold": 8,
-                            "Silver": 45
-                        },
-                        "Category": 5,
-                        "Quantity": 2,
-                        "Modifiers": [],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 3195,
-                        "Name": "GeneralStore Item 3",
-                        "Value": {
-                            "Gold": 5,
-                            "Silver": 86
-                        },
-                        "Category": 5,
-                        "Quantity": 3,
-                        "Modifiers": [],
-                        "ItemImage": {
-                            "instanceID": 0
-                        },
-                        "Quality": 1,
-                        "Stackable": true,
-                        "MaxStack": 99,
-                        "UnitWeight": 1.0
-                    },
-                    {
-                        "ID": 8101,
-                        "Name": "GeneralStore Item 4",
-                        "Value": {
-                            "Gold": 5,
-                            "Silver": 26
+                            "Gold": 9,
+                            "Silver": 55
                         },
                         "Category": 5,
                         "Quantity": 4,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 3443,
+                        "Name": "GeneralStore Item 2",
+                        "Value": {
+                            "Gold": 7,
+                            "Silver": 68
+                        },
+                        "Category": 5,
+                        "Quantity": 1,
+                        "Modifiers": [],
+                        "ItemImage": {
+                            "instanceID": 0
+                        },
+                        "Quality": 1,
+                        "Stackable": true,
+                        "MaxStack": 99,
+                        "UnitWeight": 1.0
+                    },
+                    {
+                        "ID": 3676,
+                        "Name": "GeneralStore Item 3",
+                        "Value": {
+                            "Gold": 5,
+                            "Silver": 51
+                        },
+                        "Category": 5,
+                        "Quantity": 1,
                         "Modifiers": [],
                         "ItemImage": {
                             "instanceID": 0
