@@ -158,10 +158,10 @@ TextureImporter:
       name: Knight_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 1024
-        height: 1508
+        x: 53
+        y: 234
+        width: 925
+        height: 1114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Knight_1
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 1353
-        width: 99
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07df6bd5bf27c4380800000000000000
-      internalID: -8985680732576350864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 35a204e40c3266844a2dcfb6fee0cd07
     internalID: 0
     vertices: []
     indices: 

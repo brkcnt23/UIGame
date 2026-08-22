@@ -158,10 +158,10 @@ TextureImporter:
       name: ItemInfoTop_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1526
-        height: 1024
+        x: 118
+        y: 170
+        width: 1300
+        height: 583
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ItemInfoTop_1
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 622
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b00cf080bf343a30800000000000000
-      internalID: 4194047180299567286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d5f060c8b2ffe0040b6bf2091b9c312b
     internalID: 0
     vertices: []
     indices: 

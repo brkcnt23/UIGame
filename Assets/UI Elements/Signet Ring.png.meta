@@ -161,10 +161,10 @@ TextureImporter:
       name: Signet Ring_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1515
-        height: 1024
+        x: 401
+        y: 109
+        width: 807
+        height: 749
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,55 +179,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Signet Ring_1
-      rect:
-        serializedVersion: 2
-        x: 629
-        y: 67
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06650c52b1a6dfb00800000000000000
-      internalID: 863963368355026528
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Signet Ring_2
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 67
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64fdc21c87c6b9ed0800000000000000
-      internalID: -2406210310006579386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a547cc88f2a796241bc2c62a9b3f6dc1
     internalID: 0
     vertices: []
     indices: 

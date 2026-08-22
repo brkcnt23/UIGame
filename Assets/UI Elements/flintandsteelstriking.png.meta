@@ -176,10 +176,10 @@ TextureImporter:
       name: flintandsteelstriking_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 551
-        width: 31
-        height: 17
+        x: 176
+        y: 17
+        width: 1314
+        height: 995
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,165 +194,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_1
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 0
-        width: 1487
-        height: 1012
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 718244b41e7748aa0800000000000000
-      internalID: -6159666580821891049
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_2
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 523
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0caeea035c2869c20800000000000000
-      internalID: 3212899167612365504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_3
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 510
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7b0771c1f45016d0800000000000000
-      internalID: -3021821952655946883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 471
-        width: 5
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2999cd0ec038d66e0800000000000000
-      internalID: -1842672581189265006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_5
-      rect:
-        serializedVersion: 2
-        x: 54
-        y: 479
-        width: 9
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f24bb5f6fc39b8e40800000000000000
-      internalID: 5659779875856954415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_6
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 193
-        width: 7
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d3e1e173e45892060800000000000000
-      internalID: 6929216072664882749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: flintandsteelstriking_7
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 163
-        width: 12
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5b88494974f9ad310800000000000000
-      internalID: 1430630961427810485
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 931bc9ac043eefd4cba6cef7db5f9af2
     internalID: 0
     vertices: []
     indices: 

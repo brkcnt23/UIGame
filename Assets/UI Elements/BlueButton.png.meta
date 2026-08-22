@@ -155,10 +155,10 @@ TextureImporter:
       name: BlueButton_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 1024
-        height: 1510
+        x: 61
+        y: 625
+        width: 906
+        height: 345
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d72edc7261f605c468ff34847da4b34e
     internalID: 0
     vertices: []
     indices: 

@@ -164,10 +164,10 @@ TextureImporter:
       name: Amber_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 1533
-        height: 1024
+        x: 354
+        y: 201
+        width: 821
+        height: 640
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,77 +182,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Amber_1
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 735
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce79f38979ecbaef0800000000000000
-      internalID: -95755816568645652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Amber_2
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 622
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b772e2ce492378df0800000000000000
-      internalID: -178118045058848901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Amber_3
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 153
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe64d963cd1455a40800000000000000
-      internalID: 5356259745891960559
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: baa049532a50a194a9f14f5e3243c49f
     internalID: 0
     vertices: []
     indices: 

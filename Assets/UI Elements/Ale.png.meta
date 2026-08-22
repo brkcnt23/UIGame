@@ -155,12 +155,12 @@ TextureImporter:
       name: Ale_0
       rect:
         serializedVersion: 2
-        x: 127
-        y: 88
-        width: 801
-        height: 801
+        x: 95
+        y: 105
+        width: 769
+        height: 838
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bc0c3dd04a38d42408efa000f126aecc
     internalID: 0
     vertices: []
     indices: 

@@ -164,10 +164,10 @@ TextureImporter:
       name: ChatGPT Image 26 Tem 2026 20_51_11 (4)_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 218
-        height: 1024
+        x: 351
+        y: 109
+        width: 824
+        height: 823
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,77 +182,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ChatGPT Image 26 Tem 2026 20_51_11 (4)_1
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 807
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c0138e59b0130760800000000000000
-      internalID: 7422794999177351361
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ChatGPT Image 26 Tem 2026 20_51_11 (4)_2
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 0
-        width: 1234
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 92cfcc63b50a62a10800000000000000
-      internalID: 1884369807723002921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ChatGPT Image 26 Tem 2026 20_51_11 (4)_3
-      rect:
-        serializedVersion: 2
-        x: 995
-        y: 35
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2bbb4fda7823a5a60800000000000000
-      internalID: 7663493274244791218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dcdf7fcb8eeebfe4f817b32464128e64
     internalID: 0
     vertices: []
     indices: 

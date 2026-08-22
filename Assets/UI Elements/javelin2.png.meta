@@ -158,10 +158,10 @@ TextureImporter:
       name: javelin2_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1516
-        height: 1024
+        x: 350
+        y: 52
+        width: 918
+        height: 907
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: javelin2_1
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 622
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12e0df2aa99e77340800000000000000
-      internalID: 4861611173138468385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 627e3b303b0cabe428777e475b075423
     internalID: 0
     vertices: []
     indices: 

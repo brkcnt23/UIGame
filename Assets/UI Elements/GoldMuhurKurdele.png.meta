@@ -155,12 +155,12 @@ TextureImporter:
       name: GoldMuhurKurdele_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1024
-        height: 1470
+        x: 7
+        y: 378
+        width: 1012
+        height: 688
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 82f6e1d417a24ad4eba9ea0436d369f9
     internalID: 0
     vertices: []
     indices: 

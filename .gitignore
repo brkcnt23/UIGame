@@ -70,3 +70,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Runtime save data. Committing these made deleting a slot in-game show up as a
+# repo deletion, and left .meta files pointing at folders Unity kept recreating.
+/[Aa]ssets/SaveSlot*
+/[Aa]ssets/SaveSlot*.meta

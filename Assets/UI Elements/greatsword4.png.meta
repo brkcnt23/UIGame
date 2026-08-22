@@ -155,12 +155,12 @@ TextureImporter:
       name: greatsword4_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1024
-        height: 1470
+        x: 346
+        y: 85
+        width: 332
+        height: 1393
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 299cc432216cfe345931cfa436dae877
     internalID: 0
     vertices: []
     indices: 

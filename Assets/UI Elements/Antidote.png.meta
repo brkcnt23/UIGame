@@ -155,10 +155,10 @@ TextureImporter:
       name: Antidote_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1513
-        height: 1024
+        x: 522
+        y: 70
+        width: 491
+        height: 896
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a055c2a2348824c44a0d5c8584b8779f
     internalID: 0
     vertices: []
     indices: 

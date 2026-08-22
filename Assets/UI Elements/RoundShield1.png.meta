@@ -161,10 +161,10 @@ TextureImporter:
       name: RoundShield1_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 24
-        width: 1008
-        height: 899
+        x: 140
+        y: 140
+        width: 740
+        height: 775
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,55 +179,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: RoundShield1_1
-      rect:
-        serializedVersion: 2
-        x: 418
-        y: 62
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ca655ef65f143b90800000000000000
-      internalID: -7263145840547108156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RoundShield1_2
-      rect:
-        serializedVersion: 2
-        x: 467
-        y: 58
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f567ea68866c1ea0800000000000000
-      internalID: -5900728675667057167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e149fd6b7e9cdb94482b5489f4f19aba
     internalID: 0
     vertices: []
     indices: 

@@ -155,12 +155,12 @@ TextureImporter:
       name: Family Heirloom_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 57
-        width: 1000
-        height: 900
+        x: 211
+        y: 105
+        width: 642
+        height: 852
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 07c89b29f55d9504580eec8f1a895476
     internalID: 0
     vertices: []
     indices: 

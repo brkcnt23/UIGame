@@ -155,12 +155,12 @@ TextureImporter:
       name: EmptyButton_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1024
-        height: 1480
+        x: 46
+        y: 630
+        width: 930
+        height: 340
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3d41af23f0bb1564f8a46c434571edad
     internalID: 0
     vertices: []
     indices: 

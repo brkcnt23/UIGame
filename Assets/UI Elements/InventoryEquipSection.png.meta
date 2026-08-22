@@ -155,12 +155,12 @@ TextureImporter:
       name: InventoryEquipSection_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1024
-        height: 1517
+        x: 84
+        y: 225
+        width: 852
+        height: 1116
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3ec2116a09b86424d9c38342365ffe46
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +188,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       InventoryEquipSection_0: 898134880348464844
+      InventoryEquipSection_1: -1977503483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

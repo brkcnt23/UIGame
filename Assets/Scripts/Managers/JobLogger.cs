@@ -69,20 +69,20 @@ public class JobLogger : MonoBehaviour
 
     public void LogJobComplete(string jobName, int money, int xp, string statType, bool damageOccurred = false, int damageAmount = 0)
     {
-        string header = $"<color=#FFD700>★ {jobName.ToUpper()}</color>";
+        string header = $"<color=#FFD700>» {jobName.ToUpper()}</color>";
         string rewards = $"Ödül: {money} Gümüş | {xp} {statType} XP";
 
         string logText = header + "\n" + rewards;
 
         if (damageOccurred)
         {
-            logText += $"\n<color=#FF6B6B>⚠ Yaralandın! -{damageAmount} Can</color>";
+            logText += $"\n<color=#FF6B6B>! Yaralandın! -{damageAmount} Can</color>";
         }
 
         // Add exhaustion warning to same entry if needed
         if (PlayerStatHandler.Instance != null && PlayerStatHandler.Instance.pd.CurrentExhaustionLevel >= 7)
         {
-            logText += $"\n<color=#FFA500>⚡ Yorgunluk: {PlayerStatHandler.Instance.pd.CurrentExhaustionLevel}/{PlayerStatHandler.Instance.pd.MaxExhaustionLevel}</color>";
+            logText += $"\n<color=#FFA500>! Yorgunluk: {PlayerStatHandler.Instance.pd.CurrentExhaustionLevel}/{PlayerStatHandler.Instance.pd.MaxExhaustionLevel}</color>";
         }
 
         AddLogEntry(logText);
@@ -95,7 +95,7 @@ public class JobLogger : MonoBehaviour
 
     public void LogExhaustionWarning(int currentLevel, int maxLevel)
     {
-        AddLogEntry($"<color=#FFA500>⚡ Yorgunluk: {currentLevel}/{maxLevel}</color>");
+        AddLogEntry($"<color=#FFA500>! Yorgunluk: {currentLevel}/{maxLevel}</color>");
     }
 
     private void AddLogEntry(string text)

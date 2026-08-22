@@ -158,10 +158,10 @@ TextureImporter:
       name: Lockpick_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1513
-        height: 1024
+        x: 469
+        y: 210
+        width: 690
+        height: 671
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Lockpick_1
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 209
-        width: 411
-        height: 341
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4aa0e50f62786fd50800000000000000
-      internalID: 6770747691109321380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 90f4ba813af986045940425a3de027b5
     internalID: 0
     vertices: []
     indices: 

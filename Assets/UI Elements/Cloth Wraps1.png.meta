@@ -155,37 +155,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cloth Wraps1_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 1
-        width: 693
-        height: 1019
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 034d093281b38dd90800000000000000
-      internalID: -7072838239923416016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Cloth Wraps1_1
       rect:
         serializedVersion: 2
-        x: 715
-        y: 0
-        width: 790
-        height: 1022
+        x: 226
+        y: 128
+        width: 987
+        height: 734
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,7 +180,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b144f02e7f65eda47b81fbc33ba0b16c
     internalID: 0
     vertices: []
     indices: 

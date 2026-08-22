@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using NEXUS.Utilities;
 using Unity.VisualScripting;
@@ -198,7 +198,11 @@ public class SettlementHandler : MonoBehaviour
         {
             if (settlement.Tavern != null)
             {
-                for (int i = 0; i < GenerateRandomSettlementTavernQuestCount(); i++)
+                // Rolled once. Calling the roll in the loop condition re-rolled it
+                // every iteration, so the board never held the number it picked.
+                int questCount = GenerateRandomSettlementTavernQuestCount();
+
+                for (int i = 0; i < questCount; i++)
                 {
                     Quest_SO_Constructor quest = PickRandomQuestFromJSON();
 
@@ -209,7 +213,9 @@ public class SettlementHandler : MonoBehaviour
 
             if (settlement.TownHall != null)
             {
-                for (int i = 0; i < GenerateRandomSettlementJobCount(); i++)
+                int jobCount = GenerateRandomSettlementJobCount();
+
+                for (int i = 0; i < jobCount; i++)
                 {
                     Job_SO_Constructor job = PickRandomJobFromJSON();
 

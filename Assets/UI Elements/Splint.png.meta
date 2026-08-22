@@ -155,12 +155,12 @@ TextureImporter:
       name: Splint_0
       rect:
         serializedVersion: 2
-        x: 47
+        x: 111
         y: 168
-        width: 942
-        height: 633
+        width: 792
+        height: 709
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 90e941cfa928a7b44b4d7a08edf104f8
     internalID: 0
     vertices: []
     indices: 

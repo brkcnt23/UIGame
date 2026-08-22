@@ -158,10 +158,10 @@ TextureImporter:
       name: Shortbow_0
       rect:
         serializedVersion: 2
-        x: 64
+        x: 95
         y: 0
-        width: 947
-        height: 1520
+        width: 720
+        height: 1533
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Shortbow_1
-      rect:
-        serializedVersion: 2
-        x: 814
-        y: 463
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fe561abc45d1bac0800000000000000
-      internalID: -3841054481654063374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 90bb802c6f348994bbd086a6162e4ead
     internalID: 0
     vertices: []
     indices: 

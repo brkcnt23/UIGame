@@ -155,12 +155,12 @@ TextureImporter:
       name: Field Surgeon's Kit_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1515
-        height: 1024
+        x: 232
+        y: 113
+        width: 1091
+        height: 808
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1be58004f499c5d4f92e072560029649
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +188,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Field Surgeon's Kit_0: 1316804304426029833
+      Field Surgeon's Kit_1: 1933773545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

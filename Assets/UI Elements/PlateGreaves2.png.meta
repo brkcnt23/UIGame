@@ -155,37 +155,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlateGreaves2_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 0
-        width: 753
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c3b89fbecca63cc0800000000000000
-      internalID: -3731605237252181048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PlateGreaves2_1
       rect:
         serializedVersion: 2
-        x: 765
-        y: 0
-        width: 740
-        height: 1024
+        x: 485
+        y: 83
+        width: 564
+        height: 824
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,7 +180,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 440c5df81dee7da42a53ba3d283ea591
     internalID: 0
     vertices: []
     indices: 

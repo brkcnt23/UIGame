@@ -155,12 +155,12 @@ TextureImporter:
       name: mortar_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 48
-        width: 859
-        height: 971
+        x: 130
+        y: 141
+        width: 765
+        height: 761
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4c250b3451f5cd54ebc0c065a9150ca7
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +188,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       mortar_0: 4856365448992700473
+      mortar_1: 1651275978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

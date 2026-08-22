@@ -161,10 +161,10 @@ TextureImporter:
       name: halberd3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1532
+        x: 146
+        y: 148
+        width: 784
+        height: 1349
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,55 +179,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: halberd3_1
-      rect:
-        serializedVersion: 2
-        x: 925
-        y: 1271
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c5fe8435c0fe2530800000000000000
-      internalID: 3832265062719878599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: halberd3_2
-      rect:
-        serializedVersion: 2
-        x: 188
-        y: 130
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70b8f5665aa0ed5f0800000000000000
-      internalID: -730134384084022521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e9fc9305e50e3764c9dc7c253c7dbc9d
     internalID: 0
     vertices: []
     indices: 

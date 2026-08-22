@@ -155,12 +155,12 @@ TextureImporter:
       name: FlintNSteel_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1494
-        height: 1024
+        x: 367
+        y: 247
+        width: 744
+        height: 583
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a412a72cadf6ebf43ac9537bb69813bd
     internalID: 0
     vertices: []
     indices: 

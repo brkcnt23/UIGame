@@ -158,10 +158,10 @@ TextureImporter:
       name: mapicon6_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 0
-        width: 1511
-        height: 1024
+        x: 348
+        y: 76
+        width: 922
+        height: 905
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: mapicon6_1
-      rect:
-        serializedVersion: 2
-        x: 340
-        y: 168
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80b3646f9e48f7590800000000000000
-      internalID: -7674269099621991672
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0a808a626b690954d8cd218853262c4d
     internalID: 0
     vertices: []
     indices: 

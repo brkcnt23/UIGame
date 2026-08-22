@@ -155,12 +155,12 @@ TextureImporter:
       name: greatHelm1_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1494
-        height: 1024
+        x: 458
+        y: 101
+        width: 618
+        height: 853
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2a4d3cbd592a07144a1dcbc3c708fe53
     internalID: 0
     vertices: []
     indices: 

@@ -155,37 +155,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gauntlets2_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 0
-        width: 227
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 999b4290e228b8a60800000000000000
-      internalID: 7677373124016650649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Gauntlets2_1
       rect:
         serializedVersion: 2
         x: 254
-        y: 0
-        width: 1272
-        height: 1024
+        y: 117
+        width: 992
+        height: 838
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,7 +180,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 944c62bc31a462d48bbfec2a1f644a96
     internalID: 0
     vertices: []
     indices: 

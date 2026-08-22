@@ -170,10 +170,10 @@ TextureImporter:
       name: battleaxe2_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 219
-        height: 1024
+        x: 372
+        y: 138
+        width: 750
+        height: 786
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,94 +189,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battleaxe2_1
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 0
-        width: 1280
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0db8a018def8f3610800000000000000
-      internalID: 1603158242602159056
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: battleaxe2_2
-      rect:
-        serializedVersion: 2
-        x: 1015
-        y: 960
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f9f85579ff138980800000000000000
-      internalID: -8537945312288245261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: battleaxe2_3
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 622
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0b29d57eddd09d30800000000000000
-      internalID: 4436289580489583371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: battleaxe2_4
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 326
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18e4aa433bed62bc0800000000000000
-      internalID: -3808111573631086975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: battleaxe2_5
       rect:
         serializedVersion: 2
@@ -285,7 +197,7 @@ TextureImporter:
         width: 6
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,7 +214,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8f57e5e2abd5e75468559d5c80c52fec
     internalID: 0
     vertices: []
     indices: 

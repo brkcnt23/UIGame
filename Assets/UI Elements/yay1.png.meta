@@ -158,12 +158,12 @@ TextureImporter:
       name: yay1_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 1516
-        height: 1024
+        x: 493
+        y: 97
+        width: 632
+        height: 860
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: yay1_1
-      rect:
-        serializedVersion: 2
-        x: 510
-        y: 88
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b1270971e04a4a6c0800000000000000
-      internalID: -4132998177587432933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cf4c4144fbee40c4db37ffe6d36965a0
     internalID: 0
     vertices: []
     indices: 
