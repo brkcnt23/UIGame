@@ -1,0 +1,176 @@
+{
+  "screen": "CharacterCreationPanel",
+  "startsHidden": true,
+  "component": "CharacterCreationPanel",
+
+  "background": {
+    "sprite": "Backgrounds/STARTING BG.png",
+    "fit": "cover"
+  },
+
+  "groups": [
+    {
+      "name": "QuestionRoot",
+      "startsHidden": false,
+      "elements": [
+        {
+          "type": "label",
+          "name": "ProgressLabel",
+          "font": "head",
+          "size": 32,
+          "color": "gold",
+          "align": "center",
+          "rect": { "top": 0.036, "height": 0.026, "left": 0.10, "right": 0.10 }
+        },
+        {
+          "type": "image",
+          "name": "PromptStrip",
+          "tint": "#140D06BF",
+          "rect": { "top": 0.075, "height": 0.135, "left": 0.045, "right": 0.045 }
+        },
+        {
+          "type": "label",
+          "name": "PromptLabel",
+          "font": "head",
+          "size": 46,
+          "color": "cream",
+          "align": "center",
+          "rect": { "top": 0.085, "height": 0.115, "left": 0.085, "right": 0.085 }
+        },
+        {
+          "type": "scroll",
+          "name": "AnswerScroll",
+          "spacing": 18,
+          "padding": { "left": 0, "right": 0, "top": 0, "bottom": 24 },
+          "templateSprite": "NEE/AmptyLongButton2.png",
+          "templateComponent": "CreationAnswerView",
+          "templateMinHeight": 0.055,
+          "templatePadding": { "left": 40, "right": 40, "top": 22, "bottom": 22 },
+          "template": [
+            {
+              "type": "label",
+              "name": "Title",
+              "role": "title",
+              "font": "head",
+              "size": 34,
+              "color": "ink",
+              "align": "left"
+            },
+            {
+              "type": "label",
+              "name": "Subtext",
+              "role": "subtext",
+              "font": "body",
+              "size": 26,
+              "color": "ink-soft",
+              "align": "topleft",
+              "italic": true
+            }
+          ],
+          "rect": { "top": 0.235, "bottom": 0.13, "left": 0.05, "right": 0.05 }
+        },
+        {
+          "type": "button",
+          "name": "BackButton",
+          "sprite": "Buttons/R BUTTON.png",
+          "fit": "fit",
+          "rect": { "bottom": 0.035, "height": 0.048, "width": 0.15, "anchor": "left", "left": 0.05 }
+        }
+      ]
+    },
+
+    {
+      "name": "SummaryRoot",
+      "startsHidden": true,
+      "elements": [
+        {
+          "type": "image",
+          "name": "SummaryStrip",
+          "tint": "#140D06D9",
+          "rect": { "top": 0.085, "bottom": 0.145, "left": 0.045, "right": 0.045 }
+        },
+        {
+          "type": "label",
+          "name": "SummaryHeading",
+          "text": "This is who you are",
+          "font": "head",
+          "size": 32,
+          "color": "gold",
+          "align": "center",
+          "rect": { "top": 0.115, "height": 0.028, "left": 0.10, "right": 0.10 }
+        },
+        {
+          "type": "label",
+          "name": "SummaryName",
+          "font": "head",
+          "size": 52,
+          "color": "cream",
+          "align": "center",
+          "rect": { "top": 0.155, "height": 0.07, "left": 0.08, "right": 0.08 }
+        },
+        {
+          "type": "label",
+          "name": "SummaryStats",
+          "font": "head",
+          "size": 34,
+          "color": "gold",
+          "align": "center",
+          "rect": { "top": 0.245, "height": 0.032, "left": 0.06, "right": 0.06 }
+        },
+        {
+          "type": "label",
+          "name": "SummaryProfile",
+          "font": "body",
+          "size": 30,
+          "color": "cream",
+          "align": "top",
+          "italic": true,
+          "rect": { "top": 0.295, "height": 0.06, "left": 0.10, "right": 0.10 }
+        },
+        {
+          "type": "label",
+          "name": "TraitsHeading",
+          "text": "Traits",
+          "font": "head",
+          "size": 30,
+          "color": "gold",
+          "align": "center",
+          "rect": { "top": 0.385, "height": 0.026, "left": 0.10, "right": 0.10 }
+        },
+        {
+          "type": "label",
+          "name": "SummaryTraits",
+          "font": "body",
+          "size": 30,
+          "color": "cream",
+          "align": "top",
+          "rect": { "top": 0.425, "height": 0.30, "left": 0.10, "right": 0.10 }
+        },
+        {
+          "type": "button",
+          "name": "ContinueButton",
+          "sprite": "NEE/OkButton.png",
+          "fit": "fit",
+          "rect": { "bottom": 0.045, "height": 0.062, "width": 0.36, "anchor": "center" }
+        }
+      ]
+    },
+
+    {
+      "name": "DevRoot",
+      "startsHidden": false,
+      "elements": [
+        {
+          "type": "button",
+          "name": "SkipButton",
+          "label": "Skip",
+          "font": "head",
+          "size": 26,
+          "color": "cream",
+          "tint": "#8C7350A6",
+          "rect": { "top": 0.028, "height": 0.026, "width": 0.16, "anchor": "right", "right": 0.035 }
+        }
+      ]
+    }
+  ]
+}

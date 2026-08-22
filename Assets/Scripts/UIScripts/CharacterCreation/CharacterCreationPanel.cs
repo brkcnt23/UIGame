@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -49,6 +49,8 @@ public class CharacterCreationPanel : MonoBehaviour
 
     private void OnEnable()
     {
+        ResolveMissingReferences();
+
         var system = CharacterCreationSystem.Instance;
 
         if (system == null)
@@ -328,25 +330,58 @@ public class CharacterCreationPanel : MonoBehaviour
     // Builder support
     // -----------------------------------------------------------------
 
-    /// <summary>Called by the editor builder so nothing has to be dragged in by hand.</summary>
-    public void Wire(GameObject questionRootObj, TMP_Text progress, TMP_Text prompt,
-                     RectTransform container, CreationAnswerView template, ScrollRect scroll,
-                     Button back, GameObject summaryRootObj, TMP_Text name, TMP_Text stats,
-                     TMP_Text profile, TMP_Text traits, Button carryOn, Button skip)
+    /// <summary>
+    /// Fills in whatever was left unassigned by looking the objects up by name.
+    ///
+    /// This is what lets a generic screen builder produce this panel: the
+    /// builder does not have to know which label is the prompt, it only has to
+    /// name it "PromptLabel". Anything dragged in by hand wins, so the lookup
+    /// never overrides a deliberate choice.
+    /// </summary>
+    private void ResolveMissingReferences()
     {
-        questionRoot = questionRootObj;
-        progressLabel = progress;
-        promptLabel = prompt;
-        answerContainer = container;
-        answerTemplate = template;
-        answerScroll = scroll;
-        backButton = back;
-        summaryRoot = summaryRootObj;
-        summaryNameLabel = name;
-        summaryStatsLabel = stats;
-        summaryProfileLabel = profile;
-        summaryTraitsLabel = traits;
-        continueButton = carryOn;
-        skipButton = skip;
+        if (questionRoot == null) questionRoot = FindChild("QuestionRoot")?.gameObject;
+        if (summaryRoot == null) summaryRoot = FindChild("SummaryRoot")?.gameObject;
+
+        if (progressLabel == null) progressLabel = FindText("ProgressLabel");
+        if (promptLabel == null) promptLabel = FindText("PromptLabel");
+        if (summaryNameLabel == null) summaryNameLabel = FindText("SummaryName");
+        if (summaryStatsLabel == null) summaryStatsLabel = FindText("SummaryStats");
+        if (summaryProfileLabel == null) summaryProfileLabel = FindText("SummaryProfile");
+        if (summaryTraitsLabel == null) summaryTraitsLabel = FindText("SummaryTraits");
+
+        if (backButton == null) backButton = FindButton("BackButton");
+        if (continueButton == null) continueButton = FindButton("ContinueButton");
+        if (skipButton == null) skipButton = FindButton("SkipButton");
+
+        if (answerScroll == null)
+            answerScroll = GetComponentInChildren<ScrollRect>(true);
+
+        if (answerTemplate == null)
+            answerTemplate = GetComponentInChildren<CreationAnswerView>(true);
+
+        if (answerContainer == null && answerScroll != null)
+            answerContainer = answerScroll.content;
+    }
+
+    private Transform FindChild(string childName)
+    {
+        foreach (var t in GetComponentsInChildren<Transform>(true))
+            if (t != transform && t.name == childName)
+                return t;
+
+        return null;
+    }
+
+    private TMP_Text FindText(string childName)
+    {
+        var found = FindChild(childName);
+        return found != null ? found.GetComponent<TMP_Text>() : null;
+    }
+
+    private Button FindButton(string childName)
+    {
+        var found = FindChild(childName);
+        return found != null ? found.GetComponent<Button>() : null;
     }
 }
