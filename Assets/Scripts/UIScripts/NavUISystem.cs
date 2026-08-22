@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
@@ -15,12 +15,21 @@ public class NavUISystem : MonoBehaviour
     public GameObject shopPanel;
     public GameObject battlePanel;
 
+    [Tooltip("The inventory screen. Without this the only way to open the bag " +
+             "is to enable the object by hand, which is not a game loop.")]
+    public GameObject inventoryPanel;
+
     public Button ProfileButton;
     [FormerlySerializedAs("JobsButton")]
     public Button ActivitiesButton;
     public Button TownButton;
     public Button ShopButton;
     public Button BattleButton;
+    public Button InventoryButton;
+
+    [Tooltip("Optional. Refreshed when the bag is opened so it never shows a " +
+             "stale list.")]
+    public InventoryUI inventoryUI;
 
     [Header("Profile UI Elements")]
     public TMP_Text levelText;
@@ -75,6 +84,12 @@ public class NavUISystem : MonoBehaviour
             BattleButton.onClick.RemoveAllListeners();
             BattleButton.onClick.AddListener(OnBattleButtonClick);
         }
+
+        if (InventoryButton != null)
+        {
+            InventoryButton.onClick.RemoveAllListeners();
+            InventoryButton.onClick.AddListener(OnInventoryButtonClick);
+        }
     }
 
     public void OnProfileButtonClick()
@@ -106,6 +121,25 @@ public class NavUISystem : MonoBehaviour
     public void OnBattleButtonClick()
     {
         OpenUpPanel(battlePanel);
+    }
+
+    /// <summary>
+    /// Opens the bag through the same path as every other nav panel, rather than
+    /// InventoryUI.ToggleInventory — a toggle and OpenUpPanel both drive
+    /// SetActive and end up fighting each other over which panel is showing.
+    /// </summary>
+    public void OnInventoryButtonClick()
+    {
+        if (inventoryPanel == null)
+        {
+            Debug.LogWarning("NavUISystem: no inventory panel assigned.");
+            return;
+        }
+
+        OpenUpPanel(inventoryPanel);
+
+        if (inventoryUI != null)
+            inventoryUI.UpdateInventoryUI();
     }
 
     private void UpdateProfileData()
@@ -175,5 +209,6 @@ public class NavUISystem : MonoBehaviour
         if (townPanel != null) townPanel.SetActive(false);
         if (shopPanel != null) shopPanel.SetActive(false);
         if (battlePanel != null) battlePanel.SetActive(false);
+        if (inventoryPanel != null) inventoryPanel.SetActive(false);
     }
 }
