@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_recovering
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_recovering
+  displayName: Recovering
+  icon: {fileID: 7540881366764040286, guid: c55164599341f3d4aa9e6459679e0650, type: 3}
+  kind: 3
+  tone: 1
+  description: Past the worst of it. Still not what you were.
+  effects:
+  - Type: 10
+    Value: 3
+    isPercent: 0
+    displayOverride: 
+  - Type: 4
+    Value: -1
+    isPercent: 0
+    displayOverride: 
+  durationHours: 24
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_diseased
+  - cond_feverish
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

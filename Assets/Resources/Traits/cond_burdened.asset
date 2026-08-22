@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_burdened
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_burdened
+  displayName: Burdened
+  icon: {fileID: 4086486451236521022, guid: e582edc84794dbc4d9bd1b100f0ee110, type: 3}
+  kind: 3
+  tone: 2
+  description: The pack has started to argue with you on hills.
+  effects:
+  - Type: 20
+    Value: 15
+    isPercent: 1
+    displayOverride: 
+  - Type: 11
+    Value: 15
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_overburdened
+  - cond_overloaded
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

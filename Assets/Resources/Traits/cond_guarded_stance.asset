@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_guarded_stance
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_guarded_stance
+  displayName: Guarded Stance
+  icon: {fileID: -1183509941340386137, guid: 2f715c16a4052c34fab4a32b110367ab, type: 3}
+  kind: 3
+  tone: 1
+  description: Weight back, blade high. You are giving up reach for time.
+  effects:
+  - Type: 5
+    Value: 3
+    isPercent: 0
+    displayOverride: 
+  - Type: 4
+    Value: -1
+    isPercent: 0
+    displayOverride: 
+  durationHours: 3
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_broken_guard
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

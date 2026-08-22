@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_common_folk_ease
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_common_folk_ease
+  displayName: Common Folk Ease
+  icon: {fileID: -5625591361801132783, guid: fb2b60eaee04cc74ca9ce470a8fdb163, type: 3}
+  kind: 1
+  tone: 1
+  description: Farmers and porters talk to you like one of their own, because you
+    are.
+  effects:
+  - Type: 24
+    Value: 2
+    isPercent: 0
+    displayOverride: 
+  - Type: 18
+    Value: 5
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - commoner_friendly

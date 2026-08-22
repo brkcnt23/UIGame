@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: origin_chapel
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: origin_chapel
+  displayName: Chapel Raised
+  icon: {fileID: -3479386807968295711, guid: d30be4b57a463044ea7ea4e81dea433b, type: 3}
+  kind: 0
+  tone: 0
+  description: You were taught letters and mercy in the same room. People trust a
+    voice that sounds like the one that comforted them.
+  effects:
+  - Type: 3
+    Value: 1
+    isPercent: 0
+    displayOverride: 
+  - Type: 24
+    Value: 1
+    isPercent: 0
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - chapel_raised
+  - literate

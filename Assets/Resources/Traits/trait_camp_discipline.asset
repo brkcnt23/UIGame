@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_camp_discipline
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_camp_discipline
+  displayName: Camp Discipline
+  icon: {fileID: 1767110207855500639, guid: d53192db50a527c46823c865881723e4, type: 3}
+  kind: 1
+  tone: 1
+  description: Your kit is packed the same way every night. You find things in the
+    dark.
+  effects:
+  - Type: 20
+    Value: -8
+    isPercent: 1
+    displayOverride: 
+  - Type: 12
+    Value: -5
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - disciplined

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_lucky
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_lucky
+  displayName: Lucky
+  icon: {fileID: -3155732317472865195, guid: 4a70aead8eb85354aa7a7f444a7dcca0, type: 3}
+  kind: 3
+  tone: 1
+  description: Things keep landing your way. You know better than to say so out loud.
+  effects:
+  - Type: 23
+    Value: 2
+    isPercent: 0
+    displayOverride: 
+  - Type: 7
+    Value: 3
+    isPercent: 1
+    displayOverride: 
+  durationHours: 10
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_unlucky
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

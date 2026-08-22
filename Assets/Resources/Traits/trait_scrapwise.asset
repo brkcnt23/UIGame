@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_scrapwise
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_scrapwise
+  displayName: Scrapwise
+  icon: {fileID: -746431511697186766, guid: 712f7911c9fe1154eb787f1c830887df, type: 3}
+  kind: 1
+  tone: 1
+  description: You have learned what can still be used after everyone else has called
+    it rubbish.
+  effects:
+  - Type: 16
+    Value: -10
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - resourceful

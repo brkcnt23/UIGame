@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: origin_forge
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: origin_forge
+  displayName: Forge Raised
+  icon: {fileID: -159259647203060507, guid: 713dfca10383fb444b0cf323d13131dd, type: 3}
+  kind: 0
+  tone: 0
+  description: You grew up in the heat and the hammering. Metal makes sense to your
+    hands before it makes sense to your head.
+  effects:
+  - Type: 14
+    Value: 8
+    isPercent: 1
+    displayOverride: 
+  - Type: 0
+    Value: 1
+    isPercent: 0
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - forge_raised
+  - smith_apprentice

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_fresh_meal
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_fresh_meal
+  displayName: Fresh Meal
+  icon: {fileID: 3628969893145939426, guid: a4e36df1e6cce5049a7e3aaf893d5f63, type: 3}
+  kind: 3
+  tone: 1
+  description: Hot food, properly cooked. A small thing that changes the whole day.
+  effects:
+  - Type: 10
+    Value: 3
+    isPercent: 0
+    displayOverride: 
+  durationHours: 6
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_rotten_meal
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

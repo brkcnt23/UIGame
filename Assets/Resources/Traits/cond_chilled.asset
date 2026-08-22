@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_chilled
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_chilled
+  displayName: Chilled
+  icon: {fileID: 3833408043446033265, guid: 608d3bb356ded5f428f9a0ac6f3c1188, type: 3}
+  kind: 3
+  tone: 2
+  description: The cold has got past your clothes and settled.
+  effects:
+  - Type: 1
+    Value: -1
+    isPercent: 0
+    displayOverride: 
+  - Type: 11
+    Value: 10
+    isPercent: 1
+    displayOverride: 
+  durationHours: 6
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_warmed
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

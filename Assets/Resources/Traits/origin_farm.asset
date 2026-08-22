@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: origin_farm
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: origin_farm
+  displayName: Farm Raised
+  icon: {fileID: 3018779623539239272, guid: 14b327e769fccda4e8b71b59e40989a8, type: 3}
+  kind: 0
+  tone: 0
+  description: You know what a field asks of a body. Long days do not frighten you,
+    and you can tell good grain from bad by the smell.
+  effects:
+  - Type: 2
+    Value: 1
+    isPercent: 0
+    displayOverride: 
+  - Type: 11
+    Value: -10
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - farm_raised
+  - commoner

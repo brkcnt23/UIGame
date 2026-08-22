@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_overloaded
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_overloaded
+  displayName: Overloaded
+  icon: {fileID: 4086486451236521022, guid: e582edc84794dbc4d9bd1b100f0ee110, type: 3}
+  kind: 3
+  tone: 2
+  description: You cannot walk with this. Something has to be left behind.
+  effects:
+  - Type: 20
+    Value: 100
+    isPercent: 1
+    displayOverride: 
+  - Type: 11
+    Value: 80
+    isPercent: 1
+    displayOverride: 
+  - Type: 5
+    Value: -3
+    isPercent: 0
+    displayOverride: 
+  - Type: 6
+    Value: -2
+    isPercent: 0
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_burdened
+  - cond_overburdened
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

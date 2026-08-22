@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_hunger_hardened
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_hunger_hardened
+  displayName: Hunger Hardened
+  icon: {fileID: -7116149695999701821, guid: baa9b557fff1ffe40a88bb646881ad6c, type: 3}
+  kind: 1
+  tone: 0
+  description: You have gone without before. Your body has stopped panicking about
+    it.
+  effects:
+  - Type: 12
+    Value: -12
+    isPercent: 1
+    displayOverride: 
+  - Type: 9
+    Value: -5
+    isPercent: 0
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - hardened

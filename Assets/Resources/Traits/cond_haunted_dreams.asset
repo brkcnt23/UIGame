@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_haunted_dreams
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_haunted_dreams
+  displayName: Haunted Dreams
+  icon: {fileID: 7487789435487847977, guid: 0e7c22ece98316148a6b34efeb931ab0, type: 3}
+  kind: 3
+  tone: 2
+  description: Sleep is no longer rest. You wake more tired than you lay down.
+  effects:
+  - Type: 11
+    Value: 20
+    isPercent: 1
+    displayOverride: 
+  durationHours: 48
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_well_rested
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

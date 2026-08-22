@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_adrenaline
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_adrenaline
+  displayName: Adrenaline Rush
+  icon: {fileID: 4185244076538334477, guid: 3347a6601fdf3624dbb9c29c7bf138ea, type: 3}
+  kind: 3
+  tone: 1
+  description: Your heart is going and you cannot feel the cut yet. You will later.
+  effects:
+  - Type: 4
+    Value: 2
+    isPercent: 0
+    displayOverride: 
+  - Type: 8
+    Value: -10
+    isPercent: 1
+    displayOverride: 
+  durationHours: 2
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

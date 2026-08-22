@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_calm_mind
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_calm_mind
+  displayName: Calm Mind
+  icon: {fileID: 3262713765909473910, guid: ec3f1cfdb44cf964ebf9f92d5e077cc3, type: 3}
+  kind: 1
+  tone: 1
+  description: Things go wrong and your hands stay steady. People notice, and it
+    steadies them too.
+  effects:
+  - Type: 23
+    Value: 2
+    isPercent: 0
+    displayOverride: 
+  - Type: 14
+    Value: 5
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_shaken
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_cold_pragmatist
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_cold_pragmatist
+  displayName: Cold Pragmatist
+  icon: {fileID: -4378930554653802847, guid: f8207e2ef6e0a33409beab6fcd508a32, type: 3}
+  kind: 1
+  tone: 0
+  description: You count the cost before you count the feeling. It has kept you alive;
+    it has also cost you friends.
+  effects:
+  - Type: 21
+    Value: -8
+    isPercent: 1
+    displayOverride: 
+  - Type: 24
+    Value: -1
+    isPercent: 0
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - pragmatic
+  - cold

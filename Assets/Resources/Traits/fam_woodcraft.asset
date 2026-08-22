@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: fam_woodcraft
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: fam_woodcraft
+  displayName: Woodcraft Familiar
+  icon: {fileID: -4832755701718785604, guid: 08d8f745e1bc2a24a8b31d8199532f8e, type: 3}
+  kind: 2
+  tone: 1
+  description: You have shaped enough timber to know where it will split before it
+    does.
+  effects:
+  - Type: 16
+    Value: -8
+    isPercent: 1
+    displayOverride: 
+  - Type: 19
+    Value: -6
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - woodcraft_familiar

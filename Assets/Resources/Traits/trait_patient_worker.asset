@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: trait_patient_worker
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: trait_patient_worker
+  displayName: Patient Worker
+  icon: {fileID: -5917966852202821164, guid: 3b4346d2a84dc8942bdbff4415030b46, type: 3}
+  kind: 1
+  tone: 1
+  description: You would rather do it once, properly, than twice in a hurry.
+  effects:
+  - Type: 14
+    Value: 10
+    isPercent: 1
+    displayOverride: 
+  - Type: 15
+    Value: -5
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - patient

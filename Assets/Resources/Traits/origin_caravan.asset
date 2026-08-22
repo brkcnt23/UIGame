@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: origin_caravan
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: origin_caravan
+  displayName: Caravan Raised
+  icon: {fileID: -1475666147351543647, guid: b07cb43b457e5594fb1aa069d9623a0a, type: 3}
+  kind: 0
+  tone: 0
+  description: You were carried between towns before you could walk between them.
+    Roads feel like home and strangers do not worry you.
+  effects:
+  - Type: 20
+    Value: -10
+    isPercent: 1
+    displayOverride: 
+  - Type: 21
+    Value: -5
+    isPercent: 1
+    displayOverride: 
+  durationHours: 0
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags:
+  - caravan_raised
+  - traveler

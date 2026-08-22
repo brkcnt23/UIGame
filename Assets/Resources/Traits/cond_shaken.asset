@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_shaken
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_shaken
+  displayName: Shaken
+  icon: {fileID: 7490642991446674660, guid: 92c627485d45385479d0c5e3369d80e4, type: 3}
+  kind: 3
+  tone: 2
+  description: Your hands have not settled since it happened.
+  effects:
+  - Type: 6
+    Value: -2
+    isPercent: 0
+    displayOverride: 
+  - Type: 14
+    Value: -8
+    isPercent: 1
+    displayOverride: 
+  durationHours: 8
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds:
+  - cond_calm
+  - cond_iron_will
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []

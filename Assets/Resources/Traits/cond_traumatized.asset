@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353b246ea304fa447b22ebb9ddfde942, type: 3}
+  m_Name: cond_traumatized
+  m_EditorClassIdentifier: Assembly-CSharp::TraitSO
+  traitId: cond_traumatized
+  displayName: Traumatized
+  icon: {fileID: -918758610399386907, guid: 51341b8c4c0ff8a49a6bec1809fe6056, type: 3}
+  kind: 3
+  tone: 2
+  description: It comes back at the wrong times and takes your attention with it.
+  effects:
+  - Type: 23
+    Value: -1
+    isPercent: 0
+    displayOverride: 
+  - Type: 11
+    Value: 10
+    isPercent: 1
+    displayOverride: 
+  durationHours: 120
+  refreshOnReapply: 1
+  stackable: 0
+  maxStacks: 1
+  removesTraitIds: []
+  blockedByTraitIds: []
+  unlocksCompanionIds: []
+  blocksCompanionIds: []
+  grantsTags: []
