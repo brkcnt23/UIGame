@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     public GameObject InputPanel;
     public GameObject saveSlotsPanel;
     public GameObject homeSettlementPanel;
+
+    [Tooltip("Optional. The creation questions. Without one a new game starts " +
+             "straight away, exactly as it did before.")]
+    public GameObject characterCreationPanel;
 
     public List<PlayerData> playerData = new List<PlayerData>();
 
@@ -274,6 +278,7 @@ public class GameManager : MonoBehaviour
         if (InputPanel != null) InputPanel.SetActive(false);
         if (saveSlotsPanel != null) saveSlotsPanel.SetActive(false);
         if (homeSettlementPanel != null) homeSettlementPanel.SetActive(false);
+        if (characterCreationPanel != null) characterCreationPanel.SetActive(false);
         if (navPanel != null) navPanel.SetActive(false);
         if (infoPanel != null) infoPanel.SetActive(false);
     }
@@ -365,6 +370,31 @@ public class GameManager : MonoBehaviour
             // the player back on the slot list with no explanation.
             return;
         }
+
+        // The character exists but has not been shaped yet. Creation edits the
+        // PlayerData in place and calls FinishNewGame when the player is done,
+        // so the save is written once, after the answers, not before them.
+        if (characterCreationPanel != null)
+        {
+            DisableAllPanels();
+            characterCreationPanel.SetActive(true);
+            return;
+        }
+
+        FinishNewGame();
+    }
+
+    /// <summary>
+    /// Writes the finished character and enters the world.
+    ///
+    /// Separate from StartNewGame because character creation sits between the
+    /// two: the save has to be written after the answers have moved the stats
+    /// and granted the traits, otherwise the first load undoes all of it.
+    /// </summary>
+    public void FinishNewGame()
+    {
+        if (PlayerStatHandler.Instance != null)
+            PlayerStatHandler.Instance.SavePlayerData();
 
         LoadPlayerData();
         LoadGame(PlayerPrefs.GetInt("Slot"));
