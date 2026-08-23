@@ -1,0 +1,34 @@
+{
+  "recipes": [
+    {
+      "target": "InputPanel",
+      "component": "NewGameSetupUI",
+      "keepExisting": false,
+
+      "fields": [
+        { "field": "playerNameInput",  "obj": "PlayerNameInput" },
+        { "field": "villageNameInput", "obj": "VillageNameInput" },
+        { "field": "startButton",      "obj": "NewGameButton" }
+      ],
+
+      "arrays": [
+        {
+          "field": "titleLines",
+          "objects": [
+            "PlayerNameGenVillage",
+            "PlayerNameGenCastle",
+            "PlayerNameGenCity"
+          ]
+        },
+        {
+          "field": "seatLines",
+          "objects": [
+            "VillageNameGen",
+            "CastleNameGen",
+            "CityNameGen"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -24,8 +24,9 @@ public class NewGameSetupUI : MonoBehaviour
     [Tooltip("Up to three labels. They fill with the village, town and city ranks.")]
     public TMP_Text[] titleLines;
 
-    [Tooltip("Optional. Says which settlement each rank above is the seat of.")]
-    public TMP_Text[] tierLines;
+    [Tooltip("Optional. The settlement's name at each of the three tiers - " +
+             "VillageNameGen, CastleNameGen, CityNameGen.")]
+    public TMP_Text[] seatLines;
 
     [Header("Buttons")]
     public Button startButton;
@@ -104,9 +105,26 @@ public class NewGameSetupUI : MonoBehaviour
 
             SetLine(titleLines, i, rung == null ? "" : rung.Styled(playerName, villageName));
 
-            SetLine(tierLines, i, rung == null
-                ? ""
-                : "seat of a " + rung.maxSettlementTier.ToString().ToLowerInvariant());
+            SetLine(seatLines, i, SeatName(villageName, i));
+        }
+    }
+
+    /// <summary>
+    /// The same settlement, three sizes up. The player's name gains a rank on
+    /// the left; the place they came from gains stature on the right.
+    /// </summary>
+    private static string SeatName(string villageName, int tier)
+    {
+        if (string.IsNullOrWhiteSpace(villageName))
+            return "";
+
+        string place = villageName.Trim();
+
+        switch (tier)
+        {
+            case 0:  return "the village of " + place;
+            case 1:  return place + " Castle";
+            default: return "the city of " + place;
         }
     }
 
