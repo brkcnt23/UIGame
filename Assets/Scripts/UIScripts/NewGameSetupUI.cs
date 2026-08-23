@@ -3,9 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Drives the "new game" input screen: it previews what the player is about to
-/// start with and only lets them press start once both names are filled in.
-/// Every reference is optional, so the screen keeps working while it is being built.
+/// The naming screen.
+///
+/// Typing a name is the least interesting thing a player does, so the screen
+/// answers it with the three ranks that name could carry: seat of a village,
+/// then of a town, then of a city. The names go straight into the titles as they
+/// are typed, which is what turns "enter a name" into "choose what you will be
+/// called".
+///
+/// The ranks are the real ones from TitleLadder, not decoration — Bailiff, Baron
+/// and Duke are the milestones the player actually climbs to.
 /// </summary>
 public class NewGameSetupUI : MonoBehaviour
 {
@@ -13,11 +20,12 @@ public class NewGameSetupUI : MonoBehaviour
     public TMP_InputField playerNameInput;
     public TMP_InputField villageNameInput;
 
-    [Header("Character Preview (top 3 labels)")]
-    public TMP_Text[] characterLines;
+    [Header("Title Preview")]
+    [Tooltip("Up to three labels. They fill with the village, town and city ranks.")]
+    public TMP_Text[] titleLines;
 
-    [Header("Village Preview (bottom 3 labels)")]
-    public TMP_Text[] villageLines;
+    [Tooltip("Optional. Says which settlement each rank above is the seat of.")]
+    public TMP_Text[] tierLines;
 
     [Header("Buttons")]
     public Button startButton;
@@ -27,6 +35,12 @@ public class NewGameSetupUI : MonoBehaviour
     public TMP_Text warningText;
 
     private const string MissingNameWarning = "Enter a name for your character and your village.";
+
+    /// <summary>
+    /// Reeve is left out. It is the seat of a hamlet, which is smaller than the
+    /// village the player already starts with, so it reads as a demotion.
+    /// </summary>
+    private static readonly string[] PreviewTitleIds = { "bailiff", "baron", "duke" };
 
     private void OnEnable()
     {
@@ -57,10 +71,7 @@ public class NewGameSetupUI : MonoBehaviour
             backButton.onClick.RemoveListener(GoBack);
     }
 
-    private void OnInputChanged(string _)
-    {
-        Refresh();
-    }
+    private void OnInputChanged(string _) => Refresh();
 
     public void Refresh()
     {
@@ -75,32 +86,21 @@ public class NewGameSetupUI : MonoBehaviour
         if (warningText != null)
             warningText.text = ready ? "" : MissingNameWarning;
 
-        UpdateCharacterPreview(playerName);
-        UpdateVillagePreview(villageName);
+        UpdateTitles(playerName, villageName);
     }
 
-    private void UpdateCharacterPreview(string playerName)
+    private void UpdateTitles(string playerName, string villageName)
     {
-        string displayName = playerName.Length > 0 ? playerName : "Nameless wanderer";
+        for (int i = 0; i < PreviewTitleIds.Length; i++)
+        {
+            var rung = TitleLadder.ById(PreviewTitleIds[i]);
 
-        SetLine(characterLines, 0, $"{displayName}  ·  Level {NewGameDefaults.Level}");
-        SetLine(characterLines, 1,
-            $"STR {NewGameDefaults.StatValue}   DEX {NewGameDefaults.StatValue}   " +
-            $"CON {NewGameDefaults.StatValue}   CHA {NewGameDefaults.StatValue}");
-        SetLine(characterLines, 2,
-            $"Health {NewGameDefaults.Health}  ·  Rations {NewGameDefaults.Rations}  ·  " +
-            $"Purse {NewGameDefaults.Gold}g {NewGameDefaults.Silver}s");
-    }
+            SetLine(titleLines, i, rung == null ? "" : rung.Styled(playerName, villageName));
 
-    private void UpdateVillagePreview(string villageName)
-    {
-        string displayName = villageName.Length > 0 ? villageName : "Your village";
-
-        SetLine(villageLines, 0, $"{displayName}  ·  Village (Quality {NewGameDefaults.VillageQuality})");
-        SetLine(villageLines, 1,
-            $"Population {NewGameDefaults.VillagePopulation}  ·  " +
-            $"Treasury {NewGameDefaults.VillageWealthGold}g {NewGameDefaults.VillageWealthSilver}s");
-        SetLine(villageLines, 2, "Tavern · Town Hall · Walls · Blacksmith · General Store");
+            SetLine(tierLines, i, rung == null
+                ? ""
+                : "seat of a " + rung.Tier.ToString().ToLowerInvariant());
+        }
     }
 
     private void SetLine(TMP_Text[] lines, int index, string value)
