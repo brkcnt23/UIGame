@@ -36,6 +36,15 @@ public class SpecRect
 
     /// <summary>Horizontal placement when width is set: left, center, right.</summary>
     public string anchor = "center";
+
+    /// <summary>
+    /// Vertical placement when height is set: top, center, bottom.
+    ///
+    /// Explicit because it cannot be inferred. A spec giving bottom and height
+    /// but no top is indistinguishable from one giving top 0, so a rect meant to
+    /// sit above the bottom edge silently pinned itself to the ceiling instead.
+    /// </summary>
+    public string vanchor = "top";
 }
 
 [Serializable]

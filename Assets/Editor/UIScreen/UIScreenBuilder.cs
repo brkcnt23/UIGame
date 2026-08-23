@@ -474,9 +474,24 @@ public static class UIScreenBuilder
 
         if (r.height >= 0f)
         {
-            // Measured down from the top, which is how a screen is read.
-            yMax = 1f - r.top;
-            yMin = yMax - r.height;
+            switch (r.vanchor)
+            {
+                case "bottom":
+                    yMin = r.bottom;
+                    yMax = yMin + r.height;
+                    break;
+
+                case "center":
+                    yMin = 0.5f - r.height * 0.5f;
+                    yMax = 0.5f + r.height * 0.5f;
+                    break;
+
+                default:
+                    // Measured down from the top, which is how a screen is read.
+                    yMax = 1f - r.top;
+                    yMin = yMax - r.height;
+                    break;
+            }
         }
         else
         {

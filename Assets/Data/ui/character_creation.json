@@ -74,7 +74,7 @@
           "name": "BackButton",
           "sprite": "Buttons/R BUTTON.png",
           "fit": "fit",
-          "rect": { "bottom": 0.035, "height": 0.048, "width": 0.15, "anchor": "left", "left": 0.05 }
+          "rect": { "vanchor": "bottom", "bottom": 0.035, "height": 0.048, "width": 0.15, "anchor": "left", "left": 0.05 }
         }
       ]
     },
@@ -151,7 +151,7 @@
           "name": "ContinueButton",
           "sprite": "NEE/OkButton.png",
           "fit": "fit",
-          "rect": { "bottom": 0.045, "height": 0.062, "width": 0.36, "anchor": "center" }
+          "rect": { "vanchor": "bottom", "bottom": 0.045, "height": 0.062, "width": 0.36, "anchor": "center" }
         }
       ]
     },
