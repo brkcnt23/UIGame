@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +39,9 @@ public class NewGameSetupUI : MonoBehaviour
     /// <summary>
     /// Reeve is left out. It is the seat of a hamlet, which is smaller than the
     /// village the player already starts with, so it reads as a demotion.
+    ///
+    /// Read from TitleDatabase rather than a list here, so there is one ladder
+    /// in the project and not two.
     /// </summary>
     private static readonly string[] PreviewTitleIds = { "bailiff", "baron", "duke" };
 
@@ -91,15 +94,19 @@ public class NewGameSetupUI : MonoBehaviour
 
     private void UpdateTitles(string playerName, string villageName)
     {
+        var db = GameBootstrapper.Resources != null
+            ? GameBootstrapper.Resources.GetTitleDatabase()
+            : null;
+
         for (int i = 0; i < PreviewTitleIds.Length; i++)
         {
-            var rung = TitleLadder.ById(PreviewTitleIds[i]);
+            var rung = db != null ? db.GetById(PreviewTitleIds[i]) : null;
 
             SetLine(titleLines, i, rung == null ? "" : rung.Styled(playerName, villageName));
 
             SetLine(tierLines, i, rung == null
                 ? ""
-                : "seat of a " + rung.Tier.ToString().ToLowerInvariant());
+                : "seat of a " + rung.maxSettlementTier.ToString().ToLowerInvariant());
         }
     }
 

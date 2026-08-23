@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -54,6 +54,19 @@ public class TitleDefinition
     [Header("Anlatı")]
     [TextArea(2, 4)]
     public string flavorText;
+
+    /// <summary>
+    /// "Rufus, Baron of Dunmoor". Written here rather than at each call site so
+    /// every screen says a name the same way.
+    /// </summary>
+    public string Styled(string playerName, string seatName)
+    {
+        string who = string.IsNullOrWhiteSpace(playerName) ? "You" : playerName.Trim();
+
+        return string.IsNullOrWhiteSpace(seatName)
+            ? who + ", " + displayName
+            : who + ", " + displayName + " of " + seatName.Trim();
+    }
 }
 
 public enum SettlementTier
@@ -121,7 +134,7 @@ public class TitleDatabaseSO : ScriptableObject
     // ---------------------------------------------------------------
 
     [ContextMenu("Populate Default Titles")]
-    private void PopulateDefaultTitles()
+    public void PopulateDefaultTitles()
     {
         titles.Clear();
 
