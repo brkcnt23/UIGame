@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -80,7 +80,6 @@ public static class TitleDatabaseTool
 
         int matched = AttachBadges(db);
 
-        db.RebuildIndex();
         EditorUtility.SetDirty(db);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
