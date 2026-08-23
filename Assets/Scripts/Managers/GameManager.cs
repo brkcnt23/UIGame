@@ -381,6 +381,11 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        // Said out loud. Skipping creation silently looks identical to creation
+        // being broken, and the only way to tell them apart was to read this file.
+        Debug.LogWarning("GameManager: no Character Creation Panel assigned, " +
+                         "starting the game without the creation questions.");
+
         FinishNewGame();
     }
 
