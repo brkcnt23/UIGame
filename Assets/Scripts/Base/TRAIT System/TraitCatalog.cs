@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 /// Authored trait data, matched to the icons already sitting in
@@ -34,6 +34,10 @@ public static class TraitCatalog
     private static GameplayEffect E(EffectType t, int v, bool pct = false)
         => new GameplayEffect(t, v, pct);
 
+    /// <summary>Narrowed effect. Q("Blacksmithing") only counts at the forge.</summary>
+    private static GameplayEffect Q(EffectType t, int v, string qualifier, bool pct = true)
+        => new GameplayEffect(t, v, pct, qualifier);
+
     private static List<TraitDef> Build()
     {
         var list = new List<TraitDef>();
@@ -62,17 +66,20 @@ public static class TraitCatalog
 
         T("origin_forge", "Forge Raised", "ForgeRaised", TraitKind.Origin, TraitTone.Neutral,
           "You grew up in the heat and the hammering. Metal makes sense to your hands before it makes sense to your head.",
-          0, new[] { E(EffectType.CraftQuality, 8, true), E(EffectType.Strength, 1) },
+          0, new[] { E(EffectType.CraftQuality, 8, true), E(EffectType.Strength, 1),
+                     Q(EffectType.SkillXpGain, 10, "Blacksmithing") },
           null, new[] { "forge_raised", "smith_apprentice" });
 
         T("origin_woodcutter", "Woodcutter Raised", "WoodcutterRaised", TraitKind.Origin, TraitTone.Neutral,
           "An axe sat in your hands before a spoon did. You read grain and knots without thinking about it.",
-          0, new[] { E(EffectType.Strength, 1), E(EffectType.CraftResourceCost, -8, true) },
+          0, new[] { E(EffectType.Strength, 1), E(EffectType.CraftResourceCost, -8, true),
+                     Q(EffectType.SkillXpGain, 10, "Carpentry") },
           null, new[] { "woodcutter_raised", "carpenter_apprentice" });
 
         T("origin_mason", "Mason Raised", "MasonRaised", TraitKind.Origin, TraitTone.Neutral,
           "Stone taught you patience. You measure twice because your father would cuff you if you did not.",
-          0, new[] { E(EffectType.Constitution, 1), E(EffectType.BuildTime, -10, true) },
+          0, new[] { E(EffectType.Constitution, 1), E(EffectType.BuildTime, -10, true),
+                     Q(EffectType.SkillXpGain, 10, "Masonry") },
           null, new[] { "mason_raised", "mason_apprentice" });
 
         T("origin_caravan", "Caravan Raised", "CaravanRaised", TraitKind.Origin, TraitTone.Neutral,
@@ -87,7 +94,8 @@ public static class TraitCatalog
 
         T("origin_chapel", "Chapel Raised", "ChapelRaised", TraitKind.Origin, TraitTone.Neutral,
           "You were taught letters and mercy in the same room. People trust a voice that sounds like the one that comforted them.",
-          0, new[] { E(EffectType.Charisma, 1), E(EffectType.Persuasion, 1) },
+          0, new[] { E(EffectType.Charisma, 1), E(EffectType.Persuasion, 1),
+                     Q(EffectType.SkillXpGain, 10, "Alchemy") },
           null, new[] { "chapel_raised", "literate" });
 
         T("origin_camp", "Camp Raised", "CampRaised", TraitKind.Origin, TraitTone.Neutral,

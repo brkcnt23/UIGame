@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingSystem : MonoBehaviour
@@ -289,6 +289,11 @@ public class CraftingSystem : MonoBehaviour
         if (playerData == null) return;
 
         int xp = CalculateExponentialCraftXP(recipe.requiredDisciplineLevel);
+
+        // Origins and traits shape how fast a craft is learned. Applied once,
+        // here, so every path that grants discipline XP gets it - the effect
+        // was defined and named in the profile panel but never reached the XP.
+        xp = TraitSystem.ApplyOrPass(EffectType.SkillXpGain, xp, CraftDisciplineNames.Qualifier(recipe.discipline));
 
         switch (recipe.discipline)
         {

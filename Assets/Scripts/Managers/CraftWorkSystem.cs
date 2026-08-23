@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using NEXUS.Utilities;
 using System.Collections.Generic;
 
@@ -502,6 +502,11 @@ public class CraftWorkSystem : MonoBehaviour
 
     private void GrantWorkSkillXP(CraftDiscipline craftType, int amount)
     {
+        // Origins and traits shape how fast a craft is learned. Applied once,
+        // here, so every path that grants discipline XP gets it - the effect
+        // was defined and named in the profile panel but never reached the XP.
+        amount = TraitSystem.ApplyOrPass(EffectType.SkillXpGain, amount, CraftDisciplineNames.Qualifier(craftType));
+
         switch (craftType)
         {
             case CraftDiscipline.Smither:

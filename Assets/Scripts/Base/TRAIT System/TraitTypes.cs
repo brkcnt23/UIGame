@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 /// <summary>
@@ -88,18 +88,32 @@ public class GameplayEffect
 
     public bool isPercent;
 
+    [Tooltip("Optional. Narrows the effect to one thing - a craft discipline, " +
+             "an item category. Empty applies everywhere, which is what every " +
+             "effect written before this field did.")]
+    public string Qualifier = "";
+
     [Tooltip("Shown under the description as the mechanical line, e.g. 'Attack +1'. " +
              "Leave empty to auto-generate.")]
     public string displayOverride;
 
     public GameplayEffect() { }
 
-    public GameplayEffect(EffectType type, int value, bool percent = false)
+    public GameplayEffect(EffectType type, int value, bool percent = false, string qualifier = "")
     {
         Type = type;
         Value = value;
         isPercent = percent;
+        Qualifier = qualifier ?? "";
     }
+
+    /// <summary>
+    /// An unqualified effect applies to everything, so it counts towards a
+    /// narrowed question as well. A narrowed effect only counts when the caller
+    /// asked about that exact thing - it must not leak into the general total.
+    /// </summary>
+    public bool AppliesTo(string qualifier)
+        => string.IsNullOrEmpty(Qualifier) || Qualifier == qualifier;
 
     /// <summary>The mechanical line. Always signed, so +1 and -1 read clearly.</summary>
     public string ToDisplayString()

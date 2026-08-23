@@ -1,5 +1,30 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// The name a discipline is known by in trait effect qualifiers.
+///
+/// CraftDiscipline carries aliases - Smither and Blacksmithing are both 0 - and
+/// Enum.ToString does not promise which name it hands back when two share a
+/// value. A trait narrowed to "Blacksmithing" would then match or miss
+/// depending on a detail nobody controls, and a bonus that silently never
+/// applies is worse than one that is plainly absent.
+/// </summary>
+public static class CraftDisciplineNames
+{
+    public static string Qualifier(CraftDiscipline discipline)
+    {
+        switch (discipline)
+        {
+            case CraftDiscipline.Blacksmithing: return "Blacksmithing";
+            case CraftDiscipline.Tanning:       return "Tanning";
+            case CraftDiscipline.Carpentry:     return "Carpentry";
+            case CraftDiscipline.Masonry:       return "Masonry";
+            case CraftDiscipline.Alchemy:       return "Alchemy";
+            default:                            return discipline.ToString();
+        }
+    }
+}
 
 public enum CraftDiscipline
 {

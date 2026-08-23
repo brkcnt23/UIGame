@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -67,20 +67,20 @@ public class TraitSO : ScriptableObject
         return lines;
     }
 
-    public int GetFlat(EffectType type)
+    public int GetFlat(EffectType type, string qualifier = null)
     {
         int total = 0;
         foreach (var e in effects)
-            if (e.Type == type && !e.isPercent)
+            if (e.Type == type && !e.isPercent && e.AppliesTo(qualifier))
                 total += e.Value;
         return total;
     }
 
-    public int GetPercent(EffectType type)
+    public int GetPercent(EffectType type, string qualifier = null)
     {
         int total = 0;
         foreach (var e in effects)
-            if (e.Type == type && e.isPercent)
+            if (e.Type == type && e.isPercent && e.AppliesTo(qualifier))
                 total += e.Value;
         return total;
     }

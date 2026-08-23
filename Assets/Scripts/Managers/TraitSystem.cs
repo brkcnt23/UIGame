@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -173,7 +173,7 @@ public sealed class TraitSystem : GameSystemBase
     // -----------------------------------------------------------------
 
     /// <summary>Sum of flat bonuses of this type across all held traits.</summary>
-    public int GetFlatBonus(EffectType type)
+    public int GetFlatBonus(EffectType type, string qualifier = null)
     {
         int total = 0;
 
@@ -182,14 +182,14 @@ public sealed class TraitSystem : GameSystemBase
             var def = database?.Get(a.traitId);
             if (def == null) continue;
 
-            total += def.GetFlat(type) * Mathf.Max(1, a.stacks);
+            total += def.GetFlat(type, qualifier) * Mathf.Max(1, a.stacks);
         }
 
         return total;
     }
 
     /// <summary>Capped sum of percent bonuses of this type.</summary>
-    public int GetPercentBonus(EffectType type)
+    public int GetPercentBonus(EffectType type, string qualifier = null)
     {
         int total = 0;
 
@@ -198,20 +198,27 @@ public sealed class TraitSystem : GameSystemBase
             var def = database?.Get(a.traitId);
             if (def == null) continue;
 
-            total += def.GetPercent(type) * Mathf.Max(1, a.stacks);
+            total += def.GetPercent(type, qualifier) * Mathf.Max(1, a.stacks);
         }
 
         return TraitRules.Cap(total);
     }
 
     /// <summary>Applies both flat and percent to a base value.</summary>
-    public int Apply(EffectType type, int baseValue)
+    public int Apply(EffectType type, int baseValue, string qualifier = null)
     {
-        int flat = GetFlatBonus(type);
-        int percent = GetPercentBonus(type);
+        int flat = GetFlatBonus(type, qualifier);
+        int percent = GetPercentBonus(type, qualifier);
 
         return Mathf.RoundToInt((baseValue + flat) * (1f + percent / 100f));
     }
+
+    /// <summary>
+    /// Static shim for the crafting code, which reaches for the system without
+    /// holding a reference and has to work when no trait system is present.
+    /// </summary>
+    public static int ApplyOrPass(EffectType type, int baseValue, string qualifier = null)
+        => Instance != null ? Instance.Apply(type, baseValue, qualifier) : baseValue;
 
     /// <summary>All tags contributed by held traits, for recipes and events.</summary>
     public List<string> GetAllTags()
