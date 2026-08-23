@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -107,69 +107,71 @@ public static class SceneWiringTool
             }
         }
 
-        if (component == null)
-            return;
-
-        var serialized = new SerializedObject(component);
+        // A dry run on an object that has no component yet still has to say what
+        // the slots would receive, so everything below reads the field list off
+        // the type. The SerializedObject is only needed to write.
+        var serialized = component != null ? new SerializedObject(component) : null;
 
         foreach (var f in recipe.fields)
-            AssignSingle(component, serialized, f, index, recipe.keepExisting);
+            AssignSingle(type, serialized, f, index, recipe.keepExisting);
 
         foreach (var a in recipe.arrays)
-            AssignArray(component, serialized, a, index, recipe.keepExisting);
+            AssignArray(type, serialized, a, index, recipe.keepExisting);
 
-        if (!dryRun)
+        if (!dryRun && serialized != null)
             serialized.ApplyModifiedProperties();
     }
 
-    private static void AssignSingle(Component component, SerializedObject serialized,
+    private static void AssignSingle(System.Type componentType, SerializedObject serialized,
                                      WiringField f, Dictionary<string, List<GameObject>> index,
                                      bool keepExisting)
     {
-        var property = serialized.FindProperty(f.field);
-
-        if (property == null)
-        {
-            Fail($"{component.GetType().Name} has no serialized field '{f.field}'.");
-            return;
-        }
-
-        if (keepExisting && property.objectReferenceValue != null)
-            return;
-
-        var fieldType = FieldType(component, f.field);
+        var fieldType = FieldType(componentType, f.field);
 
         if (fieldType == null)
         {
-            Fail($"Could not read the type of '{f.field}'.");
+            Fail($"{componentType.Name} has no field '{f.field}'.");
             return;
         }
+
+        var property = serialized?.FindProperty(f.field);
+
+        if (serialized != null && property == null)
+        {
+            Fail($"{componentType.Name}.{f.field} is not serialized.");
+            return;
+        }
+
+        if (keepExisting && property != null && property.objectReferenceValue != null)
+            return;
 
         var value = FetchOff(f.obj, fieldType, index);
 
         if (value == null)
             return;
 
-        property.objectReferenceValue = value;
+        if (property != null)
+            property.objectReferenceValue = value;
+
         _assigned++;
     }
 
-    private static void AssignArray(Component component, SerializedObject serialized,
+    private static void AssignArray(System.Type componentType, SerializedObject serialized,
                                     WiringArray a, Dictionary<string, List<GameObject>> index,
                                     bool keepExisting)
     {
-        var property = serialized.FindProperty(a.field);
+        var property = serialized?.FindProperty(a.field);
 
-        if (property == null || !property.isArray)
+        if (serialized != null && (property == null || !property.isArray))
         {
-            Fail($"{component.GetType().Name} has no array field '{a.field}'.");
+            Fail($"{componentType.Name} has no array field '{a.field}'.");
             return;
         }
 
-        if (keepExisting && property.arraySize > 0)
+        if (keepExisting && property != null && property.arraySize > 0)
             return;
 
-        var elementType = FieldType(component, a.field)?.GetElementType();
+        var elementType = FieldType(componentType, a.field)?.GetElementType();
 
         if (elementType == null)
         {
@@ -181,11 +183,13 @@ public static class SceneWiringTool
             .Select(name => FetchOff(name, elementType, index))
             .ToList();
 
-        property.arraySize = found.Count;
+        if (property != null)
+            property.arraySize = found.Count;
 
         for (int i = 0; i < found.Count; i++)
         {
-            property.GetArrayElementAtIndex(i).objectReferenceValue = found[i];
+            if (property != null)
+                property.GetArrayElementAtIndex(i).objectReferenceValue = found[i];
 
             if (found[i] != null)
                 _assigned++;
@@ -239,10 +243,8 @@ public static class SceneWiringTool
         return matches[0];
     }
 
-    private static System.Type FieldType(Component component, string fieldName)
+    private static System.Type FieldType(System.Type type, string fieldName)
     {
-        var type = component.GetType();
-
         while (type != null)
         {
             var field = type.GetField(fieldName,
