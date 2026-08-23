@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -160,7 +160,8 @@ public static class ItemSOImporter
     /// Key is the normalised sprite base (lowercase, no spaces or punctuation).
     /// Value is the tier list, index 0 = Crude.
     /// </summary>
-    private static Dictionary<string, List<Sprite>> BuildSpriteIndex()
+    /// <summary>Shared with ItemSpriteDatabaseTool so one convention governs both.</summary>
+    internal static Dictionary<string, List<Sprite>> BuildSpriteIndex()
     {
         var byBase = new Dictionary<string, SortedDictionary<int, Sprite>>();
         var singles = new Dictionary<string, Sprite>();
@@ -211,7 +212,7 @@ public static class ItemSOImporter
         return result;
     }
 
-    private static List<Sprite> ResolveSprites(Dictionary<string, List<Sprite>> index, string spriteBase)
+    internal static List<Sprite> ResolveSprites(Dictionary<string, List<Sprite>> index, string spriteBase)
     {
         if (string.IsNullOrEmpty(spriteBase))
             return new List<Sprite>();
