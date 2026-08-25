@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -50,13 +51,36 @@ public class QuestionPanelUI : MonoBehaviour
         CollectButtons();
         WireButtons();
 
+        StartCoroutine(BeginWhenReady());
+    }
+
+    /// <summary>
+    /// Waits for the system rather than asking for it once.
+    ///
+    /// Unity runs every OnEnable in a scene before any Start, and
+    /// GameBootstrapper registers systems in Start - it has to, because at Awake
+    /// no scene object exists to find. A panel left active in the scene
+    /// therefore asks one phase too early, gets nothing, and sits there looking
+    /// built but wired to nothing: the buttons draw, and pressing them does
+    /// exactly nothing because no listener was ever attached.
+    /// </summary>
+    private IEnumerator BeginWhenReady()
+    {
+        const float GiveUpAfterSeconds = 5f;
+
+        float deadline = Time.unscaledTime + GiveUpAfterSeconds;
+
+        while (CharacterCreationSystem.Instance == null && Time.unscaledTime < deadline)
+            yield return null;
+
         var system = CharacterCreationSystem.Instance;
 
         if (system == null)
         {
-            Debug.LogError("QuestionPanelUI: CharacterCreationSystem is not in the scene. " +
-                           "Tools > UIGame > Systems > Add every missing system.");
-            return;
+            Debug.LogError("QuestionPanelUI: CharacterCreationSystem never appeared. " +
+                           "Run Tools > UIGame > Systems > Add every missing system, " +
+                           "then save the scene.");
+            yield break;
         }
 
         Subscribe(system);
