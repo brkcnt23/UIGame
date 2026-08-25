@@ -23,6 +23,7 @@ MonoBehaviour:
   - Type: 10
     Value: 5
     isPercent: 0
+    Qualifier: 
     displayOverride: 
   durationHours: 12
   refreshOnReapply: 1

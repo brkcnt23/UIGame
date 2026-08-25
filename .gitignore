@@ -75,3 +75,7 @@ crashlytics-build.properties
 # repo deletion, and left .meta files pointing at folders Unity kept recreating.
 /[Aa]ssets/SaveSlot*
 /[Aa]ssets/SaveSlot*.meta
+
+# Unity crash recovery scratch
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta

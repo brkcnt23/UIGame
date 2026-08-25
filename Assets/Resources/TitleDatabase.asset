@@ -1,0 +1,459 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc42903d6e121af4dbdb2e98e7041e57, type: 3}
+  m_Name: TitleDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::TitleDatabaseSO
+  segmentTotalRequired: 04000000060000000600000006000000
+  segmentMinPerTrack: 01000000020000000200000002000000
+  titles:
+  - titleId: freeman
+    displayName: Freeman
+    track: 0
+    rankInTrack: 1
+    segment: 1
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 100
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: tithingman
+    displayName: Tithingman
+    track: 0
+    rankInTrack: 2
+    segment: 1
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 200
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: footman
+    displayName: Footman
+    track: 1
+    rankInTrack: 1
+    segment: 1
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 100
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: man_at_arms
+    displayName: Man-at-Arms
+    track: 1
+    rankInTrack: 2
+    segment: 1
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 200
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: reeve
+    displayName: Reeve
+    track: 2
+    rankInTrack: 0
+    segment: 1
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 0
+    ceremonyQuestId: ceremony_reeve
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 1
+    companionSlots: 1
+    maxArmySize: 25
+    unlockTags: []
+    flavorText: 
+  - titleId: hayward
+    displayName: Hayward
+    track: 0
+    rankInTrack: 3
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 300
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: beadle
+    displayName: Beadle
+    track: 0
+    rankInTrack: 4
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 400
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: constable
+    displayName: Constable
+    track: 0
+    rankInTrack: 5
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 500
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: veteran
+    displayName: Veteran
+    track: 1
+    rankInTrack: 3
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 300
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: sergeant
+    displayName: Sergeant
+    track: 1
+    rankInTrack: 4
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 400
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: squire
+    displayName: Squire
+    track: 1
+    rankInTrack: 5
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 500
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: bailiff
+    displayName: Bailiff
+    track: 2
+    rankInTrack: 0
+    segment: 2
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 0
+    ceremonyQuestId: ceremony_bailiff
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 2
+    companionSlots: 2
+    maxArmySize: 50
+    unlockTags: []
+    flavorText: 
+  - titleId: warden
+    displayName: Warden
+    track: 0
+    rankInTrack: 6
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 600
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: provost
+    displayName: Provost
+    track: 0
+    rankInTrack: 7
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 700
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: chamberlain
+    displayName: Chamberlain
+    track: 0
+    rankInTrack: 8
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 800
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: bannerman
+    displayName: Bannerman
+    track: 1
+    rankInTrack: 6
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 600
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: household_knight
+    displayName: Household Knight
+    track: 1
+    rankInTrack: 7
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 700
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: knight
+    displayName: Knight
+    track: 1
+    rankInTrack: 8
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 800
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: baron
+    displayName: Baron
+    track: 2
+    rankInTrack: 0
+    segment: 3
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 0
+    ceremonyQuestId: ceremony_baron
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 3
+    companionSlots: 3
+    maxArmySize: 75
+    unlockTags: []
+    flavorText: 
+  - titleId: steward
+    displayName: Steward
+    track: 0
+    rankInTrack: 9
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 900
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: seneschal
+    displayName: Seneschal
+    track: 0
+    rankInTrack: 10
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 1000
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: justiciar
+    displayName: Justiciar
+    track: 0
+    rankInTrack: 11
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 1100
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: knight_banneret
+    displayName: Knight Banneret
+    track: 1
+    rankInTrack: 9
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 900
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: castellan
+    displayName: Castellan
+    track: 1
+    rankInTrack: 10
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 1000
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: marshal
+    displayName: Marshal
+    track: 1
+    rankInTrack: 11
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 1100
+    ceremonyQuestId: 
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 0
+    companionSlots: 0
+    maxArmySize: 0
+    unlockTags: []
+    flavorText: 
+  - titleId: duke
+    displayName: Duke
+    track: 2
+    rankInTrack: 0
+    segment: 4
+    mapAvatarIcon: {fileID: 0}
+    titleBadge: {fileID: 0}
+    requiredReputation: 0
+    ceremonyQuestId: ceremony_duke
+    requiredPopulation: 0
+    requiredWealth: 0
+    requiredQuality: 0
+    maxSettlementTier: 4
+    companionSlots: 4
+    maxArmySize: 100
+    unlockTags: []
+    flavorText: 

@@ -6,23 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Builds the inventory prefabs so they can be dragged in rather than
-/// assembled by hand.
-///
-/// Three prefabs, each doing one job:
-///
-///   InventorySlot     one cell: frame, icon, count, equipped marker
-///   ItemStatRow       one "label ....... value" line for the info panel
-///   InventoryScroll   the scrolling grid, wired to the slot prefab
-///
-/// The scroll prefab is built the way the artwork wants it: the parchment
-/// lives INSIDE the scrolling content, because the cells are painted onto it
-/// and have to move with the slots. That is the opposite of the usual advice,
-/// and it is right here.
-///
-/// Tools > UIGame > Inventory
-/// </summary>
 public static class InventoryPrefabBuilder
 {
     private const string PrefabFolder = "Assets/Prefabs/Inventory";
