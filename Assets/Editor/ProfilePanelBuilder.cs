@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -40,6 +40,36 @@ public static class ProfilePanelBuilder
         Debug.Log(_report.Count == 0
             ? "[ProfileBuilder] Everything wired."
             : "[ProfileBuilder] Done, with notes:\n  " + string.Join("\n  ", _report));
+    }
+
+    /// <summary>
+    /// Attaches the binders and leaves the tab contents alone.
+    ///
+    /// The other two menu items own the three MidContent containers and rebuild
+    /// them from scratch, which is right when nobody has laid them out and
+    /// destructive once somebody has. A panel arranged by hand needs its labels
+    /// bound, not its layout replaced.
+    /// </summary>
+    [MenuItem("Tools/UIGame/Profile Panel/Wire panel, keep my layout", false, 2)]
+    public static void WireOnly()
+    {
+        var root = RequireRoot();
+        if (root == null) return;
+
+        LoadArt();
+        _report.Clear();
+
+        Undo.RegisterFullObjectHierarchyUndo(root.gameObject, "Wire profile panel");
+
+        WireAvatarHeader(root);
+        WireTabs(root);
+
+        EditorUtility.SetDirty(root.gameObject);
+
+        Debug.Log(_report.Count == 0
+            ? "[ProfileBuilder] Header and tabs wired. Tab contents untouched."
+            : "[ProfileBuilder] Header and tabs wired, contents untouched. Notes:\n  "
+              + string.Join("\n  ", _report));
     }
 
     [MenuItem("Tools/UIGame/Profile Panel/Fill tab contents only", false, 1)]
