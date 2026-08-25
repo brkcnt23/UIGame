@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -139,198 +139,187 @@ public static class CharacterCreation
             }
         });
 
+        // Each answer moves one axis by two and a second by one. Eight questions
+        // reach every axis to the same distance — plus or minus five — which is
+        // what lets the three strongest be compared at the end. An axis touched
+        // by fewer questions would simply never win.
+        //
+        // Which option carries which score is shuffled on purpose. A player who
+        // notices that the top answer is always the flattering one stops
+        // answering and starts optimising, and the measure is over.
+
         // ===========================================================
-        // 1. CONSCIENTIOUSNESS — how you treat obligation
+        // 1. CONSCIENTIOUSNESS — with composure underneath
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_promise",
-            Prompt = "You promised to help a neighbour at dawn. You wake up ill.",
+            Id = "q_journey",
+            Prompt = "You leave on a long road at first light.",
             Answers = new List<CreationAnswer>
             {
-                A("go_anyway", "Go anyway", "You said you would.",
+                A("basics", "Pack the basics, think on the road", "It usually works out.",
+                  0, 0, 0, 0, new[] { S(Axis.Conscientiousness, 0) }),
+
+                A("prepared", "Rations, route, spare blade, and where you sleep each night",
+                  "Nothing on that road will be a surprise.",
                   0, 0, 1, 0, new[] { S(Axis.Conscientiousness, 2), S(Axis.Neuroticism, -1) }),
 
-                A("send_word", "Send word, go tomorrow", "The work still gets done.",
-                  0, 0, 0, 1, new[] { S(Axis.Conscientiousness, 1), S(Axis.Agreeableness, 1) }),
-
-                A("rest", "Stay in bed", "They will manage. You are no use half-dead.",
-                  0, 0, 0, 0, new[] { S(Axis.Conscientiousness, -1), S(Axis.Agreeableness, -1) }),
-
-                A("forgot", "You had already forgotten", "There was a lot on.",
-                  0, 1, 0, 0, new[] { S(Axis.Conscientiousness, -2) }),
+                A("improvise", "Morning will show you what you need",
+                  "Carrying half of it back is worse than lacking it.",
+                  0, 1, 0, 0, new[] { S(Axis.Conscientiousness, -2), S(Axis.Openness, 1) }),
             }
         });
 
         // ===========================================================
-        // 2. CONSCIENTIOUSNESS — how you approach work
+        // 2. OPENNESS — at the forge
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_work",
-            Prompt = "You are given a job with no supervision and no deadline.",
+            Id = "q_forge",
+            Prompt = "A master smith shows you a way of working iron that nobody has tried.",
             Answers = new List<CreationAnswer>
             {
-                A("plan", "Plan it out first", "Measure twice. You would rather do it once.",
-                  0, 1, 0, 0, new[] { S(Axis.Conscientiousness, 2), S(Axis.Openness, -1) }),
+                A("old_way", "The old way has held for centuries",
+                  "It has buried better men than him.",
+                  0, 0, 0, 0, new[] { S(Axis.Openness, -2), S(Axis.Conscientiousness, 1) }),
 
-                A("steady", "Work a set amount every day", "Same hours, no drama.",
-                  0, 0, 1, 0, new[] { S(Axis.Conscientiousness, 2) }),
+                A("if_it_works", "If it works, tradition can move", "Nobody eats a custom.",
+                  0, 0, 0, 0, new[] { S(Axis.Openness, 2) }),
 
-                A("bursts", "Work in bursts when it interests you", "It gets done. Eventually. Well.",
-                  0, 0, 0, 0, new[] { S(Axis.Conscientiousness, -1), S(Axis.Openness, 2) }),
-
-                A("last_minute", "Leave it until it is urgent", "You work better with a fire behind you.",
-                  0, 1, 0, 0, new[] { S(Axis.Conscientiousness, -2), S(Axis.Neuroticism, 1) }),
+                A("small_piece", "Try it on a small piece first", "Then argue about it.",
+                  0, 1, 0, 0, new[] { S(Axis.Openness, 0), S(Axis.Conscientiousness, 1) }),
             }
         });
 
         // ===========================================================
-        // 3. AGREEABLENESS — what you do with an advantage
+        // 3. EXTRAVERSION — and what you extend to strangers
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_advantage",
-            Prompt = "A trader miscounts and hands you more than you paid for.",
+            Id = "q_traders",
+            Prompt = "Traders from a far country take the long table. You barely have their language.",
             Answers = new List<CreationAnswer>
             {
-                A("return_it", "Say something immediately", "It is not yours.",
-                  0, 0, 0, 1, new[] { S(Axis.Agreeableness, 2), S(Axis.Conscientiousness, 1) },
-                  null, new[] { "honest" }),
+                A("sit_down", "Sit with them and find a way to talk",
+                  "Hands and bread will carry most of it.",
+                  0, 0, 0, 1, new[] { S(Axis.Extraversion, 2), S(Axis.Agreeableness, 1) }),
 
-                A("keep_quiet", "Say nothing and walk", "They should count better.",
-                  0, 1, 0, 0, new[] { S(Axis.Agreeableness, -2) },
-                  null, new[] { "pragmatic" }),
+                A("let_them_come", "You would rather they came to you", "They usually do.",
+                  0, 0, 0, 0, new[] { S(Axis.Extraversion, -2) }),
 
-                A("come_back", "Keep it, come back later", "You needed it more today than they did.",
-                  0, 0, 0, 0, new[] { S(Axis.Agreeableness, -1), S(Axis.Neuroticism, 1) }),
-
-                A("split", "Point it out and ask for a fair price instead", "Everyone leaves satisfied.",
-                  0, 0, 0, 2, new[] { S(Axis.Agreeableness, 1), S(Axis.Extraversion, 1) },
-                  null, new[] { "merchant_minded" }),
+                A("if_chance", "If the chance comes, you will speak", "No need to make one.",
+                  0, 0, 0, 0, new[] { S(Axis.Extraversion, 0) }),
             }
         });
 
         // ===========================================================
-        // 4. AGREEABLENESS — how you handle someone else's failure
+        // 4. NEUROTICISM — when the plan is gone
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_failure",
-            Prompt = "Someone working beside you makes a mistake that costs you both.",
+            Id = "q_plan_broke",
+            Prompt = "The enemy comes from a direction nobody watched. The plan is gone.",
             Answers = new List<CreationAnswer>
             {
-                A("cover", "Cover for them", "It could have been you.",
-                  0, 0, 0, 1, new[] { S(Axis.Agreeableness, 2) },
-                  null, new[] { "kind" }),
+                A("few_seconds", "Take a few seconds to understand what happened", "Then move.",
+                  0, 0, 0, 0, new[] { S(Axis.Neuroticism, 0) }),
 
-                A("teach", "Show them how to avoid it", "Anger fixes nothing. Instruction might.",
-                  0, 0, 0, 1, new[] { S(Axis.Agreeableness, 1), S(Axis.Conscientiousness, 1) }),
+                A("lose_focus", "When it slips out of hand, holding focus is the hard part",
+                  "You have seen it happen to steadier men.",
+                  0, 0, 0, 0, new[] { S(Axis.Neuroticism, 2) }),
 
-                A("report", "Report it", "Consequences exist for a reason.",
+                A("new_plan", "Find a new plan. Panic comes afterwards, if there is time",
+                  "There usually is not.",
+                  0, 0, 1, 0, new[] { S(Axis.Neuroticism, -2), S(Axis.Conscientiousness, 1) }),
+            }
+        });
+
+        // ===========================================================
+        // 5. AGREEABLENESS — toward someone who has earned nothing
+        // ===========================================================
+        list.Add(new CreationQuestion
+        {
+            Id = "q_wounded",
+            Prompt = "A wounded man lies by the road. They say he robbed a caravan this morning.",
+            Answers = new List<CreationAnswer>
+            {
+                A("his_choice", "He can live with what he chose", "Or not.",
+                  0, 0, 0, 0, new[] { S(Axis.Agreeableness, -2) }),
+
+                A("bind_first", "Bind the wound first, the reckoning comes after",
+                  "A dead man answers no questions either.",
+                  0, 0, 0, 1, new[] { S(Axis.Agreeableness, 2), S(Axis.Extraversion, 1) }),
+
+                A("to_the_guard", "Hand him to the guard", "Let the judgement be somebody else's.",
+                  0, 0, 0, 0, new[] { S(Axis.Agreeableness, 0) }),
+            }
+        });
+
+        // ===========================================================
+        // 6. AGREEABLENESS — when you are the one owed
+        // ===========================================================
+        list.Add(new CreationQuestion
+        {
+            Id = "q_debtor",
+            Prompt = "A farmer who owes you says the harvest failed and he cannot pay.",
+            Answers = new List<CreationAnswer>
+            {
+                A("part_now", "Part now, the rest after the next harvest", "Written down, this time.",
+                  0, 0, 0, 0, new[] { S(Axis.Agreeableness, 0), S(Axis.Conscientiousness, 1) }),
+
+                A("debt_is_debt", "A debt is a debt. A word given is kept",
+                  "Mercy this year is a queue at your door the next.",
                   0, 0, 0, 0, new[] { S(Axis.Agreeableness, -2), S(Axis.Conscientiousness, 1) }),
 
-                A("leave", "Stop working with them", "You do not carry other people's errors twice.",
-                  1, 0, 0, -1, new[] { S(Axis.Agreeableness, -1), S(Axis.Extraversion, -1) }),
+                A("give_time", "Give him time", "He will remember which of you did.",
+                  0, 0, 0, 0, new[] { S(Axis.Agreeableness, 2) }),
             }
         });
 
         // ===========================================================
-        // 5. NEUROTICISM — how you sit with bad news
+        // 7. OPENNESS — in front of something shut
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_bad_news",
-            Prompt = "Something has gone badly wrong and there is nothing to do until morning.",
+            Id = "q_old_door",
+            Prompt = "Deep in the wood stands an old door, marked in a hand you do not know.",
             Answers = new List<CreationAnswer>
             {
-                A("sleep", "Sleep", "Tomorrow needs you rested more than tonight needs you worried.",
-                  0, 0, 1, 0, new[] { S(Axis.Neuroticism, -2) },
-                  null, new[] { "steady" }),
+                A("must_know", "You do not leave without knowing what is behind it",
+                  "You would think about it for years.",
+                  0, 1, 0, 0, new[] { S(Axis.Openness, 2) }),
 
-                A("prepare", "Prepare for the morning", "You cannot fix it, but you can be ready.",
-                  0, 0, 0, 0, new[] { S(Axis.Neuroticism, -1), S(Axis.Conscientiousness, 2) }),
+                A("shut_for_reason", "Some doors are shut for a reason", "That is reason enough.",
+                  0, 0, 0, 0, new[] { S(Axis.Openness, -2) }),
 
-                A("company", "Find someone to sit with", "It is easier out loud.",
-                  0, 0, 0, 1, new[] { S(Axis.Extraversion, 2), S(Axis.Neuroticism, 1) }),
-
-                A("turn_over", "Turn it over all night", "You will have looked at it from every side by dawn.",
-                  0, 0, -1, 0, new[] { S(Axis.Neuroticism, 2), S(Axis.Openness, 1) }),
+                A("read_ground", "Read the ground around it first",
+                  "Whoever marked it may still come back.",
+                  0, 0, 0, 0, new[] { S(Axis.Openness, 0), S(Axis.Extraversion, -1) }),
             }
         });
 
         // ===========================================================
-        // 6. OPENNESS — appetite for the unfamiliar
+        // 8. NEUROTICISM — and what an insult costs you
         // ===========================================================
         list.Add(new CreationQuestion
         {
-            Id = "q_unknown",
-            Prompt = "A road you have never taken runs off to the side. It adds two days.",
+            Id = "q_slighted",
+            Prompt = "A noble makes you small in front of a full hall.",
             Answers = new List<CreationAnswer>
             {
-                A("take_it", "Take it", "You want to know what is down there.",
-                  0, 1, 0, 0, new[] { S(Axis.Openness, 2), S(Axis.Conscientiousness, -1) }),
+                A("carry_it", "You carry it a long while", "It comes back at odd hours.",
+                  0, 0, 0, 0, new[] { S(Axis.Neuroticism, 2), S(Axis.Extraversion, -1) }),
 
-                A("ask", "Ask someone about it first", "Curiosity is fine. Blind curiosity is not.",
-                  0, 0, 0, 1, new[] { S(Axis.Openness, 1), S(Axis.Extraversion, 1) }),
+                A("words_only", "Words do not move you much",
+                  "He will need more than a room to work with.",
+                  0, 0, 1, 0, new[] { S(Axis.Neuroticism, -2) }),
 
-                A("note_it", "Note it and carry on", "Another time, with more rations.",
-                  0, 0, 1, 0, new[] { S(Axis.Conscientiousness, 1) }),
-
-                A("known_road", "Stay on the road you know", "You have somewhere to be.",
-                  0, 0, 0, 0, new[] { S(Axis.Openness, -2), S(Axis.Conscientiousness, 1) }),
+                A("keep_hold", "You will not forget it, but you keep hold of yourself",
+                  "There is a better hour for it.",
+                  0, 0, 0, 1, new[] { S(Axis.Neuroticism, 0), S(Axis.Extraversion, 1) }),
             }
         });
 
-        // ===========================================================
-        // 7. EXTRAVERSION — where your energy comes from
-        // ===========================================================
-        list.Add(new CreationQuestion
-        {
-            Id = "q_tavern",
-            Prompt = "A crowded tavern, end of a long day. What do you do?",
-            Answers = new List<CreationAnswer>
-            {
-                A("join", "Join the loudest table", "You will know half of them by midnight.",
-                  0, 0, 0, 2, new[] { S(Axis.Extraversion, 2), S(Axis.Agreeableness, 1) }),
-
-                A("listen", "Sit near the talk and listen", "You learn more this way than anyone talking does.",
-                  0, 1, 0, 0, new[] { S(Axis.Openness, 1), S(Axis.Extraversion, -1) }),
-
-                A("business", "Find whoever is worth knowing", "You are not here to drink.",
-                  0, 0, 0, 1, new[] { S(Axis.Extraversion, 1), S(Axis.Agreeableness, -1) }),
-
-                A("corner", "Take a corner and eat alone", "The day is over. That is enough.",
-                  0, 0, 1, -1, new[] { S(Axis.Extraversion, -2) }),
-            }
-        });
-
-        // ===========================================================
-        // 8. AMBITION — sets the tone for the title track
-        // ===========================================================
-        list.Add(new CreationQuestion
-        {
-            Id = "q_ambition",
-            Prompt = "Why are you leaving your village?",
-            Answers = new List<CreationAnswer>
-            {
-                A("rise", "To become someone", "You want more than the life you were handed.",
-                  0, 0, 0, 2, new[] { S(Axis.Extraversion, 1), S(Axis.Agreeableness, -1) },
-                  "trait_ambitious", new[] { "ambitious" }),
-
-                A("skill", "To learn a trade properly", "Nobody left here can teach you anything.",
-                  0, 1, 0, 1, new[] { S(Axis.Openness, 2) },
-                  "trait_quick_study", new[] { "quick_study" }),
-
-                A("coin", "To make money", "You have watched what poverty does to people.",
-                  0, 1, 0, 1, new[] { S(Axis.Conscientiousness, 1), S(Axis.Agreeableness, -1) },
-                  "trait_trade_sense", new[] { "merchant_minded" }),
-
-                A("return", "To come back and fix this place", "Someone has to, and nobody else is offering.",
-                  1, 0, 1, 0, new[] { S(Axis.Agreeableness, 2), S(Axis.Conscientiousness, 1) },
-                  "trait_kind_unyielding", new[] { "homebound" }),
-            }
-        });
 
         return list;
     }
@@ -344,47 +333,128 @@ public static class CharacterCreation
     // ===============================================================
     // Profile -> traits
     // ===============================================================
+    /// <summary>
+    /// How far an axis could possibly be pushed, given the questions as written.
+    ///
+    /// Measured rather than written down, because the ranking below compares
+    /// axes against each other: an axis two questions touch would beat one that
+    /// only one question touches, every single time, and the loser would never
+    /// grant a trait no matter how the player answered. Reading the reach off
+    /// the questions means editing a question cannot quietly break that.
+    /// </summary>
+    public static int Reach(Axis axis)
+    {
+        int total = 0;
+
+        foreach (var question in Questions)
+        {
+            int strongest = 0;
+
+            foreach (var answer in question.Answers)
+                foreach (var shift in answer.Shifts)
+                    if (shift.Axis == axis)
+                        strongest = Mathf.Max(strongest, Mathf.Abs(shift.Value));
+
+            total += strongest;
+        }
+
+        return Mathf.Max(1, total);
+    }
 
     /// <summary>
-    /// Turns the five scores into traits. Thresholds are deliberately not
-    /// symmetric: a strong score in either direction says something, a middling
-    /// one says nothing and grants nothing. Most characters come out with three
-    /// or four traits, not eight.
+    /// The three axes the answers spoke loudest on, as traits.
+    ///
+    /// Ranked rather than thresholded. A threshold hands one player five traits
+    /// and another none, which makes two characters hard to compare and makes a
+    /// cautious set of answers feel like a punishment. Everyone leaves creation
+    /// with the same three slots filled; what differs is by whom.
+    ///
+    /// Scores are divided by their own reach first, so an axis is judged on how
+    /// far it was pushed of what was available to it, not on its raw total.
+    ///
+    /// An axis sitting exactly on zero says nothing and is skipped, so a player
+    /// who takes the middle option eight times can come away with fewer than
+    /// three. That is the honest reading of those answers.
     /// </summary>
     public static List<string> DeriveTraits(Dictionary<Axis, int> profile)
     {
+        const int Wanted = 3;
+
+        int Get(Axis a) => profile != null && profile.TryGetValue(a, out int v) ? v : 0;
+
+        var scored = new List<(Axis Axis, int Score, float Strength)>();
+
+        foreach (Axis axis in System.Enum.GetValues(typeof(Axis)))
+        {
+            int score = Get(axis);
+
+            if (score == 0)
+                continue;
+
+            scored.Add((axis, score, Mathf.Abs(score) / (float)Reach(axis)));
+        }
+
+        // Enum order breaks ties, so the same answers always give the same three.
+        scored.Sort((x, y) =>
+        {
+            int byStrength = y.Strength.CompareTo(x.Strength);
+            return byStrength != 0 ? byStrength : ((int)x.Axis).CompareTo((int)y.Axis);
+        });
+
         var traits = new List<string>();
 
-        int Get(Axis a) => profile.TryGetValue(a, out int v) ? v : 0;
+        foreach (var entry in scored)
+        {
+            if (traits.Count >= Wanted)
+                break;
 
-        const int High = 3;
-        const int Low = -2;
+            string trait = TraitFor(entry.Axis, entry.Score, entry.Strength);
 
-        // Conscientiousness
-        if (Get(Axis.Conscientiousness) >= High + 1) traits.Add("trait_iron_routine");
-        else if (Get(Axis.Conscientiousness) >= High) traits.Add("trait_patient_worker");
-        else if (Get(Axis.Conscientiousness) <= Low) traits.Add("trait_risk_seeker");
-
-        // Agreeableness
-        if (Get(Axis.Agreeableness) >= High + 1) traits.Add("trait_kind_unyielding");
-        else if (Get(Axis.Agreeableness) >= High) traits.Add("trait_hidden_mercy");
-        else if (Get(Axis.Agreeableness) <= Low - 1) traits.Add("trait_cold_pragmatist");
-        else if (Get(Axis.Agreeableness) <= Low) traits.Add("trait_proud");
-
-        // Neuroticism — low is the desirable end, so it reads inverted
-        if (Get(Axis.Neuroticism) <= Low) traits.Add("trait_calm_mind");
-        else if (Get(Axis.Neuroticism) >= High) traits.Add("trait_brooding");
-
-        // Openness
-        if (Get(Axis.Openness) >= High) traits.Add("trait_quick_study");
-        else if (Get(Axis.Openness) <= Low) traits.Add("trait_camp_discipline");
-
-        // Extraversion
-        if (Get(Axis.Extraversion) >= High) traits.Add("trait_common_folk_ease");
-        else if (Get(Axis.Extraversion) <= Low) traits.Add("trait_scrapwise");
+            if (!string.IsNullOrEmpty(trait) && !traits.Contains(trait))
+                traits.Add(trait);
+        }
 
         return traits;
     }
+
+    /// <summary>
+    /// Which trait an axis grants, by direction and by how hard it was pushed.
+    ///
+    /// Both ends grant something. A low score is not a failed high one — a
+    /// character who keeps to himself is Scrapwise, not a worse version of
+    /// Common Folk Ease.
+    /// </summary>
+    private static string TraitFor(Axis axis, int score, float strength)
+    {
+        bool strong = strength >= 0.6f;
+
+        switch (axis)
+        {
+            case Axis.Conscientiousness:
+                return score > 0
+                    ? (strong ? "trait_iron_routine" : "trait_patient_worker")
+                    : "trait_risk_seeker";
+
+            case Axis.Agreeableness:
+                return score > 0
+                    ? (strong ? "trait_kind_unyielding" : "trait_hidden_mercy")
+                    : (strong ? "trait_cold_pragmatist" : "trait_proud");
+
+            case Axis.Neuroticism:
+                return score > 0 ? "trait_brooding" : "trait_calm_mind";
+
+            case Axis.Openness:
+                return score > 0 ? "trait_quick_study" : "trait_camp_discipline";
+
+            case Axis.Extraversion:
+                return score > 0 ? "trait_common_folk_ease" : "trait_scrapwise";
+
+            default:
+                return null;
+        }
+    }
+
+
 
     /// <summary>A short line describing the profile, for the summary screen.</summary>
     public static string DescribeProfile(Dictionary<Axis, int> profile)
