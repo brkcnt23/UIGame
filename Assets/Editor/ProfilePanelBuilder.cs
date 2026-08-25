@@ -91,6 +91,39 @@ public static class ProfilePanelBuilder
             : "[ProfileBuilder] Done, with notes:\n  " + string.Join("\n  ", _report));
     }
 
+    /// <summary>
+    /// Fills the two tabs nobody has laid out and leaves Overview alone.
+    ///
+    /// Overview is arranged by hand here; Skills and Traits are empty. Filling
+    /// all three would trade a finished tab for a generated one.
+    /// </summary>
+    [MenuItem("Tools/UIGame/Profile Panel/Fill Skills and Traits only", false, 3)]
+    public static void FillSkillsAndTraits()
+    {
+        var root = RequireRoot();
+        if (root == null) return;
+
+        LoadArt();
+        _report.Clear();
+
+        Undo.RegisterFullObjectHierarchyUndo(root.gameObject, "Fill skills and traits");
+
+        var skills = Find(root, "MidContentSkills");
+        var traits = Find(root, "MidContentTraits");
+
+        if (skills != null) BuildSkills(skills);
+        else _report.Add("MidContentSkills not found.");
+
+        if (traits != null) BuildTraits(traits);
+        else _report.Add("MidContentTraits not found.");
+
+        EditorUtility.SetDirty(root.gameObject);
+
+        Debug.Log(_report.Count == 0
+            ? "[ProfileBuilder] Skills and Traits built. Overview untouched."
+            : "[ProfileBuilder] Done, with notes: " + string.Join(" | ", _report));
+    }
+
     [MenuItem("Tools/UIGame/Profile Panel/Check what the tool can find", false, 20)]
     public static void Inspect()
     {
@@ -751,7 +784,20 @@ public static class ProfilePanelBuilder
             return null;
         }
 
-        return go.GetComponent<RectTransform>();
+        var rect = go.GetComponent<RectTransform>();
+
+        if (rect == null)
+        {
+            // Selecting a plain GameObject used to return null here and every
+            // caller quietly gave up, so the tool looked like it had not run at
+            // all - no log, no dialog, nothing.
+            EditorUtility.DisplayDialog("Profile panel",
+                $"'{go.name}' is not a UI object - it has a Transform, not a " +
+                "RectTransform. Select the panel root under the Canvas instead.",
+                "Right");
+        }
+
+        return rect;
     }
 
     /// <summary>Depth-first search by exact name, anywhere below the root.</summary>
