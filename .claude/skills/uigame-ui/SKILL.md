@@ -88,6 +88,49 @@ whole screen.
 Art lives under `Assets/UI Elements/`; item sprites follow `<SpriteBase>1..5`
 where the trailing digit is a quality tier (Crude..Legendary).
 
+## Stretching is forbidden
+
+This is the project's stated golden rule, in the author's words: if a sprite is
+1:1, it does not become 1.1:1. Not slightly. Distortion is the one thing that
+makes hand-drawn art look cheap, and it is invisible to whoever wrote the
+numbers and obvious to everyone looking at the screen.
+
+In practice: **a slot's aspect must equal the aspect of the art that goes in
+it.** Never set a width and a height independently on an image that holds
+artwork. Use `preserveAspect` on the Image, or an `AspectRatioFitter` driven by
+`sprite.rect.width / sprite.rect.height`, and let the free dimension follow.
+Frames and 9-sliced plates are the exception - a sliced sprite is *designed* to
+change proportion, because its corners stay fixed and only the middle repeats.
+
+The art in this repo falls into five families. A slot built for one cannot hold
+another without distorting it:
+
+| Aspect | Count | Family |
+|---|---|---|
+| **0.67** (2:3) | 27 | soldier portraits, quest note cards, `DefeatedPanel`, `VerticalVictoryAssume` |
+| **1.00** (square) | 52 | every icon - stat icons are 100x100, quest sketches 1024x1024 |
+| **1.50** (3:2) | 14 | plates and frames: `royalQuestFrame`, `HorizontalGoldenPlate`, `nametagforsettlement` |
+| **0.80** (4:5) | 5 | the `Poor*` soldier portraits only |
+| 6.03, 7.06 | 2 | long strips: `PlateLongHorizontal1`, `plateHorizontal2` |
+
+The trap worth knowing: **soldier portraits are not one family.** `Knight`,
+`archer`, `cavalry` and `pikeman` are 1024x1536 (0.67); every `Poor*` variant is
+1122x1402 (0.80). One GridLayoutGroup holding both distorts one of them. Also
+note `shielder` and `soldier` exist only as `Poor` variants so far.
+
+Measure before laying anything out. The measuring pass that produced this table
+took one command and caught a distortion that would otherwise have shipped:
+
+```bash
+python -c "
+import struct,os,sys
+for f in sorted(os.listdir(sys.argv[1])):
+    if f.endswith('.png'):
+        d=open(os.path.join(sys.argv[1],f),'rb').read(24)
+        w,h=struct.unpack('>II',d[16:24]); print('%-30s %5dx%-5d %.2f'%(f,w,h,w/h))
+" "Assets/UI Elements/<folder>"
+```
+
 ## The failure that keeps happening
 
 Code here compiles, is attached to nothing, and never runs. It has appeared as:
