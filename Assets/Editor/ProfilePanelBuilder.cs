@@ -5,31 +5,6 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-
-/// <summary>
-/// Wires the profile panel you already built.
-///
-/// This does NOT create the panel. The hierarchy, the artwork and the framing
-/// are hand-made and stay exactly as they are — the tool finds the objects by
-/// name, attaches the right binder to each, and fills only the three tab
-/// content containers, which are the parts nobody wants to place by hand.
-///
-/// Expected names, found anywhere under the selected root:
-///
-///   AvatarImage          the portrait
-///   PlayerName           name label
-///   LevelTxt             level label
-///   LevelExpBar          Slider for character XP
-///   ExpTxt               "240 / 600" label beside it
-///   OverviewTab / SkillsTab / TraitsTab          tab buttons
-///   MidContentOverview / MidContentSkills / MidContentTraits   filled
-///
-/// Anything it cannot find is reported and skipped. Nothing is deleted except
-/// the previous contents of the three MidContent containers, which is the only
-/// part it owns.
-///
-/// Tools > UIGame > Profile Panel
-/// </summary>
 public static class ProfilePanelBuilder
 {
     private const string ArtFolder  = "Assets/UI Elements/ProfilePanel";
@@ -44,7 +19,6 @@ public static class ProfilePanelBuilder
     private static Dictionary<string, Sprite> _icons;
     private static readonly List<string> _report = new();
 
-    // =================================================================
 
     [MenuItem("Tools/UIGame/Profile Panel/Wire panel and fill tabs", false, 0)]
     public static void WireAndFill()
@@ -108,9 +82,6 @@ public static class ProfilePanelBuilder
         Debug.Log($"[ProfileBuilder] Under '{root.name}':\n  " + string.Join("\n  ", lines));
     }
 
-    // =================================================================
-    // Avatar header — attach only, never rebuild
-    // =================================================================
 
     private static void WireAvatarHeader(RectTransform root)
     {
@@ -142,10 +113,6 @@ public static class ProfilePanelBuilder
         WireSlider(root, "LevelExpBar", BarBinder.Source.CharacterXp, "ExpTxt");
     }
 
-    /// <summary>
-    /// Attaches a BarBinder to an existing Slider and repairs its parts to
-    /// match the artwork: bar2 behind, barfiller as the fill, handle removed.
-    /// </summary>
     private static void WireSlider(RectTransform root, string sliderName,
                                    BarBinder.Source source, string labelName)
     {
@@ -189,11 +156,6 @@ public static class ProfilePanelBuilder
         so.ApplyModifiedPropertiesWithoutUndo();
     }
 
-    /// <summary>
-    /// Background gets bar2, fill gets barfiller, the handle loses its Image
-    /// so it stops drawing. Existing colours are kept — the green Renown bar
-    /// is a tint the artist applied, not a different sprite.
-    /// </summary>
     private static void ApplySliderArt(Slider slider)
     {
         var background = slider.transform.Find("Background")?.GetComponent<Image>();
@@ -215,18 +177,12 @@ public static class ProfilePanelBuilder
             }
         }
 
-        // A readout has no handle. Removing the Image rather than the object
-        // keeps the Slider's own reference valid.
         if (slider.handleRect != null)
         {
             var handle = slider.handleRect.GetComponent<Image>();
             if (handle != null) Undo.DestroyObjectImmediate(handle);
         }
     }
-
-    // =================================================================
-    // Tabs — attach the controller to the existing buttons
-    // =================================================================
 
     private static void WireTabs(RectTransform root)
     {

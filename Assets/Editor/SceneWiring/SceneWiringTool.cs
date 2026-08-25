@@ -145,7 +145,9 @@ public static class SceneWiringTool
         if (keepExisting && property != null && property.objectReferenceValue != null)
             return;
 
-        var value = FetchOff(f.obj, fieldType, index);
+        var value = string.IsNullOrEmpty(f.asset)
+            ? FetchOff(f.obj, fieldType, index)
+            : FetchAsset(f.asset, fieldType);
 
         if (value == null)
             return;
@@ -221,6 +223,40 @@ public static class SceneWiringTool
         return component;
     }
 
+    /// <summary>
+    /// A prefab or ScriptableObject from the project. Some slots want an asset,
+    /// not something in the scene - a template to clone has no instance to point
+    /// at, which is the whole reason it is a prefab.
+    /// </summary>
+    private static Object FetchAsset(string path, System.Type wanted)
+    {
+        var asset = AssetDatabase.LoadAssetAtPath<Object>(path);
+
+        if (asset == null)
+        {
+            Fail($"No asset at '{path}'.");
+            return null;
+        }
+
+        if (wanted.IsInstanceOfType(asset))
+            return asset;
+
+        // A prefab loads as a GameObject; a slot typed to a component wants that
+        // component off it.
+        if (asset is GameObject go)
+        {
+            var component = go.GetComponent(wanted);
+
+            if (component == null)
+                Fail($"The prefab at '{path}' has no {wanted.Name}.");
+
+            return component;
+        }
+
+        Fail($"'{path}' is a {asset.GetType().Name}, not a {wanted.Name}.");
+        return null;
+    }
+
     private static GameObject Resolve(string name, Dictionary<string, List<GameObject>> index, string role)
     {
         if (string.IsNullOrEmpty(name))
@@ -228,8 +264,19 @@ public static class SceneWiringTool
 
         if (!index.TryGetValue(name, out var matches))
         {
-            Fail($"No object named '{name}' in the scene ({role}).");
-            return null;
+            // A partial path from anywhere in the hierarchy, so a recipe does not
+            // have to spell out every ancestor.
+            matches = index
+                .Where(kv => kv.Key.EndsWith("/" + name))
+                .SelectMany(kv => kv.Value)
+                .Distinct()
+                .ToList();
+
+            if (matches.Count == 0)
+            {
+                Fail($"No object named '{name}' in the scene ({role}).");
+                return null;
+            }
         }
 
         if (matches.Count > 1)
@@ -275,14 +322,39 @@ public static class SceneWiringTool
         {
             foreach (var t in root.GetComponentsInChildren<Transform>(true))
             {
-                if (!index.TryGetValue(t.name, out var list))
-                    index[t.name] = list = new List<GameObject>();
+                Add(index, t.name, t.gameObject);
 
-                list.Add(t.gameObject);
+                // Full path as well, so a recipe can say "QuestionPanel/AnswerPanel"
+                // when a bare name is shared. Real hierarchies repeat names
+                // constantly - a panel and the box inside it, eight objects
+                // called BG - and refusing all of those would be useless.
+                Add(index, PathOf(t), t.gameObject);
             }
         }
 
         return index;
+    }
+
+    private static void Add(Dictionary<string, List<GameObject>> index, string key, GameObject go)
+    {
+        if (!index.TryGetValue(key, out var list))
+            index[key] = list = new List<GameObject>();
+
+        if (!list.Contains(go))
+            list.Add(go);
+    }
+
+    private static string PathOf(Transform t)
+    {
+        var parts = new List<string>();
+
+        while (t != null)
+        {
+            parts.Insert(0, t.name);
+            t = t.parent;
+        }
+
+        return string.Join("/", parts);
     }
 
     private static SceneWiringSpec LoadSpec()

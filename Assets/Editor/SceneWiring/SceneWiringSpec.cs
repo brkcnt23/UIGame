@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System;
 
 /// <summary>
@@ -18,8 +18,18 @@ public class WiringField
     /// <summary>Field name on the component, exactly as written in the script.</summary>
     public string field = "";
 
-    /// <summary>Object name in the scene. The component is taken off it.</summary>
+    /// <summary>
+    /// Object in the scene. A bare name when it is unique; a path ending like
+    /// "QuestionPanel/AnswerPanel" when it is not, which real hierarchies
+    /// usually are - a panel and the box inside it often share a name.
+    /// </summary>
     public string obj = "";
+
+    /// <summary>
+    /// Project asset path instead, for slots that want a prefab or a
+    /// ScriptableObject rather than something in the scene.
+    /// </summary>
+    public string asset = "";
 }
 
 [Serializable]
