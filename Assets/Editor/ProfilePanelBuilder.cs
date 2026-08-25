@@ -344,7 +344,7 @@ public static class ProfilePanelBuilder
 
         Undo.RecordObject(grid, "Configure grid");
         grid.cellSize = new Vector2(cellWidth, 300f);
-        grid.spacing = new Vector2(12f, 12f);
+        grid.spacing = new Vector2(20f, 20f);
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grid.constraintCount = 2;
         grid.childAlignment = TextAnchor.UpperLeft;
@@ -452,7 +452,7 @@ public static class ProfilePanelBuilder
         // No background image: the hand-made panel already has its framing,
         // and painting another one over it just muddies the artwork.
         var layout = frame.gameObject.AddComponent<VerticalLayoutGroup>();
-        layout.padding = new RectOffset(18, 18, 12, 14);
+        layout.padding = new RectOffset(30, 30, 20, 24);
         layout.spacing = 3;
         layout.childAlignment = TextAnchor.UpperLeft;
         layout.childControlWidth = true;
@@ -466,7 +466,7 @@ public static class ProfilePanelBuilder
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         }
 
-        var title = NewLabel(frame, "Header", header, 22, Header, TextAlignmentOptions.Left);
+        var title = NewLabel(frame, "Header", header, 36, Header, TextAlignmentOptions.Left);
         SetHeight(title.rectTransform, 28);
 
         return frame;
@@ -500,15 +500,15 @@ public static class ProfilePanelBuilder
 
             var iconElement = iconGo.gameObject.AddComponent<LayoutElement>();
             iconElement.preferredWidth = 24;
-            iconElement.preferredHeight = 24;
+            iconElement.preferredHeight = 40;
             iconElement.flexibleWidth = 0;
         }
 
-        var nameLabel = NewLabel(row, "Label", label, 19,
+        var nameLabel = NewLabel(row, "Label", label, 30,
                                  muted ? Muted : Label, TextAlignmentOptions.Left);
         nameLabel.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1;
 
-        var valueLabel = NewLabel(row, "Value", "—", 19,
+        var valueLabel = NewLabel(row, "Value", "—", 30,
                                   muted ? Muted : Value, TextAlignmentOptions.Right);
         var valueElement = valueLabel.gameObject.AddComponent<LayoutElement>();
         valueElement.preferredWidth = 96;
@@ -537,10 +537,10 @@ public static class ProfilePanelBuilder
         topLayout.childControlHeight = true;
         topLayout.childForceExpandWidth = false;
 
-        var nameLabel = NewLabel(top, "Label", label, 19, Label, TextAlignmentOptions.Left);
+        var nameLabel = NewLabel(top, "Label", label, 30, Label, TextAlignmentOptions.Left);
         nameLabel.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1;
 
-        var valueLabel = NewLabel(top, "Value", "0", 19, Value, TextAlignmentOptions.Right);
+        var valueLabel = NewLabel(top, "Value", "0", 30, Value, TextAlignmentOptions.Right);
         var valueElement = valueLabel.gameObject.AddComponent<LayoutElement>();
         valueElement.preferredWidth = 96;
         valueElement.flexibleWidth = 0;
@@ -628,7 +628,7 @@ public static class ProfilePanelBuilder
 
             var iconElement = iconGo.gameObject.AddComponent<LayoutElement>();
             iconElement.preferredWidth = 48;
-            iconElement.preferredHeight = 48;
+            iconElement.preferredHeight = 80;
             iconElement.flexibleWidth = 0;
         }
 
@@ -663,8 +663,8 @@ public static class ProfilePanelBuilder
         rightElement.preferredWidth = 120;
         rightElement.flexibleWidth = 0;
 
-        var levelLabel = NewLabel(right, "Level", "Lv. 1", 19, Value, TextAlignmentOptions.Right);
-        var xpLabel = NewLabel(right, "Xp", "0 / 100 XP", 13, Muted, TextAlignmentOptions.Right);
+        var levelLabel = NewLabel(right, "Level", "Lv. 1", 30, Value, TextAlignmentOptions.Right);
+        var xpLabel = NewLabel(right, "Xp", "0 / 100 XP", 24, Muted, TextAlignmentOptions.Right);
 
         var binder = row.gameObject.AddComponent<SkillRowBinder>();
         var so = new SerializedObject(binder);
@@ -707,8 +707,8 @@ public static class ProfilePanelBuilder
         var strip = NewChild(parent, "ChipStrip");
 
         var layout = strip.gameObject.AddComponent<GridLayoutGroup>();
-        layout.cellSize = new Vector2(150, 32);
-        layout.spacing = new Vector2(8, 8);
+        layout.cellSize = new Vector2(260, 56);
+        layout.spacing = new Vector2(14, 14);
         layout.constraint = GridLayoutGroup.Constraint.Flexible;
         layout.childAlignment = TextAnchor.UpperLeft;
 
@@ -743,7 +743,7 @@ public static class ProfilePanelBuilder
 
     private static void AddSubHeader(RectTransform parent, string text)
     {
-        var label = NewLabel(parent, "SubHeader", text, 14, Muted, TextAlignmentOptions.Left);
+        var label = NewLabel(parent, "SubHeader", text, 25, Muted, TextAlignmentOptions.Left);
         SetHeight(label.rectTransform, 20);
     }
 
