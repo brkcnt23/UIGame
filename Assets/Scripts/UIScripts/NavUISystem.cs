@@ -94,6 +94,15 @@ public class NavUISystem : MonoBehaviour
 
     public void OnProfileButtonClick()
     {
+        // Said out loud because an unassigned panel and a broken panel look
+        // identical from the player's seat: the screen just goes dark.
+        if (profilePanel == null)
+        {
+            Debug.LogError("NavUISystem: no Profile Panel assigned. Drag the " +
+                           "profile panel into NavUISystem > Panels > Profile Panel.");
+            return;
+        }
+
         UpdateProfileData();
         OpenUpPanel(profilePanel);
     }
