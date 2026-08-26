@@ -1,0 +1,104 @@
+{
+  "screen": "ArmyPanelA",
+  "startsHidden": true,
+
+  "background": { "sprite": "armypanel.png", "fit": "cover" },
+
+  "groups": [
+    {
+      "name": "Header",
+      "elements": [
+        {
+          "type": "label", "name": "ArmyTitle", "text": "Your Company",
+          "font": "head", "size": 50, "color": "gold", "align": "center",
+          "rect": { "top": 0.030, "height": 0.038, "left": 0.06, "right": 0.06 }
+        },
+        {
+          "type": "label", "name": "UpkeepLine",
+          "font": "body", "size": 30, "color": "cream", "align": "center",
+          "rect": { "top": 0.080, "height": 0.026, "left": 0.06, "right": 0.06 }
+        },
+        {
+          "type": "label", "name": "StrengthLine",
+          "font": "body", "size": 25, "color": "cream", "align": "center",
+          "rect": { "top": 0.112, "height": 0.024, "left": 0.06, "right": 0.06 }
+        }
+      ]
+    },
+
+    {
+      "name": "Roster",
+      "elements": [
+        {
+          "type": "label", "name": "RosterHeading", "text": "COMPANY",
+          "font": "head", "size": 30, "color": "gold", "align": "left",
+          "rect": { "top": 0.150, "height": 0.024, "left": 0.07, "right": 0.55 }
+        },
+        {
+          "type": "scroll", "name": "RosterScroll",
+          "spacing": 14,
+          "padding": { "left": 0, "right": 0, "top": 0, "bottom": 20 },
+          "templateSprite": "NEE/AmptyLongButton2.png",
+          "templateHorizontal": true,
+          "templateMinHeight": 0.085,
+          "templatePadding": { "left": 22, "right": 26, "top": 14, "bottom": 14 },
+          "template": [
+            { "type": "image", "name": "Portrait", "sprite": "Soldier Icons/PoorSoldier.png", "width": 0.085 },
+            { "type": "label", "name": "UnitName", "role": "title", "font": "head", "size": 30, "color": "ink", "align": "left" },
+            { "type": "label", "name": "UnitCount", "font": "head", "size": 30, "color": "ink", "align": "right", "width": 0.075 }
+          ],
+          "rect": { "top": 0.182, "bottom": 0.235, "left": 0.05, "right": 0.50 }
+        }
+      ]
+    },
+
+    {
+      "name": "Summary",
+      "elements": [
+        {
+          "type": "label", "name": "SummaryHeading", "text": "STRENGTH",
+          "font": "head", "size": 30, "color": "gold", "align": "left",
+          "rect": { "top": 0.150, "height": 0.024, "left": 0.53, "right": 0.07 }
+        },
+        {
+          "type": "image", "name": "SummaryStrip", "tint": "#140D06BF",
+          "rect": { "top": 0.182, "bottom": 0.235, "left": 0.51, "right": 0.05 }
+        },
+        {
+          "type": "label", "name": "SummaryBody",
+          "font": "body", "size": 25, "color": "cream", "align": "topleft",
+          "rect": { "top": 0.198, "bottom": 0.250, "left": 0.545, "right": 0.075 }
+        }
+      ]
+    },
+
+    {
+      "name": "Actions",
+      "elements": [
+        {
+          "type": "button", "name": "RecruitButton", "label": "Recruit",
+          "font": "head", "size": 30, "color": "cream",
+          "sprite": "NEE/AmptyLongButton2.png", "fit": "slice",
+          "rect": { "vanchor": "bottom", "bottom": 0.145, "height": 0.050, "width": 0.27, "anchor": "left", "left": 0.06 }
+        },
+        {
+          "type": "button", "name": "PromoteButton", "label": "Promote",
+          "font": "head", "size": 30, "color": "cream",
+          "sprite": "NEE/AmptyLongButton2.png", "fit": "slice",
+          "rect": { "vanchor": "bottom", "bottom": 0.145, "height": 0.050, "width": 0.27, "anchor": "center" }
+        },
+        {
+          "type": "button", "name": "DisbandButton", "label": "Disband",
+          "font": "head", "size": 30, "color": "cream",
+          "sprite": "NEE/AmptyLongButton2.png", "fit": "slice",
+          "rect": { "vanchor": "bottom", "bottom": 0.145, "height": 0.050, "width": 0.27, "anchor": "right", "right": 0.06 }
+        },
+        {
+          "type": "button", "name": "BackButton",
+          "sprite": "Buttons/R BUTTON.png", "fit": "fit",
+          "rect": { "vanchor": "bottom", "bottom": 0.045, "height": 0.048, "width": 0.15, "anchor": "left", "left": 0.05 }
+        }
+      ]
+    }
+  ]
+}

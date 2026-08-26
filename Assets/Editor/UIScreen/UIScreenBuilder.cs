@@ -366,13 +366,19 @@ public static class UIScreenBuilder
 
         go.AddComponent<Button>().targetGraphic = image;
 
-        var layout = go.AddComponent<VerticalLayoutGroup>();
+        // A roster row is a portrait beside a name, not above one, so the
+        // template can lay its children either way.
+        HorizontalOrVerticalLayoutGroup layout = e.templateHorizontal
+            ? go.AddComponent<HorizontalLayoutGroup>()
+            : (HorizontalOrVerticalLayoutGroup)go.AddComponent<VerticalLayoutGroup>();
+
         layout.padding = ToRectOffset(e.templatePadding);
-        layout.spacing = 2;
+        layout.spacing = e.templateHorizontal ? 16 : 2;
         layout.childControlWidth = true;
         layout.childControlHeight = true;
-        layout.childForceExpandWidth = true;
-        layout.childForceExpandHeight = false;
+        layout.childForceExpandWidth = !e.templateHorizontal;
+        layout.childForceExpandHeight = e.templateHorizontal;
+        layout.childAlignment = TextAnchor.MiddleLeft;
 
         // No ContentSizeFitter: the Content above controls child heights, and a
         // fitter on a controlled child makes Unity fight its own layout.
@@ -434,11 +440,41 @@ public static class UIScreenBuilder
             if (sprite != null) image.sprite = sprite;
             else if (!string.IsNullOrEmpty(c.sprite)) _report.Add("Sprite missing: " + c.sprite);
 
+            // Artwork keeps its shape. A portrait squeezed into a square slot is
+            // the one mistake that makes hand-drawn art look cheap, and the
+            // soldier portraits in this project are 0.8, not 1.
+            if (c.aspect > 0f)
+            {
+                var fitter = imageGo.AddComponent<AspectRatioFitter>();
+                fitter.aspectRatio = c.aspect;
+                fitter.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+            }
+            else if (sprite != null)
+            {
+                image.preserveAspect = true;
+            }
+
+            SetWidth(imageGo, c.width);
             return null;
         }
 
         var go = NewRect(Named(c.name, "Label"), parent.transform as RectTransform);
-        return MakeText(go, c.text, c.font, c.size, c.color, c.align, c.italic);
+        var text = MakeText(go, c.text, c.font, c.size, c.color, c.align, c.italic);
+        SetWidth(go, c.width);
+        return text;
+    }
+
+    /// <summary>
+    /// A fixed share of the row, in canvas units. Zero leaves the child to take
+    /// whatever the layout group has left, which is what a name label wants.
+    /// </summary>
+    private static void SetWidth(GameObject go, float fraction)
+    {
+        if (fraction <= 0f) return;
+
+        var element = go.AddComponent<LayoutElement>();
+        element.preferredWidth = fraction * _canvasSize.x;
+        element.flexibleWidth = 0f;
     }
 
     // =================================================================

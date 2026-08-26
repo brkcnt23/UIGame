@@ -75,6 +75,18 @@ public class SpecChild
     /// template uses "title" and "subtext".
     /// </summary>
     public string role = "";
+
+    /// <summary>
+    /// Fraction of the row this child takes, in a horizontal template. Zero
+    /// lets it share what is left.
+    /// </summary>
+    public float width;
+
+    /// <summary>
+    /// Width divided by height for an image child, so a portrait keeps its
+    /// shape. Soldier art is 0.8; leave it at zero for anything square.
+    /// </summary>
+    public float aspect;
 }
 
 [Serializable]
@@ -125,6 +137,12 @@ public class SpecElement
     /// knowing about any one screen: the spec names what it wants.
     /// </summary>
     public string templateComponent = "";
+
+    /// <summary>
+    /// Lay the template's children left to right instead of stacked. A roster
+    /// row is a portrait beside a name, not a portrait above one.
+    /// </summary>
+    public bool templateHorizontal;
 
     /// <summary>Marks this object for the screen's component to find. See SpecGroup.role.</summary>
     public string role = "";
