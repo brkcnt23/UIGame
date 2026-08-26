@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum ShopTypes
@@ -28,6 +28,16 @@ public class Shops : Residentials
     public List<ShopItemEntry> ItemEntries;
 
     // Economy
+    /// <summary>
+    /// The settlement this shop stands in.
+    ///
+    /// Prices depend on the town - its wealth, what is mined or grown nearby -
+    /// and a shop deserialised from JSON has no way to look upward on its own.
+    /// SettlementHandler fills this in on entry. When it is null pricing still
+    /// works, it just loses the local half of the market.
+    /// </summary>
+    [System.NonSerialized] public Settlement Owner;
+
     public Currency Cash;
     public float BuyMultiplier = 0.6f;
     public float SellMultiplier = 1.0f;
@@ -101,20 +111,44 @@ public class Shops : Residentials
         return item != null && CanAcceptCategory(item.Category);
     }
 
+    /// <summary>What the shop pays the player for one unit.</summary>
     public Currency GetSellPrice(Item item)
-    {
-        if (item == null)
-            return new Currency(0, 0);
+        => Priced(item, buying: false, fallbackMultiplier: BuyMultiplier);
 
-        return CalculatePrice(item.GetSingleValue(), SellMultiplier);
-    }
-
+    /// <summary>What the player pays the shop for one unit.</summary>
     public Currency GetBuyPrice(Item item)
+        => Priced(item, buying: true, fallbackMultiplier: SellMultiplier);
+
+    /// <summary>
+    /// Every price in the game comes from PricingSystem, which knows about the
+    /// town's wealth, what is abundant nearby, this shop's level and till, and
+    /// the player's haggling. This class used to multiply the item's face value
+    /// by a flat number, which meant the whole trade economy that had been
+    /// written was never what a player actually paid.
+    ///
+    /// The flat calculation survives only as a fallback for an item with no
+    /// catalogue entry behind it - generated shop stock, mostly - because those
+    /// have no ItemSO for the real formula to read.
+    /// </summary>
+    private Currency Priced(Item item, bool buying, float fallbackMultiplier)
     {
         if (item == null)
             return new Currency(0, 0);
 
-        return CalculatePrice(item.GetSingleValue(), BuyMultiplier);
+        var template = GameBootstrapper.Resources != null
+            ? GameBootstrapper.Resources.GetItemDatabase()?.GetByID(item.ID)
+            : null;
+
+        if (template == null)
+            return CalculatePrice(item.GetSingleValue(), fallbackMultiplier);
+
+        var player = PlayerStatHandler.Instance != null ? PlayerStatHandler.Instance.pd : null;
+
+        int silver = buying
+            ? PricingSystem.GetBuyPrice(item, template, this, Owner, player)
+            : PricingSystem.GetSellPrice(item, template, this, Owner, player);
+
+        return new Currency(silver / 100, silver % 100);
     }
 
     public bool CanAfford(Currency amount)

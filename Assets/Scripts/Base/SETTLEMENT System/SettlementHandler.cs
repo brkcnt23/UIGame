@@ -179,6 +179,14 @@ public class SettlementHandler : MonoBehaviour
         if (settlement == null)
             settlement = _settlement;
 
+        // A shop deserialised from JSON cannot see the town it stands in, and
+        // prices depend on the town. Without this every counter in the game
+        // would quote the same numbers.
+        if (settlement.Shops != null)
+            foreach (var shop in settlement.Shops)
+                if (shop != null)
+                    shop.Owner = settlement;
+
         if (HomeSettlementHandler.Instance != null)
             HomeSettlementHandler.Instance.GenerateRandomHappenings();
 

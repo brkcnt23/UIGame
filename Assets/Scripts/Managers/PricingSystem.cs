@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// One place that decides what anything costs.
@@ -25,6 +25,12 @@ public static class PricingSystem
     // same shop forever.
     private const float MinimumSpread = 0.25f;
 
+    /// <summary>Silver a shop of a given level is expected to keep in the till.</summary>
+    private const float ExpectedTillPerLevel = 5000f;
+
+    /// <summary>Units of one item past which a shop would rather have coin than more of it.</summary>
+    private const int Overstocked = 12;
+
     /// <summary>What the player pays the shop for one unit.</summary>
     public static int GetBuyPrice(ItemSO item, Shops shop, Settlement settlement, PlayerData player)
     {
@@ -35,6 +41,7 @@ public static class PricingSystem
         price *= shop != null ? Mathf.Max(0.1f, shop.SellMultiplier) : 1.15f;
         price *= WealthFactor(settlement);
         price *= SupplyFactor(item, settlement);
+        price *= ShopFactor(item, shop, buying: true);
         price *= HaggleFactor(player, buying: true);
 
         return Mathf.Max(1, Mathf.RoundToInt(price));
@@ -53,6 +60,7 @@ public static class PricingSystem
         // Supply works the other way round when selling: a place drowning in
         // ore will not pay you well for more of it.
         price /= Mathf.Max(0.5f, SupplyFactor(item, settlement));
+        price *= ShopFactor(item, shop, buying: false);
         price *= HaggleFactor(player, buying: false);
 
         int sell = Mathf.Max(1, Mathf.RoundToInt(price));
@@ -88,6 +96,89 @@ public static class PricingSystem
 
         int q = Mathf.Clamp(instance.Quality, 0, 4);
         return ItemRules.QualityMultipliers[q] / 100f;
+    }
+
+    /// <summary>
+    /// What separates two shops standing in the same street.
+    ///
+    /// The settlement sets the market; a shop moves a few percent off it, and
+    /// always for a reason the player can read off the counter. Three things
+    /// move it, and none of them is a dice roll — a random markup teaches the
+    /// player nothing and makes them check every stall before every purchase.
+    ///
+    ///   1. The premises   — a bigger shop pays more rent and charges for it
+    ///   2. The till       — a shopkeeper short of coin discounts to raise some
+    ///   3. The shelf      — a stall drowning in iron sells iron cheap
+    ///
+    /// The spread is deliberately narrow. The point is that the same iron costs
+    /// 49 here and 52 next door, not that one shop is a bargain and the other a
+    /// robbery: a wide spread would turn every purchase into a tour of the town.
+    /// </summary>
+    private static float ShopFactor(ItemSO item, Shops shop, bool buying)
+    {
+        if (shop == null) return 1f;
+
+        return OverheadFactor(shop, buying)
+             * TillFactor(shop, buying)
+             * StockFactor(item, shop, buying);
+    }
+
+    /// <summary>
+    /// Rent. A level 5 premises on the main street costs more to keep than a
+    /// level 1 stall, and that lands on the price tag.
+    ///
+    /// Only when the player is buying. The shopkeeper's overheads are not a
+    /// reason for them to pay you more, and a levelled shop already rewards the
+    /// player through the stock it is allowed to carry.
+    /// </summary>
+    private static float OverheadFactor(Shops shop, bool buying)
+    {
+        if (!buying) return 1f;
+
+        int level = Mathf.Clamp(shop.level, 1, 10);
+        return 1f + (level - 1) * 0.02f;
+    }
+
+    /// <summary>
+    /// The coin in the till, against what a shop that size ought to be holding.
+    ///
+    /// A shopkeeper who has run their money into stock needs it back, so they
+    /// shade prices down to shift goods. One sitting on a full chest can wait
+    /// for their price, and can pay properly for what the player brings in.
+    /// </summary>
+    private static float TillFactor(Shops shop, bool buying)
+    {
+        float expected = Mathf.Max(1, shop.level) * ExpectedTillPerLevel;
+        float held = shop.Cash.Gold * 100f + shop.Cash.Silver;
+        float ratio = held / expected;
+
+        if (ratio < 0.5f) return buying ? 0.96f : 0.94f;   // needs coin: sells cheap, pays badly
+        if (ratio > 2.0f) return buying ? 1.02f : 1.03f;   // flush: holds firm, pays well
+
+        return 1f;
+    }
+
+    /// <summary>
+    /// How much of this particular thing is already on the shelf.
+    ///
+    /// This is the volume trade the player can actually exploit: a shop with
+    /// twelve bars of iron would rather have coin than a thirteenth bar, and
+    /// will not pay much for one either.
+    /// </summary>
+    private static float StockFactor(ItemSO item, Shops shop, bool buying)
+    {
+        if (item == null || shop.ItemEntries == null) return 1f;
+
+        int quantity = 0;
+
+        foreach (var entry in shop.ItemEntries)
+            if (entry != null && entry.ItemId == item.ID)
+                quantity += entry.Quantity;
+
+        if (quantity >= Overstocked) return buying ? 0.96f : 0.92f;
+        if (quantity <= 1)           return buying ? 1.05f : 1f;
+
+        return 1f;
     }
 
     /// <summary>
@@ -231,6 +322,17 @@ public static class PricingSystem
         if (supply >= 1.3f) return "Scarce this far out.";
         if (wealth >= 1.15f) return "A wealthy market.";
         if (wealth <= 0.9f) return "Little coin in this place.";
+
+        // Nothing about the town stands out, so say what this counter is doing.
+        // A price the player cannot account for reads as noise.
+        if (shop != null)
+        {
+            if (StockFactor(item, shop, buying: true) < 1f) return "They have plenty of these.";
+            if (StockFactor(item, shop, buying: true) > 1f) return "Their last one.";
+            if (TillFactor(shop, buying: true) < 1f)        return "This one needs the coin.";
+            if (TillFactor(shop, buying: true) > 1f)        return "A well-kept shop.";
+            if (shop.level >= 4)                            return "You pay for the address.";
+        }
 
         return "";
     }
