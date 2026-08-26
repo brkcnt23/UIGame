@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +6,45 @@ using UnityEngine;
 
 public class BattleSimulator
 {
-    private static readonly Dictionary<UnitType, UnitType> StrongAgainst = new Dictionary<UnitType, UnitType>
+    /// <summary>
+    /// Who beats whom, by role rather than by unit.
+    ///
+    ///   Pike beats Horse - a hedge of points stops a charge
+    ///   Horse beats Archer - bowmen caught in the open are ridden down
+    ///   Archer beats Foot - shot at before they arrive
+    ///   Foot beats Pike - once past the points, a pike is a stick
+    ///
+    /// Keeping the cycle on four roles rather than ten unit types means a new
+    /// portrait joins the fight correctly the moment it has a role, instead of
+    /// quietly fighting nobody because somebody forgot a matrix entry. Five of
+    /// the ten troops in this game did exactly that.
+    /// </summary>
+    private static readonly Dictionary<UnitRole, UnitRole> RoleBeats = new Dictionary<UnitRole, UnitRole>
     {
-        { UnitType.Knight, UnitType.Soldier },
-        { UnitType.Soldier, UnitType.Shielder },
-        { UnitType.Shielder, UnitType.Archer },
-        { UnitType.Archer, UnitType.Pikeman },
-        { UnitType.Pikeman, UnitType.Knight }
+        { UnitRole.Pike,   UnitRole.Horse  },
+        { UnitRole.Horse,  UnitRole.Archer },
+        { UnitRole.Archer, UnitRole.Foot   },
+        { UnitRole.Foot,   UnitRole.Pike   }
     };
 
-    private static readonly Dictionary<UnitType, TerrainType> TerrainAdvantages = new Dictionary<UnitType, TerrainType>
+    private static readonly Dictionary<UnitRole, TerrainType> TerrainAdvantages = new Dictionary<UnitRole, TerrainType>
     {
-        { UnitType.Archer, TerrainType.Hills },
-        { UnitType.Knight, TerrainType.Plains },
-        { UnitType.Soldier, TerrainType.Forest },
-        { UnitType.Pikeman, TerrainType.Mountains }
+        { UnitRole.Archer, TerrainType.Hills },
+        { UnitRole.Horse,  TerrainType.Plains },
+        { UnitRole.Foot,   TerrainType.Forest },
+        { UnitRole.Pike,   TerrainType.Mountains }
     };
 
-    private static readonly Dictionary<UnitType, WeatherType> WeatherDisadvantages = new Dictionary<UnitType, WeatherType>
+    private static readonly Dictionary<UnitRole, WeatherType> WeatherDisadvantages = new Dictionary<UnitRole, WeatherType>
     {
-        { UnitType.Archer, WeatherType.Rain },
-        { UnitType.Knight, WeatherType.Fog },
-        { UnitType.Soldier, WeatherType.Storm }
+        { UnitRole.Archer, WeatherType.Rain },   // wet strings
+        { UnitRole.Horse,  WeatherType.Fog },    // you cannot charge what you cannot see
+        { UnitRole.Foot,   WeatherType.Storm }
     };
+
+    /// <summary>What this troop does on a field. Unknown types fight as foot.</summary>
+    private static UnitRole RoleOf(UnitType type)
+        => UnitCatalog.Get(type)?.Role ?? UnitRole.Foot;
 
     // -----------------------------
     // POWER
@@ -39,40 +55,45 @@ public class BattleSimulator
         if (ownArmy == null || ownArmy.Units == null)
             return 0f;
 
+        // Morale is a property of the army, not of each stack in it. It used to
+        // be recomputed inside the loop, which cost nothing but said the wrong
+        // thing about what it measures.
+        float morale = CalculateMoraleModifier(ownArmy);
+
         float power = 0f;
 
         foreach (var unit in ownArmy.Units)
         {
             if (unit == null || unit.Count <= 0) continue;
 
-            float unitPower = unit.Count;
+            var def = UnitCatalog.Get(unit.Type);
 
-            if (TerrainAdvantages.TryGetValue(unit.Type, out TerrainType advantageTerrain) && advantageTerrain == terrain)
-            {
+            // Headcount alone made a knight the equal of a levy, so five hundred
+            // gold of cavalry fought exactly like ten gold of farmhands.
+            float unitPower = unit.Count * (def?.CombatValue ?? 1f);
+
+            UnitRole role = def?.Role ?? UnitRole.Foot;
+
+            if (TerrainAdvantages.TryGetValue(role, out TerrainType goodGround) && goodGround == terrain)
                 unitPower *= 1.2f;
-            }
 
-            if (WeatherDisadvantages.TryGetValue(unit.Type, out WeatherType disadvantageWeather) && disadvantageWeather == weather)
-            {
+            if (WeatherDisadvantages.TryGetValue(role, out WeatherType badWeather) && badWeather == weather)
                 unitPower *= 0.8f;
-            }
 
-            if (enemyArmy != null && enemyArmy.Units != null &&
-                StrongAgainst.TryGetValue(unit.Type, out UnitType strongAgainstType))
+            if (enemyArmy?.Units != null && RoleBeats.TryGetValue(role, out UnitRole prey))
             {
                 foreach (var enemyUnit in enemyArmy.Units)
                 {
-                    if (enemyUnit != null && enemyUnit.Type == strongAgainstType)
-                    {
-                        unitPower += enemyUnit.Count * 0.5f;
-                    }
+                    if (enemyUnit == null || enemyUnit.Count <= 0) continue;
+
+                    var enemyDef = UnitCatalog.Get(enemyUnit.Type);
+
+                    if (enemyDef != null && enemyDef.Role == prey)
+                        unitPower += enemyUnit.Count * enemyDef.CombatValue * 0.25f;
                 }
             }
 
-            float moraleModifier = CalculateMoraleModifier(ownArmy);
-            unitPower *= moraleModifier;
-
-            power += unitPower;
+            power += unitPower * morale;
         }
 
         return power;
@@ -83,24 +104,29 @@ public class BattleSimulator
         if (PlayerStatHandler.Instance == null || PlayerStatHandler.Instance.pd == null)
             return 1.0f;
 
-        float morale = 1.0f;
+        var pd = PlayerStatHandler.Instance.pd;
 
-        int recentVictories = PlayerStatHandler.Instance.pd.TotalBattlesWon;
-        morale += recentVictories * 0.05f;
+        // Reputation for winning, read as a record rather than a running total.
+        // The old line added five percent per lifetime victory, so a commander
+        // twenty battles in sat permanently at the cap and nothing they did
+        // afterwards could move it - including losing.
+        int fought = pd.TotalBattlesWon + pd.TotalBattlesLost;
+        float record = fought > 0 ? pd.TotalBattlesWon / (float)fought : 0.5f;
 
-        float maxHealth = Mathf.Max(1, PlayerStatHandler.Instance.pd.MaxHealth);
-        float healthPercentage = PlayerStatHandler.Instance.pd.Health / maxHealth;
+        float morale = 1.0f + (record - 0.5f) * 0.4f;
+
+        float maxHealth = Mathf.Max(1, pd.MaxHealth);
+        float healthPercentage = pd.Health / maxHealth;
 
         if (healthPercentage < 0.5f)
-        {
             morale *= healthPercentage + 0.5f;
-        }
 
-        int exhaustion = PlayerStatHandler.Instance.pd.CurrentExhaustionLevel;
-        morale *= (1.0f - (exhaustion * 0.1f));
+        morale *= 1.0f - pd.CurrentExhaustionLevel * 0.1f;
 
         return Mathf.Clamp(morale, 0.5f, 2.0f);
     }
+
+
 
     // -----------------------------
     // SINGLE SIMULATION
@@ -254,7 +280,7 @@ public class BattleSimulator
                 float attackBonus1 = GetCombatModifier(unit1.Type, terrain, weather);
                 float attackBonus2 = GetCombatModifier(unit2.Type, terrain, weather);
 
-                if (StrongAgainst.TryGetValue(unit1.Type, out UnitType strongAgainstType1) && strongAgainstType1 == unit2.Type)
+                if (RoleBeats.TryGetValue(RoleOf(unit1.Type), out UnitRole prey1) && prey1 == RoleOf(unit2.Type))
                 {
                     casualtiesToArmy2 = Mathf.Min(
                         Mathf.Max(1, Mathf.RoundToInt(UnityEngine.Random.Range(1, Mathf.Max(2, unit2.Count / 10f)) * attackBonus1)),
@@ -264,7 +290,7 @@ public class BattleSimulator
                     unit2.Count -= casualtiesToArmy2;
                     AddCasualty(result.LoserCasualties, unit2.Type, casualtiesToArmy2);
                 }
-                else if (StrongAgainst.TryGetValue(unit2.Type, out UnitType strongAgainstType2) && strongAgainstType2 == unit1.Type)
+                else if (RoleBeats.TryGetValue(RoleOf(unit2.Type), out UnitRole prey2) && prey2 == RoleOf(unit1.Type))
                 {
                     casualtiesToArmy1 = Mathf.Min(
                         Mathf.Max(1, Mathf.RoundToInt(UnityEngine.Random.Range(1, Mathf.Max(2, unit1.Count / 10f)) * attackBonus2)),
@@ -305,12 +331,14 @@ public class BattleSimulator
     {
         float modifier = 1f;
 
-        if (TerrainAdvantages.TryGetValue(unitType, out TerrainType advantageTerrain) && advantageTerrain == terrain)
+        UnitRole role = RoleOf(unitType);
+
+        if (TerrainAdvantages.TryGetValue(role, out TerrainType advantageTerrain) && advantageTerrain == terrain)
         {
             modifier += 0.2f;
         }
 
-        if (WeatherDisadvantages.TryGetValue(unitType, out WeatherType disadvantageWeather) && disadvantageWeather == weather)
+        if (WeatherDisadvantages.TryGetValue(role, out WeatherType disadvantageWeather) && disadvantageWeather == weather)
         {
             modifier -= 0.2f;
         }
@@ -395,7 +423,7 @@ public class BattleSimulator
             {
                 if (unit == null) continue;
 
-                if (TerrainAdvantages.TryGetValue(unit.Type, out TerrainType advantageTerrain) && advantageTerrain == terrain)
+                if (TerrainAdvantages.TryGetValue(RoleOf(unit.Type), out TerrainType advantageTerrain) && advantageTerrain == terrain)
                 {
                     events.Add($"{unit.Type}s take advantage of the {terrain} terrain!");
                 }
@@ -414,7 +442,7 @@ public class BattleSimulator
         {
             if (unit == null) continue;
 
-            if (WeatherDisadvantages.TryGetValue(unit.Type, out WeatherType disadvantageWeather) && disadvantageWeather == weather)
+            if (WeatherDisadvantages.TryGetValue(RoleOf(unit.Type), out WeatherType disadvantageWeather) && disadvantageWeather == weather)
             {
                 events.Add($"{unit.Type}s struggle in the {weather} conditions!");
             }
